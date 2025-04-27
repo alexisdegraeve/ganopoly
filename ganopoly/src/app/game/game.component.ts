@@ -13,7 +13,11 @@ export class GameComponent {
 
   }
   startGame() {
-    this.gameService.throwDice();
+    this.gameService.startGame().subscribe(() => {
+      console.log(' loading finish');
+      this.gameService.throwDice();
+    })
+
   }
 
 }
