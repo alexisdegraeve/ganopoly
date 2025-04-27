@@ -16,8 +16,14 @@ export class GameComponent {
     this.gameService.startGame().subscribe(() => {
       console.log(' loading finish');
       this.gameService.throwDice();
+      this.gameService.distributeBillets();
     })
 
   }
+
+  pickChance() {
+      this.gameService.pickChanceCard();
+  }
+
 
 }

@@ -2,59 +2,78 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ccCard } from '../models/ccCard';
 import { forkJoin, Observable } from 'rxjs';
+import { Billet } from '../models/billet';
+import { Player } from '../models/player';
 
 @Injectable({
-  providedIn: 'root'
-
+  providedIn: 'root',
 })
 export class GameService {
   private dice1: number = 0;
   private dice2: number = 0;
   private chanceCards: ccCard[] = [];
   private communauteCards: ccCard[] = [];
+  private banque: Billet[] = [
+    { euro: 1, quantity: 30, color: 'white' },
+    { euro: 5, quantity: 30, color: 'pink' },
+    { euro: 10, quantity: 30, color: 'cyan' },
+    { euro: 20, quantity: 30, color: 'green' },
+    { euro: 50, quantity: 30, color: 'purple' },
+    { euro: 100, quantity: 30, color: 'salmon' },
+    { euro: 500, quantity: 30, color: 'orange' },
+  ];
+  private playerHuman: Player = {
+    houses: [],
+    billets: [
+      { euro: 1, quantity: 0, color: 'white' },
+      { euro: 5, quantity: 0, color: 'pink' },
+      { euro: 10, quantity: 0, color: 'cyan' },
+      { euro: 20, quantity: 0, color: 'green' },
+      { euro: 50, quantity: 0, color: 'purple' },
+      { euro: 100, quantity: 0, color: 'salmon' },
+      { euro: 500, quantity: 0, color: 'orange' },
+    ],
+  };
+  private playerComputer1: Player = { houses: [], billets: [] };
+  private playerComputer2: Player = { houses: [], billets: [] };
+  private playerComputer3: Player = { houses: [], billets: [] };
 
-  constructor(private httpClient: HttpClient) {
-  }
+  constructor(private httpClient: HttpClient) {}
 
   startGame(): Observable<void> {
     return new Observable<void>((observer) => {
       forkJoin({
         chanceCards: this.httpClient.get<ccCard[]>('/cards/chance.json'),
-        communauteCards: this.httpClient.get<ccCard[]>('/cards/communaute.json')
+        communauteCards: this.httpClient.get<ccCard[]>(
+          '/cards/communaute.json'
+        ),
       }).subscribe({
         next: ({ chanceCards, communauteCards }) => {
           this.chanceCards = this.shuffleArray(chanceCards);
           this.communauteCards = this.shuffleArray(communauteCards);
+          console.log('Billets');
+          console.log('banque : '  , JSON.parse(JSON.stringify(this.banque)));
+          console.log('player Human :', JSON.parse(JSON.stringify(this.playerHuman)));
+          console.log('playerComputer 1 :',JSON.parse(JSON.stringify(this.playerComputer1)));
+          console.log('playerComputer 2 :',JSON.parse(JSON.stringify(this.playerComputer2)));
+          console.log('playerComputer 3 :',JSON.parse(JSON.stringify(this.playerComputer3)));
           observer.next();
           observer.complete();
         },
         error: (err) => {
           console.error('Erreur lors du démarrage du jeu', err);
           observer.error(err);
-        }
+        },
       });
     });
   }
 
   throwDice() {
     const sides = 6;
-    this.dice1 = Math.floor(Math.random()* sides)+1;
-    this.dice2 = Math.floor(Math.random()* sides)+1;
+    this.dice1 = Math.floor(Math.random() * sides) + 1;
+    this.dice2 = Math.floor(Math.random() * sides) + 1;
     console.log(this.dice1, this.dice2, this.chanceCards, this.communauteCards);
   }
-
-  // initChanceCards() {
-  //   this.httpClient.get<ccCard[]>("/cards/chance.json").subscribe((cards: ccCard[])  => {
-  //     this.chanceCards = this.shuffleArray([...cards]);
-  //   });
-  // }
-
-  // initCommunauteCards() {
-  //   this.httpClient.get<ccCard[]>("/cards/communaute.json").subscribe((cards: ccCard[])  => {
-  //     this.communauteCards = this.shuffleArray([...cards]);
-
-  //   });
-  // }
 
   shuffleArray(array: ccCard[]): ccCard[] {
     for (let index = 0; index < array.length / 2; index++) {
@@ -65,5 +84,53 @@ export class GameService {
     }
     return array;
   }
+  pickChanceCard(): ccCard | undefined {
+    console.log(this.banque);
+    console.log(this.playerHuman);
+    let lastCard = this.chanceCards.pop();
+    if (lastCard) {
+      this.chanceCards = [lastCard, ...this.chanceCards];
+    }
+    return lastCard;
+  }
 
+  takeMoneyFromBank(dstEuro: number, dstQuantity: number, dstPlayer: Player) {
+    this.banque
+    .filter((billet) => billet.euro === dstEuro)
+    .forEach((billet) => {
+      if (billet.quantity > 0) {
+        billet.quantity -= dstQuantity;
+        dstPlayer.billets
+          .filter((billet) => billet.euro === dstEuro)
+          .forEach((billet) => {
+            billet.quantity += dstQuantity;
+          });
+      }
+    });
+  }
+
+  giveBilletsPlayer(player: Player) {
+    this.takeMoneyFromBank(1, 5, player);
+    this.takeMoneyFromBank(5, 1, player);
+    this.takeMoneyFromBank(10, 2, player);
+    this.takeMoneyFromBank(20, 1, player);
+    this.takeMoneyFromBank(50, 1, player);
+    this.takeMoneyFromBank(100, 4, player);
+    this.takeMoneyFromBank(500, 2, player);
+  }
+
+  distributeBillets() {
+    this.giveBilletsPlayer(this.playerHuman);
+    this.giveBilletsPlayer(this.playerComputer1);
+    this.giveBilletsPlayer(this.playerComputer2);
+    this.giveBilletsPlayer(this.playerComputer3);
+    console.log('disribute Billets');
+    console.log('banque : '  , JSON.parse(JSON.stringify(this.banque)));
+    console.log('player Human :', JSON.parse(JSON.stringify(this.playerHuman)));
+    console.log('playerComputer 1 :',JSON.parse(JSON.stringify(this.playerComputer1)));
+    console.log('playerComputer 2 :',JSON.parse(JSON.stringify(this.playerComputer2)));
+    console.log('playerComputer 3 :',JSON.parse(JSON.stringify(this.playerComputer3)));
+  }
 }
+
+
