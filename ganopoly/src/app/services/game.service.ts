@@ -22,23 +22,27 @@ export class GameService {
     { euro: 100, quantity: 30, color: 'salmon' },
     { euro: 500, quantity: 30, color: 'orange' },
   ];
-  private playerHuman: Player = {
-    houses: [],
-    billets: [
-      { euro: 1, quantity: 0, color: 'white' },
-      { euro: 5, quantity: 0, color: 'pink' },
-      { euro: 10, quantity: 0, color: 'cyan' },
-      { euro: 20, quantity: 0, color: 'green' },
-      { euro: 50, quantity: 0, color: 'purple' },
-      { euro: 100, quantity: 0, color: 'salmon' },
-      { euro: 500, quantity: 0, color: 'orange' },
-    ],
-  };
-  private playerComputer1: Player = { houses: [], billets: [] };
-  private playerComputer2: Player = { houses: [], billets: [] };
-  private playerComputer3: Player = { houses: [], billets: [] };
+  private playerHuman : Player = this.createNewPlayer();
+  private playerComputer1: Player = this.createNewPlayer();
+  private playerComputer2: Player = this.createNewPlayer();
+  private playerComputer3: Player = this.createNewPlayer();
 
   constructor(private httpClient: HttpClient) {}
+
+  createNewPlayer(): Player {
+    return {
+      houses: [],
+      billets: [
+        { euro: 1, quantity: 0, color: 'white' },
+        { euro: 5, quantity: 0, color: 'pink' },
+        { euro: 10, quantity: 0, color: 'cyan' },
+        { euro: 20, quantity: 0, color: 'green' },
+        { euro: 50, quantity: 0, color: 'purple' },
+        { euro: 100, quantity: 0, color: 'salmon' },
+        { euro: 500, quantity: 0, color: 'orange' },
+      ]
+    };
+  }
 
   startGame(): Observable<void> {
     return new Observable<void>((observer) => {
