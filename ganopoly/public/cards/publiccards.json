@@ -1,0 +1,17 @@
+[{
+        "nom": "Electricité",
+        "loyer": 25,
+        "loyer2": 50,
+        "hypotheque": 75,
+        "leverhypotheque": 83,
+        "icone": "electric"
+    },
+    {
+        "nom": "Eaux",
+        "loyer": 30,
+        "loyer2": 60,
+        "hypotheque": 80,
+        "leverhypotheque": 88,
+        "icone": "water"
+    }
+]

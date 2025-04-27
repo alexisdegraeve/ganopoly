@@ -1,0 +1,37 @@
+[{
+        "nom": "Gare du Midi",
+        "station": 25,
+        "station2": 50,
+        "station3": 100,
+        "station4": 200,
+        "hypotheque": 100,
+        "leverhypotheque": 110
+    },
+    {
+        "nom": "Gare de Bruxelles-Central",
+        "station": 25,
+        "station2": 50,
+        "station3": 100,
+        "station4": 200,
+        "hypotheque": 100,
+        "leverhypotheque": 110
+    },
+    {
+        "nom": "Gare de Bruxelles-Nord",
+        "station": 25,
+        "station2": 50,
+        "station3": 100,
+        "station4": 200,
+        "hypotheque": 100,
+        "leverhypotheque": 110
+    },
+    {
+        "nom": "Gare de Bruxelles-Schuman",
+        "station": 25,
+        "station2": 50,
+        "station3": 100,
+        "station4": 200,
+        "hypotheque": 100,
+        "leverhypotheque": 110
+    }
+]
