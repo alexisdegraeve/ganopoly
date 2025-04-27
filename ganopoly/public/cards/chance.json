@@ -1,0 +1,51 @@
+[{
+        "id": 1,
+        "texte": "Avancez jusqu'à la case Départ. Recevez 2 000 €.",
+        "valeur": 2000
+    },
+    {
+        "id": 2,
+        "texte": "Reculez de trois cases.",
+        "valeur": 0
+    },
+    {
+        "id": 3,
+        "texte": "Allez en prison. Ne touchez pas 2 000 €.",
+        "valeur": 0
+    },
+    {
+        "id": 4,
+        "texte": "Vous êtes libéré de prison. Cette carte peut être conservée jusqu'à ce qu'elle soit utilisée ou vendue.",
+        "valeur": 0
+    },
+    {
+        "id": 5,
+        "texte": "Vous avez gagné le prix de mots croisés. Recevez 1 000 €.",
+        "valeur": 1000
+    },
+    {
+        "id": 6,
+        "texte": "La banque vous verse un dividende de 500 €.",
+        "valeur": 500
+    },
+    {
+        "id": 7,
+        "texte": "Faites des réparations dans toutes vos maisons. Versez 200 € par maison.",
+        "valeur": 200
+    },
+    {
+        "id": 8,
+        "texte": "Payez une amende de 100 € pour excès de vitesse.",
+        "valeur": 100
+    },
+    {
+        "id": 9,
+        "texte": "Payez pour frais de scolarité 300 €.",
+        "valeur": 300
+    },
+    {
+        "id": 10,
+        "texte": "Votre immeuble et votre prêt rapportent. Vous devez toucher 400 €.",
+        "valeur": 400
+    }
+]

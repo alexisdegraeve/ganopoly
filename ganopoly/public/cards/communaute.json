@@ -1,0 +1,81 @@
+[{
+        "id": 1,
+        "texte": "Placez-vous sur la case Départ. Recevez 2 000 €.",
+        "valeur": 2000
+    },
+    {
+        "id": 2,
+        "texte": "Erreur de la banque en votre faveur. Recevez 1 000 €.",
+        "valeur": 1000
+    },
+    {
+        "id": 3,
+        "texte": "Payez la note du médecin 100 €.",
+        "valeur": 100
+    },
+    {
+        "id": 4,
+        "texte": "La vente de votre stock vous rapporte 200 €.",
+        "valeur": 200
+    },
+    {
+        "id": 5,
+        "texte": "Vous êtes libéré de prison. Cette carte peut être conservée jusqu'à ce qu'elle soit utilisée ou vendue.",
+        "valeur": 0
+    },
+    {
+        "id": 6,
+        "texte": "Allez en prison. Ne touchez pas 2 000 €.",
+        "valeur": 0
+    },
+    {
+        "id": 7,
+        "texte": "Retournez à la case Départ.",
+        "valeur": 0
+    },
+    {
+        "id": 8,
+        "texte": "Recevez votre revenu annuel 500 €.",
+        "valeur": 500
+    },
+    {
+        "id": 9,
+        "texte": "C'est votre anniversaire. Chaque joueur doit vous donner 100 €.",
+        "valeur": 100
+    },
+    {
+        "id": 10,
+        "texte": "Les contributions vous remboursent la somme de 200 €.",
+        "valeur": 200
+    },
+    {
+        "id": 11,
+        "texte": "Recevez votre intérêt sur l'emprunt à 7 % 150 €.",
+        "valeur": 150
+    },
+    {
+        "id": 12,
+        "texte": "Payez votre police d'assurance 100 €.",
+        "valeur": 100
+    },
+    {
+        "id": 13,
+        "texte": "Payez une amende de 50 € ou bien tirez une carte Chance.",
+        "valeur": 50
+    },
+    {
+        "id": 14,
+        "texte": "Rendez-vous à la gare la plus proche. Si vous passez par la case Départ, recevez 2 000 €.",
+        "valeur": 0
+    },
+    {
+        "id": 15,
+        "texte": "Vous avez gagné le deuxième prix de beauté. Recevez 50 €.",
+        "valeur": 50
+    },
+    {
+        "id": 16,
+        "texte": "Vous héritez 500 €.",
+        "valeur": 500
+    }
+]
