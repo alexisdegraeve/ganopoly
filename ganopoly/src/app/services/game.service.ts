@@ -134,6 +134,19 @@ export class GameService {
     console.log('playerComputer 1 :',JSON.parse(JSON.stringify(this.playerComputer1)));
     console.log('playerComputer 2 :',JSON.parse(JSON.stringify(this.playerComputer2)));
     console.log('playerComputer 3 :',JSON.parse(JSON.stringify(this.playerComputer3)));
+    console.log('total ');
+    console.log('Human :', this.calcTotal(this.playerHuman));
+    console.log('playerComputer 1 :', this.calcTotal(this.playerComputer1));
+    console.log('playerComputer 2 :', this.calcTotal(this.playerComputer2));
+    console.log('playerComputer 3 :', this.calcTotal(this.playerComputer3));
+  }
+
+  calcTotal(player: Player): number {
+    let total = 0;
+    player.billets.forEach(billet => {
+      total += (billet.euro * billet.quantity);
+    })
+    return total;
   }
 }
 
