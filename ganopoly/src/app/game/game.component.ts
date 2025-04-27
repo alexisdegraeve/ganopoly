@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { GameService } from '../services/game.service';
 
 @Component({
   selector: 'gano-game',
@@ -7,5 +8,12 @@ import { Component } from '@angular/core';
   styleUrl: './game.component.scss'
 })
 export class GameComponent {
+
+  constructor(private gameService: GameService) {
+
+  }
+  startGame() {
+    this.gameService.throwDice();
+  }
 
 }
