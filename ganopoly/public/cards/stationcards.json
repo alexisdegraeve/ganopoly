@@ -1,5 +1,6 @@
 [{
         "nom": "Gare du Midi",
+        "case": 3,
         "station": 25,
         "station2": 50,
         "station3": 100,
