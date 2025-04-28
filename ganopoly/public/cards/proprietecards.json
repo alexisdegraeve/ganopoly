@@ -1,10 +1,18 @@
 [{
+        "case": 0,
+        "name": "Départ",
+        "info": "Recevez 200€ chaque fois que vous passez ici",
+        "symbol": "fa-solid fa-play",
+        "color": "white"
+    },
+    {
         "case": 1,
         "street": "Rue Grande",
         "symbol": "fa-solid fa-house",
         "ville": "Dinant",
         "type": "immobilier",
         "color": "SaddleBrown",
+        "prix": 60,
         "loyer": 2,
         "groupe": 4,
         "house1": 10,
@@ -18,12 +26,19 @@
         "leverhypotheque": 33
     },
     {
+        "case": 2,
+        "name": "Caisse de communauté",
+        "symbol": "fa-solid fa-sack-dollar",
+        "color": "white"
+    },
+    {
         "case": 3,
         "street": "Diestsestraat",
         "symbol": "fa-solid fa-house",
         "ville": "Leuven",
         "type": "immobilier",
         "color": "SaddleBrown",
+        "prix": 60,
         "loyer": 4,
         "groupe": 8,
         "house1": 20,
@@ -37,11 +52,19 @@
         "leverhypotheque": 33
     },
     {
+        "case": 4,
+        "name": "Impôts sur le revenu",
+        "symbol": "fa-solid fa-receipt",
+        "prix": 200,
+        "color": "white"
+    },
+    {
         "case": 5,
         "name": "Gare du Nord",
         "symbol": "fa-solid fa-train",
         "type": "gare",
         "color": "white",
+        "prix": 200,
         "loyer": 25,
         "station2": 50,
         "station3": 100,
@@ -56,6 +79,7 @@
         "ville": "Brugge",
         "type": "immobilier",
         "color": "cyan",
+        "prix": 100,
         "loyer": 6,
         "groupe": 12,
         "house1": 30,
@@ -69,12 +93,18 @@
         "leverhypotheque": 55
     },
     {
+        "case": 7,
+        "name": "Chance",
+        "color": "pink"
+    },
+    {
         "case": 8,
         "street": "Place du monument",
         "symbol": "fa-solid fa-house",
         "ville": "Spa",
         "type": "immobilier",
         "color": "cyan",
+        "prix": 100,
         "loyer": 6,
         "groupe": 12,
         "house1": 30,
@@ -94,6 +124,7 @@
         "ville": "Oostende",
         "type": "immobilier",
         "color": "cyan",
+        "prix": 120,
         "loyer": 8,
         "groupe": 16,
         "house1": 40,
@@ -105,6 +136,13 @@
         "prixHotel": 50,
         "hypotheque": 60,
         "leverhypotheque": 66
+    },
+    {
+        "case": 10,
+        "name": "Prison",
+        "info": "Simple Visite",
+        "symbol": "fa-solid fa-handcuffs",
+        "color": "orange"
     },
     {
         "case": 11,
@@ -446,6 +484,71 @@
         "prixHotel": 200,
         "hypotheque": 160,
         "leverhypotheque": 176
+    },
+    {
+        "case": 34,
+        "name": "Gare du Mid",
+        "symbol": "fa-solid fa-train",
+        "type": "gare",
+        "color": "white",
+        "prix": 200,
+        "loyer": 25,
+        "station2": 50,
+        "station3": 100,
+        "station4": 200,
+        "hypotheque": 100,
+        "leverhypotheque": 110
+    },
+    {
+        "case": 35,
+        "name": "Chance",
+        "color": "orange"
+    },
+    {
+        "case": 36,
+        "street": "Meir",
+        "symbol": "fa-solid fa-house",
+        "ville": "Antwerpen",
+        "type": "immobilier",
+        "color": "Blue",
+        "prix": 350,
+        "loyer": 35,
+        "groupe": 70,
+        "house1": 175,
+        "house2": 500,
+        "house3": 1100,
+        "house4": 1300,
+        "hotel1": 1500,
+        "prixHouse": 200,
+        "prixHotel": 200,
+        "hypotheque": 175,
+        "leverhypotheque": 193
+    },
+    {
+        "case": 37,
+        "name": "Impôt supplémentaire",
+        "symbol": "fa-solid fa-gem",
+        "color": "white"
+    },
+    {
+        "case": 38,
+        "street": "Rue Neuve",
+        "symbol": "fa-solid fa-house",
+        "ville": "Bruxelles",
+        "type": "immobilier",
+        "color": "Blue",
+        "prix": 400,
+        "loyer": 50,
+        "groupe": 100,
+        "house1": 200,
+        "house2": 600,
+        "house3": 1400,
+        "house4": 1700,
+        "hotel1": 2000,
+        "prixHouse": 200,
+        "prixHotel": 200,
+        "hypotheque": 200,
+        "leverhypotheque": 220
     }
 
 
