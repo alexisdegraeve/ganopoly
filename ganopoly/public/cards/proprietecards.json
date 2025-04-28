@@ -1,6 +1,7 @@
 [{
         "case": 1,
         "street": "Rue Grande",
+        "symbol": "fa-solid fa-house",
         "ville": "Dinant",
         "type": "immobilier",
         "color": "SaddleBrown",
@@ -19,6 +20,7 @@
     {
         "case": 3,
         "street": "Diestsestraat",
+        "symbol": "fa-solid fa-house",
         "ville": "Leuven",
         "type": "immobilier",
         "color": "SaddleBrown",
@@ -37,6 +39,7 @@
     {
         "case": 5,
         "name": "Gare du Nord",
+        "symbol": "fa-solid fa-train",
         "type": "gare",
         "color": "white",
         "loyer": 25,
@@ -49,6 +52,7 @@
     {
         "case": 6,
         "street": "Steenstraat",
+        "symbol": "fa-solid fa-house",
         "ville": "Brugge",
         "type": "immobilier",
         "color": "cyan",
@@ -67,6 +71,7 @@
     {
         "case": 8,
         "street": "Place du monument",
+        "symbol": "fa-solid fa-house",
         "ville": "Spa",
         "type": "immobilier",
         "color": "cyan",
@@ -85,6 +90,7 @@
     {
         "case": 9,
         "street": "Kapellestraat du monument",
+        "symbol": "fa-solid fa-house",
         "ville": "Oostende",
         "type": "immobilier",
         "color": "cyan",
@@ -103,6 +109,7 @@
     {
         "case": 11,
         "street": "Rue de Diekirch",
+        "symbol": "fa-solid fa-house",
         "ville": "Arlon",
         "type": "immobilier",
         "color": "DeepPink",
@@ -121,6 +128,7 @@
     {
         "case": 12,
         "name": "Centrale Electrique",
+        "symbol": "fa-solid fa-lightbulb",
         "color": "white",
         "times1": 4,
         "times2": 10,
@@ -130,6 +138,7 @@
     {
         "case": 13,
         "street": "Bruul",
+        "symbol": "fa-solid fa-house",
         "ville": "Mechelen",
         "type": "immobilier",
         "color": "DeepPink",
@@ -148,6 +157,7 @@
     {
         "case": 14,
         "street": "Place Verte",
+        "symbol": "fa-solid fa-house",
         "ville": "Verviers",
         "type": "immobilier",
         "color": "DeepPink",
@@ -166,6 +176,7 @@
     {
         "case": 15,
         "name": "Gare Centrale",
+        "symbol": "fa-solid fa-train",
         "type": "gare",
         "color": "white",
         "loyer": 25,
@@ -178,6 +189,7 @@
     {
         "case": 16,
         "street": "Lippenslaan",
+        "symbol": "fa-solid fa-house",
         "ville": "Knokke",
         "type": "immobilier",
         "color": "Orange",
@@ -196,6 +208,7 @@
     {
         "case": 18,
         "street": "Rue Royale",
+        "symbol": "fa-solid fa-house",
         "ville": "Tournai",
         "type": "immobilier",
         "color": "Orange",
@@ -214,6 +227,7 @@
     {
         "case": 19,
         "street": "Groenplaats",
+        "symbol": "fa-solid fa-house",
         "ville": "Antwerpen",
         "type": "immobilier",
         "color": "Orange",
