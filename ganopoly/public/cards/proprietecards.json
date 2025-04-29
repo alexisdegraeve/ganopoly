@@ -2,6 +2,7 @@
         "case": 0,
         "name": "Départ",
         "info": "Recevez 200€ chaque fois que vous passez ici",
+        "prix": 200,
         "symbol": "fa-solid fa-play",
         "color": "white"
     },
@@ -151,6 +152,7 @@
         "ville": "Arlon",
         "type": "immobilier",
         "color": "DeepPink",
+        "prix": 140,
         "loyer": 10,
         "groupe": 20,
         "house1": 50,
@@ -168,6 +170,7 @@
         "name": "Centrale Electrique",
         "symbol": "fa-solid fa-lightbulb",
         "color": "white",
+        "prix": 150,
         "times1": 4,
         "times2": 10,
         "hypotheque": 75,
@@ -180,6 +183,7 @@
         "ville": "Mechelen",
         "type": "immobilier",
         "color": "DeepPink",
+        "prix": 140,
         "loyer": 10,
         "groupe": 20,
         "house1": 50,
@@ -199,6 +203,7 @@
         "ville": "Verviers",
         "type": "immobilier",
         "color": "DeepPink",
+        "prix": 160,
         "loyer": 12,
         "groupe": 24,
         "house1": 60,
@@ -217,6 +222,7 @@
         "symbol": "fa-solid fa-train",
         "type": "gare",
         "color": "white",
+        "prix": 200,
         "loyer": 25,
         "station2": 50,
         "station3": 100,
@@ -231,6 +237,7 @@
         "ville": "Knokke",
         "type": "immobilier",
         "color": "Orange",
+        "prix": 180,
         "loyer": 14,
         "groupe": 28,
         "house1": 70,
@@ -244,12 +251,19 @@
         "leverhypotheque": 99
     },
     {
+        "case": 17,
+        "name": "Caisse de communauté",
+        "symbol": "fa-solid fa-sack-dollar",
+        "color": "white"
+    },
+    {
         "case": 18,
         "street": "Rue Royale",
         "symbol": "fa-solid fa-house",
         "ville": "Tournai",
         "type": "immobilier",
         "color": "Orange",
+        "prix": 180,
         "loyer": 14,
         "groupe": 28,
         "house1": 70,
@@ -269,6 +283,7 @@
         "ville": "Antwerpen",
         "type": "immobilier",
         "color": "Orange",
+        "prix": 200,
         "loyer": 16,
         "groupe": 32,
         "house1": 80,
@@ -282,12 +297,19 @@
         "leverhypotheque": 110
     },
     {
+        "case": 20,
+        "name": "Parking gratuit",
+        "symbol": "fa-solid fa-square-parking",
+        "color": "white"
+    },
+    {
         "case": 21,
         "street": "Rue St. Léonard",
         "symbol": "fa-solid fa-house",
         "ville": "Liège",
         "type": "immobilier",
         "color": "Red",
+        "prix": 220,
         "loyer": 18,
         "groupe": 36,
         "house1": 90,
@@ -301,12 +323,18 @@
         "leverhypotheque": 121
     },
     {
+        "case": 22,
+        "name": "Chance",
+        "color": "cyan"
+    },
+    {
         "case": 23,
         "street": "Lange Steenstraat",
         "symbol": "fa-solid fa-house",
         "ville": "Kortrijk",
         "type": "immobilier",
         "color": "Red",
+        "prix": 220,
         "loyer": 18,
         "groupe": 36,
         "house1": 90,
@@ -326,6 +354,7 @@
         "ville": "Mons",
         "type": "immobilier",
         "color": "Red",
+        "prix": 240,
         "loyer": 20,
         "groupe": 40,
         "house1": 100,
@@ -344,6 +373,7 @@
         "symbol": "fa-solid fa-train",
         "type": "gare",
         "color": "white",
+        "prix": 200,
         "loyer": 25,
         "station2": 50,
         "station3": 100,
@@ -358,6 +388,7 @@
         "ville": "Hasselt",
         "type": "immobilier",
         "color": "Yellow",
+        "prix": 260,
         "loyer": 22,
         "groupe": 44,
         "house1": 110,
@@ -377,6 +408,7 @@
         "ville": "Namur",
         "type": "immobilier",
         "color": "Yellow",
+        "prix": 260,
         "loyer": 22,
         "groupe": 44,
         "house1": 110,
@@ -467,6 +499,12 @@
     },
     {
         "case": 33,
+        "name": "Caisse de communauté",
+        "symbol": "fa-solid fa-sack-dollar",
+        "color": "white"
+    },
+    {
+        "case": 34,
         "street": "Boulevard d'Avroy",
         "symbol": "fa-solid fa-house",
         "ville": "Liège",
@@ -486,7 +524,7 @@
         "leverhypotheque": 176
     },
     {
-        "case": 34,
+        "case": 35,
         "name": "Gare du Mid",
         "symbol": "fa-solid fa-train",
         "type": "gare",
@@ -500,12 +538,12 @@
         "leverhypotheque": 110
     },
     {
-        "case": 35,
+        "case": 36,
         "name": "Chance",
         "color": "orange"
     },
     {
-        "case": 36,
+        "case": 37,
         "street": "Meir",
         "symbol": "fa-solid fa-house",
         "ville": "Antwerpen",
@@ -525,13 +563,14 @@
         "leverhypotheque": 193
     },
     {
-        "case": 37,
+        "case": 38,
         "name": "Impôt supplémentaire",
         "symbol": "fa-solid fa-gem",
+        "prix": 100,
         "color": "white"
     },
     {
-        "case": 38,
+        "case": 39,
         "street": "Rue Neuve",
         "symbol": "fa-solid fa-house",
         "ville": "Bruxelles",
