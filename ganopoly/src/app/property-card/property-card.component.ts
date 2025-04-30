@@ -9,8 +9,11 @@ import { Component, Input } from '@angular/core';
 })
 export class PropertyCardComponent {
   isFlipped = false;
-  @Input() name = 'Mario';
+  @Input() street = 'Rue Saint Léonard';
+  @Input() city = 'Liège';
   @Input() loyer = 50;
+  @Input() groupecomplet = 100;
+  @Input() maison1 = 200;
   @Input() backcolor = 'yellow';
 
   toggleFlip() {
