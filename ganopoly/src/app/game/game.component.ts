@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { GameService } from '../services/game.service';
 import { PropertyCardComponent } from "../property-card/property-card.component";
+import { BoardComponent } from "../board/board.component";
+import { HeaderComponent } from "../header/header.component";
 
 @Component({
   selector: 'gano-game',
-  imports: [PropertyCardComponent],
+  imports: [PropertyCardComponent, BoardComponent, HeaderComponent],
   templateUrl: './game.component.html',
   styleUrl: './game.component.scss'
 })

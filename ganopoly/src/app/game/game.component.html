@@ -1,5 +1,17 @@
-<button class="btn btn-primary" (click)="startGame()">START</button>
-
-<button class="btn btn-primary" (click)="pickChance()">Chance</button>
-
-<gano-property-card></gano-property-card>
+<gano-header></gano-header>
+<div class="game">
+    <div class="container">
+        <div class="row">
+            <div class="col col-xl-6">
+                <gano-board></gano-board>
+            </div>
+            <div class="col col-xl-6">
+                <gano-property-card></gano-property-card>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex d-none">
+        <button class="btn btn-primary" (click)="startGame()">START</button>
+        <button class="btn btn-primary" (click)="pickChance()">Chance</button>
+    </div>
+</div>
