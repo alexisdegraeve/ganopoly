@@ -14,6 +14,10 @@ export class PropertyCardComponent {
   @Input() loyer = 50;
   @Input() groupecomplet = 100;
   @Input() maison1 = 200;
+  @Input() maison2 = 600;
+  @Input() maison3 = 1400;
+  @Input() maison4 = 1700;
+  @Input() hotel = 2000;
   @Input() backcolor = 'yellow';
 
   toggleFlip() {
