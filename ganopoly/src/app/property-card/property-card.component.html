@@ -1,0 +1,15 @@
+<p>property-card works!</p>
+<div class="card-container">
+    <div class="flip-card" (click)="toggleFlip()">
+        <div class="flip-card-inner" [ngClass]="{'flipped': isFlipped}">
+            <div class="flip-card-front">
+                <!-- Contenu avant (par exemple, image ou texte) -->
+                <img src="chemin/vers/image.jpg" alt="Carte avant">
+            </div>
+            <div class="flip-card-back">
+                <!-- Contenu arrière -->
+                <p>Informations supplémentaires</p>
+            </div>
+        </div>
+    </div>
+</div>

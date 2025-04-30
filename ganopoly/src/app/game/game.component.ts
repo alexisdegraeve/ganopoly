@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { GameService } from '../services/game.service';
+import { PropertyCardComponent } from "../property-card/property-card.component";
 
 @Component({
   selector: 'gano-game',
-  imports: [],
+  imports: [PropertyCardComponent],
   templateUrl: './game.component.html',
   styleUrl: './game.component.scss'
 })
