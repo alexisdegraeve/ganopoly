@@ -39,12 +39,35 @@
     }
 
     .flip-card-back {
-        background-color: #343a40;
+        background-color: #fff;
         color: white;
         transform: rotateY(180deg);
         display: flex;
         justify-content: center;
         align-items: center;
+        padding: 1rem;
+        .card-body {
+            background-color: red;
+            border: 0.5rem solid rgb(250, 73, 73);
+            .card-header {
+                border: unset;
+            }
+        }
+        .card-content {
+            width: 100%;
+            margin-top: 1rem;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            word-break: keep-all;
+        }
+        .info {
+            background-color: rgb(250, 73, 73);
+            text-align: center;
+            margin-top: auto;
+        }
     }
 
     .flipped {
@@ -98,4 +121,8 @@
             font-size: 0.65rem;
             padding-top: 0.5rem;
         }
+    }
+
+    .moreinfo {
+        font-size: 0.85rem;
     }

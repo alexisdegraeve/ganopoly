@@ -23,13 +23,27 @@
                             </div>
                             <div class="ml-auto">{{ config.montant }}€</div>
                         </div>
+                        <hr>
+                        <p class="moreinfo">
+                            Prix des maisons {{ prixParMaison }}€ chacune<br /> <br /> Prix d'1 hotel {{ prixParHotel }}€ chacun <br /> (plus de 4 maisons) </p>
                     </div>
                 </div>
 
             </div>
             <div class="flip-card-back">
-                <!-- Contenu arrière -->
-                <p>Informations supplémentaires</p>
+                <div class="card-body">
+                    <!-- Contenu arrière -->
+                    <div class="card-header">
+                        <h4> {{ street }}</h4>
+                        <h4>{{ city }}</h4>
+                    </div>
+                    <div class="card-content">
+                        <h5>Hypothéquée pour {{ hypotheque }}€</h5>
+                        <h5>Pour lever l'hypothèque, payez {{ payezHypotheque }}€</h5>
+                    </div>
+                    <p class="info">
+                        Si cette propriété est hypothéquée, ce côté de la carte doit être mis en évidence sur la table.
+                    </p>
+                </div>
             </div>
         </div>
-    </div>

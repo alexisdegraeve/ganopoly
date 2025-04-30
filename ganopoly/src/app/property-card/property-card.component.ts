@@ -18,6 +18,10 @@ export class PropertyCardComponent {
   @Input() maison3 = 1400;
   @Input() maison4 = 1700;
   @Input() hotel = 2000;
+  @Input() prixParMaison = 200;
+  @Input() prixParHotel = 200;
+  @Input() hypotheque = 200;
+  @Input() payezHypotheque = 220;
   @Input() backcolor = 'yellow';
   maisonConfigs = [
     { nombre: 1, montant: this.maison1 },
