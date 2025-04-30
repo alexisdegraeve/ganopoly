@@ -5,8 +5,8 @@
 }
 
 .flip-card {
-    width: 200px;
-    height: 300px;
+    width: 20rem;
+    height: 30rem;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     cursor: pointer;
@@ -48,4 +48,28 @@
 
 .flipped {
     transform: rotateY(180deg);
+}
+
+.card-body {
+    border: 1px solid black;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+    padding: 1rem;
+    .card-header {
+        height: 5rem;
+        width: 100%;
+        border: 1px solid black;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0.5rem;
+    }
+}
+
+.flip-card-front {
+    padding: 1rem;
 }

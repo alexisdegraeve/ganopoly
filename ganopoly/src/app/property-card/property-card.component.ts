@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'gano-property-card',
@@ -9,6 +9,9 @@ import { Component } from '@angular/core';
 })
 export class PropertyCardComponent {
   isFlipped = false;
+  @Input() name = 'Mario';
+  @Input() loyer = 50;
+  @Input() backcolor = 'yellow';
 
   toggleFlip() {
     this.isFlipped = !this.isFlipped;
