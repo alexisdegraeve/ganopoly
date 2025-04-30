@@ -19,6 +19,13 @@ export class PropertyCardComponent {
   @Input() maison4 = 1700;
   @Input() hotel = 2000;
   @Input() backcolor = 'yellow';
+  maisonConfigs = [
+    { nombre: 1, montant: this.maison1 },
+    { nombre: 2, montant: this.maison2 },
+    { nombre: 3, montant: this.maison3 },
+    { nombre: 4, montant: this.maison4 },
+    { nombre: 5, montant: this.hotel },
+  ];
 
   toggleFlip() {
     this.isFlipped = !this.isFlipped;

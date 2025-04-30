@@ -14,52 +14,14 @@
                             <div>Avec groupe complet</div>
                             <div class="ml-auto">{{groupecomplet}}€</div>
                         </div>
-                        <div class="d-flex justify-content-between">
+
+                        <div class="d-flex justify-content-between" *ngFor="let config of maisonConfigs">
                             <div class="d-flex">Avec
-                                <i class="bi bi-house-fill  fs-3 house-green ms-2">
-                                <span>1</span>
-                              </i>
-                            </div>
-                            <div class="ml-auto">{{maison1}}€</div>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <div class="d-flex">Avec
-                                <i class="bi bi-house-fill  fs-3 house-green ms-2">
-                              <span>2</span>
-                            </i>
-                            </div>
-                            <div class="ml-auto">{{maison2}}€</div>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <div class="d-flex">Avec
-                                <i class="bi bi-house-fill  fs-3 house-green ms-2">
-                            <span>2</span>
+                                <i class="bi bi-house-fill  fs-3 house-green ms-2" [class.text-danger]="config.nombre === 5">
+                            <span *ngIf="config.nombre < 5"> {{ config.nombre }}</span>
                           </i>
                             </div>
-                            <div class="ml-auto">{{maison2}}€</div>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <div class="d-flex">Avec
-                                <i class="bi bi-house-fill  fs-3 house-green ms-2">
-                            <span>3</span>
-                          </i>
-                            </div>
-                            <div class="ml-auto">{{maison3}}€</div>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <div class="d-flex">Avec
-                                <i class="bi bi-house-fill  fs-3 house-green ms-2">
-                          <span>4</span>
-                        </i>
-                            </div>
-                            <div class="ml-auto">{{maison4}}€</div>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <div class="d-flex">Avec
-                                <i class="bi bi-house-fill  fs-3 house-green text-danger ms-2">
-                      </i>
-                            </div>
-                            <div class="ml-auto">{{hotel}}€</div>
+                            <div class="ml-auto">{{ config.montant }}€</div>
                         </div>
                     </div>
                 </div>
