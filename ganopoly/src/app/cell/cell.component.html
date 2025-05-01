@@ -3,7 +3,7 @@
   'cell-h': !isCorner && orientation === 'horizontal',
   'cell-square': isCorner
 }">
-    <div *ngIf="!isCorner" class="cell-top"></div>
+    <div *ngIf="!isCorner" class="cell-top" [style.backgroundColor]="color"></div>
     <div *ngIf="!isCorner" class="cell-content">
         <div class="name" [innerHTML]="name"></div>
         <div class="prix">{{ price }}€</div>

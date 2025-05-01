@@ -12,5 +12,6 @@ export class CellComponent {
   @Input() price!: number;
   @Input() orientation: 'vertical' | 'horizontal' = 'vertical';
   @Input() isCorner: boolean = false;
+  @Input() color: string | undefined = 'red';
 
 }

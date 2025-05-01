@@ -14,7 +14,7 @@ export class BoardComponent {
 
   topRow: Cell[] = [
     { name: '', price: 0, orientation: 'vertical', isCorner: true },
-    { name: 'RUE GRANDE<br/>DINANT', price: 60, orientation: 'vertical', isCorner: false },
+    { name: 'RUE GRANDE<br/>DINANT', price: 60, orientation: 'vertical', color: 'blue',  isCorner: false },
     { name: 'RUE DE NAMUR', price: 80, orientation: 'vertical', isCorner: false },
     { name: 'RUE GRANDE<br/>DINANT', price: 60, orientation: 'vertical', isCorner: false },
     { name: 'RUE DE NAMUR', price: 80, orientation: 'vertical', isCorner: false },

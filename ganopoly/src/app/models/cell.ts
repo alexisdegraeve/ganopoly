@@ -5,4 +5,5 @@ export interface Cell {
   price: number;
   orientation: Orientation;
   isCorner: boolean;
+  color?: string;
 }
