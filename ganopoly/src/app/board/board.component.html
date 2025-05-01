@@ -1,5 +1,11 @@
-<gano-cell *ngFor="let case of topRow" [name]="case.name" [price]="case.price" [orientation]="case.orientation" [isCorner]="case.isCorner">
-</gano-cell>
+<div class="board">
+    <div class="board-inside">
+        <div class="board-row">
+            <gano-cell *ngFor="let case of topRow" [name]="case.name" [price]="case.price" [orientation]="case.orientation" [isCorner]="case.isCorner">
+            </gano-cell>
+        </div>
+    </div>
+</div>
 
 TEST
 <div class="board">
