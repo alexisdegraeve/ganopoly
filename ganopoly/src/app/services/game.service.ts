@@ -4,6 +4,8 @@ import { ccCard } from '../models/ccCard';
 import { forkJoin, Observable } from 'rxjs';
 import { Billet } from '../models/billet';
 import { Player } from '../models/player';
+import { Card } from '../models/card';
+
 
 @Injectable({
   providedIn: 'root',
@@ -147,6 +149,10 @@ export class GameService {
       total += (billet.euro * billet.quantity);
     })
     return total;
+  }
+  getCards():Observable<Card[]> {
+    console.log('get cards');
+    return this.httpClient.get<Card[]>('/cards/ganopolycards.json');
   }
 }
 

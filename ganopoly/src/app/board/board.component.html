@@ -6,283 +6,292 @@
         </div>
     </div>
 </div>
-
-TEST
+{{ (cards$ | async | json) }}
 <div class="board">
     <div class="board-inside">
-        <div class="board-row">
+        <div class="board-row" *ngIf="(cards$ | async) as topRow">
+            <gano-cell *ngFor="let cell of topRow" [color]="cell.color" [name]="cell.name" [price]="cell.price" [orientation]="cell.orientation" [isCorner]="cell.isCorner">
+            </gano-cell>
+        </div>
+    </div>
+</div>
 
-            <div class="cell-square"></div>
-            <div class="cell">
-                <div class="cell-top"></div>
-                <div class="cell-content">
-                    <div class="name">RUE GRANDE<br />DINANT</div>
-                    <div class="prix">60€</div>
+
+<div class="board ">
+    <div class="board-inside ">
+        <div class="board-row ">
+
+            <div class="cell-square "></div>
+            <div class="cell ">
+                <div class="cell-top "></div>
+                <div class="cell-content ">
+                    <div class="name ">RUE GRANDE<br />DINANT</div>
+                    <div class="prix ">60€</div>
                 </div>
             </div>
-            <div class="cell">
-                <div class="cell-top"></div>
-                <div class="cell-content">
-                    <div class="name">RUE GRANDE<br />DINANT</div>
-                    <div class="prix">60€</div>
+            <div class="cell ">
+                <div class="cell-top "></div>
+                <div class="cell-content ">
+                    <div class="name ">RUE GRANDE<br />DINANT</div>
+                    <div class="prix ">60€</div>
                 </div>
             </div>
-            <div class="cell">
-                <div class="cell-top"></div>
-                <div class="cell-content">
-                    <div class="name">RUE GRANDE<br />DINANT</div>
-                    <div class="prix">60€</div>
+            <div class="cell ">
+                <div class="cell-top "></div>
+                <div class="cell-content ">
+                    <div class="name ">RUE GRANDE<br />DINANT</div>
+                    <div class="prix ">60€</div>
                 </div>
             </div>
-            <div class="cell">
-                <div class="cell-top"></div>
-                <div class="cell-content">
-                    <div class="name">RUE GRANDE<br />DINANT</div>
-                    <div class="prix">60€</div>
+            <div class="cell ">
+                <div class="cell-top "></div>
+                <div class="cell-content ">
+                    <div class="name ">RUE GRANDE<br />DINANT</div>
+                    <div class="prix ">60€</div>
                 </div>
             </div>
-            <div class="cell">
-                <div class="cell-top"></div>
-                <div class="cell-content">
-                    <div class="name">RUE GRANDE<br />DINANT</div>
-                    <div class="prix">60€</div>
+            <div class="cell ">
+                <div class="cell-top "></div>
+                <div class="cell-content ">
+                    <div class="name ">RUE GRANDE<br />DINANT</div>
+                    <div class="prix ">60€</div>
                 </div>
             </div>
-            <div class="cell">
-                <div class="cell-top"></div>
-                <div class="cell-content">
-                    <div class="name">RUE GRANDE<br />DINANT</div>
-                    <div class="prix">60€</div>
+            <div class="cell ">
+                <div class="cell-top "></div>
+                <div class="cell-content ">
+                    <div class="name ">RUE GRANDE<br />DINANT</div>
+                    <div class="prix ">60€</div>
                 </div>
             </div>
-            <div class="cell">
-                <div class="cell-top"></div>
-                <div class="cell-content">
-                    <div class="name">RUE GRANDE<br />DINANT</div>
-                    <div class="prix">60€</div>
+            <div class="cell ">
+                <div class="cell-top "></div>
+                <div class="cell-content ">
+                    <div class="name ">RUE GRANDE<br />DINANT</div>
+                    <div class="prix ">60€</div>
                 </div>
             </div>
-            <div class="cell">
-                <div class="cell-top"></div>
-                <div class="cell-content">
-                    <div class="name">RUE GRANDE<br />DINANT</div>
-                    <div class="prix">60€</div>
+            <div class="cell ">
+                <div class="cell-top "></div>
+                <div class="cell-content ">
+                    <div class="name ">RUE GRANDE<br />DINANT</div>
+                    <div class="prix ">60€</div>
                 </div>
             </div>
-            <div class="cell">
-                <div class="cell-top"></div>
-                <div class="cell-content">
-                    <div class="name">RUE GRANDE<br />DINANT</div>
-                    <div class="prix">60€</div>
+            <div class="cell ">
+                <div class="cell-top "></div>
+                <div class="cell-content ">
+                    <div class="name ">RUE GRANDE<br />DINANT</div>
+                    <div class="prix ">60€</div>
                 </div>
             </div>
-            <div class="cell-square"></div>
+            <div class="cell-square "></div>
         </div>
 
-        <div class="board-middle">
-            <div class="left">
-                <div class="board-row">
-                    <div class="cell-h">
-                        <div class="cell-content">
-                            <div class="name">RUE GRANDE<br />DINANT</div>
-                            <div class="prix">60€</div>
+        <div class="board-middle ">
+            <div class="left ">
+                <div class="board-row ">
+                    <div class="cell-h ">
+                        <div class="cell-content ">
+                            <div class="name ">RUE GRANDE<br />DINANT</div>
+                            <div class="prix ">60€</div>
                         </div>
-                        <div class="cell-top"></div>
+                        <div class="cell-top "></div>
                     </div>
-                    <div class="cell-h">
-                        <div class="cell-content">
-                            <div class="name">RUE GRANDE<br />DINANT</div>
-                            <div class="prix">60€</div>
+                    <div class="cell-h ">
+                        <div class="cell-content ">
+                            <div class="name ">RUE GRANDE<br />DINANT</div>
+                            <div class="prix ">60€</div>
                         </div>
-                        <div class="cell-top"></div>
+                        <div class="cell-top "></div>
                     </div>
-                    <div class="cell-h">
-                        <div class="cell-content">
-                            <div class="name">RUE GRANDE<br />DINANT</div>
-                            <div class="prix">60€</div>
+                    <div class="cell-h ">
+                        <div class="cell-content ">
+                            <div class="name ">RUE GRANDE<br />DINANT</div>
+                            <div class="prix ">60€</div>
                         </div>
-                        <div class="cell-top"></div>
+                        <div class="cell-top "></div>
                     </div>
-                    <div class="cell-h">
-                        <div class="cell-content">
-                            <div class="name">RUE GRANDE<br />DINANT</div>
-                            <div class="prix">60€</div>
+                    <div class="cell-h ">
+                        <div class="cell-content ">
+                            <div class="name ">RUE GRANDE<br />DINANT</div>
+                            <div class="prix ">60€</div>
                         </div>
-                        <div class="cell-top"></div>
+                        <div class="cell-top "></div>
                     </div>
-                    <div class="cell-h">
-                        <div class="cell-content">
-                            <div class="name">RUE GRANDE<br />DINANT</div>
-                            <div class="prix">60€</div>
+                    <div class="cell-h ">
+                        <div class="cell-content ">
+                            <div class="name ">RUE GRANDE<br />DINANT</div>
+                            <div class="prix ">60€</div>
                         </div>
-                        <div class="cell-top"></div>
+                        <div class="cell-top "></div>
                     </div>
-                    <div class="cell-h">
-                        <div class="cell-content">
-                            <div class="name">RUE GRANDE<br />DINANT</div>
-                            <div class="prix">60€</div>
+                    <div class="cell-h ">
+                        <div class="cell-content ">
+                            <div class="name ">RUE GRANDE<br />DINANT</div>
+                            <div class="prix ">60€</div>
                         </div>
-                        <div class="cell-top"></div>
+                        <div class="cell-top "></div>
                     </div>
-                    <div class="cell-h">
-                        <div class="cell-content">
-                            <div class="name">RUE GRANDE<br />DINANT</div>
-                            <div class="prix">60€</div>
+                    <div class="cell-h ">
+                        <div class="cell-content ">
+                            <div class="name ">RUE GRANDE<br />DINANT</div>
+                            <div class="prix ">60€</div>
                         </div>
-                        <div class="cell-top"></div>
+                        <div class="cell-top "></div>
                     </div>
-                    <div class="cell-h">
-                        <div class="cell-content">
-                            <div class="name">RUE GRANDE<br />DINANT</div>
-                            <div class="prix">60€</div>
+                    <div class="cell-h ">
+                        <div class="cell-content ">
+                            <div class="name ">RUE GRANDE<br />DINANT</div>
+                            <div class="prix ">60€</div>
                         </div>
-                        <div class="cell-top"></div>
+                        <div class="cell-top "></div>
                     </div>
-                    <div class="cell-h">
-                        <div class="cell-content">
-                            <div class="name">RUE GRANDE<br />DINANT</div>
-                            <div class="prix">60€</div>
+                    <div class="cell-h ">
+                        <div class="cell-content ">
+                            <div class="name ">RUE GRANDE<br />DINANT</div>
+                            <div class="prix ">60€</div>
                         </div>
-                        <div class="cell-top"></div>
+                        <div class="cell-top "></div>
                     </div>
                 </div>
             </div>
-            <div class="center"></div>
-            <div class="right">
-                <div class="board-row">
-                    <div class="cell-h">
-                        <div class="cell-top"></div>
-                        <div class="cell-content">
-                            <div class="name">RUE GRANDE<br />DINANT</div>
-                            <div class="prix">60€</div>
+            <div class="center "></div>
+            <div class="right ">
+                <div class="board-row ">
+                    <div class="cell-h ">
+                        <div class="cell-top "></div>
+                        <div class="cell-content ">
+                            <div class="name ">RUE GRANDE<br />DINANT</div>
+                            <div class="prix ">60€</div>
                         </div>
                     </div>
-                    <div class="cell-h">
-                        <div class="cell-top"></div>
-                        <div class="cell-content">
-                            <div class="name">RUE GRANDE<br />DINANT</div>
-                            <div class="prix">60€</div>
+                    <div class="cell-h ">
+                        <div class="cell-top "></div>
+                        <div class="cell-content ">
+                            <div class="name ">RUE GRANDE<br />DINANT</div>
+                            <div class="prix ">60€</div>
                         </div>
                     </div>
-                    <div class="cell-h">
-                        <div class="cell-top"></div>
-                        <div class="cell-content">
-                            <div class="name">RUE GRANDE<br />DINANT</div>
-                            <div class="prix">60€</div>
+                    <div class="cell-h ">
+                        <div class="cell-top "></div>
+                        <div class="cell-content ">
+                            <div class="name ">RUE GRANDE<br />DINANT</div>
+                            <div class="prix ">60€</div>
                         </div>
                     </div>
-                    <div class="cell-h">
-                        <div class="cell-top"></div>
-                        <div class="cell-content">
-                            <div class="name">RUE GRANDE<br />DINANT</div>
-                            <div class="prix">60€</div>
+                    <div class="cell-h ">
+                        <div class="cell-top "></div>
+                        <div class="cell-content ">
+                            <div class="name ">RUE GRANDE<br />DINANT</div>
+                            <div class="prix ">60€</div>
                         </div>
                     </div>
-                    <div class="cell-h">
-                        <div class="cell-top"></div>
-                        <div class="cell-content">
-                            <div class="name">RUE GRANDE<br />DINANT</div>
-                            <div class="prix">60€</div>
+                    <div class="cell-h ">
+                        <div class="cell-top "></div>
+                        <div class="cell-content ">
+                            <div class="name ">RUE GRANDE<br />DINANT</div>
+                            <div class="prix ">60€</div>
                         </div>
                     </div>
-                    <div class="cell-h">
-                        <div class="cell-top"></div>
-                        <div class="cell-content">
-                            <div class="name">RUE GRANDE<br />DINANT</div>
-                            <div class="prix">60€</div>
+                    <div class="cell-h ">
+                        <div class="cell-top "></div>
+                        <div class="cell-content ">
+                            <div class="name ">RUE GRANDE<br />DINANT</div>
+                            <div class="prix ">60€</div>
                         </div>
                     </div>
-                    <div class="cell-h">
-                        <div class="cell-top"></div>
-                        <div class="cell-content">
-                            <div class="name">RUE GRANDE<br />DINANT</div>
-                            <div class="prix">60€</div>
+                    <div class="cell-h ">
+                        <div class="cell-top "></div>
+                        <div class="cell-content ">
+                            <div class="name ">RUE GRANDE<br />DINANT</div>
+                            <div class="prix ">60€</div>
                         </div>
                     </div>
-                    <div class="cell-h">
-                        <div class="cell-top"></div>
-                        <div class="cell-content">
-                            <div class="name">RUE GRANDE<br />DINANT</div>
-                            <div class="prix">60€</div>
+                    <div class="cell-h ">
+                        <div class="cell-top "></div>
+                        <div class="cell-content ">
+                            <div class="name ">RUE GRANDE<br />DINANT</div>
+                            <div class="prix ">60€</div>
                         </div>
                     </div>
-                    <div class="cell-h">
-                        <div class="cell-top"></div>
-                        <div class="cell-content">
-                            <div class="name">RUE GRANDE<br />DINANT</div>
-                            <div class="prix">60€</div>
+                    <div class="cell-h ">
+                        <div class="cell-top "></div>
+                        <div class="cell-content ">
+                            <div class="name ">RUE GRANDE<br />DINANT</div>
+                            <div class="prix ">60€</div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="board-row">
-            <div class="cell-square"></div>
-            <div class="cell">
-                <div class="cell-top"></div>
-                <div class="cell-content">
-                    <div class="name">RUE GRANDE<br />DINANT</div>
-                    <div class="prix">60€</div>
+        <div class="board-row ">
+            <div class="cell-square "></div>
+            <div class="cell ">
+                <div class="cell-top "></div>
+                <div class="cell-content ">
+                    <div class="name ">RUE GRANDE<br />DINANT</div>
+                    <div class="prix ">60€</div>
                 </div>
             </div>
-            <div class="cell">
-                <div class="cell-top"></div>
-                <div class="cell-content">
-                    <div class="name">RUE GRANDE<br />DINANT</div>
-                    <div class="prix">60€</div>
+            <div class="cell ">
+                <div class="cell-top "></div>
+                <div class="cell-content ">
+                    <div class="name ">RUE GRANDE<br />DINANT</div>
+                    <div class="prix ">60€</div>
                 </div>
             </div>
-            <div class="cell">
-                <div class="cell-top"></div>
-                <div class="cell-content">
-                    <div class="name">RUE GRANDE<br />DINANT</div>
-                    <div class="prix">60€</div>
+            <div class="cell ">
+                <div class="cell-top "></div>
+                <div class="cell-content ">
+                    <div class="name ">RUE GRANDE<br />DINANT</div>
+                    <div class="prix ">60€</div>
                 </div>
             </div>
-            <div class="cell">
-                <div class="cell-top"></div>
-                <div class="cell-content">
-                    <div class="name">RUE GRANDE<br />DINANT</div>
-                    <div class="prix">60€</div>
+            <div class="cell ">
+                <div class="cell-top "></div>
+                <div class="cell-content ">
+                    <div class="name ">RUE GRANDE<br />DINANT</div>
+                    <div class="prix ">60€</div>
                 </div>
             </div>
-            <div class="cell">
-                <div class="cell-top"></div>
-                <div class="cell-content">
-                    <div class="name">RUE GRANDE<br />DINANT</div>
-                    <div class="prix">60€</div>
+            <div class="cell ">
+                <div class="cell-top "></div>
+                <div class="cell-content ">
+                    <div class="name ">RUE GRANDE<br />DINANT</div>
+                    <div class="prix ">60€</div>
                 </div>
             </div>
-            <div class="cell">
-                <div class="cell-top"></div>
-                <div class="cell-content">
-                    <div class="name">RUE GRANDE<br />DINANT</div>
-                    <div class="prix">60€</div>
+            <div class="cell ">
+                <div class="cell-top "></div>
+                <div class="cell-content ">
+                    <div class="name ">RUE GRANDE<br />DINANT</div>
+                    <div class="prix ">60€</div>
                 </div>
             </div>
-            <div class="cell">
-                <div class="cell-top"></div>
-                <div class="cell-content">
-                    <div class="name">RUE GRANDE<br />DINANT</div>
-                    <div class="prix">60€</div>
+            <div class="cell ">
+                <div class="cell-top "></div>
+                <div class="cell-content ">
+                    <div class="name ">RUE GRANDE<br />DINANT</div>
+                    <div class="prix ">60€</div>
                 </div>
             </div>
-            <div class="cell">
-                <div class="cell-top"></div>
-                <div class="cell-content">
-                    <div class="name">RUE GRANDE<br />DINANT</div>
-                    <div class="prix">60€</div>
+            <div class="cell ">
+                <div class="cell-top "></div>
+                <div class="cell-content ">
+                    <div class="name ">RUE GRANDE<br />DINANT</div>
+                    <div class="prix ">60€</div>
                 </div>
             </div>
-            <div class="cell">
-                <div class="cell-top"></div>
-                <div class="cell-content">
-                    <div class="name">RUE GRANDE<br />DINANT</div>
-                    <div class="prix">60€</div>
+            <div class="cell ">
+                <div class="cell-top "></div>
+                <div class="cell-content ">
+                    <div class="name ">RUE GRANDE<br />DINANT</div>
+                    <div class="prix ">60€</div>
                 </div>
             </div>
-            <div class="cell-square"></div>
+            <div class="cell-square "></div>
         </div>
 
     </div>
