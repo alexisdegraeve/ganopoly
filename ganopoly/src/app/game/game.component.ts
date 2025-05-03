@@ -13,6 +13,8 @@ import { CommonModule } from '@angular/common';
 })
 export class GameComponent {
   protected cards$: any;
+  rotation = 0;
+  showCards = false;
 
   constructor(private gameService: GameService) {
 
@@ -29,5 +31,8 @@ export class GameComponent {
       this.gameService.pickChanceCard();
   }
 
+  rotateBoard() {
+    this.rotation = this.rotation <= 360 ? this.rotation + 90 : 0;
+  }
 
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CellComponent } from "../cell/cell.component";
 import { CommonModule } from '@angular/common';
 import { GameService } from '../services/game.service';
@@ -13,11 +13,11 @@ import { CardType, Case } from '../models/card';
   styleUrl: './board.component.scss'
 })
 export class BoardComponent {
+  @Input() rotate = 0;
   topCards$: Observable<Case[]>;
   leftCards$: Observable<Case[]>;
   rightCards$: Observable<Case[]>;
   bottomCards$: Observable<Case[]>;
-  rotation = 0;
 
   constructor(private gameService: GameService) {
     this.topCards$ = this.getCardsInRange(20, 30, 'vertical');
@@ -49,7 +49,5 @@ export class BoardComponent {
     );
   }
 
-  rotateBoard() {
-    this.rotation = this.rotation < 360 ? this.rotation + 90 : 0;
-  }
+
 }

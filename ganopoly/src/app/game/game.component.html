@@ -1,18 +1,34 @@
 <gano-header></gano-header>
 
+
 <div class="game">
     <div class="container">
-        <div class="row">
-            <div class="col col-xl-8">
-                <gano-board></gano-board>
+
+
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#board" type="button" role="tab">
+    BOARD <button class="btn btn-primary" (click)="rotateBoard()">Rotate</button>
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#cards" type="button" role="tab">
+    MY CARDS
+  </button>
+            </li>
+        </ul>
+
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active p-3" id="board" role="tabpanel">
+                <gano-board [rotate]="rotation "></gano-board>
             </div>
-            <div class="col col-xl-4">
+            <div class="tab-pane fade p-3" id="cards" role="tabpanel">
                 <gano-property-card></gano-property-card>
             </div>
         </div>
     </div>
-    <div class="d-flex d-none">
-        <button class="btn btn-primary" (click)="startGame()">START</button>
-        <button class="btn btn-primary" (click)="pickChance()">Chance</button>
+    <div class="d-flex d-none ">
+        <button class="btn btn-primary " (click)="startGame() ">START</button>
+        <button class="btn btn-primary " (click)="pickChance() ">Chance</button>
     </div>
 </div>
