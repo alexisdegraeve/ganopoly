@@ -2,19 +2,19 @@
         box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
         display: flex;
     }
-
+    
     .board-inside {
         display: flex;
         flex-direction: column;
     }
-
+    
     .board-middle {
         flex-grow: 1;
         display: flex;
         .left {
             background-color: yellow;
             .board-row {
-                flex-direction: column;
+                flex-direction: column-reverse;
             }
         }
         .center {
@@ -37,11 +37,14 @@
             }
         }
     }
-
+    
     .board-row {
         display: flex;
+        &.below {
+            flex-direction: row-reverse;
+        }
     }
-
+    
     .cell {
         height: 6rem;
         width: 4rem;
@@ -81,7 +84,7 @@
             background: transparent;
         }
     }
-
+    
     .cell-h {
         width: 6rem;
         height: 4rem;
@@ -121,14 +124,14 @@
             background: transparent;
         }
     }
-
+    
     @media only screen and (max-width: 992px) {
         .board {
             width: 35rem;
             height: 35rem;
         }
     }
-
+    
     @media only screen and (max-width: 768px) {
         .board {
             width: 29rem;
