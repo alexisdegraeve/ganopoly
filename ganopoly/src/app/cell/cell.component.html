@@ -14,7 +14,7 @@
         </div>
     </ng-container>
     <ng-container *ngIf="cardtype === CardType.chance">
-        <div class="cell-content">
+        <div class="cell-content" [class.content-ml2]="orientation==='horizontal'">
             <div class="name"> Chance</div>
             <div class="symbol" [style.color]="color">
                 <i class="fa-solid fa-question"></i>
@@ -23,7 +23,7 @@
     </ng-container>
 
     <ng-container *ngIf="cardtype === CardType.gare">
-        <div class="cell-content">
+        <div class="cell-content" [class.content-ml2]="orientation==='horizontal'">
             <div class="name" [innerHTML]="name"></div>
             <div class="symbol" [style.color]="color">
                 <i class="fa-solid fa-train"></i>

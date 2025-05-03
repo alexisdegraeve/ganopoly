@@ -63,6 +63,9 @@
         text-align: center;
         transform: rotateZ(90deg);
         flex-grow: 1;
+        &.content-ml2 {
+            margin-left: 2rem;
+        }
         .name {
             margin-top: 0.25rem;
         }
