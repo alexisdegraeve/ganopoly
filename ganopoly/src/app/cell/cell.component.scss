@@ -97,9 +97,13 @@
     &.parking {
         color: blue;
         text-shadow: -0.1rem 0 #fff, 0 0.1rem #fff, 0.1rem 0 #fff, 0 -0.1rem #fff;
+        font-size: 3rem;
     }
     .fa-play {
         transform: rotateZ(180deg);
+    }
+    .fa-table-cells {
+        font-size: 3rem;
     }
 }
 
