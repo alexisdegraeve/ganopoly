@@ -78,7 +78,7 @@ export class BoardComponent {
     this.leftCards$ = this.gameService.getCards().pipe(
       map(cards =>
         cards
-          .filter(card => card.case >= 10 && card.case <= 19)
+          .filter(card => card.case >= 11 && card.case <= 19)
           .map(card => ({
             name: card.street || card.name,
             ville: card.ville,

@@ -31,7 +31,7 @@
     }
     &-square {
         height: 6rem;
-        width: 5rem;
+        width: 6rem;
         background: #cee8cf;
         border: 2px solid black;
     }
@@ -48,6 +48,7 @@
     background: #cee8cf;
     border: 2px solid black;
     display: flex;
+    flex-direction: row-reverse;
     .cell-top {
         background-color: red;
         width: 1.5rem;
@@ -71,7 +72,7 @@
     }
     .cell-square {
         height: 6rem;
-        width: 5rem;
+        width: 6rem;
         background: red;
         border: 2px solid black;
     }
@@ -114,12 +115,12 @@
     }
 }
 
-.rotate-min-135 {
-    transform: rotate(-135deg);
+.rotate-min-45 {
+    transform: rotate(45deg);
 }
 
-.rotate-135 {
-    transform: rotate(135deg);
+.rotate-45 {
+    transform: rotate(-45deg);
 }
 
 .square {
