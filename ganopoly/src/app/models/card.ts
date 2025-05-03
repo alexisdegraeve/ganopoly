@@ -14,6 +14,7 @@ export interface Card {
   immobilier = 'immobilier',
   chance = 'chance',
   prison = 'prison',
+  toprison = 'toprison',
   caisse = 'caisse',
   eaux = 'eaux',
   gare = 'gare',

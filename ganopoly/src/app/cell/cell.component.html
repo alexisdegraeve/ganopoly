@@ -32,4 +32,35 @@
         </div>
     </ng-container>
 
+    <ng-container *ngIf="cardtype === CardType.eaux">
+        <div class="cell-content">
+            <div class="name" [innerHTML]="name"></div>
+            <div class="symbol" [style.color]="color">
+                <i class="fa-solid fa-faucet-drip"></i>
+            </div>
+            <div class="prix">{{ price }}€</div>
+        </div>
+    </ng-container>
+
+
+    <ng-container *ngIf="cardtype === CardType.parking">
+        <div class="cell-content">
+            <div class="name" [innerHTML]="name"></div>
+            <div class="symbol" [style.color]="color">
+                <i class="fa-solid fa-square-parking"></i>
+            </div>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="cardtype === CardType.toprison">
+        <div class="cell-content">
+            <div class="name" [innerHTML]="name"></div>
+            <div class="symbol" [style.color]="'red'">
+                <i class="fa-solid fa-handcuffs"></i>
+            </div>
+        </div>
+    </ng-container>
+
+
+
 </div>

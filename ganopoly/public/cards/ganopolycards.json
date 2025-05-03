@@ -299,6 +299,7 @@
     {
         "case": 20,
         "name": "Parking gratuit",
+        "type": "parking",
         "symbol": "fa-solid fa-square-parking",
         "color": "white"
     },
@@ -425,6 +426,7 @@
         "case": 28,
         "name": "Compagnie des eaux",
         "symbol": "fa-solid fa-faucet-drip",
+        "type": "eaux",
         "color": "white",
         "prix": 150,
         "times1": 4,
@@ -455,6 +457,7 @@
     {
         "case": 30,
         "name": "Allez en prison",
+        "type": "toprison",
         "color": "white"
     },
     {
