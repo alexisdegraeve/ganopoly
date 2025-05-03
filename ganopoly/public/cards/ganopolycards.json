@@ -2,7 +2,7 @@
         "case": 0,
         "name": "Départ",
         "type": "start",
-        "info": "Recevez 200€ <br />Après un tour",
+        "info": "Recevez <b>200€</b> <br />Après un tour",
         "prix": 200,
         "symbol": "fa-solid fa-play",
         "color": "white"
