@@ -4,7 +4,8 @@ import { ccCard } from '../models/ccCard';
 import { forkJoin, Observable } from 'rxjs';
 import { Billet } from '../models/billet';
 import { Player } from '../models/player';
-import { Card } from '../models/card';
+import { Card, Case } from '../models/card';
+import { map } from 'rxjs/operators';
 
 
 @Injectable({
@@ -154,6 +155,8 @@ export class GameService {
     console.log('get cards');
     return this.httpClient.get<Card[]>('/cards/ganopolycards.json');
   }
+
+
 }
 
 

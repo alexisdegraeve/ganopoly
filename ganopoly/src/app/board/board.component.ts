@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-
 import { CellComponent } from "../cell/cell.component";
 import { CommonModule } from '@angular/common';
-import { Cell } from '../models/cell';
 import { GameService } from '../services/game.service';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
@@ -21,28 +19,21 @@ export class BoardComponent {
   bottomCards$: Observable<Case[]>;
 
   constructor(private gameService: GameService) {
-    // this.cards$ = this.gameService.getCards();
-    this.topCards$ = this.gameService.getCards().pipe(
-      map(cards =>
-        cards
-          .filter(card => card.case >= 20 && card.case <= 30)
-          .map(card => ({
-            name: card.street || card.name,
-            ville: card.ville,
-            color: card.color,
-            price: card.prix,
-            info: card.info,
-            cardtype: card.type,
-            orientation: 'vertical', // ou basé sur `case`
-            isCorner: card.case === 20 || card.case === 30
-          }))
-      )
-    );
+    this.topCards$ = this.getCardsInRange(20, 30, 'vertical');
+    this.leftCards$ = this.getCardsInRange(11, 19, 'horizontal');
+    this.rightCards$ = this.getCardsInRange(31, 39, 'horizontal');
+    this.bottomCards$ = this.getCardsInRange(0, 10, 'vertical');
+  }
 
-    this.leftCards$ = this.gameService.getCards().pipe(
+  private getCardsInRange(
+    min: number,
+    max: number,
+    orientation: 'horizontal' | 'vertical'
+  ): Observable<Case[]> {
+    return this.gameService.getCards().pipe(
       map(cards =>
         cards
-          .filter(card => card.case >= 11 && card.case <= 19)
+          .filter(card => card && card.case >= min && card.case <= max)
           .map(card => ({
             name: card.street || card.name,
             ville: card.ville,
@@ -50,42 +41,8 @@ export class BoardComponent {
             price: card.prix,
             info: card.info,
             cardtype: card.type,
-            orientation: 'horizontal', // ou basé sur `case`
-            isCorner: card.case === 20 || card.case === 30
-          }))
-      )
-    );
-
-    this.rightCards$ = this.gameService.getCards().pipe(
-      map(cards =>
-        cards
-          .filter(card => card.case >= 31 && card.case <= 39)
-          .map(card => ({
-            name: card.street || card.name,
-            ville: card.ville,
-            color: card.color,
-            price: card.prix,
-            info: card.info,
-            cardtype: card.type,
-            orientation: 'horizontal', // ou basé sur `case`
-            isCorner: card.case === 20 || card.case === 30
-          }))
-      )
-    );
-
-    this.bottomCards$ = this.gameService.getCards().pipe(
-      map(cards =>
-        cards
-          .filter(card => card.case >= 0 && card.case <= 10)
-          .map(card => ({
-            name: card.street || card.name,
-            ville: card.ville,
-            color: card.color,
-            price: card.prix,
-            info: card.info,
-            cardtype: card.type,
-            orientation: 'vertical', // ou basé sur `case`
-            isCorner: card.case === 0 || card.case === 10
+            orientation,
+            isCorner: [0, 10, 20, 30].includes(card.case)
           }))
       )
     );
