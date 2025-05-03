@@ -574,7 +574,7 @@
     },
     {
         "case": 38,
-        "name": "Impôt supplémentaire",
+        "name": "Impôt supp.",
         "type": "taxe",
         "symbol": "fa-solid fa-gem",
         "prix": 100,

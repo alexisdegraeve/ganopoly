@@ -54,7 +54,7 @@
     </ng-container>
 
     <ng-container *ngIf="cardtype === CardType.elec">
-        <div class="cell-content">
+        <div class="cell-content" [class.content-ml2]="orientation==='horizontal'">
             <div class="name" [innerHTML]="name"></div>
             <div class="symbol" [style.color]="color">
                 <i class="fa-solid fa-lightbulb"></i>
@@ -64,7 +64,7 @@
     </ng-container>
 
     <ng-container *ngIf="cardtype === CardType.taxe">
-        <div class="cell-content">
+        <div class="cell-content" [class.content-ml2]="orientation==='horizontal'">
             <div class="name" [innerHTML]="name"></div>
             <div class="symbol" [style.color]="color">
                 <i class="fa-solid fa-gem"></i>
