@@ -43,14 +43,14 @@ export class BoardComponent {
     this.cards$ = this.gameService.getCards().pipe(
       map(cards =>
         cards
-          .filter(card => card.case >= 0 && card.case <= 6)
+          .filter(card => card.case >= 20 && card.case <= 30)
           .map(card => ({
             name: card.street,
             ville: card.ville,
             color: card.color,
             price: card.prix,
             orientation: 'vertical', // ou basé sur `case`
-            isCorner: card.case === 0 || card.case === 6
+            isCorner: card.case === 20 || card.case === 30
           }))
       )
     );
