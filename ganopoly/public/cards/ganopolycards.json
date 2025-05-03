@@ -99,7 +99,7 @@
     {
         "case": 7,
         "type": "chance",
-        "color": "pink"
+        "color": "#f03a7a"
     },
     {
         "case": 8,
@@ -332,7 +332,7 @@
     {
         "case": 22,
         "type": "chance",
-        "color": "cyan"
+        "color": "#277dc3"
     },
     {
         "case": 23,
@@ -550,7 +550,7 @@
     {
         "case": 36,
         "type": "chance",
-        "color": "orange"
+        "color": "#d9292c"
     },
     {
         "case": 37,
