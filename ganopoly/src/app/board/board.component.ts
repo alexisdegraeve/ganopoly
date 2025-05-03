@@ -17,6 +17,7 @@ export class BoardComponent {
   leftCards$: Observable<Case[]>;
   rightCards$: Observable<Case[]>;
   bottomCards$: Observable<Case[]>;
+  rotation = 0;
 
   constructor(private gameService: GameService) {
     this.topCards$ = this.getCardsInRange(20, 30, 'vertical');
@@ -46,5 +47,9 @@ export class BoardComponent {
           }))
       )
     );
+  }
+
+  rotateBoard() {
+    this.rotation = this.rotation < 360 ? this.rotation + 90 : 0;
   }
 }
