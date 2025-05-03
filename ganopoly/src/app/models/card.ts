@@ -11,6 +11,17 @@ export interface Card {
   info: string;
  }
 
+ export type Case = {
+  name: string;
+  ville: string;
+  color: string;
+  price: number;
+  orientation: 'horizontal' | 'vertical';
+  cardtype: CardType;
+  isCorner: boolean;
+  info: string;
+};
+
  export enum CardType {
   immobilier = 'immobilier',
   chance = 'chance',

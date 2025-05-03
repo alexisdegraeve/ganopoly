@@ -6,7 +6,7 @@ import { Cell } from '../models/cell';
 import { GameService } from '../services/game.service';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { CardType } from '../models/card';
+import { CardType, Case } from '../models/card';
 
 @Component({
   selector: 'gano-board',
@@ -15,51 +15,10 @@ import { CardType } from '../models/card';
   styleUrl: './board.component.scss'
 })
 export class BoardComponent {
-  topCards$: Observable<{
-    name: string;
-    ville: string;
-    color: string;
-    price: number;
-    orientation: 'horizontal' | 'vertical';
-    cardtype: CardType;
-    isCorner: boolean;
-    info: string;
-  }[]>;
-
-
-  leftCards$: Observable<{
-    name: string;
-    ville: string;
-    color: string;
-    price: number;
-    orientation: 'horizontal' | 'vertical';
-    cardtype: CardType;
-    isCorner: boolean;
-    info: string;
-  }[]>;
-
-  rightCards$: Observable<{
-    name: string;
-    ville: string;
-    color: string;
-    price: number;
-    orientation: 'horizontal' | 'vertical';
-    cardtype: CardType;
-    isCorner: boolean;
-    info: string;
-  }[]>;
-
-
-  bottomCards$: Observable<{
-    name: string;
-    ville: string;
-    color: string;
-    price: number;
-    orientation: 'horizontal' | 'vertical';
-    cardtype: CardType;
-    isCorner: boolean;
-    info: string;
-  }[]>;
+  topCards$: Observable<Case[]>;
+  leftCards$: Observable<Case[]>;
+  rightCards$: Observable<Case[]>;
+  bottomCards$: Observable<Case[]>;
 
   constructor(private gameService: GameService) {
     // this.cards$ = this.gameService.getCards();
