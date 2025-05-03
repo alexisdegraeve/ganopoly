@@ -22,6 +22,17 @@
         </div>
     </ng-container>
 
+    <ng-container *ngIf="cardtype === CardType.caisse">
+        <div class="cell-content" [class.content-ml2]="orientation==='horizontal'">
+            <div class="name">Caiise de communauté</div>
+            <div class="symbol" [style.color]="'yellow'">
+                <i class="fa-solid  fa-sack-dollar"></i>
+            </div>
+        </div>
+    </ng-container>
+
+
+
     <ng-container *ngIf="cardtype === CardType.gare">
         <div class="cell-content" [class.content-ml2]="orientation==='horizontal'">
             <div class="name" [innerHTML]="name"></div>
@@ -42,6 +53,36 @@
         </div>
     </ng-container>
 
+    <ng-container *ngIf="cardtype === CardType.elec">
+        <div class="cell-content">
+            <div class="name" [innerHTML]="name"></div>
+            <div class="symbol" [style.color]="color">
+                <i class="fa-solid fa-lightbulb"></i>
+            </div>
+            <div class="prix">{{ price }}€</div>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="cardtype === CardType.taxe">
+        <div class="cell-content">
+            <div class="name" [innerHTML]="name"></div>
+            <div class="symbol" [style.color]="color">
+                <i class="fa-solid fa-gem"></i>
+            </div>
+            <div class="prix">{{ price }}€</div>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="cardtype === CardType.impots">
+        <div class="cell-content">
+            <div class="name" [innerHTML]="name"></div>
+            <div class="symbol" [style.color]="color">
+                <i class="fa-solid fa-receipt"></i>
+            </div>
+            <div class="prix">{{ price }}€</div>
+        </div>
+    </ng-container>
+
+
 
     <ng-container *ngIf="cardtype === CardType.parking">
         <div class="cell-content square  rotate-45">
@@ -58,6 +99,27 @@
             <div class="symbol" [style.color]="'red'">
                 <i class="fa-solid fa-handcuffs"></i>
             </div>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="cardtype === CardType.prison">
+        <div class="cell-content square">
+            <div class="name" [innerHTML]="name"></div>
+            <div class="symbol" [style.color]="'orange'">
+                <i class="fa-solid fa-table-cells"></i>
+            </div>
+            <div class="info" [innerHTML]="info"></div>
+        </div>
+    </ng-container>
+
+
+    <ng-container *ngIf="cardtype === CardType.start">
+        <div class="cell-content square">
+            <div class="name" [innerHTML]="name"></div>
+            <div class="symbol" [style.color]="'blue'">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div class="info" [innerHTML]="info"></div>
         </div>
     </ng-container>
 

@@ -1,7 +1,8 @@
 [{
         "case": 0,
         "name": "Départ",
-        "info": "Recevez 200€ chaque fois que vous passez ici",
+        "type": "start",
+        "info": "Recevez 200€ <br />Après un tour",
         "prix": 200,
         "symbol": "fa-solid fa-play",
         "color": "white"
@@ -29,6 +30,7 @@
     {
         "case": 2,
         "name": "Caisse de communauté",
+        "type": "caisse",
         "symbol": "fa-solid fa-sack-dollar",
         "color": "white"
     },
@@ -55,6 +57,7 @@
     {
         "case": 4,
         "name": "Impôts sur le revenu",
+        "type": "impots",
         "symbol": "fa-solid fa-receipt",
         "prix": 200,
         "color": "white"
@@ -141,6 +144,7 @@
     {
         "case": 10,
         "name": "Prison",
+        "type": "prison",
         "info": "Simple Visite",
         "symbol": "fa-solid fa-handcuffs",
         "color": "orange"
@@ -168,6 +172,7 @@
     {
         "case": 12,
         "name": "Centrale Electrique",
+        "type": "elec",
         "symbol": "fa-solid fa-lightbulb",
         "color": "white",
         "prix": 150,
@@ -253,6 +258,7 @@
     {
         "case": 17,
         "name": "Caisse de communauté",
+        "type": "caisse",
         "symbol": "fa-solid fa-sack-dollar",
         "color": "white"
     },
@@ -503,6 +509,7 @@
     {
         "case": 33,
         "name": "Caisse de communauté",
+        "type": "caisse",
         "symbol": "fa-solid fa-sack-dollar",
         "color": "white"
     },
@@ -568,6 +575,7 @@
     {
         "case": 38,
         "name": "Impôt supplémentaire",
+        "type": "taxe",
         "symbol": "fa-solid fa-gem",
         "prix": 100,
         "color": "white"

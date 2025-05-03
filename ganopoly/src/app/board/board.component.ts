@@ -23,6 +23,7 @@ export class BoardComponent {
     orientation: 'horizontal' | 'vertical';
     cardtype: CardType;
     isCorner: boolean;
+    info: string;
   }[]>;
 
 
@@ -34,6 +35,7 @@ export class BoardComponent {
     orientation: 'horizontal' | 'vertical';
     cardtype: CardType;
     isCorner: boolean;
+    info: string;
   }[]>;
 
   rightCards$: Observable<{
@@ -44,6 +46,7 @@ export class BoardComponent {
     orientation: 'horizontal' | 'vertical';
     cardtype: CardType;
     isCorner: boolean;
+    info: string;
   }[]>;
 
 
@@ -55,6 +58,7 @@ export class BoardComponent {
     orientation: 'horizontal' | 'vertical';
     cardtype: CardType;
     isCorner: boolean;
+    info: string;
   }[]>;
 
   constructor(private gameService: GameService) {
@@ -68,6 +72,7 @@ export class BoardComponent {
             ville: card.ville,
             color: card.color,
             price: card.prix,
+            info: card.info,
             cardtype: card.type,
             orientation: 'vertical', // ou basé sur `case`
             isCorner: card.case === 20 || card.case === 30
@@ -84,6 +89,7 @@ export class BoardComponent {
             ville: card.ville,
             color: card.color,
             price: card.prix,
+            info: card.info,
             cardtype: card.type,
             orientation: 'horizontal', // ou basé sur `case`
             isCorner: card.case === 20 || card.case === 30
@@ -100,6 +106,7 @@ export class BoardComponent {
             ville: card.ville,
             color: card.color,
             price: card.prix,
+            info: card.info,
             cardtype: card.type,
             orientation: 'horizontal', // ou basé sur `case`
             isCorner: card.case === 20 || card.case === 30
@@ -116,6 +123,7 @@ export class BoardComponent {
             ville: card.ville,
             color: card.color,
             price: card.prix,
+            info: card.info,
             cardtype: card.type,
             orientation: 'vertical', // ou basé sur `case`
             isCorner: card.case === 0 || card.case === 10

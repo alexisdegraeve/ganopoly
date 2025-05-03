@@ -8,6 +8,7 @@ export interface Card {
   orientation: string;
   coin: boolean;
   type: CardType;
+  info: string;
  }
 
  export enum CardType {
@@ -19,5 +20,8 @@ export interface Card {
   eaux = 'eaux',
   gare = 'gare',
   start = 'start',
-  parking = 'parking'
+  elec = 'elec',
+  parking = 'parking',
+  taxe = 'taxe',
+  impots = 'impots'
  }

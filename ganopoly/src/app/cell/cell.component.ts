@@ -16,6 +16,7 @@ export class CellComponent {
   @Input() isCorner: boolean = false;
   @Input() color: string | undefined = 'red';
   @Input() cardtype: CardType = CardType.immobilier;
+  @Input() info!: string;
 
   CardType = CardType;
 
