@@ -3,9 +3,33 @@
   'cell-h': !isCorner && orientation === 'horizontal',
   'cell-square': isCorner
 }">
-    <div *ngIf="!isCorner" class="cell-top" [style.backgroundColor]="color"></div>
-    <div *ngIf="!isCorner" class="cell-content">
-        <div class="name" [innerHTML]="name"></div>
-        <div class="prix">{{ price }}€</div>
-    </div>
+
+    <ng-container *ngIf="cardtype === CardType.immobilier">
+        <div *ngIf="!isCorner" class="cell-top" [style.backgroundColor]="color">
+        </div>
+        <div *ngIf="!isCorner" class="cell-content">
+            <div class="name" [innerHTML]="name"></div>
+            <div class="ville" [innerHTML]="ville"></div>
+            <div class="prix">{{ price }}€</div>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="cardtype === CardType.chance">
+        <div class="cell-content">
+            <div class="name"> Chance</div>
+            <div class="symbol" [style.color]="color">
+                <i class="fa-solid fa-question"></i>
+            </div>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="cardtype === CardType.gare">
+        <div class="cell-content">
+            <div class="name" [innerHTML]="name"></div>
+            <div class="symbol" [style.color]="color">
+                <i class="fa-solid fa-train"></i>
+            </div>
+            <div class="prix">{{ price }}€</div>
+        </div>
+    </ng-container>
+
 </div>

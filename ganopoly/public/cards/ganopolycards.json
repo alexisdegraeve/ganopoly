@@ -95,7 +95,7 @@
     },
     {
         "case": 7,
-        "name": "Chance",
+        "type": "chance",
         "color": "pink"
     },
     {
@@ -324,7 +324,7 @@
     },
     {
         "case": 22,
-        "name": "Chance",
+        "type": "chance",
         "color": "cyan"
     },
     {
@@ -539,7 +539,7 @@
     },
     {
         "case": 36,
-        "name": "Chance",
+        "type": "chance",
         "color": "orange"
     },
     {

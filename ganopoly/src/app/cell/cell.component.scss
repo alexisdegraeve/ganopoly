@@ -20,6 +20,10 @@
         flex-grow: 1;
         .name {
             margin-top: 0.25rem;
+            text-transform: uppercase;
+        }
+        .ville {
+            text-transform: uppercase;
         }
         .prix {
             margin-top: auto;
@@ -75,6 +79,14 @@
         height: 5rem;
         width: 5rem;
         background: transparent;
+    }
+}
+
+.symbol {
+    font-size: 2rem;
+    text-shadow: -0.1rem 0 #000, 0 0.1rem #000, 0.1rem 0 #000, 0 -0.1rem #000;
+    .fa-question {
+        font-size: 3rem;
     }
 }
 

@@ -6,6 +6,7 @@ import { Cell } from '../models/cell';
 import { GameService } from '../services/game.service';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { CardType } from '../models/card';
 
 @Component({
   selector: 'gano-board',
@@ -20,6 +21,7 @@ export class BoardComponent {
     color: string;
     price: number;
     orientation: 'horizontal' | 'vertical';
+    cardtype: CardType;
     isCorner: boolean;
   }[]>;
 
@@ -45,10 +47,11 @@ export class BoardComponent {
         cards
           .filter(card => card.case >= 20 && card.case <= 30)
           .map(card => ({
-            name: card.street,
+            name: card.street || card.name,
             ville: card.ville,
             color: card.color,
             price: card.prix,
+            cardtype: card.type,
             orientation: 'vertical', // ou basé sur `case`
             isCorner: card.case === 20 || card.case === 30
           }))

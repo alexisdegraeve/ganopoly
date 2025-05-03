@@ -10,7 +10,7 @@
 <div class="board">
     <div class="board-inside">
         <div class="board-row" *ngIf="(cards$ | async) as topRow">
-            <gano-cell *ngFor="let cell of topRow" [color]="cell.color" [name]="cell.name" [price]="cell.price" [orientation]="cell.orientation" [isCorner]="cell.isCorner">
+            <gano-cell *ngFor="let cell of topRow" [color]="cell.color" [cardtype]="cell.cardtype" [name]="cell.name" [ville]="cell.ville" [price]="cell.price" [orientation]="cell.orientation" [isCorner]="cell.isCorner">
             </gano-cell>
         </div>
     </div>
