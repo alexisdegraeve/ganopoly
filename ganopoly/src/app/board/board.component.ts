@@ -15,7 +15,7 @@ import { CardType } from '../models/card';
   styleUrl: './board.component.scss'
 })
 export class BoardComponent {
-  cards$: Observable<{
+  topCards$: Observable<{
     name: string;
     ville: string;
     color: string;
@@ -25,24 +25,41 @@ export class BoardComponent {
     isCorner: boolean;
   }[]>;
 
-  topRow: Cell[] = [
-    { name: '', price: 0, orientation: 'vertical', isCorner: true },
-    { name: 'RUE GRANDE<br/>DINANT', price: 60, orientation: 'vertical', color: 'blue',  isCorner: false },
-    { name: 'RUE DE NAMUR', price: 80, orientation: 'vertical', isCorner: false },
-    { name: 'RUE GRANDE<br/>DINANT', price: 60, orientation: 'vertical', isCorner: false },
-    { name: 'RUE DE NAMUR', price: 80, orientation: 'vertical', isCorner: false },
-    { name: 'RUE GRANDE<br/>DINANT', price: 60, orientation: 'vertical', isCorner: false },
-    { name: 'RUE DE NAMUR', price: 80, orientation: 'vertical', isCorner: false },
-    { name: 'RUE GRANDE<br/>DINANT', price: 60, orientation: 'vertical', isCorner: false },
-    { name: 'RUE GRANDE<br/>DINANT', price: 60, orientation: 'vertical', isCorner: false },
-    { name: 'RUE DE NAMUR', price: 80, orientation: 'vertical', isCorner: false },
-    { name: '', price: 0, orientation: 'vertical', isCorner: true }, // coin
-  ];
 
+  leftCards$: Observable<{
+    name: string;
+    ville: string;
+    color: string;
+    price: number;
+    orientation: 'horizontal' | 'vertical';
+    cardtype: CardType;
+    isCorner: boolean;
+  }[]>;
+
+  rightCards$: Observable<{
+    name: string;
+    ville: string;
+    color: string;
+    price: number;
+    orientation: 'horizontal' | 'vertical';
+    cardtype: CardType;
+    isCorner: boolean;
+  }[]>;
+
+
+  bottomCards$: Observable<{
+    name: string;
+    ville: string;
+    color: string;
+    price: number;
+    orientation: 'horizontal' | 'vertical';
+    cardtype: CardType;
+    isCorner: boolean;
+  }[]>;
 
   constructor(private gameService: GameService) {
     // this.cards$ = this.gameService.getCards();
-    this.cards$ = this.gameService.getCards().pipe(
+    this.topCards$ = this.gameService.getCards().pipe(
       map(cards =>
         cards
           .filter(card => card.case >= 20 && card.case <= 30)
@@ -54,6 +71,54 @@ export class BoardComponent {
             cardtype: card.type,
             orientation: 'vertical', // ou basé sur `case`
             isCorner: card.case === 20 || card.case === 30
+          }))
+      )
+    );
+
+    this.leftCards$ = this.gameService.getCards().pipe(
+      map(cards =>
+        cards
+          .filter(card => card.case >= 10 && card.case <= 19)
+          .map(card => ({
+            name: card.street || card.name,
+            ville: card.ville,
+            color: card.color,
+            price: card.prix,
+            cardtype: card.type,
+            orientation: 'horizontal', // ou basé sur `case`
+            isCorner: card.case === 20 || card.case === 30
+          }))
+      )
+    );
+
+    this.rightCards$ = this.gameService.getCards().pipe(
+      map(cards =>
+        cards
+          .filter(card => card.case >= 31 && card.case <= 39)
+          .map(card => ({
+            name: card.street || card.name,
+            ville: card.ville,
+            color: card.color,
+            price: card.prix,
+            cardtype: card.type,
+            orientation: 'horizontal', // ou basé sur `case`
+            isCorner: card.case === 20 || card.case === 30
+          }))
+      )
+    );
+
+    this.bottomCards$ = this.gameService.getCards().pipe(
+      map(cards =>
+        cards
+          .filter(card => card.case >= 0 && card.case <= 10)
+          .map(card => ({
+            name: card.street || card.name,
+            ville: card.ville,
+            color: card.color,
+            price: card.prix,
+            cardtype: card.type,
+            orientation: 'vertical', // ou basé sur `case`
+            isCorner: card.case === 0 || card.case === 10
           }))
       )
     );

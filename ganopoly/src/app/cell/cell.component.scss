@@ -45,7 +45,7 @@
 .cell-h {
     width: 6rem;
     height: 4rem;
-    background: yellow;
+    background: #cee8cf;
     border: 2px solid black;
     display: flex;
     .cell-top {
@@ -86,7 +86,12 @@
     font-size: 2rem;
     text-shadow: -0.1rem 0 #000, 0 0.1rem #000, 0.1rem 0 #000, 0 -0.1rem #000;
     .fa-question {
-        font-size: 3rem;
+        font-size: 4rem;
+        margin-top: 0.5rem;
+    }
+    &.parking {
+        color: blue;
+        text-shadow: -0.1rem 0 #fff, 0 0.1rem #fff, 0.1rem 0 #fff, 0 -0.1rem #fff;
     }
 }
 
@@ -107,4 +112,16 @@
         height: 5rem;
         width: 5rem;
     }
+}
+
+.rotate-min-135 {
+    transform: rotate(-135deg);
+}
+
+.rotate-135 {
+    transform: rotate(135deg);
+}
+
+.square {
+    padding-bottom: 0.25rem;
 }

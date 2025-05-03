@@ -44,16 +44,16 @@
 
 
     <ng-container *ngIf="cardtype === CardType.parking">
-        <div class="cell-content">
+        <div class="cell-content square  rotate-135">
             <div class="name" [innerHTML]="name"></div>
-            <div class="symbol" [style.color]="color">
+            <div class="symbol parking">
                 <i class="fa-solid fa-square-parking"></i>
             </div>
         </div>
     </ng-container>
 
     <ng-container *ngIf="cardtype === CardType.toprison">
-        <div class="cell-content">
+        <div class="cell-content square rotate-min-135">
             <div class="name" [innerHTML]="name"></div>
             <div class="symbol" [style.color]="'red'">
                 <i class="fa-solid fa-handcuffs"></i>

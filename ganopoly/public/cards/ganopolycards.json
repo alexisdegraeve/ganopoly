@@ -298,7 +298,7 @@
     },
     {
         "case": 20,
-        "name": "Parking gratuit",
+        "name": "Parking <br /> gratuit",
         "type": "parking",
         "symbol": "fa-solid fa-square-parking",
         "color": "white"
@@ -456,7 +456,7 @@
     },
     {
         "case": 30,
-        "name": "Allez en prison",
+        "name": "Allez en <br/> prison",
         "type": "toprison",
         "color": "white"
     },
