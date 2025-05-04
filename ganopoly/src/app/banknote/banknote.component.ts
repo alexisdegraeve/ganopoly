@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'gano-banknote',
@@ -7,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './banknote.component.scss'
 })
 export class BanknoteComponent {
-
+  @Input() color: string = 'white';
+  @Input() value: number = 1;
 }

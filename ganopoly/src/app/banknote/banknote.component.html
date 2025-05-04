@@ -1,44 +1,44 @@
-<div class="banknote">
-    <div class="logo-border">
-        <div class="logo">GANOPOLY</div>
+<div class="banknote" [style.background-color]="color">
+    <div class="logo-border" [style.background-color]="color">
+        <div class="logo" [style.color]="color">GANOPOLY</div>
     </div>
 
     <div class="banknote-border-double">
         <div class="banknote-border">
-            <div class="banknote-inside-out">
-                <div class="banknote-inside-border">
-                    <div class="banknote-inside-border-double">
+            <div class="banknote-inside-out" [style.background-color]="color">
+                <div class="banknote-inside-border" [style.background-color]="color">
+                    <div class="banknote-inside-border-double" [style.background-color]="color">
                         <div class="banknote-inside">
 
-                            <div class="circle-center">
-                                <div class="circle-inside-center">
-                                    <span>1</span>
+                            <div class="circle-center" [style.background-color]="color">
+                                <div class="circle-inside-center" [style.background-color]="color">
+                                    <span>{{ value }}</span>
                                 </div>
 
 
                             </div>
 
-                            <div class="rect first">
+                            <div class="rect first" [style.background-color]="color">
                                 <div class="first-rect"></div>
                                 <div class="second-rect">
-                                    <span class="text">1</span>
+                                    <span class="text">{{ value }}</span>
                                 </div>
                             </div>
 
-                            <div class="rect second">
+                            <div class="rect second" [style.background-color]="color">
                                 <div class="first-rect"></div>
                                 <div class="second-rect">
                                     <i class="fa-solid fa-house striped-icon"></i>
                                 </div>
                             </div>
 
-                            <div class="rect three">
+                            <div class="rect three" [style.background-color]="color">
                                 <div class="first-rect"></div>
                                 <div class="second-rect">
-                                    <span class="text">1</span>
+                                    <span class="text">{{ value }}</span>
                                 </div>
                             </div>
-                            <div class="rect four">
+                            <div class="rect four" [style.background-color]="color">
                                 <div class="first-rect"></div>
                                 <div class="second-rect">
                                     <i class="fa-solid fa-train striped-icon"></i>

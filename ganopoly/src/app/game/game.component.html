@@ -31,7 +31,14 @@
                 <gano-cards [cards]="this.mycards$ | async"></gano-cards>
             </div>
             <div class="tab-pane fade p-3" id="banknote" role="tabpanel">
-                <gano-banknote></gano-banknote>
+                <gano-banknote [color]="'white'" [value]="1"></gano-banknote>
+                <gano-banknote [color]="'#ffdad2'" [value]="5"></gano-banknote>
+                <gano-banknote [color]="'#beedfd'" [value]="10"></gano-banknote>
+
+                <gano-banknote [color]="'#f4fdc8'" [value]="20"></gano-banknote>
+                <gano-banknote [color]="'#d9c8ff'" [value]="50"></gano-banknote>
+                <gano-banknote [color]="'#ffda99'" [value]="100"></gano-banknote>
+                <gano-banknote [color]="'#fe9d26'" [value]="500"></gano-banknote>
             </div>
         </div>
     </div>
