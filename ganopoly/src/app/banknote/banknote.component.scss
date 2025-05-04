@@ -1,0 +1,39 @@
+.banknote {
+    width: 40rem;
+    height: 15rem;
+    background-color: #fff;
+    display: flex;
+    padding: 1rem;
+    border: 1px solid black;
+}
+
+.border-radial {
+    background-color: #ffffff;
+    opacity: 0.5;
+    background: linear-gradient(90deg, rgba(15, 162, 235, 0) 33.16%, #0FA2EB 85.35%);
+    border-radius: 30px;
+}
+
+.banknote-border {
+    background-color: #999;
+    background-image: repeating-radial-gradient( circle at 0 0, transparent 0, #ffffff 10px), repeating-radial-gradient( circle at 0 0, transparent 0, #ffffff 10px);
+    height: 100%;
+    width: 100%;
+    display: flex;
+    padding: 1rem;
+}
+
+.banknote-inside-out {
+    background-color: #ffffff;
+    height: 100%;
+    width: 100%;
+    padding: 0.25rem;
+}
+
+.banknote-inside {
+    background-color: #ffffff;
+    background-image: repeating-radial-gradient( circle at 0 0, transparent 0, #ffffff 10px), repeating-linear-gradient( #00000055, #000000);
+    height: 100%;
+    width: 100%;
+    border: 4px double #fff;
+}

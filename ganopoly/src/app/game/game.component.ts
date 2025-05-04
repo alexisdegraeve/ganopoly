@@ -7,10 +7,11 @@ import { CardsComponent } from '../cards/cards.component';
 import { Observable, pipe } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Card, CardType } from '../models/card';
+import { BanknoteComponent } from "../banknote/banknote.component";
 
 @Component({
   selector: 'gano-game',
-  imports: [CardsComponent, BoardComponent, HeaderComponent, CommonModule],
+  imports: [CardsComponent, BoardComponent, HeaderComponent, CommonModule, BanknoteComponent],
   templateUrl: './game.component.html',
   styleUrl: './game.component.scss'
 })
