@@ -18,7 +18,7 @@
 
 .banknote {
     width: 40rem;
-    height: 15rem;
+    height: 18rem;
     background-color: #fff;
     display: flex;
     padding: 1rem;
@@ -66,6 +66,35 @@
     height: 100%;
     width: 100%;
     border: 1px solid #000;
+    display: flex;
+    justify-content: center;
+    .circle-center {
+        width: 11rem;
+        height: 11rem;
+        background-color: #fff;
+        border: 2px solid black;
+        border-radius: 50%;
+        padding: 0.25rem;
+    }
+    .circle-inside-center {
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+        border: 1px solid black;
+        padding: 1rem;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        span {
+            font-size: 8rem;
+            font-family: 'Arial';
+            font-weight: bold;
+            color: black;
+            text-shadow: 0 0 2px white, 0 0 4px white, /* → ajoute un halo blanc plus large */
+            -3px -3px 0 black, 3px -3px 0 black, -3px 3px 0 black, 3px 3px 0 black, 0px -3px 0 black, 0px 3px 0 black, -3px 0px 0 black, 3px 0px 0 black;
+        }
+    }
     .rect {
         background-color: white;
         height: 3rem;
@@ -79,17 +108,24 @@
             position: absolute;
         }
         &.first {
-            margin-left: 0;
+            margin-left: -28rem;
             margin-top: 1rem;
             transform: rotateZ(90deg);
+            .text {
+                transform: rotateZ(-90deg);
+            }
         }
         &.second {
-            margin-top: 4rem;
+            margin-top: 7.25rem;
+            margin-left: -28rem;
         }
         &.three {
-            margin-top: 4rem;
+            margin-top: 7rem;
             margin-left: 28rem;
             transform: rotateZ(90deg) scaleX(-1);
+            .text {
+                transform: scaleX(-1);
+            }
         }
         &.four {
             margin-left: 28rem;
