@@ -1,5 +1,5 @@
 <ng-container *ngIf="cards">
     <gano-property-card [type]="card.type" [name]="card.name" [street]="card.street" [city]="card.ville" [loyer]="card.loyer" [txtcolor]="card.txtcolor" [groupecomplet]="card.groupe" [stations]="[card.station2, card.station3, card.station4]" [maisons]="[card.house1, card.house2, card.house3, card.house4, card.hotel1]"
-        [prixParMaison]=" card.prixHouse " [prixParHotel]="card.prixHotel " [hypotheque]="card.hypotheque " [payezHypotheque]="card.leverhypotheque " [backcolor]="card.color " *ngFor="let card of cards ">
+        [times1]="card.times1" [times2]="card.times2" [prixParMaison]=" card.prixHouse " [prixParHotel]="card.prixHotel " [hypotheque]="card.hypotheque " [payezHypotheque]="card.leverhypotheque " [backcolor]="card.color " *ngFor="let card of cards ">
     </gano-property-card>
 </ng-container>

@@ -7,9 +7,24 @@
                         <h4 [style.color]="txtcolor"> {{ street }}</h4>
                         <h4 [style.color]="txtcolor">{{ city }}</h4>
                     </div>
+                    <ng-container *ngIf="type === CardType.elec || type === CardType.eaux">
+                        <div class="card-icon">
+                            <div *ngIf="type === CardType.elec" class="symbol" [style.color]="'#fff202'"><i class="fa-solid fa-lightbulb"></i></div>
+                            <div *ngIf="type === CardType.eaux" class="symbol"><i class="fa-solid fa-faucet-drip" [style.color]="'#fff'"></i></div>
+                            <h4 [style.color]="txtcolor">{{ name }}</h4>
+                        </div>
+                        <div class="card-content d-flex flex-column">
+                            <p>
+                                Si l'on possède une compagnie de Service public, Le loyer est {{ times1 }} fois le montant indiqué par les dés.
+                            </p>
+                            <p>
+                                Si l'on possède les Deux compagnies de Service public, Le loyer est {{ times2 }} fois le montant indiqué par les dés.
+                            </p>
+                        </div>
+                    </ng-container>
                     <ng-container *ngIf="type === CardType.gare">
                         <div class="card-icon">
-                            <div class="symbol"><i class="fa-solid fa-train"></i></div>
+                            <div class="symbol"><i class="fa-solid fa-train" [style.color]="'#fff'"></i></div>
                             <h4 [style.color]="txtcolor">{{ name }}</h4>
                         </div>
                         <div class="card-content d-flex flex-column">

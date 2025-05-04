@@ -24,6 +24,8 @@ export interface Card {
   station2: number;
   station3: number;
   station4: number;
+  times1: number;
+  times2: number;
  }
 
  export type Case = {

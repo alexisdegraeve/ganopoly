@@ -44,7 +44,7 @@ export class GameComponent {
     .pipe(
       map(cards =>
         cards
-          .filter(card => card && card.type === CardType.immobilier || card.type === CardType.elec || card.type === CardType.gare)
+          .filter(card => card && card.type === CardType.immobilier || card.type === CardType.elec || card.type === CardType.gare || card.type === CardType.eaux )
       )
     );
   }

@@ -24,6 +24,8 @@ export class PropertyCardComponent {
   @Input() payezHypotheque = 220;
   @Input() backcolor = 'yellow';
   @Input() txtcolor = '#000';
+  @Input() times1: number = 0;
+  @Input() times2: number = 0;
   @Input() type: CardType = CardType.immobilier;
 
   CardType = CardType;

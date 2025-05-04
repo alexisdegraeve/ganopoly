@@ -15,10 +15,4 @@ import { map } from 'rxjs/operators';
 export class CardsComponent {
    @Input() cards:Card[] | null= [];
 
-  constructor(private gameService: GameService) {
-
-  }
-
-
-
 }
