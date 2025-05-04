@@ -1,3 +1,11 @@
+.logo-border {
+    background-color: #fff;
+    padding: 0.5rem;
+    position: absolute;
+    margin-top: -1rem;
+    padding-bottom: 0;
+}
+
 .logo {
     background-color: black;
     border: 2px double #fff;
@@ -5,8 +13,7 @@
     font-size: 1.5rem;
     color: #fff;
     padding: 0 0.5rem;
-    position: absolute;
-    margin-top: -0.5rem;
+    border: 1px double black;
 }
 
 .banknote {
@@ -57,6 +64,24 @@
     height: 100%;
     width: 100%;
     border: 1px solid #000;
+    .rect {
+        background-color: white;
+        height: 3rem;
+        width: 5rem;
+        padding: 0.25rem;
+        display: flex;
+        .first-rect {
+            height: 100%;
+            width: 1.5rem;
+            border: 1px solid black;
+        }
+        .second-rect {
+            height: 100%;
+            width: 100%;
+            border: 1px solid black;
+            margin-left: 0.25rem;
+        }
+    }
 }
 
 .banknote-inside-border {
