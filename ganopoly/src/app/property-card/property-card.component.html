@@ -3,54 +3,65 @@
         <div class="flip-card-inner" [ngClass]="{'flipped': isFlipped}">
             <div class="flip-card-front">
                 <div class="card-body">
-                    <div class="card-header" [style.background-color]="backcolor">
-                        <h4> {{ street }}</h4>
-                        <h4>{{ city }}</h4>
+                    <div class="card-header" [style.background-color]="backcolor" *ngIf="type === CardType.immobilier">
+                        <h4 [style.color]="txtcolor"> {{ street }}</h4>
+                        <h4 [style.color]="txtcolor">{{ city }}</h4>
                     </div>
-                    <div class="card-content d-flex flex-column">
-                        <h5 class="mx-auto ">Loyer {{ loyer }}€</h5>
+                    <ng-container *ngIf="type === CardType.gare">
+                        <div class="card-icon">
+                            <div class="symbol"><i class="fa-solid fa-train"></i></div>
+                            <h4 [style.color]="txtcolor">{{ name }}</h4>
+                        </div>
+                        <div class="card-content d-flex flex-column">
+                            <h5 class="mx-auto ">Loyer {{ loyer }} <span class="currency ">G</span></h5>
+                            <div class="d-flex justify-content-between" *ngFor="let station of stations, let i = index">
+                                <div class="d-flex align-items-center">Avec
+                                    <span *ngIf="i < 4" class="ms-2"> {{ i + 1 }}</span>
+                                    <i *ngFor="let i of [].constructor(i+1); index as j" class="fa-solid fa-train ms-2"></i>
+                                </div>
+                                <div class="ml-auto ">{{ station }}€</div>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <div class="card-content d-flex flex-column " *ngIf="type===CardType.immobilier ">
+                        <h5 class="mx-auto ">Loyer {{ loyer }} <span class="currency ">G</span></h5>
 
-                        <div class="d-flex justify-content-between">
+                        <div class="d-flex justify-content-between ">
                             <div>Avec groupe complet</div>
-                            <div class="ml-auto">{{groupecomplet}}€</div>
+                            <div class="ml-auto ">{{groupecomplet}}€</div>
                         </div>
 
-                        <div class="d-flex justify-content-between" *ngFor="let montant of maisons, let i = index">
-                            <div class="d-flex">Avec
-                                <i class="bi bi-house-fill  fs-3 house-green ms-2" [class.text-danger]="i === 4">
-                            <span *ngIf="i < 4"> {{ i + 1 }}</span>
-                        </i>
+                        <div class="d-flex justify-content-between " *ngFor="let montant of maisons, let i=index ">
+                            <div class="d-flex align-items-center">Avec
+                                <ng-container *ngIf="i<4">
+                                    <span class="ms-2"> {{ i + 1 }}</span>
+                                    <i *ngFor="let i of [].constructor(i+1); index as j" class="bi bi-house-fill fs-3 house-green ms-2"></i>
+                                </ng-container>
+                                <ng-container *ngIf="i==4">
+                                    <i class="bi bi-house-fill fs-3 text-danger ms-2"></i>
+                                </ng-container>
                             </div>
-                            <div class="ml-auto">{{ montant }}€</div>
+                            <div class="ml-auto ">{{ montant }}€</div>
                         </div>
-                        <!--
-                        <div class="d-flex justify-content-between" *ngFor="let config of maisonConfigs">
-                            <div class="d-flex">Avec
-                                <i class="bi bi-house-fill  fs-3 house-green ms-2" [class.text-danger]="config.nombre === 5">
-                            <span *ngIf="config.nombre < 5"> {{ config.nombre }}</span>
-                          </i>
-                            </div>
-                            <div class="ml-auto">{{ config.montant }}€</div>
-                        </div> -->
                         <hr>
-                        <p class="moreinfo">
-                            Prix des maisons {{ prixParMaison }}€ chacune<br /> <br /> Prix d'1 hotel {{ prixParHotel }}€ chacun <br /> (plus de 4 maisons) </p>
+                        <p class="moreinfo ">
+                            Prix des maisons {{ prixParMaison }}€ chacune<br /> Prix d'1 hotel {{ prixParHotel }}€ chacun (plus de 4 maisons) </p>
                     </div>
                 </div>
 
             </div>
-            <div class="flip-card-back">
-                <div class="card-body">
+            <div class="flip-card-back ">
+                <div class="card-body ">
                     <!-- Contenu arrière -->
-                    <div class="card-header">
+                    <div class="card-header ">
                         <h4> {{ street }}</h4>
                         <h4>{{ city }}</h4>
                     </div>
-                    <div class="card-content">
+                    <div class="card-content ">
                         <h5>Hypothéquée pour {{ hypotheque }}€</h5>
                         <h5>Pour lever l'hypothèque, payez {{ payezHypotheque }}€</h5>
                     </div>
-                    <p class="info">
+                    <p class="info ">
                         Si cette propriété est hypothéquée, ce côté de la carte doit être mis en évidence sur la table.
                     </p>
                 </div>

@@ -20,6 +20,10 @@ export interface Card {
   prixHotel: number;
   hypotheque: number;
   leverhypotheque: number;
+  txtcolor: string;
+  station2: number;
+  station3: number;
+  station4: number;
  }
 
  export type Case = {

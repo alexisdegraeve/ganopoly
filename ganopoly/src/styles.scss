@@ -1,1 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+
+.currency {
+    position: relative;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.currency::before,
+.currency::after {
+    content: '';
+    position: absolute;
+    height: 2px;
+    background: currentColor;
+    left: 0;
+    right: 0;
+}
+
+.currency::before {
+    top: 30%;
+}
+
+.currency::after {
+    top: 60%;
+}

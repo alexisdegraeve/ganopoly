@@ -96,6 +96,7 @@
                 font-size: 1.15rem;
                 font-weight: bold;
                 margin: 0;
+                text-align: center;
             }
         }
     }
@@ -125,4 +126,16 @@
 
     .moreinfo {
         font-size: 0.85rem;
+    }
+
+    .card-icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        .symbol {
+            font-size: 3rem;
+            justify-content: center;
+            align-items: center;
+        }
     }
