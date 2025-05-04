@@ -1,0 +1,4 @@
+<ng-container *ngIf="cards">
+    <gano-property-card [street]="card.street" [city]="card.ville" [loyer]="card.loyer" [groupecomplet]="card.groupe" [maisons]="[card.house1, card.house2, card.house3, card.house4, card.hotel1]" [backcolor]="card.color" *ngFor="let card of cards">
+    </gano-property-card>
+</ng-container>

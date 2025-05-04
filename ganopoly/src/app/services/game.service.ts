@@ -5,7 +5,6 @@ import { forkJoin, Observable } from 'rxjs';
 import { Billet } from '../models/billet';
 import { Player } from '../models/player';
 import { Card, Case } from '../models/card';
-import { map } from 'rxjs/operators';
 
 
 @Injectable({

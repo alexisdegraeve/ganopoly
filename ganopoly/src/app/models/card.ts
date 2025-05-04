@@ -9,6 +9,17 @@ export interface Card {
   coin: boolean;
   type: CardType;
   info: string;
+  loyer: number;
+  groupe: number;
+  house1: number;
+  house2: number;
+  house3: number;
+  house4: number;
+  hotel1: number;
+  prixHouse: number;
+  prixHotel: number;
+  hypotheque: number;
+  leverhypotheque: number;
  }
 
  export type Case = {
