@@ -17,8 +17,10 @@ import { BanknoteComponent } from "../banknote/banknote.component";
 })
 export class GameComponent {
   rotation = 0;
-  showCards = false;
   mycards$ :Observable<Card[]>;
+  bankNoteShow = false;
+  cardsShow = false;
+  boardShow = true;
 
   constructor(private gameService: GameService) {
     this.mycards$ = this.getPlayCards();
@@ -50,5 +52,21 @@ export class GameComponent {
     );
   }
 
+  boardShowActive() {
+    this.boardShow = true;
+    this.cardsShow = false;
+    this.bankNoteShow = false;
+  }
 
+  cardShowActive() {
+    this.boardShow = false;
+    this.cardsShow = true;
+    this.bankNoteShow = false;
+  }
+  
+  bankNoteShowActive() {
+    this.boardShow = false;
+    this.cardsShow = false;
+    this.bankNoteShow = true;
+  }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'gano-header',
@@ -7,5 +7,26 @@ import { Component } from '@angular/core';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
+
+  @Output() rotateEvent = new EventEmitter<boolean>();
+  @Output() cardsEvent = new EventEmitter<boolean>();
+  @Output() bankNoteEvent = new EventEmitter<boolean>();
+  @Output() boardEvent = new EventEmitter<boolean>();
+
+  rotate() {
+    this.rotateEvent.emit(true);
+  }
+
+  cards() {
+    this.cardsEvent.emit(true);
+  }
+
+  bankNote() {
+    this.bankNoteEvent.emit(true);
+  }
+
+  board() {
+    this.boardEvent.emit(true);
+  }
 
 }

@@ -1,44 +1,38 @@
-<gano-header></gano-header>
-
+<gano-header (rotateEvent)="rotateBoard()" (boardEvent)="boardShowActive()" (cardsEvent)="cardShowActive()" (bankNoteEvent)="bankNoteShowActive()"></gano-header>
 
 <div class="game">
     <div class="container">
 
 
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#board" type="button" role="tab">
-          BOARD <button class="btn btn-primary" (click)="rotateBoard()">Rotate</button>
-                </button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#cards" type="button" role="tab">
-          MY CARDS
-        </button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#banknote" type="button" role="tab">
-        MY BANKNOTES
-      </button>
-            </li>
-        </ul>
+        <div *ngIf="boardShow">
+            <gano-board [rotate]="rotation "></gano-board>
+        </div>
+        <div *ngIf="cardsShow">
+            <gano-cards [cards]="this.mycards$ | async"></gano-cards>
+        </div>
+
+        <div *ngIf="bankNoteShow">
+            <gano-banknote [color]="'white'" [value]="1"></gano-banknote>
+            <gano-banknote [color]="'#ffdad2'" [value]="5"></gano-banknote>
+            <gano-banknote [color]="'#beedfd'" [value]="10"></gano-banknote>
+
+            <gano-banknote [color]="'#f4fdc8'" [value]="20"></gano-banknote>
+            <gano-banknote [color]="'#d9c8ff'" [value]="50"></gano-banknote>
+            <gano-banknote [color]="'#ffda99'" [value]="100"></gano-banknote>
+            <gano-banknote [color]="'#fe9d26'" [value]="500"></gano-banknote>
+        </div>
+
+
 
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active p-3" id="board" role="tabpanel">
-                <gano-board [rotate]="rotation "></gano-board>
+
             </div>
             <div class="tab-pane fade p-3" id="cards" role="tabpanel">
-                <gano-cards [cards]="this.mycards$ | async"></gano-cards>
+
             </div>
             <div class="tab-pane fade p-3" id="banknote" role="tabpanel">
-                <gano-banknote [color]="'white'" [value]="1"></gano-banknote>
-                <gano-banknote [color]="'#ffdad2'" [value]="5"></gano-banknote>
-                <gano-banknote [color]="'#beedfd'" [value]="10"></gano-banknote>
 
-                <gano-banknote [color]="'#f4fdc8'" [value]="20"></gano-banknote>
-                <gano-banknote [color]="'#d9c8ff'" [value]="50"></gano-banknote>
-                <gano-banknote [color]="'#ffda99'" [value]="100"></gano-banknote>
-                <gano-banknote [color]="'#fe9d26'" [value]="500"></gano-banknote>
             </div>
         </div>
     </div>
