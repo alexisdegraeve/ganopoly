@@ -176,3 +176,10 @@
     -webkit-background-clip: text;
     background-clip: text;
 }
+
+@media only screen and (max-width: 768px) {
+    .banknote {
+        transform: scale(0.73);
+        transform-origin: 0;
+    }
+}

@@ -50,19 +50,3 @@
             flex-direction: row-reverse;
         }
     }
-
-    @media only screen and (max-width: 992px) {
-        .board {
-            width: 35rem;
-            height: 35rem;
-        }
-    }
-
-    @media only screen and (max-width: 768px) {
-        .board {
-            width: 29rem;
-            height: 29rem;
-            overflow: auto;
-            max-width: 22.1rem;
-        }
-    }
