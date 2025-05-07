@@ -1,9 +1,4 @@
 .game {
-    margin-top: 0.25rem;
-}
-
-@media only screen and (max-width: 768px) {
-    .game {
-        overflow: auto;
-    }
+    height: calc(100vh - 4.5rem);
+    overflow-y: auto;
 }

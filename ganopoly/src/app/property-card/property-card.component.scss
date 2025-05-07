@@ -1,7 +1,9 @@
     .card-container {
         perspective: 1000px;
-        display: inline-block;
-        margin: 10px;
+        justify-content: center;
+        align-items: center;
+        display: inline-flex;
+        margin: 0.75rem;
     }
 
     .flip-card {

@@ -1,13 +1,14 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'gano-header',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
-
+  @Input() boardVisible = true;
   @Output() rotateEvent = new EventEmitter<boolean>();
   @Output() cardsEvent = new EventEmitter<boolean>();
   @Output() bankNoteEvent = new EventEmitter<boolean>();
