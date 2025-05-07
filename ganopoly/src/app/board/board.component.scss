@@ -1,14 +1,14 @@
     .board {
         display: flex;
     }
-    
+
     .board-inside {
         display: flex;
         flex-direction: column;
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
         transition: transform 0.5s ease-in-out;
     }
-    
+
     .board-middle {
         flex-grow: 1;
         display: flex;
@@ -39,7 +39,7 @@
             }
         }
     }
-    
+
     .board-row {
         display: flex;
         &.top {
@@ -50,17 +50,19 @@
             flex-direction: row-reverse;
         }
     }
-    
+
     @media only screen and (max-width: 992px) {
         .board {
             width: 35rem;
             height: 35rem;
         }
     }
-    
+
     @media only screen and (max-width: 768px) {
         .board {
             width: 29rem;
             height: 29rem;
+            overflow: auto;
+            max-width: 22.1rem;
         }
     }
