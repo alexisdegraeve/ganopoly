@@ -5,9 +5,9 @@ import { Component, Input } from '@angular/core';
   selector: 'gano-dice',
   imports: [CommonModule],
   templateUrl: './dice.component.html',
-  styleUrl: './dice.component.scss'
+  styleUrl: './dice.component.scss',
 })
 export class DiceComponent {
-  @Input() score: number = 0;
+  @Input() score: number = 1;
 
 }

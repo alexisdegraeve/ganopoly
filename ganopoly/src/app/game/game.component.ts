@@ -9,10 +9,11 @@ import { map } from 'rxjs/operators';
 import { Card, CardType } from '../models/card';
 import { BanknoteComponent } from "../banknote/banknote.component";
 import { DiceComponent } from "../dice/dice.component";
+import { DoublediceComponent } from "../doubledice/doubledice.component";
 
 @Component({
   selector: 'gano-game',
-  imports: [CardsComponent, BoardComponent, HeaderComponent, CommonModule, BanknoteComponent, DiceComponent],
+  imports: [CardsComponent, BoardComponent, HeaderComponent, CommonModule, BanknoteComponent, DiceComponent, DoublediceComponent],
   templateUrl: './game.component.html',
   styleUrl: './game.component.scss'
 })
