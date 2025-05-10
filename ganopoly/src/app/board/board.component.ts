@@ -5,10 +5,12 @@ import { GameService } from '../services/game.service';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { CardType, Case } from '../models/card';
+import { ChanceCardComponent } from "../chance-card/chance-card.component";
+import { CommunityCardComponent } from "../community-card/community-card.component";
 
 @Component({
   selector: 'gano-board',
-  imports: [CellComponent, CommonModule],
+  imports: [CellComponent, CommonModule, ChanceCardComponent, CommunityCardComponent],
   templateUrl: './board.component.html',
   styleUrl: './board.component.scss'
 })

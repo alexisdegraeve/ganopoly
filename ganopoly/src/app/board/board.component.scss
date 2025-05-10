@@ -1,107 +1,138 @@
-    .board {
-        display: flex;
-    }
+.board {
+    display: flex;
+}
 
-    .board-inside {
-        display: flex;
-        flex-direction: column;
-        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-        transition: transform 0.5s ease-in-out;
-    }
+.board-inside {
+    display: flex;
+    flex-direction: column;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    transition: transform 0.5s ease-in-out;
+}
 
-    .board-middle {
+.board-middle {
+    flex-grow: 1;
+    display: flex;
+    .left {
+        background-color: yellow;
+        .board-row {
+            flex-direction: column-reverse;
+        }
+    }
+    .center {
+        background: linear-gradient(180deg, #335577 0%, #4575A3 52.88%, #0A2A3F 100%);
         flex-grow: 1;
         display: flex;
-        .left {
-            background-color: yellow;
-            .board-row {
-                flex-direction: column-reverse;
-            }
-        }
-        .center {
-            background: linear-gradient(180deg, #335577 0%, #4575A3 52.88%, #0A2A3F 100%);
-            flex-grow: 1;
-        }
-        .right {
-            background-color: yellow;
-            .board-row {
-                transform: rotateZ(180deg);
-                flex-direction: column-reverse;
-            }
-            .cell-h {
-                .cell-top {
-                    border-left: unset;
-                    border-right: 2px solid black;
-                }
-                .cell-content {
-                    transform: rotateZ(-90deg);
-                }
-            }
-        }
+        flex-direction: column;
     }
-
-    .board-row {
-        display: flex;
-        &.top {
+    .right {
+        background-color: yellow;
+        .board-row {
             transform: rotateZ(180deg);
-            flex-direction: row-reverse;
+            flex-direction: column-reverse;
         }
-        &.below {
-            flex-direction: row-reverse;
+        .cell-h {
+            .cell-top {
+                border-left: unset;
+                border-right: 2px solid black;
+            }
+            .cell-content {
+                transform: rotateZ(-90deg);
+            }
         }
     }
+}
 
-    .thimble {
-        background-image: url("/img/thimble.svg");
-        height: 1.5rem;
-        width: 1.5rem;
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
-        right: 1rem;
-        bottom: 1rem;
-        position: absolute;
+.board-row {
+    display: flex;
+    &.top {
+        transform: rotateZ(180deg);
+        flex-direction: row-reverse;
     }
+    &.below {
+        flex-direction: row-reverse;
+    }
+}
 
-    .hat {
-        background-image: url("/img/hat.svg");
-        height: 2rem;
-        width: 2rem;
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
-        right: 4rem;
-        bottom: 0rem;
-        position: absolute;
-    }
+.thimble {
+    background-image: url("/img/thimble.svg");
+    height: 1.5rem;
+    width: 1.5rem;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    right: 1rem;
+    bottom: 1rem;
+    position: absolute;
+}
 
-    .cat {
-        background-image: url("/img/cat.svg");
-        height: 2rem;
-        width: 2rem;
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
-        right: 4rem;
-        bottom: 2rem;
-        position: absolute;
-    }
+.hat {
+    background-image: url("/img/hat.svg");
+    height: 2rem;
+    width: 2rem;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    right: 4rem;
+    bottom: 0rem;
+    position: absolute;
+}
 
-    .dog {
-        background-image: url("/img/dog.svg");
-        height: 2rem;
-        width: 2rem;
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
-        right: 2rem;
-        bottom: 3rem;
-        position: absolute;
-    }
+.cat {
+    background-image: url("/img/cat.svg");
+    height: 2rem;
+    width: 2rem;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    right: 4rem;
+    bottom: 2rem;
+    position: absolute;
+}
 
-    .pion {
-        position: absolute;
-        z-index: 5;
-        right: 0rem;
-        bottom: 0rem;
+.dog {
+    background-image: url("/img/dog.svg");
+    height: 2rem;
+    width: 2rem;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    right: 2rem;
+    bottom: 3rem;
+    position: absolute;
+}
+
+.pion {
+    position: absolute;
+    z-index: 5;
+    right: 0rem;
+    bottom: 0rem;
+}
+
+.chance-card {
+    transform: scale(0.35) rotate(-45deg);
+    transform-origin: 8rem 10rem;
+}
+
+.community-card {
+    transform: scale(0.35) rotate(135deg);
+    transform-origin: 25rem 10rem;
+}
+
+.logo-ganopoly {
+    background-color: red;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    border: 0.25rem solid black;
+    padding: 0 1rem;
+    span {
+        font-size: 3.5rem;
+        color: #fff;
+        font-weight: bold;
+        -webkit-text-stroke-width: 2px;
+        -webkit-text-stroke-color: #888;
+        text-shadow: #000 -4px 3px;
     }
+}
