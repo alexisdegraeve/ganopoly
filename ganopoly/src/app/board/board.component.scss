@@ -134,5 +134,9 @@
         -webkit-text-stroke-width: 2px;
         -webkit-text-stroke-color: #888;
         text-shadow: #000 -4px 3px;
+        height: 4.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
     }
 }
