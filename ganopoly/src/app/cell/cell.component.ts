@@ -17,7 +17,7 @@ export class CellComponent {
   @Input() color: string | undefined = 'red';
   @Input() cardtype: CardType = CardType.immobilier;
   @Input() info!: string;
-
+  
   CardType = CardType;
 
 }

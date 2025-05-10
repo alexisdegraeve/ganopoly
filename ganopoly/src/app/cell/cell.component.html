@@ -6,6 +6,17 @@
 
     <ng-container *ngIf="cardtype === CardType.immobilier">
         <div *ngIf="!isCorner" class="cell-top" [style.backgroundColor]="color">
+            <div class="houses" [class.rotate-houses-90]="orientation==='horizontal'">
+                <ng-container *ngIf="true">
+                    <div class="house"><i class="fa-solid fa-house"></i></div>
+                    <div class="house"><i class="fa-solid fa-house"></i></div>
+                    <div class="house"><i class="fa-solid fa-house"></i></div>
+                    <div class="house"><i class="fa-solid fa-house"></i></div>
+                </ng-container>
+                <ng-container *ngIf="false">
+                    <div class="hotel"><i class="fa-solid fa-house"></i></div>
+                </ng-container>
+            </div>
         </div>
         <div *ngIf="!isCorner" class="cell-content">
             <div class="name" [innerHTML]="name"></div>
