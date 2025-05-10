@@ -1,6 +1,15 @@
-<p>chance-card works!</p>
-<div class="chance-card">
-    <div class="chance-inside-card">
-        <i class="fa fa-question" aria-hidden="true"></i>
+<div class="chance-card" (click)="flipCard()" [class.flipped]="isFlipped">
+    <div class="chance-card-inner">
+        <div class="chance-inside-card-border chance-card-front">
+            <div class="chance-inside-card">
+                <i class="fa fa-question" aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="chance-inside-card-border  chance-card-back">
+            <div class="chance-inside-back-card">
+                <h4>Chance</h4>
+                <p [innerHTML]="'Vous avez gagné 200€ !'"></p>
+            </div>
+        </div>
     </div>
 </div>

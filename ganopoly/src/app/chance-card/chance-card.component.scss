@@ -1,6 +1,9 @@
 .chance-card {
-    width: 30rem;
-    height: 15rem;
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.chance-inside-card-border {
     background-color: #fff;
     padding: 1rem;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
@@ -20,4 +23,45 @@
         font-size: 10rem;
         text-shadow: 2px 0 #000, -2px 0 #000, 0 2px #000, 0 -2px #000, 1px 1px #000, -1px -1px #000, 1px -1px #000, -1px 1px #000;
     }
+}
+
+.chance-inside-back-card {
+    background: #fff;
+    width: 100%;
+    height: 100%;
+    border: 0.1rem solid #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    h4 {
+        text-transform: uppercase;
+    }
+}
+
+.chance-card-inner {
+    width: 30rem;
+    height: 15rem;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.chance-card.flipped .chance-card-inner {
+    transform: rotateY(180deg);
+}
+
+.chance-inside-card-border,
+.chance-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+}
+
+.chance-card-front {
+    background-color: #f9f9f9;
+}
+
+.chance-card-back {
+    transform: rotateY(180deg);
 }

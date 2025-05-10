@@ -7,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrl: './chance-card.component.scss'
 })
 export class ChanceCardComponent {
+  isFlipped = false;
 
+  flipCard() {
+    this.isFlipped = !this.isFlipped;
+  }
 }
