@@ -7,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrl: './community-card.component.scss'
 })
 export class CommunityCardComponent {
+  isFlipped = false;
 
+  flipCard() {
+    this.isFlipped = !this.isFlipped;
+  }
 }

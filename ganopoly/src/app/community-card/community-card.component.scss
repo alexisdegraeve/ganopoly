@@ -1,0 +1,73 @@
+.community-card {
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.community-inside-card-border {
+    background-color: #fff;
+    padding: 1rem;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.community-inside-card {
+    background: #ff7b00;
+    background: linear-gradient(180deg, rgba(224, 252, 255, 1) 0%, rgba(0, 195, 255, 1) 100%);
+    padding: 0.65rem;
+    width: 100%;
+    height: 100%;
+}
+
+.community-inside-card>.card-content {
+    background: linear-gradient(180deg, rgba(0, 195, 255, 1) 0%, rgba(224, 252, 255, 1) 100%);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .fa-sack-dollar {
+        color: #fff;
+        font-size: 9rem;
+        text-shadow: 2px 0 #000, -2px 0 #000, 0 2px #000, 0 -2px #000, 1px 1px #000, -1px -1px #000, 1px -1px #000, -1px 1px #000;
+    }
+}
+
+.community-inside-back-card {
+    background: #fff;
+    width: 100%;
+    height: 100%;
+    border: 0.1rem solid #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    h4 {
+        text-transform: uppercase;
+    }
+}
+
+.community-card-inner {
+    width: 30rem;
+    height: 15rem;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.community-card.flipped .community-card-inner {
+    transform: rotateY(180deg);
+}
+
+.community-inside-card-border,
+.community-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+}
+
+.community-card-front {
+    background-color: #f9f9f9;
+}
+
+.community-card-back {
+    transform: rotateY(180deg);
+}
