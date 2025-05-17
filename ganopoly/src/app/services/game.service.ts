@@ -5,6 +5,7 @@ import { forkJoin, Observable } from 'rxjs';
 import { Billet } from '../models/billet';
 import { Player } from '../models/player';
 import { Card, Case } from '../models/card';
+import { Pawn } from '../models/pawn';
 
 
 @Injectable({
@@ -33,6 +34,9 @@ export class GameService {
 
   createNewPlayer(): Player {
     return {
+      name: 'Alexis',
+      pawnShape: Pawn.cat,
+      dices: 0,
       houses: [],
       billets: [
         { euro: 1, quantity: 0, color: 'white' },
