@@ -23,12 +23,15 @@ export class GameComponent {
   bankNoteShow = false;
   cardsShow = false;
   boardShow = true;
+  playerName: string = '';
+  isStartGame = false;
 
   constructor(private gameService: GameService) {
     this.mycards$ = this.getPlayCards();
   }
 
   startGame() {
+    this.isStartGame = true;
     this.gameService.startGame().subscribe(() => {
       console.log(' loading finish');
       this.gameService.throwDice();

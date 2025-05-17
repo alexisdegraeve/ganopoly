@@ -1,10 +1,10 @@
-<gano-header [boardVisible]="boardShow" (rotateEvent)="rotateBoard()" (boardEvent)="boardShowActive()" (cardsEvent)="cardShowActive()" (bankNoteEvent)="bankNoteShowActive()"></gano-header>
+<gano-header [isStartGame]="isStartGame" [boardVisible]="boardShow" (rotateEvent)="rotateBoard()" (boardEvent)="boardShowActive()" (cardsEvent)="cardShowActive()" (bankNoteEvent)="bankNoteShowActive()"></gano-header>
 
-<div class="newplayer">
-    <gano-human-player></gano-human-player>
+<div class="newplayer" *ngIf="!isStartGame">
+    <gano-human-player [(name)]="playerName" (nameChange)="startGame()"></gano-human-player>
 </div>
 
-<div class="game">
+<div class="game" *ngIf="isStartGame">
     <div class="container">
 
 

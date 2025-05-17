@@ -8,6 +8,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
+  @Input() isStartGame = false;
   @Input() boardVisible = true;
   @Output() rotateEvent = new EventEmitter<boolean>();
   @Output() cardsEvent = new EventEmitter<boolean>();

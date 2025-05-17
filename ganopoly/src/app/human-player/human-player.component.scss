@@ -1,0 +1,55 @@
+.card {
+    margin: 1rem;
+}
+
+.card-header {
+    display: flex;
+    justify-content: center;
+}
+
+.pion {
+    height: 6rem;
+    width: 6rem;
+    background-color: #fff;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.thimble {
+    background-image: url("/img/thimble.svg");
+    height: 50%;
+    width: 50%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.hat {
+    background-image: url("/img/hat.svg");
+    height: 70%;
+    width: 70%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.cat {
+    background-image: url("/img/cat.svg");
+    height: 60%;
+    width: 60%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.dog {
+    background-image: url("/img/dog.svg");
+    height: 60%;
+    width: 60%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
