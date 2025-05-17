@@ -1,84 +1,85 @@
-<div class="card-container">
-    <div class="flip-card" (click)="toggleFlip()">
-        <div class="flip-card-inner" [ngClass]="{'flipped': isFlipped}">
-            <div class="flip-card-front">
-                <div class="card-body">
-                    <div class="card-header" [style.background-color]="backcolor" *ngIf="type === CardType.immobilier">
-                        <h4 [style.color]="txtcolor"> {{ street }}</h4>
-                        <h4 [style.color]="txtcolor">{{ city }}</h4>
-                    </div>
-                    <ng-container *ngIf="type === CardType.elec || type === CardType.eaux">
-                        <div class="card-icon">
-                            <div *ngIf="type === CardType.elec" class="symbol" [style.color]="'#fff202'"><i class="fa-solid fa-lightbulb"></i></div>
-                            <div *ngIf="type === CardType.eaux" class="symbol"><i class="fa-solid fa-faucet-drip" [style.color]="'#fff'"></i></div>
-                            <h4 [style.color]="txtcolor">{{ name }}</h4>
+<div class="card-full">
+    <div class="card-container">
+        <div class="flip-card" (click)="toggleFlip()">
+            <div class="flip-card-inner" [ngClass]="{'flipped': isFlipped}">
+                <div class="flip-card-front">
+                    <div class="card-body">
+                        <div class="card-header" [style.background-color]="backcolor" *ngIf="type === CardType.immobilier">
+                            <h4 [style.color]="txtcolor"> {{ street }}</h4>
+                            <h4 [style.color]="txtcolor">{{ city }}</h4>
                         </div>
-                        <div class="card-content d-flex flex-column">
-                            <p>
-                                Si l'on possède une compagnie de Service public, Le loyer est {{ times1 }} fois le montant indiqué par les dés.
-                            </p>
-                            <p>
-                                Si l'on possède les Deux compagnies de Service public, Le loyer est {{ times2 }} fois le montant indiqué par les dés.
-                            </p>
-                        </div>
-                    </ng-container>
-                    <ng-container *ngIf="type === CardType.gare">
-                        <div class="card-icon">
-                            <div class="symbol"><i class="fa-solid fa-train" [style.color]="'#fff'"></i></div>
-                            <h4 [style.color]="txtcolor">{{ name }}</h4>
-                        </div>
-                        <div class="card-content d-flex flex-column">
-                            <h5 class="mx-auto ">Loyer {{ loyer }} <span>€</span></h5>
-                            <div class="d-flex justify-content-between" *ngFor="let station of stations, let i = index">
-                                <div class="d-flex align-items-center">Avec
-                                    <span *ngIf="i < 4" class="ms-2"> {{ i + 1 }}</span>
-                                    <i *ngFor="let i of [].constructor(i+1); index as j" class="fa-solid fa-train ms-2"></i>
+                        <ng-container *ngIf="type === CardType.elec || type === CardType.eaux">
+                            <div class="card-icon">
+                                <div *ngIf="type === CardType.elec" class="symbol" [style.color]="'#fff202'"><i class="fa-solid fa-lightbulb"></i></div>
+                                <div *ngIf="type === CardType.eaux" class="symbol"><i class="fa-solid fa-faucet-drip" [style.color]="'#fff'"></i></div>
+                                <h4 [style.color]="txtcolor">{{ name }}</h4>
+                            </div>
+                            <div class="card-content d-flex flex-column">
+                                <p>
+                                    Si l'on possède une compagnie de Service public, Le loyer est {{ times1 }} fois le montant indiqué par les dés.
+                                </p>
+                                <p>
+                                    Si l'on possède les Deux compagnies de Service public, Le loyer est {{ times2 }} fois le montant indiqué par les dés.
+                                </p>
+                            </div>
+                        </ng-container>
+                        <ng-container *ngIf="type === CardType.gare">
+                            <div class="card-icon">
+                                <div class="symbol"><i class="fa-solid fa-train" [style.color]="'#fff'"></i></div>
+                                <h4 [style.color]="txtcolor">{{ name }}</h4>
+                            </div>
+                            <div class="card-content d-flex flex-column">
+                                <h5 class="mx-auto ">Loyer {{ loyer }} <span>€</span></h5>
+                                <div class="d-flex justify-content-between" *ngFor="let station of stations, let i = index">
+                                    <div class="d-flex align-items-center">Avec
+                                        <span *ngIf="i < 4" class="ms-2"> {{ i + 1 }}</span>
+                                        <i *ngFor="let i of [].constructor(i+1); index as j" class="fa-solid fa-train ms-2"></i>
+                                    </div>
+                                    <div class="ml-auto ">{{ station }}€</div>
                                 </div>
-                                <div class="ml-auto ">{{ station }}€</div>
                             </div>
-                        </div>
-                    </ng-container>
-                    <div class="card-content d-flex flex-column " *ngIf="type===CardType.immobilier ">
-                        <h5 class="mx-auto ">Loyer {{ loyer }} <span>€</span></h5>
+                        </ng-container>
+                        <div class="card-content d-flex flex-column " *ngIf="type===CardType.immobilier ">
+                            <h5 class="mx-auto ">Loyer {{ loyer }} <span>€</span></h5>
 
-                        <div class="d-flex justify-content-between ">
-                            <div>Avec groupe complet</div>
-                            <div class="ml-auto ">{{groupecomplet}}€</div>
-                        </div>
-
-                        <div class="d-flex justify-content-between " *ngFor="let montant of maisons, let i=index ">
-                            <div class="d-flex align-items-center">Avec
-                                <ng-container *ngIf="i<4">
-                                    <span class="ms-2"> {{ i + 1 }}</span>
-                                    <i *ngFor="let i of [].constructor(i+1); index as j" class="bi bi-house-fill fs-3 house-green ms-2"></i>
-                                </ng-container>
-                                <ng-container *ngIf="i==4">
-                                    <i class="ms-4 bi bi-house-fill fs-3 text-danger ms-2"></i>
-                                </ng-container>
+                            <div class="d-flex justify-content-between ">
+                                <div>Avec groupe complet</div>
+                                <div class="ml-auto ">{{groupecomplet}}€</div>
                             </div>
-                            <div class="ml-auto ">{{ montant }}€</div>
+
+                            <div class="d-flex justify-content-between " *ngFor="let montant of maisons, let i=index ">
+                                <div class="d-flex align-items-center">Avec
+                                    <ng-container *ngIf="i<4">
+                                        <span class="ms-2"> {{ i + 1 }}</span>
+                                        <i *ngFor="let i of [].constructor(i+1); index as j" class="bi bi-house-fill fs-3 house-green ms-2"></i>
+                                    </ng-container>
+                                    <ng-container *ngIf="i==4">
+                                        <i class="ms-4 bi bi-house-fill fs-3 text-danger ms-2"></i>
+                                    </ng-container>
+                                </div>
+                                <div class="ml-auto ">{{ montant }}€</div>
+                            </div>
+                            <hr>
+                            <p class="moreinfo ">
+                                Prix des maisons {{ prixParMaison }}€ chacune<br /> Prix d'1 hotel {{ prixParHotel }}€ chacun (plus de 4 maisons) </p>
                         </div>
-                        <hr>
-                        <p class="moreinfo ">
-                            Prix des maisons {{ prixParMaison }}€ chacune<br /> Prix d'1 hotel {{ prixParHotel }}€ chacun (plus de 4 maisons) </p>
+                    </div>
+
+                </div>
+                <div class="flip-card-back ">
+                    <div class="card-body ">
+                        <!-- Contenu arrière -->
+                        <div class="card-header ">
+                            <h4> {{ street }}</h4>
+                            <h4>{{ city }}</h4>
+                        </div>
+                        <div class="card-content ">
+                            <h5>Hypothéquée pour {{ hypotheque }}€</h5>
+                            <h5>Pour lever l'hypothèque, payez {{ payezHypotheque }}€</h5>
+                        </div>
+                        <p class="info ">
+                            Si cette propriété est hypothéquée, ce côté de la carte doit être mis en évidence sur la table.
+                        </p>
                     </div>
                 </div>
-
             </div>
-            <div class="flip-card-back ">
-                <div class="card-body ">
-                    <!-- Contenu arrière -->
-                    <div class="card-header ">
-                        <h4> {{ street }}</h4>
-                        <h4>{{ city }}</h4>
-                    </div>
-                    <div class="card-content ">
-                        <h5>Hypothéquée pour {{ hypotheque }}€</h5>
-                        <h5>Pour lever l'hypothèque, payez {{ payezHypotheque }}€</h5>
-                    </div>
-                    <p class="info ">
-                        Si cette propriété est hypothéquée, ce côté de la carte doit être mis en évidence sur la table.
-                    </p>
-                </div>
-            </div>
-        </div>
