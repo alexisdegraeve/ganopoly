@@ -10,6 +10,7 @@ import { Card, CardType } from '../models/card';
 import { BanknoteComponent } from "../banknote/banknote.component";
 import { HumanPlayerComponent } from "../human-player/human-player.component";
 import { InfoPlayerComponent } from "../info-player/info-player.component";
+import { Player } from '../models/player';
 
 
 @Component({
@@ -27,9 +28,11 @@ export class GameComponent {
   playerName: string = '';
   isStartGame = false;
   isLoading = true;
+  playerHuman$: Observable<Player>;
 
   constructor(private gameService: GameService) {
     this.mycards$ = this.getPlayCards();
+    this.playerHuman$ = this.gameService.getPlayerHuman();
   }
 
   checkIsLoading(event: Event) {
@@ -38,14 +41,16 @@ export class GameComponent {
     console.log(event);
   }
 
-  startGame() {
+  startGame(name: string) {
+    console.log(name);
     this.isStartGame = true;
-    this.gameService.startGame().subscribe(() => {
+    this.gameService.startGame(name).subscribe(() => {
       console.log(' loading finish');
       this.gameService.throwDice();
       this.gameService.distributeBillets();
     })
   }
+
 
   pickChance() {
       this.gameService.pickChanceCard();

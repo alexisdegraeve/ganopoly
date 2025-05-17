@@ -1,8 +1,10 @@
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'gano-human-player',
-  imports: [],
+  imports: [CommonModule, FormsModule],
   templateUrl: './human-player.component.html',
   styleUrl: './human-player.component.scss'
 })

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ccCard } from '../models/ccCard';
-import { forkJoin, Observable } from 'rxjs';
+import { BehaviorSubject, forkJoin, Observable } from 'rxjs';
 import { Billet } from '../models/billet';
 import { Player } from '../models/player';
 import { Card, Case } from '../models/card';
@@ -25,32 +25,39 @@ export class GameService {
     { euro: 100, quantity: 30, color: 'salmon' },
     { euro: 500, quantity: 30, color: 'orange' },
   ];
-  private playerHuman : Player = this.createNewPlayer();
-  private playerComputer1: Player = this.createNewPlayer();
-  private playerComputer2: Player = this.createNewPlayer();
-  private playerComputer3: Player = this.createNewPlayer();
+
+  private playerHuman$ = this.createNewPlayer();
+  private playerComputer1$ = this.createNewPlayer();
+  private playerComputer2$ = this.createNewPlayer();
+  private playerComputer3$ = this.createNewPlayer();
+
 
   constructor(private httpClient: HttpClient) {}
 
-  createNewPlayer(): Player {
-    return {
-      name: 'Alexis',
-      pawnShape: Pawn.cat,
-      dices: 0,
-      houses: [],
-      billets: [
-        { euro: 1, quantity: 0, color: 'white' },
-        { euro: 5, quantity: 0, color: 'pink' },
-        { euro: 10, quantity: 0, color: 'cyan' },
-        { euro: 20, quantity: 0, color: 'green' },
-        { euro: 50, quantity: 0, color: 'purple' },
-        { euro: 100, quantity: 0, color: 'salmon' },
-        { euro: 500, quantity: 0, color: 'orange' },
-      ]
-    };
+  createNewPlayer(): BehaviorSubject<Player> {
+  return new BehaviorSubject<Player>({
+    name: 'Alexis',
+    pawnShape: Pawn.cat,
+    dices: 0,
+    houses: [],
+    billets: [
+      { euro: 1, quantity: 0, color: 'white' },
+      { euro: 5, quantity: 0, color: 'pink' },
+      { euro: 10, quantity: 0, color: 'cyan' },
+      { euro: 20, quantity: 0, color: 'green' },
+      { euro: 50, quantity: 0, color: 'purple' },
+      { euro: 100, quantity: 0, color: 'salmon' },
+      { euro: 500, quantity: 0, color: 'orange' },
+    ]
+  });
   }
 
-  startGame(): Observable<void> {
+  startGame(name: string): Observable<void> {
+    console.log('start game ');
+    console.log(name)
+    const currentPlayer = this.playerHuman$.value;
+    const updatedPlayer = {...currentPlayer, name: name};
+    this.playerHuman$.next(updatedPlayer);
     return new Observable<void>((observer) => {
       forkJoin({
         chanceCards: this.httpClient.get<ccCard[]>('/cards/chance.json'),
@@ -63,10 +70,10 @@ export class GameService {
           this.communauteCards = this.shuffleArray(communauteCards);
           console.log('Billets');
           console.log('banque : '  , JSON.parse(JSON.stringify(this.banque)));
-          console.log('player Human :', JSON.parse(JSON.stringify(this.playerHuman)));
-          console.log('playerComputer 1 :',JSON.parse(JSON.stringify(this.playerComputer1)));
-          console.log('playerComputer 2 :',JSON.parse(JSON.stringify(this.playerComputer2)));
-          console.log('playerComputer 3 :',JSON.parse(JSON.stringify(this.playerComputer3)));
+          //console.log('player Human :', JSON.parse(JSON.stringify(this.playerHuman)));
+          //console.log('playerComputer 1 :',JSON.parse(JSON.stringify(this.playerComputer1)));
+          //console.log('playerComputer 2 :',JSON.parse(JSON.stringify(this.playerComputer2)));
+          //console.log('playerComputer 3 :',JSON.parse(JSON.stringify(this.playerComputer3)));
           observer.next();
           observer.complete();
         },
@@ -96,7 +103,7 @@ export class GameService {
   }
   pickChanceCard(): ccCard | undefined {
     console.log(this.banque);
-    console.log(this.playerHuman);
+    //console.log(this.playerHuman);
     let lastCard = this.chanceCards.pop();
     if (lastCard) {
       this.chanceCards = [lastCard, ...this.chanceCards];
@@ -104,22 +111,27 @@ export class GameService {
     return lastCard;
   }
 
-  takeMoneyFromBank(dstEuro: number, dstQuantity: number, dstPlayer: Player) {
+  takeMoneyFromBank(dstEuro: number, dstQuantity: number, dstPlayer: BehaviorSubject<Player>) {
+    const currentPlayer = dstPlayer.value;
+    const updatedPlayer = {...currentPlayer};
+
     this.banque
     .filter((billet) => billet.euro === dstEuro)
     .forEach((billet) => {
       if (billet.quantity > 0) {
         billet.quantity -= dstQuantity;
-        dstPlayer.billets
+        updatedPlayer.billets
           .filter((billet) => billet.euro === dstEuro)
           .forEach((billet) => {
             billet.quantity += dstQuantity;
           });
       }
     });
+
+    dstPlayer.next(updatedPlayer);
   }
 
-  giveBilletsPlayer(player: Player) {
+  giveBilletsPlayer(player: BehaviorSubject<Player>) {
     this.takeMoneyFromBank(1, 5, player);
     this.takeMoneyFromBank(5, 1, player);
     this.takeMoneyFromBank(10, 2, player);
@@ -130,21 +142,21 @@ export class GameService {
   }
 
   distributeBillets() {
-    this.giveBilletsPlayer(this.playerHuman);
-    this.giveBilletsPlayer(this.playerComputer1);
-    this.giveBilletsPlayer(this.playerComputer2);
-    this.giveBilletsPlayer(this.playerComputer3);
+    this.giveBilletsPlayer(this.playerHuman$);
+    this.giveBilletsPlayer(this.playerComputer1$);
+    this.giveBilletsPlayer(this.playerComputer2$);
+    this.giveBilletsPlayer(this.playerComputer3$);
     console.log('disribute Billets');
     console.log('banque : '  , JSON.parse(JSON.stringify(this.banque)));
-    console.log('player Human :', JSON.parse(JSON.stringify(this.playerHuman)));
-    console.log('playerComputer 1 :',JSON.parse(JSON.stringify(this.playerComputer1)));
-    console.log('playerComputer 2 :',JSON.parse(JSON.stringify(this.playerComputer2)));
-    console.log('playerComputer 3 :',JSON.parse(JSON.stringify(this.playerComputer3)));
+    // console.log('player Human :', JSON.parse(JSON.stringify(this.playerHuman)));
+    // console.log('playerComputer 1 :',JSON.parse(JSON.stringify(this.playerComputer1)));
+    // console.log('playerComputer 2 :',JSON.parse(JSON.stringify(this.playerComputer2)));
+    // console.log('playerComputer 3 :',JSON.parse(JSON.stringify(this.playerComputer3)));
     console.log('total ');
-    console.log('Human :', this.calcTotal(this.playerHuman));
-    console.log('playerComputer 1 :', this.calcTotal(this.playerComputer1));
-    console.log('playerComputer 2 :', this.calcTotal(this.playerComputer2));
-    console.log('playerComputer 3 :', this.calcTotal(this.playerComputer3));
+    // console.log('Human :', this.calcTotal(this.playerHuman));
+    // console.log('playerComputer 1 :', this.calcTotal(this.playerComputer1));
+    // console.log('playerComputer 2 :', this.calcTotal(this.playerComputer2));
+    // console.log('playerComputer 3 :', this.calcTotal(this.playerComputer3));
   }
 
   calcTotal(player: Player): number {
@@ -157,6 +169,10 @@ export class GameService {
   getCards():Observable<Card[]> {
     console.log('get cards');
     return this.httpClient.get<Card[]>('/cards/ganopolycards.json');
+  }
+
+  getPlayerHuman(): Observable<Player> {
+    return this.playerHuman$;
   }
 
 
