@@ -11,7 +11,7 @@
             <gano-cards [cards]="this.mycards$ | async"></gano-cards>
         </div>
 
-        <div *ngIf="bankNoteShow">
+        <div *ngIf="bankNoteShow" class="banknotes">
             <gano-banknote [color]="'white'" [value]="1"></gano-banknote>
             <gano-banknote [color]="'#ffdad2'" [value]="5"></gano-banknote>
             <gano-banknote [color]="'#beedfd'" [value]="10"></gano-banknote>

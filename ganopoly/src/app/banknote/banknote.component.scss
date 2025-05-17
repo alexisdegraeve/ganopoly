@@ -16,6 +16,13 @@
     border: 1px double black;
 }
 
+.banknote-container {
+    transform: scale(0.50);
+    transform-origin: 0 top;
+    height: 10rem;
+    width: 20rem;
+}
+
 .banknote {
     width: 40rem;
     height: 18rem;
@@ -25,7 +32,6 @@
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     justify-content: center;
     margin-bottom: 1rem;
-    transform: scale(0.98);
 }
 
 .border-radial {
@@ -179,8 +185,10 @@
 }
 
 @media only screen and (max-width: 768px) {
-    .banknote {
-        transform: scale(0.73);
-        transform-origin: 0;
+    .banknote-container {
+        transform: scale(0.24);
+        transform-origin: 0 top;
+        height: 5rem;
+        width: 10rem;
     }
 }

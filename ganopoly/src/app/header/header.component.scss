@@ -7,9 +7,11 @@
 
 .btn-action {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     span {
-        font-size: 0.95rem;
+        font-size: 0.85rem;
+        margin-left: 0.25rem;
     }
 }
 
