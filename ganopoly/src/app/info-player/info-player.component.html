@@ -1,9 +1,8 @@
- {{ player | json}}
 <div class="card mb-3">
     <div class="row g-0">
         <div class="col-md-4 left-part">
             <div class="pion">
-                <div class="thimble"></div>
+                <div [class]="player?.pawnShape?.toString()"></div>
             </div>
         </div>
         <div class="col-md-8">
