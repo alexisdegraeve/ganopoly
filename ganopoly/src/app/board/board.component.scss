@@ -157,6 +157,7 @@
 @media only screen and (max-width: 768px) {
     .board {
         transform: scale(0.45);
-        transform-origin: center top;
+        transform-origin: 0 top;
+        width: auto;
     }
 }

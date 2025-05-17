@@ -1,9 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
 import { CellComponent } from "../cell/cell.component";
 import { CommonModule } from '@angular/common';
 import { GameService } from '../services/game.service';
 import { combineLatestWith, map, startWith } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { CardType, Case } from '../models/card';
 import { ChanceCardComponent } from "../chance-card/chance-card.component";
 import { CommunityCardComponent } from "../community-card/community-card.component";
@@ -21,14 +21,16 @@ interface BoardData {
   templateUrl: './board.component.html',
   styleUrl: './board.component.scss'
 })
-export class BoardComponent {
+export class BoardComponent implements OnDestroy {
   @Input() rotate = 0;
+  @Output() isLoadingChange = new EventEmitter<boolean>;
   topCards$: Observable<Case[]>;
   leftCards$: Observable<Case[]>;
   rightCards$: Observable<Case[]>;
   bottomCards$: Observable<Case[]>;
   isLoading$: Observable<boolean>;
   boardData$: Observable<BoardData>;
+  private sub = new Subscription();
 
 
   constructor(private gameService: GameService) {
@@ -57,6 +59,13 @@ export class BoardComponent {
       startWith(true)
     );
 
+    this.isLoading$.subscribe(data => {
+      this.isLoadingChange.emit(data);
+    })
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
   private getCardsInRange(
@@ -81,6 +90,7 @@ export class BoardComponent {
       )
     );
   }
+
 
 
 }

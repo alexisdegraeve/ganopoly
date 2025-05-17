@@ -9,11 +9,12 @@ import { map } from 'rxjs/operators';
 import { Card, CardType } from '../models/card';
 import { BanknoteComponent } from "../banknote/banknote.component";
 import { HumanPlayerComponent } from "../human-player/human-player.component";
+import { InfoPlayerComponent } from "../info-player/info-player.component";
 
 
 @Component({
   selector: 'gano-game',
-  imports: [CardsComponent, BoardComponent, HeaderComponent, CommonModule, BanknoteComponent, HumanPlayerComponent],
+  imports: [CardsComponent, BoardComponent, HeaderComponent, CommonModule, BanknoteComponent, HumanPlayerComponent, InfoPlayerComponent],
   templateUrl: './game.component.html',
   styleUrl: './game.component.scss'
 })
@@ -25,9 +26,16 @@ export class GameComponent {
   boardShow = true;
   playerName: string = '';
   isStartGame = false;
+  isLoading = true;
 
   constructor(private gameService: GameService) {
     this.mycards$ = this.getPlayCards();
+  }
+
+  checkIsLoading(event: Event) {
+    this.isLoading = false;
+    console.log('checkIsloading');
+    console.log(event);
   }
 
   startGame() {

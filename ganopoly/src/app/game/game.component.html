@@ -5,11 +5,21 @@
 </div>
 
 <div class="game" *ngIf="isStartGame">
-    <div class="container">
+    <div class="d-flex flex-wrap">
 
 
         <div *ngIf="boardShow" class="board-parent">
-            <gano-board [rotate]="rotation "></gano-board>
+            <div class="d-flex flex-wrap">
+                <div>
+                    <gano-board (isLoading)="checkIsLoading($event)" [rotate]="rotation "></gano-board>
+                </div>
+                <div>
+                    <div *ngIf="true">
+                        <gano-info-player></gano-info-player>
+                    </div>
+                </div>
+            </div>
+
         </div>
         <div *ngIf="cardsShow">
             <gano-cards [cards]="this.mycards$ | async"></gano-cards>
@@ -28,16 +38,7 @@
 
 
 
-        <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active p-3" id="board" role="tabpanel">
 
-            </div>
-            <div class="tab-pane fade p-3" id="cards" role="tabpanel">
 
-            </div>
-            <div class="tab-pane fade p-3" id="banknote" role="tabpanel">
-
-            </div>
-        </div>
     </div>
 </div>
