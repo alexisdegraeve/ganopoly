@@ -1,45 +1,45 @@
 <div class="banknote-container">
-    <div class="banknote" [style.background-color]="color">
-        <div class="logo-border" [style.background-color]="color">
-            <div class="logo" [style.color]="color">GANOPOLY</div>
+    <div class="banknote" [style.background-color]="getColor()">
+        <div class="logo-border" [style.background-color]="getColor()">
+            <div class="logo" [style.color]="getColor()">GANOPOLY</div>
         </div>
 
         <div class="banknote-border-double">
             <div class="banknote-border">
-                <div class="banknote-inside-out" [style.background-color]="color">
-                    <div class="banknote-inside-border" [style.background-color]="color">
-                        <div class="banknote-inside-border-double" [style.background-color]="color">
+                <div class="banknote-inside-out" [style.background-color]="getColor()">
+                    <div class="banknote-inside-border" [style.background-color]="getColor()">
+                        <div class="banknote-inside-border-double" [style.background-color]="getColor()">
                             <div class="banknote-inside">
 
-                                <div class="circle-center" [style.background-color]="color">
-                                    <div class="circle-inside-center" [style.background-color]="color">
+                                <div class="circle-center" [style.background-color]="getColor()">
+                                    <div class="circle-inside-center" [style.background-color]="getColor()">
                                         <span>{{ value }}</span>
                                     </div>
 
 
                                 </div>
 
-                                <div class="rect first" [style.background-color]="color">
+                                <div class="rect first" [style.background-color]="getColor()">
                                     <div class="first-rect"></div>
                                     <div class="second-rect">
                                         <span class="text">{{ value }}</span>
                                     </div>
                                 </div>
 
-                                <div class="rect second" [style.background-color]="color">
+                                <div class="rect second" [style.background-color]="getColor()">
                                     <div class="first-rect"></div>
                                     <div class="second-rect">
                                         <i class="fa-solid fa-house striped-icon"></i>
                                     </div>
                                 </div>
 
-                                <div class="rect three" [style.background-color]="color">
+                                <div class="rect three" [style.background-color]="getColor()">
                                     <div class="first-rect"></div>
                                     <div class="second-rect">
                                         <span class="text">{{ value }}</span>
                                     </div>
                                 </div>
-                                <div class="rect four" [style.background-color]="color">
+                                <div class="rect four" [style.background-color]="getColor()">
                                     <div class="first-rect"></div>
                                     <div class="second-rect">
                                         <i class="fa-solid fa-train striped-icon"></i>

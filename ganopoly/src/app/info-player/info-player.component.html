@@ -8,8 +8,23 @@
         <div class="col-md-8">
             <div class="card-body">
                 <h5 class="card-title">{{ player?.name }}</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+
+                <div class="billets">
+                    <div *ngFor="let billet of player?.billets" class="d-flex flex-column">
+                        <div class=" d-flex ">
+                            <div class="billet-small " *ngFor="let item of [].constructor(billet.quantity) ">
+                                <gano-banknote [value]="billet.euro "></gano-banknote>
+                            </div>
+                        </div>
+                        <div class="ms-auto ">
+                            <span>x{{ billet.quantity }}</span>
+                        </div>
+
+                    </div>
+
+                </div>
+                <p class="card-text ">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <p class="card-text "><small class="text-body-secondary ">Last updated 3 mins ago</small></p>
             </div>
         </div>
     </div>
