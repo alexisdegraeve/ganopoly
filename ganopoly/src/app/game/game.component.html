@@ -14,9 +14,11 @@
                     <gano-board (isLoading)="checkIsLoading($event)" [rotate]="rotation "></gano-board>
                 </div>
                 <div>
-                    {{ playerHuman$ | async | json }}
                     <div *ngIf="true">
                         <gano-info-player [player]="playerHuman$ | async"></gano-info-player>
+                        <gano-info-player [player]="playerComputer1$ | async"></gano-info-player>
+                        <gano-info-player [player]="playerComputer2$ | async"></gano-info-player>
+                        <gano-info-player [player]="playerComputer3$ | async"></gano-info-player>
                     </div>
                 </div>
             </div>

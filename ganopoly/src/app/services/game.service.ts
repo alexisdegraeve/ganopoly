@@ -26,18 +26,24 @@ export class GameService {
     { euro: 500, quantity: 30, color: 'orange' },
   ];
 
-  private playerHuman$ = this.createNewPlayer();
-  private playerComputer1$ = this.createNewPlayer();
-  private playerComputer2$ = this.createNewPlayer();
-  private playerComputer3$ = this.createNewPlayer();
+  private playerHuman$ = this.createNewPlayer(Pawn.cat);
+  private playerComputer1$ = this.createNewPlayer(Pawn.dog);
+  private playerComputer2$ = this.createNewPlayer(Pawn.hat);
+  private playerComputer3$ = this.createNewPlayer(Pawn.curler);
 
 
   constructor(private httpClient: HttpClient) {}
 
-  createNewPlayer(): BehaviorSubject<Player> {
+  getRandomFirstname(): string {
+    const firstnames = ['Alice', 'Bob', 'Charlie', 'Diana', 'Ethan', 'Fiona', 'George', 'Hana', 'Isaac', 'Julia'];
+    const index = Math.floor(Math.random() * firstnames.length);
+    return firstnames[index];
+  }
+
+  createNewPlayer(pawnShape: Pawn): BehaviorSubject<Player> {
   return new BehaviorSubject<Player>({
-    name: 'Alexis',
-    pawnShape: Pawn.cat,
+    name: this.getRandomFirstname(),
+    pawnShape,
     dices: 0,
     houses: [],
     billets: [
@@ -175,6 +181,17 @@ export class GameService {
     return this.playerHuman$;
   }
 
+  getPlayerComputer1(): Observable<Player> {
+    return this.playerComputer1$;
+  }
+
+  getPlayerComputer2(): Observable<Player> {
+    return this.playerComputer2$;
+  }
+
+  getPlayerComputer3(): Observable<Player> {
+    return this.playerComputer3$;
+  }
 
 }
 

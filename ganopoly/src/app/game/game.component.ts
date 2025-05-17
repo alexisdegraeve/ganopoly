@@ -29,10 +29,16 @@ export class GameComponent {
   isStartGame = false;
   isLoading = true;
   playerHuman$: Observable<Player>;
+  playerComputer1$: Observable<Player>;
+  playerComputer2$: Observable<Player>;
+  playerComputer3$: Observable<Player>;
 
   constructor(private gameService: GameService) {
     this.mycards$ = this.getPlayCards();
     this.playerHuman$ = this.gameService.getPlayerHuman();
+    this.playerComputer1$ = this.gameService.getPlayerComputer1();
+    this.playerComputer2$ = this.gameService.getPlayerComputer2();
+    this.playerComputer3$ = this.gameService.getPlayerComputer3();
   }
 
   checkIsLoading(event: Event) {
