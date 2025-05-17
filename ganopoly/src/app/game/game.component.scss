@@ -1,4 +1,8 @@
 .game {
-    height: calc(100vh - 4.5rem);
     overflow-y: auto;
+}
+
+.board-parent {
+    display: flex;
+    justify-content: center;
 }

@@ -3,11 +3,8 @@
 <div class="game">
     <div class="container">
 
-        <gano-chance-card></gano-chance-card>
-        <gano-community-card></gano-community-card>
-        <gano-doubledice></gano-doubledice>
 
-        <div *ngIf="boardShow">
+        <div *ngIf="boardShow" class="board-parent">
             <gano-board [rotate]="rotation "></gano-board>
         </div>
         <div *ngIf="cardsShow">

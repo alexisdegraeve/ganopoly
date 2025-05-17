@@ -145,3 +145,10 @@
         align-items: flex-end;
     }
 }
+
+@media only screen and (max-width: 768px) {
+    .board {
+        transform: scale(0.45);
+        transform-origin: center top;
+    }
+}

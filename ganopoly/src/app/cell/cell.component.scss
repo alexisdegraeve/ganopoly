@@ -124,21 +124,6 @@
     }
 }
 
-@media only screen and (max-width: 768px) {
-    .cell {
-        height: 5rem;
-        width: 3rem;
-    }
-    .cell-h {
-        width: 5rem;
-        height: 3rem;
-    }
-    .cell-square {
-        height: 5rem;
-        width: 5rem;
-    }
-}
-
 .rotate-min-45 {
     transform: rotate(45deg);
 }

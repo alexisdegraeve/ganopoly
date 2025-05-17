@@ -1,13 +1,11 @@
 <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
-    <div class="container-fluid">
+    <div class="container-fluid flex-column">
         <a class="navbar-brand" href="#">Ganopoly</a>
-        <div class="me-auto d-flex">
+        <div class="me-auto d-flex w-100">
             <button class="btn btn-dark btn-action" (click)="board()" type="submit"><i class="fa-solid fa-chess-board"></i> <span>Board</span></button>
             <button class="btn btn-dark btn-action" (click)="cards()" type="submit"><i class="fa-solid fa-house"></i><span>Cards</span></button>
             <button class="btn btn-dark btn-action" (click)="bankNote()" type="submit"><i class="fa-solid fa-piggy-bank"></i><span>Banknote</span></button>
-        </div>
-        <div class="ms-auto d-flex">
-            <button class="btn btn-dark btn-action" (click)="rotate()" type="submit" *ngIf="boardVisible"><i class="fa-solid fa-rotate-right"></i> <span>Rotate</span></button>
+            <button class="ms-auto btn btn-dark btn-action" (click)="rotate()" type="submit" *ngIf="boardVisible"><i class="fa-solid fa-rotate-right"></i> <span>Rotate</span></button>
         </div>
     </div>
 </nav>
