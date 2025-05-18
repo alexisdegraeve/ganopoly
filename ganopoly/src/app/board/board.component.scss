@@ -121,7 +121,8 @@
 @media only screen and (max-width: 768px) {
     .board {
         transform: scale(0.45);
-        transform-origin: 0 top;
+        transform-origin: 2rem top;
         width: auto;
+        height: 22rem;
     }
 }
