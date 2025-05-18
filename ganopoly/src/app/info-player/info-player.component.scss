@@ -12,10 +12,11 @@
 }
 
 .billet-small {
-    transform: scale(0.5);
-    transform-origin: 0 top;
-    height: 1rem;
-    width: 1rem;
+    zoom: 0.5;
+    // transform: scale(0.5);
+    // transform-origin: 0 top;
+    // height: 1rem;
+    // width: 1rem;
 }
 
 @media only screen and (max-width: 768px) {

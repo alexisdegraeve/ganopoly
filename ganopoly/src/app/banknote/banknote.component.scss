@@ -1,194 +1,192 @@
-.logo-border {
-    background-color: #fff;
-    padding: 0.5rem;
-    position: absolute;
-    margin-top: -1rem;
-    padding-bottom: 0;
-}
-
-.logo {
-    background-color: black;
-    border: 2px double #fff;
-    font-weight: bold;
-    font-size: 1.5rem;
-    color: #fff;
-    padding: 0 0.5rem;
-    border: 1px double black;
-}
-
-.banknote-container {
-    transform: scale(0.50);
+        .logo-border {
+            background-color: #fff;
+            padding: 0.5rem;
+            position: absolute;
+            margin-top: -1rem;
+            padding-bottom: 0;
+        }
+        
+        .logo {
+            background-color: black;
+            border: 2px double #fff;
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: #fff;
+            padding: 0 0.5rem;
+            border: 1px double black;
+        }
+        
+        .banknote-container {
+            zoom: 0.5;
+            /*    transform: scale(0.50);
     transform-origin: 0 top;
     height: 10rem;
-    width: 20rem;
-}
-
-.banknote {
-    width: 40rem;
-    height: 18rem;
-    background-color: #fff;
-    display: flex;
-    padding: 1rem;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    justify-content: center;
-    margin-bottom: 1rem;
-}
-
-.border-radial {
-    background-color: #ffffff;
-    opacity: 0.5;
-    background: linear-gradient(90deg, rgba(15, 162, 235, 0) 33.16%, #0FA2EB 85.35%);
-    border-radius: 30px;
-}
-
-.banknote-border-double {
-    border: 1px double #000;
-    height: 100%;
-    width: 100%;
-    padding: 0.15rem;
-}
-
-.banknote-border {
-    background-image: repeating-radial-gradient( circle at center, transparent 0, #999 2.5px), repeating-radial-gradient( circle at center, transparent 0, #999 2.5px);
-    background-size: 1.5rem 1.5rem;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    padding: 1rem;
-    justify-content: center;
-    border: 1px solid #000;
-}
-
-.banknote-inside-out {
-    background-color: #ffffff;
-    height: 100%;
-    width: 100%;
-    padding: 0.25rem;
-}
-
-.banknote-inside {
-    background-image: repeating-radial-gradient( circle at center, transparent 0, #999 2.5px), repeating-radial-gradient( circle at center, transparent 0, #999 2.5px);
-    background-size: 6rem 6rem;
-    height: 100%;
-    width: 100%;
-    border: 1px solid #000;
-    display: flex;
-    justify-content: center;
-    .circle-center {
-        width: 11rem;
-        height: 11rem;
-        background-color: #fff;
-        border: 2px solid black;
-        border-radius: 50%;
-        padding: 0.25rem;
-    }
-    .circle-inside-center {
-        width: 100%;
-        height: 100%;
-        background-color: #fff;
-        border: 1px solid black;
-        padding: 1rem;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        span {
-            font-size: 5rem;
-            font-family: 'Arial';
-            font-weight: bold;
-            color: black;
-            text-shadow: 0 0 2px white, 0 0 4px white, /* → ajoute un halo blanc plus large */
-            -3px -3px 0 black, 3px -3px 0 black, -3px 3px 0 black, 3px 3px 0 black, 0px -3px 0 black, 0px 3px 0 black, -3px 0px 0 black, 3px 0px 0 black;
+    width: 20rem; */
         }
-    }
-    .rect {
-        background-color: white;
-        height: 3rem;
-        width: 5rem;
-        padding: 0.25rem;
-        display: flex;
-        &.first,
-        &.second,
-        &.three,
-        &.four {
-            position: absolute;
+        
+        .banknote {
+            width: 40rem;
+            height: 18rem;
+            background-color: #fff;
+            display: flex;
+            padding: 1rem;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            justify-content: center;
+            margin-bottom: 1rem;
         }
-        &.first {
-            margin-left: -28rem;
-            margin-top: 1rem;
-            transform: rotateZ(90deg);
-            .text {
-                transform: rotateZ(-90deg);
-            }
+        
+        .border-radial {
+            background-color: #ffffff;
+            opacity: 0.5;
+            background: linear-gradient(90deg, rgba(15, 162, 235, 0) 33.16%, #0FA2EB 85.35%);
+            border-radius: 30px;
         }
-        &.second {
-            margin-top: 7.25rem;
-            margin-left: -28rem;
-        }
-        &.three {
-            margin-top: 7rem;
-            margin-left: 28rem;
-            transform: rotateZ(90deg) scaleX(-1);
-            .text {
-                transform: scaleX(-1);
-            }
-        }
-        &.four {
-            margin-left: 28rem;
-            margin-top: 0.75rem;
-            transform: scaleX(-1);
-        }
-        .first-rect {
-            height: 100%;
-            width: 1.5rem;
-            border: 2px solid black;
-            background-image: linear-gradient(135deg, #000000 16.67%, transparent 16.67%, transparent 50%, #000000 50%, #000000 66.67%, transparent 66.67%, transparent 100%);
-            background-size: 0.25rem 0.25rem;
-        }
-        .second-rect {
+        
+        .banknote-border-double {
+            border: 1px double #000;
             height: 100%;
             width: 100%;
-            border: 2px solid black;
-            margin-left: 0.25rem;
-            justify-content: center;
-            align-items: center;
+            padding: 0.15rem;
+        }
+        
+        .banknote-border {
+            background-image: repeating-radial-gradient( circle at center, transparent 0, #999 2.5px), repeating-radial-gradient( circle at center, transparent 0, #999 2.5px);
+            background-size: 1.5rem 1.5rem;
+            height: 100%;
+            width: 100%;
             display: flex;
-            font-size: 1.65rem;
-            .text {
-                font-weight: bold;
-                font-size: 1.15rem;
+            padding: 1rem;
+            justify-content: center;
+            border: 1px solid #000;
+        }
+        
+        .banknote-inside-out {
+            background-color: #ffffff;
+            height: 100%;
+            width: 100%;
+            padding: 0.25rem;
+        }
+        
+        .banknote-inside {
+            background-image: repeating-radial-gradient( circle at center, transparent 0, #999 2.5px), repeating-radial-gradient( circle at center, transparent 0, #999 2.5px);
+            background-size: 6rem 6rem;
+            height: 100%;
+            width: 100%;
+            border: 1px solid #000;
+            display: flex;
+            justify-content: center;
+            .circle-center {
+                width: 11rem;
+                height: 11rem;
+                background-color: #fff;
+                border: 2px solid black;
+                border-radius: 50%;
+                padding: 0.25rem;
+            }
+            .circle-inside-center {
+                width: 100%;
+                height: 100%;
+                background-color: #fff;
+                border: 1px solid black;
+                padding: 1rem;
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                span {
+                    font-size: 5rem;
+                    font-family: 'Arial';
+                    font-weight: bold;
+                    color: black;
+                    text-shadow: 0 0 2px white, 0 0 4px white, /* → ajoute un halo blanc plus large */
+                    -3px -3px 0 black, 3px -3px 0 black, -3px 3px 0 black, 3px 3px 0 black, 0px -3px 0 black, 0px 3px 0 black, -3px 0px 0 black, 3px 0px 0 black;
+                }
+            }
+            .rect {
+                background-color: white;
+                height: 3rem;
+                width: 5rem;
+                padding: 0.25rem;
+                display: flex;
+                &.first,
+                &.second,
+                &.three,
+                &.four {
+                    position: absolute;
+                }
+                &.first {
+                    margin-left: -28rem;
+                    margin-top: 1rem;
+                    transform: rotateZ(90deg);
+                    .text {
+                        transform: rotateZ(-90deg);
+                    }
+                }
+                &.second {
+                    margin-top: 7.25rem;
+                    margin-left: -28rem;
+                }
+                &.three {
+                    margin-top: 7rem;
+                    margin-left: 28rem;
+                    transform: rotateZ(90deg) scaleX(-1);
+                    .text {
+                        transform: scaleX(-1);
+                    }
+                }
+                &.four {
+                    margin-left: 28rem;
+                    margin-top: 0.75rem;
+                    transform: scaleX(-1);
+                }
+                .first-rect {
+                    height: 100%;
+                    width: 1.5rem;
+                    border: 2px solid black;
+                    background-image: linear-gradient(135deg, #000000 16.67%, transparent 16.67%, transparent 50%, #000000 50%, #000000 66.67%, transparent 66.67%, transparent 100%);
+                    background-size: 0.25rem 0.25rem;
+                }
+                .second-rect {
+                    height: 100%;
+                    width: 100%;
+                    border: 2px solid black;
+                    margin-left: 0.25rem;
+                    justify-content: center;
+                    align-items: center;
+                    display: flex;
+                    font-size: 1.65rem;
+                    .text {
+                        font-weight: bold;
+                        font-size: 1.15rem;
+                    }
+                }
             }
         }
-    }
-}
-
-.banknote-inside-border {
-    border: 1px solid #000;
-    padding: 0.5rem;
-    height: 100%;
-    width: 100%;
-}
-
-.banknote-inside-border-double {
-    border: 1px solid #000;
-    padding: 0.25rem;
-    height: 100%;
-    width: 100%;
-}
-
-.striped-icon {
-    position: relative;
-    color: transparent;
-    background: repeating-linear-gradient( 45deg, #000, #000 2px, transparent 2px, transparent 4px);
-    -webkit-background-clip: text;
-    background-clip: text;
-}
-
-@media only screen and (max-width: 768px) {
-    .banknote-container {
-        transform: scale(0.24);
-        transform-origin: 0 top;
-        height: 5rem;
-        width: 10rem;
-    }
-}
+        
+        .banknote-inside-border {
+            border: 1px solid #000;
+            padding: 0.5rem;
+            height: 100%;
+            width: 100%;
+        }
+        
+        .banknote-inside-border-double {
+            border: 1px solid #000;
+            padding: 0.25rem;
+            height: 100%;
+            width: 100%;
+        }
+        
+        .striped-icon {
+            position: relative;
+            color: transparent;
+            background: repeating-linear-gradient( 45deg, #000, #000 2px, transparent 2px, transparent 4px);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+        
+        @media only screen and (max-width: 768px) {
+            .banknote-container {
+                zoom: 0.24;
+            }
+        }

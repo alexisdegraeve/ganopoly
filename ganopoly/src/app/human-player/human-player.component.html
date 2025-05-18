@@ -6,7 +6,7 @@
     </div>
     <div class="card-body d-flex flex-column">
         <h5 class="card-title">Player Human</h5>
-        <input class="form-control" type="text" id="playerName" placeholder="Name" [(ngModel)]="name">
+        <input class="form-control" type="text" id="playerName" placeholder="Name" [(ngModel)]="name" (keydown.enter)="go()">
         <button type="button" class="btn btn-primary ms-auto mt-2" (click)="go()">Play!</button>
     </div>
 </div>
