@@ -1,14 +1,28 @@
+.detail-player {
+    margin-left: 1rem;
+}
+
+.quantity {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.billet-small-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .card {
     margin: 1rem;
     margin-top: 0rem;
-    max-width: 30rem;
+    max-width: 55rem;
 }
 
 .left-part {
     display: flex;
-    justify-content: center;
     align-items: center;
     background-color: #ccc;
+    padding: 1rem;
 }
 
 .billet-small {
