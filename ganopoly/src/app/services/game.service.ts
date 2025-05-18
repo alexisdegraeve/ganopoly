@@ -45,7 +45,7 @@ export class GameService {
     name: this.getRandomFirstname(),
     pawnShape,
     dices: 0,
-    houses: [],
+    properties: [1],
     billets: [
       { euro: 1, quantity: 0, color: 'white' },
       { euro: 5, quantity: 0, color: 'pink' },
@@ -80,6 +80,7 @@ export class GameService {
           //console.log('playerComputer 1 :',JSON.parse(JSON.stringify(this.playerComputer1)));
           //console.log('playerComputer 2 :',JSON.parse(JSON.stringify(this.playerComputer2)));
           //console.log('playerComputer 3 :',JSON.parse(JSON.stringify(this.playerComputer3)));
+          this.testAddProperties();
           observer.next();
           observer.complete();
         },
@@ -191,6 +192,21 @@ export class GameService {
 
   getPlayerComputer3(): Observable<Player> {
     return this.playerComputer3$;
+  }
+
+  addProperty(ganocase: number[], player: BehaviorSubject<Player>) {
+    const currentPlayer = player.value;
+    const currentProperties = currentPlayer.properties;
+    const updatedPlayer = {...currentPlayer, properties: [...currentProperties, ...ganocase]};
+    player.next(updatedPlayer);
+  }
+
+
+  testAddProperties() {
+    this.addProperty([3,6], this.playerHuman$);
+    this.addProperty([4,6,5], this.playerComputer1$);
+    this.addProperty([9,10,11], this.playerComputer2$);
+    this.addProperty([13,15,16], this.playerComputer3$);
   }
 
 }

@@ -6,7 +6,8 @@ export class Player {
   name: string = '';
   pawnShape: Pawn = Pawn.cat;
   dices: number = 0;
-  houses: HouseCard[] = [];
+  properties: number[]=[];
+  //houses: HouseCard[] = [];
   billets: Billet[] = [];
 }
 
