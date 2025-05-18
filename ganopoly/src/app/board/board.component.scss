@@ -1,6 +1,6 @@
 .board-loading {
-    height: 21.5rem;
-    width: 21.5rem;
+    height: 48rem;
+    width: 48rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,6 +8,7 @@
 
 .board {
     display: flex;
+    min-width: 48rem;
 }
 
 .board-inside {
@@ -15,6 +16,8 @@
     flex-direction: column;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     transition: transform 0.5s ease-in-out;
+    margin: 1rem;
+    margin-top: 0;
 }
 
 .board-middle {
@@ -120,9 +123,13 @@
 
 @media only screen and (max-width: 768px) {
     .board {
-        transform: scale(0.45);
-        transform-origin: 2rem top;
-        width: auto;
-        height: 22rem;
+        zoom: 0.45;
+        // transform: scale(0.45);
+        // transform-origin: 2rem top;
+        // width: auto;
+    }
+    .board-loading {
+        height: 21.5rem;
+        width: 21.5rem;
     }
 }

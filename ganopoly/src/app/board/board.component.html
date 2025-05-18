@@ -18,8 +18,9 @@
 </div>
 
 <ng-template #boardTemplate>
-    <div class="board" *ngIf="boardData$ | async as boardData">
-        <div class="board-inside" [style.transform]="'rotateZ(' + rotate + 'deg)'">
+
+    <div class="board">
+        <div class="board-inside" [style.transform]="'rotateZ(' + rotate + 'deg)'" *ngIf="boardData$ | async as boardData">
             <div class="pions">
                 <div class="pion">
                     <div class="curler"></div>

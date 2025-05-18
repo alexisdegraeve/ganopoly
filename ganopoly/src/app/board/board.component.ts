@@ -3,7 +3,7 @@ import { CellComponent } from "../cell/cell.component";
 import { CommonModule } from '@angular/common';
 import { GameService } from '../services/game.service';
 import { combineLatestWith, map, startWith } from 'rxjs/operators';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, of, Subscription } from 'rxjs';
 import { CardType, Case } from '../models/card';
 import { ChanceCardComponent } from "../chance-card/chance-card.component";
 import { CommunityCardComponent } from "../community-card/community-card.component";
@@ -61,7 +61,9 @@ export class BoardComponent implements OnDestroy {
 
     this.isLoading$.subscribe(data => {
       this.isLoadingChange.emit(data);
-    })
+    });
+     //this.isLoading$ = of(true);
+
   }
 
   ngOnDestroy() {

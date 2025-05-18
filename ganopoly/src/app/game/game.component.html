@@ -9,12 +9,12 @@
 
 
         <div *ngIf="boardShow" class="board-parent">
-            <div class="d-flex flex-wrap">
+            <div class="d-flex flex-wrap justify-content-center">
                 <div>
                     <gano-board (isLoading)="checkIsLoading($event)" [rotate]="rotation "></gano-board>
                 </div>
                 <div>
-                    <div *ngIf="true">
+                    <div *ngIf="true" class="info-players">
                         <gano-info-player [player]="playerHuman$ | async"></gano-info-player>
                         <gano-info-player [player]="playerComputer1$ | async"></gano-info-player>
                         <gano-info-player [player]="playerComputer2$ | async"></gano-info-player>
