@@ -5,7 +5,7 @@
             margin-top: -1rem;
             padding-bottom: 0;
         }
-        
+
         .logo {
             background-color: black;
             border: 2px double #fff;
@@ -15,15 +15,11 @@
             padding: 0 0.5rem;
             border: 1px double black;
         }
-        
+
         .banknote-container {
-            zoom: 0.5;
-            /*    transform: scale(0.50);
-    transform-origin: 0 top;
-    height: 10rem;
-    width: 20rem; */
+            zoom: 0.40;
         }
-        
+
         .banknote {
             width: 40rem;
             height: 18rem;
@@ -34,21 +30,21 @@
             justify-content: center;
             margin-bottom: 1rem;
         }
-        
+
         .border-radial {
             background-color: #ffffff;
             opacity: 0.5;
             background: linear-gradient(90deg, rgba(15, 162, 235, 0) 33.16%, #0FA2EB 85.35%);
             border-radius: 30px;
         }
-        
+
         .banknote-border-double {
             border: 1px double #000;
             height: 100%;
             width: 100%;
             padding: 0.15rem;
         }
-        
+
         .banknote-border {
             background-image: repeating-radial-gradient( circle at center, transparent 0, #999 2.5px), repeating-radial-gradient( circle at center, transparent 0, #999 2.5px);
             background-size: 1.5rem 1.5rem;
@@ -59,14 +55,14 @@
             justify-content: center;
             border: 1px solid #000;
         }
-        
+
         .banknote-inside-out {
             background-color: #ffffff;
             height: 100%;
             width: 100%;
             padding: 0.25rem;
         }
-        
+
         .banknote-inside {
             background-image: repeating-radial-gradient( circle at center, transparent 0, #999 2.5px), repeating-radial-gradient( circle at center, transparent 0, #999 2.5px);
             background-size: 6rem 6rem;
@@ -162,21 +158,21 @@
                 }
             }
         }
-        
+
         .banknote-inside-border {
             border: 1px solid #000;
             padding: 0.5rem;
             height: 100%;
             width: 100%;
         }
-        
+
         .banknote-inside-border-double {
             border: 1px solid #000;
             padding: 0.25rem;
             height: 100%;
             width: 100%;
         }
-        
+
         .striped-icon {
             position: relative;
             color: transparent;
@@ -184,7 +180,7 @@
             -webkit-background-clip: text;
             background-clip: text;
         }
-        
+
         @media only screen and (max-width: 768px) {
             .banknote-container {
                 zoom: 0.24;

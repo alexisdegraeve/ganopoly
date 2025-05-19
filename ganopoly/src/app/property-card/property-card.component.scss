@@ -5,7 +5,7 @@
     width: 15.25rem;
     height: 22.5rem; */
                 }
-                
+
                 .card-container {
                     perspective: 1000px;
                     justify-content: center;
@@ -13,7 +13,7 @@
                     display: inline-flex;
                     margin: 0.75rem;
                 }
-                
+
                 .flip-card {
                     width: 20rem;
                     height: 30rem;
@@ -21,7 +21,7 @@
                     transition: transform 0.6s, box-shadow 0.6s;
                     /* Ajout de la transition pour l'ombre */
                 }
-                
+
                 .flip-card-inner {
                     position: relative;
                     width: 100%;
@@ -29,7 +29,7 @@
                     transform-style: preserve-3d;
                     transition: transform 0.6s;
                 }
-                
+
                 .flip-card-front,
                 .flip-card-back {
                     position: absolute;
@@ -39,7 +39,7 @@
                     border-radius: 10px;
                     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
                 }
-                
+
                 .flip-card-front {
                     background-color: #f8f9fa;
                     display: flex;
@@ -47,7 +47,7 @@
                     align-items: center;
                     padding: 1rem;
                 }
-                
+
                 .flip-card-back {
                     background-color: #fff;
                     color: white;
@@ -79,11 +79,11 @@
                         margin-top: auto;
                     }
                 }
-                
+
                 .flipped {
                     transform: rotateY(180deg);
                 }
-                
+
                 .card-body {
                     border: 1px solid black;
                     height: 100%;
@@ -110,12 +110,12 @@
                         }
                     }
                 }
-                
+
                 .card-content {
                     width: 100%;
                     margin-top: 1rem;
                 }
-                
+
                 .house-green {
                     display: flex;
                     justify-content: center;
@@ -133,11 +133,11 @@
                         padding-top: 0.5rem;
                     }
                 }
-                
+
                 .moreinfo {
                     font-size: 0.85rem;
                 }
-                
+
                 .card-icon {
                     display: flex;
                     justify-content: center;
@@ -148,11 +148,5 @@
                         justify-content: center;
                         align-items: center;
                         text-shadow: -0.1rem 0 #000, 0 0.1rem #000, 0.1rem 0 #000, 0 -0.1rem #000;
-                    }
-                }
-                
-                @media only screen and (max-width: 768px) {
-                    .card-full {
-                        zoom: 0.42;
                     }
                 }
