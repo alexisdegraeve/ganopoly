@@ -40,6 +40,33 @@ export class GameService {
     return firstnames[index];
   }
 
+  getRandomPawn(pawnPlayer: Pawn) {
+    const pawns = [Pawn.curler, Pawn.cat, Pawn.dog, Pawn.hat];
+    console.log('before Pawns ', pawns);
+    const pawnsShuffle = this.shuffleArrayGeneric(pawns);
+    console.log('after Pawns ', pawnsShuffle);
+    const filterPawnsShuffle = pawnsShuffle.filter(pawn =>  pawn !== pawnPlayer);
+    console.log('after filter Pawns ', filterPawnsShuffle);
+    this.updatePawnPlayer(this.playerComputer1$, filterPawnsShuffle[0])
+    this.updatePawnPlayer(this.playerComputer2$, filterPawnsShuffle[1])
+    this.updatePawnPlayer(this.playerComputer3$, filterPawnsShuffle[2])
+
+  }
+  updatePawnPlayer(player: BehaviorSubject<Player>, newPawn: Pawn) {
+    const currentPlayer = player.value;
+    const updatedPlayer = {...currentPlayer, pawnShape: newPawn};
+    player.next(updatedPlayer);
+  }
+
+    shuffleArrayGeneric<T>(array: T[]): T[] {
+    const arr = [...array]; // pour ne pas modifier l'original
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }
+
   createNewPlayer(pawnShape: Pawn): BehaviorSubject<Player> {
   return new BehaviorSubject<Player>({
     name: this.getRandomFirstname(),
@@ -61,6 +88,7 @@ export class GameService {
   startGame(playerChange : {name: string, pawn: Pawn}): Observable<void> {
     console.log('start game ');
     console.log(name)
+    this.getRandomPawn(playerChange.pawn);
     const currentPlayer = this.playerHuman$.value;
     const updatedPlayer = {...currentPlayer, name: playerChange.name, pawnShape: playerChange.pawn};
     this.playerHuman$.next(updatedPlayer);

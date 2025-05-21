@@ -15,5 +15,10 @@
 }
 
 .selected {
-    border: 2px solid red;
+    border: 0.25rem solid red;
+}
+
+.pion {
+    margin-left: 0.5rem;
+    cursor: pointer;
 }
