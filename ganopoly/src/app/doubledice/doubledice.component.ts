@@ -1,13 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DiceComponent } from "../dice/dice.component";
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'gano-doubledice',
-  imports: [DiceComponent],
+  imports: [DiceComponent, CommonModule],
   templateUrl: './doubledice.component.html',
   styleUrl: './doubledice.component.scss'
 })
 export class DoublediceComponent {
+  @Output() finishRollDiceEvent = new EventEmitter<boolean>();
+  @Input() showButton = true;
   score1 = 1;
   score2 = 1;
 
@@ -21,6 +24,7 @@ export class DoublediceComponent {
       count++;
       if (count >= 3) {
         clearInterval(interval); // arrêter après 10 exécutions (5s)
+        this.finishRollDiceEvent.emit(true);
       }
     }, 150);
   }

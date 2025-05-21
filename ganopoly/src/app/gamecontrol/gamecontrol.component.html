@@ -1,0 +1,20 @@
+<div class="card">
+    <div class="card-header">
+        Ganopoly
+    </div>
+    <div class="card-body">
+        <ng-container *ngIf="!isStartGame">
+            <a class="btn btn-primary" (click)="startGame()">New Game</a>
+        </ng-container>
+        <ng-container *ngIf="isStartGame">
+            <gano-doubledice [showButton]="showButtonRollDice" (finishRollDiceEvent)="finishRollDice()"></gano-doubledice>
+        </ng-container>
+
+        <ng-container *ngIf="isHumanAction">
+            card to play ?
+        </ng-container>
+
+
+    </div>
+
+</div>

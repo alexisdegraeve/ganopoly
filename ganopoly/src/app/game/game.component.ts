@@ -10,11 +10,13 @@ import { HumanPlayerComponent } from "../human-player/human-player.component";
 import { InfoPlayerComponent } from "../info-player/info-player.component";
 import { Player } from '../models/player';
 import { Pawn } from '../models/pawn';
+import { DoublediceComponent } from "../doubledice/doubledice.component";
+import { GamecontrolComponent } from "../gamecontrol/gamecontrol.component";
 
 
 @Component({
   selector: 'gano-game',
-  imports: [BoardComponent, HeaderComponent, CommonModule, HumanPlayerComponent, InfoPlayerComponent],
+  imports: [BoardComponent, HeaderComponent, CommonModule, HumanPlayerComponent, InfoPlayerComponent, DoublediceComponent, GamecontrolComponent],
   templateUrl: './game.component.html',
   styleUrl: './game.component.scss'
 })
