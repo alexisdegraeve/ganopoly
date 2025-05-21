@@ -10,13 +10,12 @@ import { HumanPlayerComponent } from "../human-player/human-player.component";
 import { InfoPlayerComponent } from "../info-player/info-player.component";
 import { Player } from '../models/player';
 import { Pawn } from '../models/pawn';
-import { DoublediceComponent } from "../doubledice/doubledice.component";
 import { GamecontrolComponent } from "../gamecontrol/gamecontrol.component";
 
 
 @Component({
   selector: 'gano-game',
-  imports: [BoardComponent, HeaderComponent, CommonModule, HumanPlayerComponent, InfoPlayerComponent, DoublediceComponent, GamecontrolComponent],
+  imports: [BoardComponent, HeaderComponent, CommonModule, HumanPlayerComponent, InfoPlayerComponent,  GamecontrolComponent],
   templateUrl: './game.component.html',
   styleUrl: './game.component.scss'
 })
@@ -36,10 +35,10 @@ export class GameComponent {
 
   constructor(private gameService: GameService) {
     this.mycards$ = this.getPlayCards();
-    this.playerHuman$ = this.gameService.getPlayerHuman();
-    this.playerComputer1$ = this.gameService.getPlayerComputer1();
-    this.playerComputer2$ = this.gameService.getPlayerComputer2();
-    this.playerComputer3$ = this.gameService.getPlayerComputer3();
+    this.playerHuman$ = this.gameService.PlayerHuman;
+    this.playerComputer1$ = this.gameService.PlayerComputer1;
+    this.playerComputer2$ = this.gameService.PlayerComputer2;
+    this.playerComputer3$ = this.gameService.PlayerComputer3;
   }
 
   checkIsLoading(event: Event) {

@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './doubledice.component.scss'
 })
 export class DoublediceComponent {
-  @Output() finishRollDiceEvent = new EventEmitter<boolean>();
+  @Output() finishRollDiceEvent = new EventEmitter<number>();
   @Input() showButton = true;
   score1 = 1;
   score2 = 1;
@@ -24,7 +24,7 @@ export class DoublediceComponent {
       count++;
       if (count >= 3) {
         clearInterval(interval); // arrêter après 10 exécutions (5s)
-        this.finishRollDiceEvent.emit(true);
+        this.finishRollDiceEvent.emit(this.score1 + this.score2);
       }
     }, 150);
   }

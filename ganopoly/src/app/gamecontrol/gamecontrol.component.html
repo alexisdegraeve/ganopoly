@@ -7,11 +7,19 @@
             <a class="btn btn-primary" (click)="startGame()">New Game</a>
         </ng-container>
         <ng-container *ngIf="isStartGame">
-            <gano-doubledice [showButton]="showButtonRollDice" (finishRollDiceEvent)="finishRollDice()"></gano-doubledice>
+            <gano-doubledice [showButton]="showButtonRollDice" (finishRollDiceEvent)="finishRollDice($event)"></gano-doubledice>
         </ng-container>
 
         <ng-container *ngIf="isHumanAction">
             card to play ?
+            <ng-container *ngIf="currentCard$ | async as currentCard">
+                <gano-cards [cards]="currentCard">
+                </gano-cards>
+                <a class="btn btn-primary" (click)="buy()">Buy</a>
+                <a class="btn btn-primary" (click)="skip()">Not Buy</a>
+            </ng-container>
+
+
         </ng-container>
 
 

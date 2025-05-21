@@ -58,6 +58,12 @@ export class GameService {
     player.next(updatedPlayer);
   }
 
+  updateCurrentCasePlayer(player: BehaviorSubject<Player>, currentCase: number) {
+    const currentPlayer = player.value;
+    const updatedPlayer = {...currentPlayer, currentCase: currentCase};
+    player.next(updatedPlayer);
+  }
+
     shuffleArrayGeneric<T>(array: T[]): T[] {
     const arr = [...array]; // pour ne pas modifier l'original
     for (let i = arr.length - 1; i > 0; i--) {
@@ -72,6 +78,7 @@ export class GameService {
     name: this.getRandomFirstname(),
     pawnShape,
     dices: 0,
+    currentCase: 1,
     properties: [1],
     billets: [
       { euro: 1, quantity: 0, color: 'white' },
@@ -206,19 +213,19 @@ export class GameService {
     return this.httpClient.get<Card[]>('/cards/ganopolycards.json');
   }
 
-  getPlayerHuman(): Observable<Player> {
+  get PlayerHuman(): BehaviorSubject<Player> {
     return this.playerHuman$;
   }
 
-  getPlayerComputer1(): Observable<Player> {
+  get PlayerComputer1(): BehaviorSubject<Player> {
     return this.playerComputer1$;
   }
 
-  getPlayerComputer2(): Observable<Player> {
+  get PlayerComputer2(): BehaviorSubject<Player> {
     return this.playerComputer2$;
   }
 
-  getPlayerComputer3(): Observable<Player> {
+  get PlayerComputer3(): Observable<Player> {
     return this.playerComputer3$;
   }
 

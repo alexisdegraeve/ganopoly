@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { BanknoteComponent } from '../banknote/banknote.component';
 import { CardsComponent } from '../cards/cards.component';
 import { map, Observable } from 'rxjs';
-import { Card, CardType } from '../models/card';
+import { Card } from '../models/card';
 import { GameService } from '../services/game.service';
 
 @Component({
