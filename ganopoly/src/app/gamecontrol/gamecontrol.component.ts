@@ -18,6 +18,7 @@ export class GamecontrolComponent {
   showButtonRollDice = true;
   isHumanAction = false;
   currentCard$: Observable<Card[] | undefined>;
+  cellNumber = 1;
 
 
   startGame() {
@@ -36,9 +37,9 @@ export class GamecontrolComponent {
 
   constructor(private gameService: GameService) {
     this.currentCard$ = this.getCurrentCard();
-    this.gameService.PlayerHuman.subscribe(playerHyman => {
-        this.currentCard$ = this.getCurrentCard();
-    })
+    // this.gameService.PlayerHuman.subscribe(playerHyman => {
+    //     this.currentCard$ = this.getCurrentCard();
+    // })
   }
 
   getCurrentCard(): Observable<Card[] | undefined> {
@@ -51,7 +52,11 @@ export class GamecontrolComponent {
       );
   }
   buy() {
-
+    const cellNb = this.gameService.PlayerHuman.value.currentCase;
+    console.log(cellNb);
+    //const cellNbArray  = [];
+    //cellNbArray.push(cellNb);
+    this.gameService.addProperty(cellNb, this.gameService.PlayerHuman);
   }
 
   skip() {
