@@ -58,11 +58,11 @@ export class GameService {
   });
   }
 
-  startGame(name: string): Observable<void> {
+  startGame(playerChange : {name: string, pawn: Pawn}): Observable<void> {
     console.log('start game ');
     console.log(name)
     const currentPlayer = this.playerHuman$.value;
-    const updatedPlayer = {...currentPlayer, name: name};
+    const updatedPlayer = {...currentPlayer, name: playerChange.name, pawnShape: playerChange.pawn};
     this.playerHuman$.next(updatedPlayer);
     return new Observable<void>((observer) => {
       forkJoin({

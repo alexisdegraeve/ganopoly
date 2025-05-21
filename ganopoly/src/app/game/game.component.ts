@@ -11,6 +11,7 @@ import { BanknoteComponent } from "../banknote/banknote.component";
 import { HumanPlayerComponent } from "../human-player/human-player.component";
 import { InfoPlayerComponent } from "../info-player/info-player.component";
 import { Player } from '../models/player';
+import { Pawn } from '../models/pawn';
 
 
 @Component({
@@ -47,10 +48,10 @@ export class GameComponent {
     console.log(event);
   }
 
-  startGame(name: string) {
+  startGame(playerChange: {name:string, pawn: Pawn}) {
     console.log(name);
     this.isStartGame = true;
-    this.gameService.startGame(name).subscribe(() => {
+    this.gameService.startGame(playerChange).subscribe(() => {
       console.log(' loading finish');
       this.gameService.throwDice();
       this.gameService.distributeBillets();

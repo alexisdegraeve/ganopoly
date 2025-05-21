@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Pawn } from '../models/pawn';
 
 @Component({
   selector: 'gano-human-player',
@@ -10,10 +11,16 @@ import { FormsModule } from '@angular/forms';
 })
 export class HumanPlayerComponent {
   @Input() name: string = '';
-  @Output() nameChange = new EventEmitter<string>();
+  @Output() playerChange = new EventEmitter<{name: string, pawn: Pawn}>();
+  pawnSelected: Pawn = Pawn.cat;
+  Pawn = Pawn;
 
   go() {
-    this.nameChange.emit(this.name);
+    this.playerChange.emit({name: this.name, pawn: this.pawnSelected});
+  }
+
+  setSelectPawn(pion: Pawn) {
+    this.pawnSelected = pion;
   }
 
 }

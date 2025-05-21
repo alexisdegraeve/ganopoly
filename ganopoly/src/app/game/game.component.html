@@ -1,7 +1,7 @@
 <gano-header [isStartGame]="isStartGame" [boardVisible]="boardShow" (rotateEvent)="rotateBoard()" (boardEvent)="boardShowActive()" (cardsEvent)="cardShowActive()" (bankNoteEvent)="bankNoteShowActive()"></gano-header>
 
 <div class="newplayer" *ngIf="!isStartGame">
-    <gano-human-player [name]="playerName" (nameChange)="startGame($event)"></gano-human-player>
+    <gano-human-player [name]="playerName" (playerChange)="startGame($event)"></gano-human-player>
 </div>
 
 <div class="game" *ngIf="isStartGame">
