@@ -3,11 +3,9 @@ import { GameService } from '../services/game.service';
 import { BoardComponent } from "../board/board.component";
 import { HeaderComponent } from "../header/header.component";
 import { CommonModule } from '@angular/common';
-import { CardsComponent } from '../cards/cards.component';
 import { Observable, pipe } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Card, CardType } from '../models/card';
-import { BanknoteComponent } from "../banknote/banknote.component";
 import { HumanPlayerComponent } from "../human-player/human-player.component";
 import { InfoPlayerComponent } from "../info-player/info-player.component";
 import { Player } from '../models/player';
@@ -16,7 +14,7 @@ import { Pawn } from '../models/pawn';
 
 @Component({
   selector: 'gano-game',
-  imports: [CardsComponent, BoardComponent, HeaderComponent, CommonModule, BanknoteComponent, HumanPlayerComponent, InfoPlayerComponent],
+  imports: [BoardComponent, HeaderComponent, CommonModule, HumanPlayerComponent, InfoPlayerComponent],
   templateUrl: './game.component.html',
   styleUrl: './game.component.scss'
 })
@@ -77,21 +75,25 @@ export class GameComponent {
     );
   }
 
-  boardShowActive() {
-    this.boardShow = true;
-    this.cardsShow = false;
-    this.bankNoteShow = false;
-  }
+  // boardShowActive() {
+  //   this.boardShow = true;
+  //   this.cardsShow = false;
+  //   this.bankNoteShow = false;
+  // }
 
-  cardShowActive() {
-    this.boardShow = false;
-    this.cardsShow = true;
-    this.bankNoteShow = false;
-  }
+  // cardShowActive() {
+  //   this.boardShow = false;
+  //   this.cardsShow = true;
+  //   this.bankNoteShow = false;
+  // }
 
-  bankNoteShowActive() {
-    this.boardShow = false;
-    this.cardsShow = false;
-    this.bankNoteShow = true;
+  // bankNoteShowActive() {
+  //   this.boardShow = false;
+  //   this.cardsShow = false;
+  //   this.bankNoteShow = true;
+  // }
+
+  newGame() {
+
   }
 }
