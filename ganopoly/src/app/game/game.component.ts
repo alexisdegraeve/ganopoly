@@ -3,7 +3,7 @@ import { GameService } from '../services/game.service';
 import { BoardComponent } from "../board/board.component";
 import { HeaderComponent } from "../header/header.component";
 import { CommonModule } from '@angular/common';
-import { Observable, pipe } from 'rxjs';
+import { BehaviorSubject, Observable, pipe } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Card, CardType } from '../models/card';
 import { HumanPlayerComponent } from "../human-player/human-player.component";
@@ -28,10 +28,10 @@ export class GameComponent {
   playerName: string = '';
   isStartGame = false;
   isLoading = true;
-  playerHuman$: Observable<Player>;
-  playerComputer1$: Observable<Player>;
-  playerComputer2$: Observable<Player>;
-  playerComputer3$: Observable<Player>;
+  playerHuman$: BehaviorSubject<Player>;
+  playerComputer1$: BehaviorSubject<Player>;
+  playerComputer2$: BehaviorSubject<Player>;
+  playerComputer3$: BehaviorSubject<Player>;
 
   constructor(private gameService: GameService) {
     this.mycards$ = this.getPlayCards();

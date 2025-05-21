@@ -12,9 +12,12 @@
 
         <ng-container *ngIf="isHumanAction">
             card to play ?
-            <ng-container *ngIf="currentCard$ | async as currentCard">
-                <gano-cards [cards]="currentCard">
-                </gano-cards>
+
+            <ng-container *ngIf="cellCase$ | async as cell">
+                <div class="cell-zoom">
+                    <gano-cell [color]="cell.color " [cardtype]="cell.cardtype " [name]="cell.name " [ville]="cell.ville " [price]="cell.price " [orientation]="cell.orientation " [isCorner]="cell.isCorner ">
+                    </gano-cell>
+                </div>
                 <a class="btn btn-primary" (click)="buy()">Buy</a>
                 <a class="btn btn-primary" (click)="skip()">Not Buy</a>
             </ng-container>

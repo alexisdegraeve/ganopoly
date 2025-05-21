@@ -7,7 +7,7 @@ export class Player {
   pawnShape: Pawn = Pawn.cat;
   dices: number = 0;
   properties: number[]=[];
-  currentCase: number = 1;
+  currentCase: number = 0;
   //houses: HouseCard[] = [];
   billets: Billet[] = [];
 }

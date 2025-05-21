@@ -3,7 +3,7 @@ import { Player } from '../models/player';
 import { CommonModule } from '@angular/common';
 import { BanknoteComponent } from '../banknote/banknote.component';
 import { CardsComponent } from '../cards/cards.component';
-import { map, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 import { Card } from '../models/card';
 import { GameService } from '../services/game.service';
 
@@ -14,8 +14,8 @@ import { GameService } from '../services/game.service';
   styleUrl: './info-player.component.scss'
 })
 export class InfoPlayerComponent {
-  @Input() player: Player | null = null;
-  mycards$ :Observable<Card[]>;
+  @Input() player: BehaviorSubject<Player> | null = null;
+  mycards$ :Observable<Card[]> ;
 
     constructor(private gameService: GameService) {
       this.mycards$ = this.getPropertiesCards();
@@ -26,7 +26,7 @@ export class InfoPlayerComponent {
         .pipe(
           map(cards =>
             cards
-              .filter(card =>  this.player?.properties.includes(card.case))
+              .filter(card =>  this.player?.value.properties.includes(card.case))
           )
         );
       }
