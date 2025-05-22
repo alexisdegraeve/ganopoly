@@ -1,7 +1,6 @@
 <div class="card mb-3" *ngIf="(player | async) as player">
     <div class="row g-0">
         <div class="col-md-12 left-part">
-            {{ player | json }} {{ player?.currentCase }}
             <div class="pion">
                 <div [class]="player?.pawnShape?.toString()"></div>
             </div>
@@ -22,15 +21,13 @@
                                 <gano-banknote [value]="billet.euro "></gano-banknote>
                             </div>
                         </div>
-
-
                     </div>
 
                 </div>
 
+
                 <div class="cards-ganopoly" *ngIf="mycards$ | async as mycards">
                     <gano-cards [cards]="mycards"></gano-cards>
-
                 </div>
 
                 <p class="ms-auto card-text "><small class="text-body-secondary ">Last updated 3 mins ago</small></p>

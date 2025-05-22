@@ -4,7 +4,7 @@ import { ccCard } from '../models/ccCard';
 import { BehaviorSubject, forkJoin, Observable } from 'rxjs';
 import { Billet } from '../models/billet';
 import { Player } from '../models/player';
-import { Card, Case } from '../models/card';
+import { Card } from '../models/card';
 import { Pawn } from '../models/pawn';
 
 
@@ -30,9 +30,46 @@ export class GameService {
   private playerComputer1$ = this.createNewPlayer(Pawn.dog);
   private playerComputer2$ = this.createNewPlayer(Pawn.hat);
   private playerComputer3$ = this.createNewPlayer(Pawn.curler);
+  private playerToPlay$: BehaviorSubject<Player>;
 
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) {
+    this.playerToPlay$ = this.playerHuman$;
+  }
+
+  async nextPlayerToPlay() {
+    if (this.playerToPlay$.value.name  === this.playerHuman$.value.name ) {
+      this.playerToPlay$.next(this.playerComputer1$.value);
+      await Promise.resolve();
+      await this.computerPlay();
+    } else {
+      if (this.playerToPlay$.value.name  === this.playerComputer1$.value.name ) {
+        this.playerToPlay$.next(this.playerComputer2$.value);
+        await Promise.resolve();
+        await  this.computerPlay();
+      } else {
+        if (this.playerToPlay$.value.name  === this.playerComputer2$.value.name ) {
+          this.playerToPlay$.next(this.playerComputer3$.value);
+          await Promise.resolve();
+          await  this.computerPlay();
+        }
+        else {
+          this.playerToPlay$.next(this.playerHuman$.value);
+        }
+      }
+    }
+  }
+
+  async computerPlay() {
+    //  console.log("Ordinateur a joué :", this.playerToPlay$.value.name);
+    // await this.sleep(5000);
+
+    // await  this.nextPlayerToPlay();
+  }
+
+  sleep(ms: number): Promise<void> {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 
   getRandomFirstname(): string {
     const firstnames = ['Alice', 'Bob', 'Charlie', 'Diana', 'Ethan', 'Fiona', 'George', 'Hana', 'Isaac', 'Julia'];
@@ -45,7 +82,7 @@ export class GameService {
     console.log('before Pawns ', pawns);
     const pawnsShuffle = this.shuffleArrayGeneric(pawns);
     console.log('after Pawns ', pawnsShuffle);
-    const filterPawnsShuffle = pawnsShuffle.filter(pawn =>  pawn !== pawnPlayer);
+    const filterPawnsShuffle = pawnsShuffle.filter(pawn => pawn !== pawnPlayer);
     console.log('after filter Pawns ', filterPawnsShuffle);
     this.updatePawnPlayer(this.playerComputer1$, filterPawnsShuffle[0])
     this.updatePawnPlayer(this.playerComputer2$, filterPawnsShuffle[1])
@@ -54,13 +91,13 @@ export class GameService {
   }
   updatePawnPlayer(player: BehaviorSubject<Player>, newPawn: Pawn) {
     const currentPlayer = player.value;
-    const updatedPlayer = {...currentPlayer, pawnShape: newPawn};
+    const updatedPlayer = { ...currentPlayer, pawnShape: newPawn };
     player.next(updatedPlayer);
   }
 
   updateCurrentCasePlayer(player: BehaviorSubject<Player>, currentCase: number) {
     const currentPlayer = player.value;
-    const updatedPlayer = {...currentPlayer, currentCase: currentPlayer.currentCase + currentCase};
+    const updatedPlayer = { ...currentPlayer, currentCase: currentPlayer.currentCase + currentCase };
     player.next(updatedPlayer);
   }
 
@@ -68,12 +105,11 @@ export class GameService {
     const currentPlayer = player.value;
     let properties = currentPlayer.properties;
     properties.push(propertyCase);
-    const updatedPlayer = {...currentPlayer, properties: properties};
-    // console.log('check ', this.PlayerHuman.value)
+    const updatedPlayer = { ...currentPlayer, properties: properties };
     player.next(updatedPlayer);
   }
 
-    shuffleArrayGeneric<T>(array: T[]): T[] {
+  shuffleArrayGeneric<T>(array: T[]): T[] {
     const arr = [...array]; // pour ne pas modifier l'original
     for (let i = arr.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -83,30 +119,30 @@ export class GameService {
   }
 
   createNewPlayer(pawnShape: Pawn): BehaviorSubject<Player> {
-  return new BehaviorSubject<Player>({
-    name: this.getRandomFirstname(),
-    pawnShape,
-    dices: 0,
-    currentCase: 0,
-    properties: [],
-    billets: [
-      { euro: 1, quantity: 0, color: 'white' },
-      { euro: 5, quantity: 0, color: 'pink' },
-      { euro: 10, quantity: 0, color: 'cyan' },
-      { euro: 20, quantity: 0, color: 'green' },
-      { euro: 50, quantity: 0, color: 'purple' },
-      { euro: 100, quantity: 0, color: 'salmon' },
-      { euro: 500, quantity: 0, color: 'orange' },
-    ]
-  });
+    return new BehaviorSubject<Player>({
+      name: this.getRandomFirstname(),
+      pawnShape,
+      dices: 0,
+      currentCase: 0,
+      properties: [],
+      billets: [
+        { euro: 1, quantity: 0, color: 'white' },
+        { euro: 5, quantity: 0, color: 'pink' },
+        { euro: 10, quantity: 0, color: 'cyan' },
+        { euro: 20, quantity: 0, color: 'green' },
+        { euro: 50, quantity: 0, color: 'purple' },
+        { euro: 100, quantity: 0, color: 'salmon' },
+        { euro: 500, quantity: 0, color: 'orange' },
+      ]
+    });
   }
 
-  startGame(playerChange : {name: string, pawn: Pawn}): Observable<void> {
+  startGame(playerChange: { name: string, pawn: Pawn }): Observable<void> {
     console.log('start game ');
     console.log(name)
     this.getRandomPawn(playerChange.pawn);
     const currentPlayer = this.playerHuman$.value;
-    const updatedPlayer = {...currentPlayer, name: playerChange.name, pawnShape: playerChange.pawn};
+    const updatedPlayer = { ...currentPlayer, name: playerChange.name, pawnShape: playerChange.pawn };
     this.playerHuman$.next(updatedPlayer);
     return new Observable<void>((observer) => {
       forkJoin({
@@ -119,7 +155,7 @@ export class GameService {
           this.chanceCards = this.shuffleArray(chanceCards);
           this.communauteCards = this.shuffleArray(communauteCards);
           console.log('Billets');
-          console.log('banque : '  , JSON.parse(JSON.stringify(this.banque)));
+          console.log('banque : ', JSON.parse(JSON.stringify(this.banque)));
           //console.log('player Human :', JSON.parse(JSON.stringify(this.playerHuman)));
           //console.log('playerComputer 1 :',JSON.parse(JSON.stringify(this.playerComputer1)));
           //console.log('playerComputer 2 :',JSON.parse(JSON.stringify(this.playerComputer2)));
@@ -164,20 +200,20 @@ export class GameService {
 
   takeMoneyFromBank(dstEuro: number, dstQuantity: number, dstPlayer: BehaviorSubject<Player>) {
     const currentPlayer = dstPlayer.value;
-    const updatedPlayer = {...currentPlayer};
+    const updatedPlayer = { ...currentPlayer };
 
     this.banque
-    .filter((billet) => billet.euro === dstEuro)
-    .forEach((billet) => {
-      if (billet.quantity > 0) {
-        billet.quantity -= dstQuantity;
-        updatedPlayer.billets
-          .filter((billet) => billet.euro === dstEuro)
-          .forEach((billet) => {
-            billet.quantity += dstQuantity;
-          });
-      }
-    });
+      .filter((billet) => billet.euro === dstEuro)
+      .forEach((billet) => {
+        if (billet.quantity > 0) {
+          billet.quantity -= dstQuantity;
+          updatedPlayer.billets
+            .filter((billet) => billet.euro === dstEuro)
+            .forEach((billet) => {
+              billet.quantity += dstQuantity;
+            });
+        }
+      });
 
     dstPlayer.next(updatedPlayer);
   }
@@ -198,7 +234,7 @@ export class GameService {
     this.giveBilletsPlayer(this.playerComputer2$);
     this.giveBilletsPlayer(this.playerComputer3$);
     console.log('disribute Billets');
-    console.log('banque : '  , JSON.parse(JSON.stringify(this.banque)));
+    console.log('banque : ', JSON.parse(JSON.stringify(this.banque)));
     // console.log('player Human :', JSON.parse(JSON.stringify(this.playerHuman)));
     // console.log('playerComputer 1 :',JSON.parse(JSON.stringify(this.playerComputer1)));
     // console.log('playerComputer 2 :',JSON.parse(JSON.stringify(this.playerComputer2)));
@@ -217,7 +253,7 @@ export class GameService {
     })
     return total;
   }
-  getCards():Observable<Card[]> {
+  getCards(): Observable<Card[]> {
     console.log('get cards');
     return this.httpClient.get<Card[]>('/cards/ganopolycards.json');
   }
@@ -238,11 +274,15 @@ export class GameService {
     return this.playerComputer3$;
   }
 
+  get PlayerToPlay(): BehaviorSubject<Player> {
+    return this.playerToPlay$;
+  }
+
   addProperty(ganocase: number, player: BehaviorSubject<Player>) {
     const currentPlayer = player.value;
     const currentProperties = [...currentPlayer.properties, ganocase];
     // currentProperties.push(ganocase);
-    const updatedPlayer = {...currentPlayer, properties: currentProperties};
+    const updatedPlayer = { ...currentPlayer, properties: currentProperties };
     player.next(updatedPlayer);
   }
 

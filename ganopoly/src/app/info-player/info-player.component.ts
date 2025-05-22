@@ -6,6 +6,7 @@ import { CardsComponent } from '../cards/cards.component';
 import { BehaviorSubject, map, Observable } from 'rxjs';
 import { Card } from '../models/card';
 import { GameService } from '../services/game.service';
+import { combineLatest } from 'rxjs';
 
 @Component({
   selector: 'gano-info-player',
@@ -14,20 +15,34 @@ import { GameService } from '../services/game.service';
   styleUrl: './info-player.component.scss'
 })
 export class InfoPlayerComponent {
-  @Input() player: BehaviorSubject<Player> | null = null;
-  mycards$ :Observable<Card[]> ;
+  private _player: BehaviorSubject<Player> | null = null;
 
-    constructor(private gameService: GameService) {
-      this.mycards$ = this.getPropertiesCards();
+  @Input()
+  set player(value: BehaviorSubject<Player> | null) {
+    this._player = value;
+    this.updateMyCards(value);
+  }
+
+  get player(): BehaviorSubject<Player> | null {
+    return this._player;
+  }
+
+  mycards$: Observable<Card[]> = new Observable<Card[]>();
+
+  constructor(private gameService: GameService) {
+  }
+
+
+  updateMyCards(value: BehaviorSubject<Player> | null) {
+    if (value) {
+      this.mycards$ = combineLatest([
+        value,
+        this.gameService.getCards() // La liste des cartes
+      ]).pipe(
+        map(([player, cards]) =>
+          cards.filter(card => player.properties.includes(card.case))
+        )
+      );
     }
-
-      getPropertiesCards(): Observable<Card[]> {
-        return this.gameService.getCards()
-        .pipe(
-          map(cards =>
-            cards
-              .filter(card =>  this.player?.value.properties.includes(card.case))
-          )
-        );
-      }
+  }
 }

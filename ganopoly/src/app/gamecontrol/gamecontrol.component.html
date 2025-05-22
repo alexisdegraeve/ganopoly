@@ -1,11 +1,8 @@
-<div class="card">
+<div class="card" *ngIf="(playerToPlay$ | async) as playerToPlay">
     <div class="card-header">
-        Ganopoly
+        {{ playerToPlay.name }} to play
     </div>
     <div class="card-body">
-        <ng-container *ngIf="!isStartGame">
-            <a class="btn btn-primary" (click)="startGame()">New Game</a>
-        </ng-container>
         <ng-container *ngIf="isStartGame">
             <gano-doubledice [showButton]="showButtonRollDice" (finishRollDiceEvent)="finishRollDice($event)"></gano-doubledice>
         </ng-container>
