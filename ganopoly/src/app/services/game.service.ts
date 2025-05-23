@@ -30,31 +30,31 @@ export class GameService {
   private playerComputer1$ = this.createNewPlayer(Pawn.dog);
   private playerComputer2$ = this.createNewPlayer(Pawn.hat);
   private playerComputer3$ = this.createNewPlayer(Pawn.curler);
-  private playerToPlay$: BehaviorSubject<Player>;
+  private playerToPlay$: BehaviorSubject<Player> = new BehaviorSubject<Player>({...this.playerHuman$.value});
 
 
   constructor(private httpClient: HttpClient) {
-    this.playerToPlay$ = this.playerHuman$;
+    // this.playerToPlay$.next({...this.playerHuman$.value});
   }
 
   async nextPlayerToPlay() {
     if (this.playerToPlay$.value.name  === this.playerHuman$.value.name ) {
-      this.playerToPlay$.next(this.playerComputer1$.value);
+      this.playerToPlay$.next({ ...this.playerComputer1$.value});
       await Promise.resolve();
       await this.computerPlay();
     } else {
       if (this.playerToPlay$.value.name  === this.playerComputer1$.value.name ) {
-        this.playerToPlay$.next(this.playerComputer2$.value);
+        this.playerToPlay$.next({...this.playerComputer2$.value});
         await Promise.resolve();
         await  this.computerPlay();
       } else {
         if (this.playerToPlay$.value.name  === this.playerComputer2$.value.name ) {
-          this.playerToPlay$.next(this.playerComputer3$.value);
+          this.playerToPlay$.next({...this.playerComputer3$.value});
           await Promise.resolve();
           await  this.computerPlay();
         }
         else {
-          this.playerToPlay$.next(this.playerHuman$.value);
+          this.playerToPlay$.next({...this.playerHuman$.value});
         }
       }
     }
@@ -141,7 +141,7 @@ export class GameService {
     console.log('start game ');
     console.log(name)
     this.getRandomPawn(playerChange.pawn);
-    const currentPlayer = this.playerHuman$.value;
+    const currentPlayer = {...this.playerHuman$.value};
     const updatedPlayer = { ...currentPlayer, name: playerChange.name, pawnShape: playerChange.pawn };
     this.playerHuman$.next(updatedPlayer);
     return new Observable<void>((observer) => {

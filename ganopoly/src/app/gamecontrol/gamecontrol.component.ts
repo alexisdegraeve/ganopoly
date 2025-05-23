@@ -45,6 +45,7 @@ export class GamecontrolComponent {
   buy() {
     const cellNb = this.gameService.PlayerHuman.value.currentCase;
     this.gameService.addProperty(cellNb, this.gameService.PlayerHuman);
+    this.gameService.nextPlayerToPlay();
   }
 
   skip() {
