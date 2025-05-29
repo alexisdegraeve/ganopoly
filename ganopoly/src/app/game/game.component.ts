@@ -32,6 +32,7 @@ export class GameComponent {
   playerComputer1$: BehaviorSubject<Player>;
   playerComputer2$: BehaviorSubject<Player>;
   playerComputer3$: BehaviorSubject<Player>;
+  isHumanTurn$: BehaviorSubject<boolean>;
 
   constructor(private gameService: GameService) {
     this.mycards$ = this.getPlayCards();
@@ -39,6 +40,7 @@ export class GameComponent {
     this.playerComputer1$ = this.gameService.PlayerComputer1;
     this.playerComputer2$ = this.gameService.PlayerComputer2;
     this.playerComputer3$ = this.gameService.PlayerComputer3;
+    this.isHumanTurn$ = this.gameService.isHumanTurn;
   }
 
   checkIsLoading(event: Event) {

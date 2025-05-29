@@ -31,6 +31,7 @@ export class GameService {
   private playerComputer2$ = this.createNewPlayer(Pawn.hat);
   private playerComputer3$ = this.createNewPlayer(Pawn.curler);
   private playerToPlay$: BehaviorSubject<Player> = new BehaviorSubject<Player>({...this.playerHuman$.value});
+  private isHumanTurn$ = new BehaviorSubject<boolean>(true);
 
 
   constructor(private httpClient: HttpClient) {
@@ -38,34 +39,45 @@ export class GameService {
   }
 
   async nextPlayerToPlay() {
-    if (this.playerToPlay$.value.name  === this.playerHuman$.value.name ) {
-      this.playerToPlay$.next({ ...this.playerComputer1$.value});
-      await Promise.resolve();
-      await this.computerPlay();
-    } else {
-      if (this.playerToPlay$.value.name  === this.playerComputer1$.value.name ) {
-        this.playerToPlay$.next({...this.playerComputer2$.value});
-        await Promise.resolve();
-        await  this.computerPlay();
-      } else {
-        if (this.playerToPlay$.value.name  === this.playerComputer2$.value.name ) {
-          this.playerToPlay$.next({...this.playerComputer3$.value});
-          await Promise.resolve();
-          await  this.computerPlay();
-        }
-        else {
-          this.playerToPlay$.next({...this.playerHuman$.value});
-        }
+      console.log('Tour du joueur humain terminé.');
+      this.isHumanTurn$.next(false);
+
+      // Les 3 joueurs ordinateurs vont jouer l’un après l’autre
+      const computerPlayers = [
+        this.playerComputer1$,
+        this.playerComputer2$,
+        this.playerComputer3$
+      ];
+
+      for (const player$ of computerPlayers) {
+        this.playerToPlay$.next({ ...player$.value }); // Affiche le joueur courant
+        console.log(`Ordinateur ${player$.value.name} commence son tour...`);
+
+        await this.computerPlay(); // attendre 10s
+
+        console.log(`Ordinateur ${player$.value.name} a terminé son tour.`);
+        // Tu peux ici appeler ta vraie fonction de tour (ex: move, acheter, etc.)
       }
-    }
+
+      // Retour au joueur humain
+      this.playerToPlay$.next({ ...this.playerHuman$.value });
+      console.log('Retour au joueur humain.');
+      this.isHumanTurn$.next(true);
   }
 
-  async computerPlay() {
-    //  console.log("Ordinateur a joué :", this.playerToPlay$.value.name);
-    // await this.sleep(5000);
+async computerPlay() {
+  console.log("⏳ Étape 1 : Vérifie si la case appartient à un joueur...");
+  await this.sleep(500);
 
-    // await  this.nextPlayerToPlay();
-  }
+  console.log("⏳ Étape 2 : Calcule s’il doit payer ou non...");
+  await this.sleep(500);
+
+  console.log("⏳ Étape 3 : Décide s’il veut acheter la propriété...");
+  await this.sleep(500);
+
+  console.log("⏳ Étape 4 : Fin du tour de l’ordinateur.");
+  await this.sleep(500);
+}
 
   sleep(ms: number): Promise<void> {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -273,6 +285,11 @@ export class GameService {
   get PlayerComputer3(): BehaviorSubject<Player> {
     return this.playerComputer3$;
   }
+
+  get isHumanTurn(): BehaviorSubject<boolean> {
+    return this.isHumanTurn$;
+  }
+
 
   get PlayerToPlay(): BehaviorSubject<Player> {
     return this.playerToPlay$;

@@ -1,24 +1,26 @@
-<gano-header [isStartGame]="isStartGame" [boardVisible]="boardShow" (rotateEvent)="rotateBoard()" (newGameEvent)="newGame()"></gano-header>
+<gano-header [isStartGame]="isStartGame " [boardVisible]="boardShow " (rotateEvent)="rotateBoard() " (newGameEvent)="newGame() ">
 
-<div class="newplayer" *ngIf="!isStartGame">
-    <gano-human-player [name]="playerName" (playerChange)="startGame($event)"></gano-human-player>
+</gano-header>
+
+<div class="newplayer " *ngIf="!isStartGame ">
+    <gano-human-player [name]="playerName " (playerChange)="startGame($event) "></gano-human-player>
 </div>
 
-<div class="game" *ngIf="isStartGame">
-    <div class="d-flex flex-wrap">
+<div class="game " *ngIf="isStartGame ">
+    <div class="d-flex flex-wrap ">
 
-        <div *ngIf="boardShow" class="board-parent">
-            <div class="d-flex flex-wrap justify-content-center">
+        <div *ngIf="boardShow " class="board-parent ">
+            <div class="d-flex flex-wrap justify-content-center ">
                 <div>
-                    <gano-board (isLoading)="checkIsLoading($event)" [rotate]="rotation "></gano-board>
+                    <gano-board (isLoading)="checkIsLoading($event) " [rotate]="rotation "></gano-board>
                 </div>
                 <div>
                     <gano-gamecontrol></gano-gamecontrol>
-                    <div *ngIf="true" class="info-players">
-                        <gano-info-player [player]="playerHuman$"></gano-info-player>
-                        <gano-info-player [player]="playerComputer1$"></gano-info-player>
-                        <gano-info-player [player]="playerComputer2$"></gano-info-player>
-                        <gano-info-player [player]="playerComputer3$"></gano-info-player>
+                    <div *ngIf="true " class="info-players ">
+                        <gano-info-player [player]="playerHuman$ "></gano-info-player>
+                        <gano-info-player [player]="playerComputer1$ "></gano-info-player>
+                        <gano-info-player [player]="playerComputer2$ "></gano-info-player>
+                        <gano-info-player [player]="playerComputer3$ "></gano-info-player>
                     </div>
                 </div>
             </div>
@@ -28,3 +30,4 @@
 
     </div>
 </div>
+<div [class.overlay]="!(isHumanTurn$ | async)"></div>
