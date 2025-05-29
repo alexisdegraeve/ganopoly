@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { DoublediceComponent } from "../doubledice/doubledice.component";
 import { GameService } from '../services/game.service';
 import { BehaviorSubject, map, Observable } from 'rxjs';
@@ -21,6 +21,7 @@ export class GamecontrolComponent {
   cellNumber = 1;
   cellCase$: Observable<Case | undefined> = new Observable<Case | undefined>;
   playerToPlay$: BehaviorSubject<Player>;
+  @ViewChild(DoublediceComponent) diceComponent!: DoublediceComponent;
 
 
   // startGame() {
@@ -39,6 +40,13 @@ export class GamecontrolComponent {
 
   constructor(private gameService: GameService) {
     this.playerToPlay$ = this.gameService.PlayerToPlay;
+      this.gameService.RequestDiceRoll$.subscribe((shouldRoll) => {
+    if (shouldRoll) {
+      // L'ordinateur a demandé à lancer les dés
+      this.diceComponent.rollDice();
+      this.gameService.resetDiceRequest();
+    }
+  });
   }
 
 

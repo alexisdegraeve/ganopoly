@@ -32,6 +32,7 @@ export class GameService {
   private playerComputer3$ = this.createNewPlayer(Pawn.curler);
   private playerToPlay$: BehaviorSubject<Player> = new BehaviorSubject<Player>({...this.playerHuman$.value});
   private isHumanTurn$ = new BehaviorSubject<boolean>(true);
+  private requestDiceRoll$ = new BehaviorSubject<boolean>(false);
 
 
   constructor(private httpClient: HttpClient) {
@@ -66,6 +67,9 @@ export class GameService {
   }
 
 async computerPlay() {
+  console.log('Ordinateur va lancer les dés...');
+  this.requestDiceRoll$.next(true);
+
   console.log("⏳ Étape 1 : Vérifie si la case appartient à un joueur...");
   await this.sleep(500);
 
@@ -290,6 +294,14 @@ async computerPlay() {
     return this.isHumanTurn$;
   }
 
+  get RequestDiceRoll$() {
+    return this.requestDiceRoll$.asObservable();
+  }
+  resetDiceRequest() {
+    this.requestDiceRoll$.next(false);
+  }
+
+
 
   get PlayerToPlay(): BehaviorSubject<Player> {
     return this.playerToPlay$;
@@ -310,6 +322,7 @@ async computerPlay() {
   //   this.addProperty([9,10,11], this.playerComputer2$);
   //   this.addProperty([13,15,16], this.playerComputer3$);
   // }
+
 
 }
 

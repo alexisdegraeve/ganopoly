@@ -13,6 +13,7 @@ export class DoublediceComponent {
   @Input() showButton = true;
   score1 = 1;
   score2 = 1;
+  
 
   rollDice() {
     let count = 0;
