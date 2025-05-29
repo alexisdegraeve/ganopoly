@@ -40,6 +40,7 @@ export class GamecontrolComponent {
 
   constructor(private gameService: GameService) {
     this.playerToPlay$ = this.gameService.PlayerToPlay;
+
       this.gameService.RequestDiceRoll$.subscribe((shouldRoll) => {
     if (shouldRoll) {
       // L'ordinateur a demandé à lancer les dés

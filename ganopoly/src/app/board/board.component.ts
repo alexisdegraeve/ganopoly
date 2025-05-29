@@ -3,10 +3,11 @@ import { CellComponent } from "../cell/cell.component";
 import { CommonModule } from '@angular/common';
 import { GameService } from '../services/game.service';
 import { combineLatestWith, map, startWith } from 'rxjs/operators';
-import { Observable, of, Subscription } from 'rxjs';
+import { BehaviorSubject, Observable, of, Subscription } from 'rxjs';
 import { CardType, Case } from '../models/card';
 import { ChanceCardComponent } from "../chance-card/chance-card.component";
 import { CommunityCardComponent } from "../community-card/community-card.component";
+import { Player } from '../models/player';
 
 interface BoardData {
   top: Case[];
@@ -31,9 +32,10 @@ export class BoardComponent implements OnDestroy {
   isLoading$: Observable<boolean>;
   boardData$: Observable<BoardData>;
   private sub = new Subscription();
-
+  players$: Observable<{ human: Player, computer1: Player, computer2: Player, computer3: Player }> ;
 
   constructor(private gameService: GameService) {
+    this.players$ = this.gameService.Players;
     this.topCards$ = this.getCardsInRange(20, 30, 'vertical');
     this.leftCards$ = this.getCardsInRange(11, 19, 'horizontal');
     this.rightCards$ = this.getCardsInRange(31, 39, 'horizontal');

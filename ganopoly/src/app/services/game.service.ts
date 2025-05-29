@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ccCard } from '../models/ccCard';
-import { BehaviorSubject, forkJoin, Observable } from 'rxjs';
+import { BehaviorSubject, combineLatest, forkJoin, map, Observable } from 'rxjs';
 import { Billet } from '../models/billet';
 import { Player } from '../models/player';
 import { Card } from '../models/card';
@@ -12,8 +12,20 @@ import { Pawn } from '../models/pawn';
   providedIn: 'root',
 })
 export class GameService {
-  private dice1: number = 0;
-  private dice2: number = 0;
+  private _dice1: number = 0;
+  public get dice1(): number {
+    return this._dice1;
+  }
+  public set dice1(value: number) {
+    this._dice1 = value;
+  }
+  private _dice2: number = 0;
+  public get dice2(): number {
+    return this._dice2;
+  }
+  public set dice2(value: number) {
+    this._dice2 = value;
+  }
   private chanceCards: ccCard[] = [];
   private communauteCards: ccCard[] = [];
   private banque: Billet[] = [
@@ -54,7 +66,7 @@ export class GameService {
         this.playerToPlay$.next({ ...player$.value }); // Affiche le joueur courant
         console.log(`Ordinateur ${player$.value.name} commence son tour...`);
 
-        await this.computerPlay(); // attendre 10s
+        await this.computerPlay(player$ ); // attendre 10s
 
         console.log(`Ordinateur ${player$.value.name} a terminé son tour.`);
         // Tu peux ici appeler ta vraie fonction de tour (ex: move, acheter, etc.)
@@ -66,9 +78,10 @@ export class GameService {
       this.isHumanTurn$.next(true);
   }
 
-async computerPlay() {
+async computerPlay(player: BehaviorSubject<Player>) {
   console.log('Ordinateur va lancer les dés...');
   this.requestDiceRoll$.next(true);
+  player.next({ ...player.value, currentCase : this.dice1 + this.dice2 });
 
   console.log("⏳ Étape 1 : Vérifie si la case appartient à un joueur...");
   await this.sleep(500);
@@ -292,6 +305,22 @@ async computerPlay() {
 
   get isHumanTurn(): BehaviorSubject<boolean> {
     return this.isHumanTurn$;
+  }
+
+  get Players(): Observable<{ human: Player, computer1: Player, computer2: Player, computer3: Player }> {
+    return combineLatest([
+      this.PlayerHuman,
+      this.PlayerComputer1,
+      this.PlayerComputer2,
+      this.PlayerComputer3
+    ]).pipe(
+      map(([human, c1, c2, c3]) => ({
+        human,
+        computer1: c1,
+        computer2: c2,
+        computer3: c3
+      }))
+    );
   }
 
   get RequestDiceRoll$() {

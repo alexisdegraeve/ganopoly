@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DiceComponent } from "../dice/dice.component";
 import { CommonModule } from '@angular/common';
+import { GameService } from '../services/game.service';
 
 @Component({
   selector: 'gano-doubledice',
@@ -13,7 +14,10 @@ export class DoublediceComponent {
   @Input() showButton = true;
   score1 = 1;
   score2 = 1;
-  
+
+  constructor(private gameService: GameService) {
+
+  }
 
   rollDice() {
     let count = 0;
@@ -25,6 +29,8 @@ export class DoublediceComponent {
       count++;
       if (count >= 3) {
         clearInterval(interval); // arrêter après 10 exécutions (5s)
+        this.gameService.dice1 = this.score1;
+        this.gameService.dice2 = this.score2;
         this.finishRollDiceEvent.emit(this.score1 + this.score2);
       }
     }, 150);

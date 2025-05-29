@@ -19,20 +19,21 @@
 
 <ng-template #boardTemplate>
 
-    <div class="board">
+    <div class="board" *ngIf=" (players$ | async) as players">
+        {{ players.human.currentCase }}
         <div class="board-inside" [style.transform]="'rotateZ(' + rotate + 'deg)'" *ngIf="boardData$ | async as boardData">
             <div class="pions">
-                <div class="pion">
-                    <div class="curler"></div>
+                <div class="pion" [style.right.rem]="players.human.currentCase * 5.25">
+                    <div [ngClass]="players.human.pawnShape"></div>
                 </div>
-                <div class="pion">
-                    <div class=" hat"></div>
+                <div class="pion" [style.right.rem]="players.computer1.currentCase * 5.25">
+                    <div [ngClass]="players.computer1.pawnShape"></div>
                 </div>
-                <div class="pion">
-                    <div class="cat"></div>
+                <div class="pion" [style.right.rem]="players.computer2.currentCase * 5.25">
+                    <div [ngClass]="players.computer2.pawnShape"></div>
                 </div>
-                <div class="pion">
-                    <div class="dog"></div>
+                <div class="pion" [style.right.rem]="players.computer3.currentCase * 5.25">
+                    <div [ngClass]="players.computer3.pawnShape"></div>
                 </div>
             </div>
             <div class="board-row top">
