@@ -4,6 +4,23 @@
   'cell-square': isCorner
 }">
 
+    <div class="pions-container" *ngIf="false">
+        <div class="pions">
+            <div class="pion">
+                <div class="cat"></div>
+            </div>
+            <div class="pion">
+                <div class="dog"></div>
+            </div>
+            <div class="pion">
+                <div class="curler"></div>
+            </div>
+            <div class="pion">
+                <div class="hat"></div>
+            </div>
+        </div>
+    </div>
+
     <ng-container *ngIf="cardtype === CardType.immobilier">
         <div *ngIf="!isCorner" class="cell-top" [style.backgroundColor]="color">
             <div class="houses" [class.rotate-houses-90]="orientation==='horizontal'">
