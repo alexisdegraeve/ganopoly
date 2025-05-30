@@ -14,5 +14,5 @@ import { map } from 'rxjs/operators';
 })
 export class CardsComponent {
    @Input() cards:Card[] | null= [];
-
+   @Input() card:Card | null = null;
 }

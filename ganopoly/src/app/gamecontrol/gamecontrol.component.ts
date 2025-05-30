@@ -3,13 +3,16 @@ import { Component, ViewChild } from '@angular/core';
 import { DoublediceComponent } from "../doubledice/doubledice.component";
 import { GameService } from '../services/game.service';
 import { BehaviorSubject, map, Observable } from 'rxjs';
-import { Case } from '../models/card';
+import { Case, CardType, Card } from '../models/card';
 import { CellComponent } from '../cell/cell.component';
 import { Player } from '../models/player';
+import { CardsComponent } from '../cards/cards.component';
+import { CommunityCardComponent } from "../community-card/community-card.component";
+import { ChanceCardComponent } from '../chance-card/chance-card.component';
 
 @Component({
   selector: 'gano-gamecontrol',
-  imports: [CommonModule, DoublediceComponent, CellComponent],
+  imports: [CommonModule, DoublediceComponent, CellComponent, CardsComponent, CommunityCardComponent, ChanceCardComponent],
   templateUrl: './gamecontrol.component.html',
   styleUrl: './gamecontrol.component.scss'
 })
@@ -20,9 +23,11 @@ export class GamecontrolComponent {
   isHumanAction = false;
   cellNumber = 1;
   cellCase$: Observable<Case | undefined> | undefined = new Observable<Case | undefined>;
+  card$: Observable<Card | undefined>  | undefined = new Observable<Card | undefined>;
   playerToPlay$: BehaviorSubject<Player>;
   @ViewChild(DoublediceComponent) diceComponent!: DoublediceComponent;
   isHumanTurn$: BehaviorSubject<boolean> = new  BehaviorSubject<boolean>(true);
+  CardType = CardType;
 
 
   // startGame() {
@@ -38,6 +43,7 @@ export class GamecontrolComponent {
       this.isHumanAction = true;
       this.gameService.updateCurrentCasePlayer(this.gameService.PlayerHuman);
       this.cellCase$ = this.getCellCase(this.gameService.PlayerHuman.value?.currentCase);
+      this.card$ = this.getMyCard(this.gameService.PlayerHuman.value?.currentCase);
       console.log('finish roll dice');
     }
 
@@ -46,6 +52,7 @@ export class GamecontrolComponent {
   constructor(private gameService: GameService) {
     this.playerToPlay$ = this.gameService.PlayerToPlay;
     this.isHumanTurn$ = this.gameService.isHumanTurn;
+
 
       this.gameService.RequestDiceRoll$.subscribe(async (shouldRoll) => {
     if (shouldRoll) {
@@ -102,4 +109,11 @@ waitDiceRoll(): Promise<void> {
       })
     );
   }
+
+  private getMyCard(cellNb: number): Observable<Card | undefined > {
+    return this.gameService.getCards().pipe(
+      map(cards => cards.find(c => c.case === cellNb))
+    );
+  }
+
 }
