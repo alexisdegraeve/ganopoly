@@ -38,76 +38,90 @@ export class GameService {
     { euro: 500, quantity: 30, color: 'orange' },
   ];
 
-  private playerHuman$ = this.createNewPlayer(Pawn.cat);
-  private playerComputer1$ = this.createNewPlayer(Pawn.dog);
-  private playerComputer2$ = this.createNewPlayer(Pawn.hat);
-  private playerComputer3$ = this.createNewPlayer(Pawn.curler);
-  private playerToPlay$: BehaviorSubject<Player> = new BehaviorSubject<Player>({...this.playerHuman$.value});
+  private usedFirstnames: Set<string>;
+  private playerHuman$: BehaviorSubject<Player>;
+  private playerComputer1$: BehaviorSubject<Player>;
+  private playerComputer2$: BehaviorSubject<Player>;
+  private playerComputer3$: BehaviorSubject<Player>;
+  private playerToPlay$: BehaviorSubject<Player>;
   private isHumanTurn$ = new BehaviorSubject<boolean>(true);
   private requestDiceRoll$ = new BehaviorSubject<boolean>(false);
   public diceRollCompleted$ = new Subject<void>();
 
 
+
   constructor(private httpClient: HttpClient) {
-    // this.playerToPlay$.next({...this.playerHuman$.value});
+    this.usedFirstnames = new Set();
+    this.playerHuman$ = this.createNewPlayer(Pawn.cat);
+    this.playerComputer1$ = this.createNewPlayer(Pawn.dog);
+    this.playerComputer2$ = this.createNewPlayer(Pawn.hat);
+    this.playerComputer3$ = this.createNewPlayer(Pawn.curler);
+    this.playerToPlay$ = new BehaviorSubject<Player>({ ...this.playerHuman$.value });
   }
 
   async nextPlayerToPlay() {
-      console.log('Tour du joueur humain terminé.');
-      this.isHumanTurn$.next(false);
+    console.log('Tour du joueur humain terminé.');
+    this.isHumanTurn$.next(false);
 
-      // Les 3 joueurs ordinateurs vont jouer l’un après l’autre
-      const computerPlayers = [
-        this.playerComputer1$,
-        this.playerComputer2$,
-        this.playerComputer3$
-      ];
+    // Les 3 joueurs ordinateurs vont jouer l’un après l’autre
+    const computerPlayers = [
+      this.playerComputer1$,
+      this.playerComputer2$,
+      this.playerComputer3$
+    ];
 
-      for (const player$ of computerPlayers) {
-        this.playerToPlay$.next({ ...player$.value }); // Affiche le joueur courant
-        console.log(`Ordinateur ${player$.value.name} commence son tour...`);
+    for (const player$ of computerPlayers) {
+      this.playerToPlay$.next({ ...player$.value }); // Affiche le joueur courant
+      console.log(`Ordinateur ${player$.value.name} commence son tour...`);
 
-        await this.computerPlay(player$ ); // attendre 10s
+      await this.computerPlay(player$); // attendre 10s
 
-        console.log(`Ordinateur ${player$.value.name} a terminé son tour.`);
-        // Tu peux ici appeler ta vraie fonction de tour (ex: move, acheter, etc.)
-      }
+      console.log(`Ordinateur ${player$.value.name} a terminé son tour.`);
+      // Tu peux ici appeler ta vraie fonction de tour (ex: move, acheter, etc.)
+    }
 
-      // Retour au joueur humain
-      this.playerToPlay$.next({ ...this.playerHuman$.value });
-      console.log('Retour au joueur humain.');
-      this.isHumanTurn$.next(true);
+    // Retour au joueur humain
+    this.playerToPlay$.next({ ...this.playerHuman$.value });
+    console.log('Retour au joueur humain.');
+    this.isHumanTurn$.next(true);
   }
 
-async computerPlay(player: BehaviorSubject<Player>) {
-  console.log('Ordinateur va lancer les dés...');
-  this.requestDiceRoll$.next(true);
-  await firstValueFrom(this.diceRollCompleted$);
-  const current = structuredClone(player.value);
-  current.currentCase = (current.currentCase + this.dice1 + this.dice2) % 40;
-  player.next(current);
+  async computerPlay(player: BehaviorSubject<Player>) {
+    console.log('Ordinateur va lancer les dés...');
+    this.requestDiceRoll$.next(true);
+    await firstValueFrom(this.diceRollCompleted$);
+    const current = structuredClone(player.value);
+    current.currentCase = (current.currentCase + this.dice1 + this.dice2) % 40;
+    player.next(current);
 
-  console.log("⏳ Étape 1 : Vérifie si la case appartient à un joueur...");
-  await this.sleep(500);
+    console.log("⏳ Étape 1 : Vérifie si la case appartient à un joueur...");
+    await this.sleep(500);
 
-  console.log("⏳ Étape 2 : Calcule s’il doit payer ou non...");
-  await this.sleep(500);
+    console.log("⏳ Étape 2 : Calcule s’il doit payer ou non...");
+    await this.sleep(500);
 
-  console.log("⏳ Étape 3 : Décide s’il veut acheter la propriété...");
-  await this.sleep(500);
+    console.log("⏳ Étape 3 : Décide s’il veut acheter la propriété...");
+    await this.sleep(500);
 
-  console.log("⏳ Étape 4 : Fin du tour de l’ordinateur.");
-  await this.sleep(500);
-}
+    console.log("⏳ Étape 4 : Fin du tour de l’ordinateur.");
+    await this.sleep(500);
+  }
 
   sleep(ms: number): Promise<void> {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
 
   getRandomFirstname(): string {
     const firstnames = ['Alice', 'Bob', 'Charlie', 'Diana', 'Ethan', 'Fiona', 'George', 'Hana', 'Isaac', 'Julia'];
-    const index = Math.floor(Math.random() * firstnames.length);
-    return firstnames[index];
+    const available = firstnames.filter(name => !this.usedFirstnames.has(name));
+    if (available.length === 0) {
+      this.usedFirstnames.clear();
+      available.push(...firstnames);
+    }
+    const index = Math.floor(Math.random() * available.length);
+    const selected = available[index];
+    this.usedFirstnames.add(selected);
+    return selected;
   }
 
   getRandomPawn(pawnPlayer: Pawn) {
@@ -170,7 +184,8 @@ async computerPlay(player: BehaviorSubject<Player>) {
 
   startGame(playerChange: { name: string, pawn: Pawn }): Observable<void> {
     console.log('start game ');
-    console.log(name)
+    console.log(name);
+    this.usedFirstnames.clear();
     this.getRandomPawn(playerChange.pawn);
     const current = structuredClone(this.playerHuman$.value);
     current.name = playerChange.name;
