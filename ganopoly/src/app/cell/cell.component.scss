@@ -163,9 +163,9 @@
 
 .pions-container {
     position: absolute;
-    width: 12rem;
+    width: 10rem;
     .pions {
-        transform: scale(0.25);
+        zoom: 0.25;
         display: flex;
         justify-content: center;
         flex-direction: row;

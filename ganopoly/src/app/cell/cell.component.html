@@ -3,24 +3,29 @@
   'cell-h': !isCorner && orientation === 'horizontal',
   'cell-square': isCorner
 }">
-    H: {{ players?.human?.currentCase }}; C1: {{ players?.computer1?.currentCase }} C2: {{ players?.computer2?.currentCase }} C3: {{ players?.computer3?.currentCase }}
-    <div class="pions-container" *ngIf="false">
-
-
-        <div class="pions">
+    <div class="pions-container">
+        <div class="pions" *ngIf="(nummCell - 1 )===players?.human?.currentCase">
             <div class="pion">
-                <div class="cat"></div>
-            </div>
-            <div class="pion">
-                <div class="dog"></div>
-            </div>
-            <div class="pion">
-                <div class="curler"></div>
-            </div>
-            <div class="pion">
-                <div class="hat"></div>
+                <div [class]="players?.human?.pawnShape"></div>
             </div>
         </div>
+        <div class="pions" *ngIf="(nummCell - 1 )===players?.computer1?.currentCase">
+            <div class="pion">
+                <div [class]="players?.computer1?.pawnShape"></div>
+            </div>
+        </div>
+        <div class="pions" *ngIf="(nummCell - 1 )===players?.computer2?.currentCase">
+            <div class="pion">
+                <div [class]="players?.computer2?.pawnShape"></div>
+            </div>
+        </div>
+        <div class="pions" *ngIf="(nummCell - 1 )===players?.computer3?.currentCase">
+            <div class="pion">
+                <div [class]="players?.computer3?.pawnShape"></div>
+            </div>
+        </div>
+
+
     </div>
 
     <ng-container *ngIf="cardtype === CardType.immobilier">
