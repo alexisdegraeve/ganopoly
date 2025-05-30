@@ -19,7 +19,7 @@ export class GamecontrolComponent {
   showButtonRollDice = true;
   isHumanAction = false;
   cellNumber = 1;
-  cellCase$: Observable<Case | undefined> = new Observable<Case | undefined>;
+  cellCase$: Observable<Case | undefined> | undefined = new Observable<Case | undefined>;
   playerToPlay$: BehaviorSubject<Player>;
   @ViewChild(DoublediceComponent) diceComponent!: DoublediceComponent;
   isHumanTurn$: BehaviorSubject<boolean> = new  BehaviorSubject<boolean>(true);
@@ -44,7 +44,6 @@ export class GamecontrolComponent {
   }
 
   constructor(private gameService: GameService) {
-    this.cellCase$ = this.getCellCase(this.gameService.PlayerToPlay.value?.currentCase);
     this.playerToPlay$ = this.gameService.PlayerToPlay;
     this.isHumanTurn$ = this.gameService.isHumanTurn;
 
@@ -75,10 +74,12 @@ waitDiceRoll(): Promise<void> {
   buy() {
     const cellNb = this.gameService.PlayerHuman.value.currentCase;
     this.gameService.addProperty(cellNb, this.gameService.PlayerHuman);
+    this.cellCase$ = undefined;
     this.gameService.nextPlayerToPlay();
   }
 
   skip() {
+    this.cellCase$ = undefined;
     this.gameService.nextPlayerToPlay();
   }
 
