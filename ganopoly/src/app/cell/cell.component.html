@@ -3,23 +3,24 @@
   'cell-h': !isCorner && orientation === 'horizontal',
   'cell-square': isCorner
 }">
-    <div class="pions-container">
-        <div class="pions" *ngIf="(nummCell - 1 )===players?.human?.currentCase">
+    <div class="pions-container" [ngClass]="{'pions-v': !isCorner && orientation === 'vertical', 'pions-h': !isCorner && orientation === 'horizontal', 'pions-square': isCorner
+}">
+        <div class="pions" *ngIf="(nummCell  )===players?.human?.currentCase">
             <div class="pion">
                 <div [class]="players?.human?.pawnShape"></div>
             </div>
         </div>
-        <div class="pions" *ngIf="(nummCell - 1 )===players?.computer1?.currentCase">
+        <div class="pions" *ngIf="(nummCell  )===players?.computer1?.currentCase">
             <div class="pion">
                 <div [class]="players?.computer1?.pawnShape"></div>
             </div>
         </div>
-        <div class="pions" *ngIf="(nummCell - 1 )===players?.computer2?.currentCase">
+        <div class="pions" *ngIf="(nummCell  )===players?.computer2?.currentCase">
             <div class="pion">
                 <div [class]="players?.computer2?.pawnShape"></div>
             </div>
         </div>
-        <div class="pions" *ngIf="(nummCell - 1 )===players?.computer3?.currentCase">
+        <div class="pions" *ngIf="(nummCell  )===players?.computer3?.currentCase">
             <div class="pion">
                 <div [class]="players?.computer3?.pawnShape"></div>
             </div>

@@ -163,7 +163,21 @@
 
 .pions-container {
     position: absolute;
-    width: 10rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.25rem;
+    z-index: 200;
+    &.pions-v {
+        width: 4rem;
+    }
+    &.pions-h {
+        width: 6rem;
+    }
+    &.pions-square {
+        width: 6rem;
+    }
     .pions {
         zoom: 0.25;
         display: flex;
