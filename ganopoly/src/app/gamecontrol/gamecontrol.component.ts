@@ -32,12 +32,15 @@ export class GamecontrolComponent {
   // }
 
   finishRollDice() {
-    console.log('finishRollDice - current player ', this.gameService.PlayerToPlay.value.name);
-    this.showButtonRollDice = false;
-    this.isHumanAction = true;
-    this.gameService.updateCurrentCasePlayer(this.gameService.PlayerHuman);
-    this.cellCase$ = this.getCellCase(this.gameService.PlayerHuman.value?.currentCase);
-    console.log('finish roll dice');
+    if(this.isHumanTurn$.value) {
+      console.log('finishRollDice - current player ', this.gameService.PlayerToPlay.value.name);
+      this.showButtonRollDice = false;
+      this.isHumanAction = true;
+      this.gameService.updateCurrentCasePlayer(this.gameService.PlayerHuman);
+      this.cellCase$ = this.getCellCase(this.gameService.PlayerHuman.value?.currentCase);
+      console.log('finish roll dice');
+    }
+
   }
 
   constructor(private gameService: GameService) {
