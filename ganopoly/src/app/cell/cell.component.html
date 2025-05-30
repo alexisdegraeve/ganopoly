@@ -3,8 +3,10 @@
   'cell-h': !isCorner && orientation === 'horizontal',
   'cell-square': isCorner
 }">
-
+    H: {{ players?.human?.currentCase }}; C1: {{ players?.computer1?.currentCase }} C2: {{ players?.computer2?.currentCase }} C3: {{ players?.computer3?.currentCase }}
     <div class="pions-container" *ngIf="false">
+
+
         <div class="pions">
             <div class="pion">
                 <div class="cat"></div>

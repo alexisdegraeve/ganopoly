@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { CardType } from '../models/card';
+import { Player } from '../models/player';
 
 @Component({
   selector: 'gano-cell',
@@ -17,7 +18,9 @@ export class CellComponent {
   @Input() color: string | undefined = 'red';
   @Input() cardtype: CardType = CardType.immobilier;
   @Input() info!: string;
-  
+  @Input() players!: { human: Player, computer1: Player, computer2: Player, computer3: Player } ;
+  @Input() nummCell: number = 0;
+
   CardType = CardType;
 
 }

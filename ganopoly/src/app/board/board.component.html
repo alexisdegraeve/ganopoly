@@ -20,31 +20,18 @@
 <ng-template #boardTemplate>
 
     <div class="board" *ngIf=" (players$ | async) as players">
-        {{ players.human.currentCase }}
         <div class="board-inside" [style.transform]="'rotateZ(' + rotate + 'deg)'" *ngIf="boardData$ | async as boardData">
-            <div class="pions">
-                <div class="pion" [style.right.rem]="players.human.currentCase * 5.25">
-                    <div [ngClass]="players.human.pawnShape"></div>
-                </div>
-                <div class="pion" [style.right.rem]="players.computer1.currentCase * 5.25">
-                    <div [ngClass]="players.computer1.pawnShape"></div>
-                </div>
-                <div class="pion" [style.right.rem]="players.computer2.currentCase * 5.25">
-                    <div [ngClass]="players.computer2.pawnShape"></div>
-                </div>
-                <div class="pion" [style.right.rem]="players.computer3.currentCase * 5.25">
-                    <div [ngClass]="players.computer3.pawnShape"></div>
-                </div>
-            </div>
             <div class="board-row top">
-                <gano-cell *ngFor="let cell of boardData.top " [color]="cell.color " [cardtype]="cell.cardtype " [name]="cell.name " [ville]="cell.ville " [price]="cell.price " [orientation]="cell.orientation " [isCorner]="cell.isCorner ">
+                <gano-cell *ngFor="let cell of boardData.top; index as index" [nummCell]="index + 20" [players]="players" [color]="cell.color " [cardtype]="cell.cardtype " [name]="cell.name " [ville]="cell.ville " [price]="cell.price " [orientation]="cell.orientation "
+                    [isCorner]="cell.isCorner ">
                 </gano-cell>
             </div>
 
             <div class="board-middle">
                 <div class="left ">
                     <div class="board-row">
-                        <gano-cell *ngFor="let cell of  boardData.left " [color]="cell.color " [cardtype]="cell.cardtype " [name]="cell.name " [ville]="cell.ville " [price]="cell.price " [orientation]="cell.orientation " [isCorner]="cell.isCorner ">
+                        <gano-cell *ngFor="let cell of  boardData.left; index as index" [nummCell]="index + 11" [players]="players" [color]="cell.color " [cardtype]="cell.cardtype " [name]="cell.name " [ville]="cell.ville " [price]="cell.price " [orientation]="cell.orientation "
+                            [isCorner]="cell.isCorner ">
                         </gano-cell>
                     </div>
                 </div>
@@ -62,14 +49,16 @@
                 </div>
                 <div class="right ">
                     <div class="board-row">
-                        <gano-cell *ngFor="let cell of boardData.right" [color]="cell.color " [cardtype]="cell.cardtype " [name]="cell.name " [ville]="cell.ville " [price]="cell.price " [orientation]="cell.orientation " [isCorner]="cell.isCorner ">
+                        <gano-cell *ngFor="let cell of boardData.right; index as index" [nummCell]="index + 31" [players]="players" [color]="cell.color " [cardtype]="cell.cardtype " [name]="cell.name " [ville]="cell.ville " [price]="cell.price " [orientation]="cell.orientation "
+                            [isCorner]="cell.isCorner ">
                         </gano-cell>
                     </div>
                 </div>
             </div>
 
             <div class="board-row below">
-                <gano-cell *ngFor="let cell of boardData.bottom " [info]="cell.info " [color]="cell.color " [cardtype]="cell.cardtype " [name]="cell.name " [ville]="cell.ville " [price]="cell.price " [orientation]="cell.orientation " [isCorner]="cell.isCorner ">
+                <gano-cell *ngFor="let cell of boardData.bottom; index as index" [nummCell]="index" [players]="players" [info]="cell.info " [color]="cell.color " [cardtype]="cell.cardtype " [name]="cell.name " [ville]="cell.ville " [price]="cell.price " [orientation]="cell.orientation "
+                    [isCorner]="cell.isCorner ">
                 </gano-cell>
             </div>
         </div>
