@@ -91,7 +91,8 @@ export class GameService {
     this.requestDiceRoll$.next(true);
     await firstValueFrom(this.diceRollCompleted$);
     const current = structuredClone(player.value);
-    current.currentCase = (current.currentCase + this.dice1 + this.dice2) % 40;
+    const nextCase = (current.currentCase + this.dice1 + this.dice2);
+    current.currentCase =  nextCase < 40 ? nextCase : nextCase % 40;
     player.next(current);
 
     console.log("⏳ Étape 1 : Vérifie si la case appartient à un joueur...");
@@ -144,7 +145,8 @@ export class GameService {
 
   updateCurrentCasePlayer(player: BehaviorSubject<Player>) {
     const currentPlayer = structuredClone(player.value);
-    currentPlayer.currentCase = (currentPlayer.currentCase + this.dice1 + this.dice2) % 40;
+    const nextCase = (currentPlayer.currentCase + this.dice1 + this.dice2);
+    currentPlayer.currentCase =  nextCase < 40 ? nextCase : nextCase % 40;
     player.next(currentPlayer);
   }
 
