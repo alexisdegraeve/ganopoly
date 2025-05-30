@@ -4,10 +4,10 @@
     </div>
     <div class="card-body">
         <ng-container *ngIf="isStartGame">
-            <gano-doubledice [showButton]="showButtonRollDice" (finishRollDiceEvent)="finishRollDice($event)"></gano-doubledice>
+            <gano-doubledice [showButton]="isHumanTurn$.value" (finishRollDiceEvent)="finishRollDice()"></gano-doubledice>
         </ng-container>
 
-        <ng-container *ngIf="isHumanAction">
+        <ng-container *ngIf="(isHumanTurn$ | async)">
             card to play ?
 
             <ng-container *ngIf="cellCase$ | async as cell">

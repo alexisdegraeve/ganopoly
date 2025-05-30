@@ -81,7 +81,9 @@ export class GameService {
 async computerPlay(player: BehaviorSubject<Player>) {
   console.log('Ordinateur va lancer les dés...');
   this.requestDiceRoll$.next(true);
-  player.next({ ...player.value, currentCase : this.dice1 + this.dice2 });
+  const current = structuredClone(player.value);
+  current.currentCase = (current.currentCase + this.dice1 + this.dice2) % 40;
+  player.next(current);
 
   console.log("⏳ Étape 1 : Vérifie si la case appartient à un joueur...");
   await this.sleep(500);
@@ -119,23 +121,21 @@ async computerPlay(player: BehaviorSubject<Player>) {
 
   }
   updatePawnPlayer(player: BehaviorSubject<Player>, newPawn: Pawn) {
-    const currentPlayer = player.value;
-    const updatedPlayer = { ...currentPlayer, pawnShape: newPawn };
-    player.next(updatedPlayer);
+    const currentPlayer = structuredClone(player.value);
+    currentPlayer.pawnShape = newPawn;
+    player.next(currentPlayer);
   }
 
-  updateCurrentCasePlayer(player: BehaviorSubject<Player>, currentCase: number) {
-    const currentPlayer = player.value;
-    const updatedPlayer = { ...currentPlayer, currentCase: currentPlayer.currentCase + currentCase };
-    player.next(updatedPlayer);
+  updateCurrentCasePlayer(player: BehaviorSubject<Player>) {
+    const currentPlayer = structuredClone(player.value);
+    currentPlayer.currentCase = (currentPlayer.currentCase + this.dice1 + this.dice2) % 40;
+    player.next(currentPlayer);
   }
 
   updatePropertiesPlayer(player: BehaviorSubject<Player>, propertyCase: number) {
-    const currentPlayer = player.value;
-    let properties = currentPlayer.properties;
-    properties.push(propertyCase);
-    const updatedPlayer = { ...currentPlayer, properties: properties };
-    player.next(updatedPlayer);
+    const currentPlayer = structuredClone(player.value);
+    currentPlayer.properties.push(propertyCase);
+    player.next(currentPlayer);
   }
 
   shuffleArrayGeneric<T>(array: T[]): T[] {
@@ -170,9 +170,14 @@ async computerPlay(player: BehaviorSubject<Player>) {
     console.log('start game ');
     console.log(name)
     this.getRandomPawn(playerChange.pawn);
-    const currentPlayer = {...this.playerHuman$.value};
-    const updatedPlayer = { ...currentPlayer, name: playerChange.name, pawnShape: playerChange.pawn };
-    this.playerHuman$.next(updatedPlayer);
+    const current = structuredClone(this.playerHuman$.value);
+    current.name = playerChange.name;
+    current.pawnShape = playerChange.pawn;
+    this.playerHuman$.next(current);
+    this.playerToPlay$.next(current);
+
+
+
     return new Observable<void>((observer) => {
       forkJoin({
         chanceCards: this.httpClient.get<ccCard[]>('/cards/chance.json'),
@@ -337,11 +342,11 @@ async computerPlay(player: BehaviorSubject<Player>) {
   }
 
   addProperty(ganocase: number, player: BehaviorSubject<Player>) {
-    const currentPlayer = player.value;
-    const currentProperties = [...currentPlayer.properties, ganocase];
+    const current = structuredClone(player.value);
+    current.properties.push(ganocase);
     // currentProperties.push(ganocase);
-    const updatedPlayer = { ...currentPlayer, properties: currentProperties };
-    player.next(updatedPlayer);
+    // const updatedPlayer = { ...currentPlayer, properties: currentProperties };
+    player.next(current);
   }
 
 

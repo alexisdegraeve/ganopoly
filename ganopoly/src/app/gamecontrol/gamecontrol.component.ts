@@ -22,6 +22,7 @@ export class GamecontrolComponent {
   cellCase$: Observable<Case | undefined> = new Observable<Case | undefined>;
   playerToPlay$: BehaviorSubject<Player>;
   @ViewChild(DoublediceComponent) diceComponent!: DoublediceComponent;
+  isHumanTurn$: BehaviorSubject<boolean> = new  BehaviorSubject<boolean>(true);
 
 
   // startGame() {
@@ -30,16 +31,18 @@ export class GamecontrolComponent {
   //   this.isHumanAction = false;
   // }
 
-  finishRollDice(diceNumber: number) {
+  finishRollDice() {
+    console.log('finishRollDice - current player ', this.gameService.PlayerToPlay.value.name);
     this.showButtonRollDice = false;
     this.isHumanAction = true;
-    this.gameService.updateCurrentCasePlayer(this.gameService.PlayerHuman, diceNumber);
+    this.gameService.updateCurrentCasePlayer(this.gameService.PlayerHuman);
     this.cellCase$ = this.getCellCase(this.gameService.PlayerHuman.value?.currentCase);
     console.log('finish roll dice');
   }
 
   constructor(private gameService: GameService) {
     this.playerToPlay$ = this.gameService.PlayerToPlay;
+    this.isHumanTurn$ = this.gameService.isHumanTurn;
 
       this.gameService.RequestDiceRoll$.subscribe((shouldRoll) => {
     if (shouldRoll) {
@@ -48,6 +51,8 @@ export class GamecontrolComponent {
       this.gameService.resetDiceRequest();
     }
   });
+
+
   }
 
 
