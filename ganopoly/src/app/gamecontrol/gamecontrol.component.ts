@@ -47,16 +47,28 @@ export class GamecontrolComponent {
     this.playerToPlay$ = this.gameService.PlayerToPlay;
     this.isHumanTurn$ = this.gameService.isHumanTurn;
 
-      this.gameService.RequestDiceRoll$.subscribe((shouldRoll) => {
+      this.gameService.RequestDiceRoll$.subscribe(async (shouldRoll) => {
     if (shouldRoll) {
       // L'ordinateur a demandé à lancer les dés
-      this.diceComponent.rollDice();
+      await this.waitDiceRoll();
       this.gameService.resetDiceRequest();
+        this.gameService.diceRollCompleted$.next();
     }
   });
 
 
   }
+
+
+waitDiceRoll(): Promise<void> {
+  return new Promise((resolve) => {
+    const sub = this.diceComponent.finishRollDiceEvent.subscribe(() => {
+      sub.unsubscribe(); // propre
+      resolve(); // le dé a fini
+    });
+    this.diceComponent.rollDice(); // déclenche le setInterval
+  });
+}
 
 
   buy() {

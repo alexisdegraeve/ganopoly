@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ccCard } from '../models/ccCard';
-import { BehaviorSubject, combineLatest, forkJoin, map, Observable } from 'rxjs';
+import { BehaviorSubject, combineLatest, firstValueFrom, forkJoin, map, Observable, Subject } from 'rxjs';
 import { Billet } from '../models/billet';
 import { Player } from '../models/player';
 import { Card } from '../models/card';
@@ -45,6 +45,7 @@ export class GameService {
   private playerToPlay$: BehaviorSubject<Player> = new BehaviorSubject<Player>({...this.playerHuman$.value});
   private isHumanTurn$ = new BehaviorSubject<boolean>(true);
   private requestDiceRoll$ = new BehaviorSubject<boolean>(false);
+  public diceRollCompleted$ = new Subject<void>();
 
 
   constructor(private httpClient: HttpClient) {
@@ -81,6 +82,7 @@ export class GameService {
 async computerPlay(player: BehaviorSubject<Player>) {
   console.log('Ordinateur va lancer les dés...');
   this.requestDiceRoll$.next(true);
+  await firstValueFrom(this.diceRollCompleted$);
   const current = structuredClone(player.value);
   current.currentCase = (current.currentCase + this.dice1 + this.dice2) % 40;
   player.next(current);
