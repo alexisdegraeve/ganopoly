@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { CSP_NONCE, Injectable } from '@angular/core';
 import { ccCard } from '../models/ccCard';
 import { BehaviorSubject, combineLatest, firstValueFrom, forkJoin, map, Observable, Subject } from 'rxjs';
 import { Billet } from '../models/billet';
@@ -360,13 +360,137 @@ export class GameService {
     return this.playerToPlay$;
   }
 
-  addProperty(ganocase: number, player: BehaviorSubject<Player>) {
+  async addProperty(ganocase: number, player: BehaviorSubject<Player>) {
+    // Pay Before
+    console.log('BEFORE TO CHECK !! : ', this.banque);
+    console.log('BEFORE TO CHECK !! : ',  player.value);
+    const result = await this.payToBank(ganocase, player);
+
+    if (result === false) {
+      console.warn("Le joueur n'a pas assez d'argent pour acheter la propriété");
+      return;
+    }
+
+    console.log('AFTER TO CHECK !! : ', this.banque);
+    console.log('AFTER TO CHECK !! : ',  player.value);
+
     const current = structuredClone(player.value);
     current.properties.push(ganocase);
     // currentProperties.push(ganocase);
     // const updatedPlayer = { ...currentPlayer, properties: currentProperties };
     player.next(current);
   }
+
+
+
+  async payToBank(ganocase: number, player: BehaviorSubject<Player>): Promise<false | Billet[]> {
+  console.log('Billets du joueur avant paiement :', player.value.billets);
+
+  const checkCards$ = this.getCards().pipe(
+    map(cards => cards.filter(card => card.case === ganocase))
+  );
+
+  const checkCards = await firstValueFrom(checkCards$);
+
+  if (checkCards.length === 0) {
+    console.warn('Aucune carte trouvée dans les propriétés du joueur');
+    return false;
+  }
+
+  const lastCard = checkCards[checkCards.length - 1];
+  const montant = lastCard.prix;
+  console.log('Dernière carte :', lastCard);
+
+  const billetsPlayer: Billet[] = structuredClone(player.value.billets);
+  const billetsBanque: Billet[] = structuredClone(this.banque);
+  let reste = montant;
+
+  // Trier les billets du joueur du plus grand au plus petit
+  const sortedBillets = [...billetsPlayer].sort((a, b) => b.euro - a.euro);
+
+  const paiement: Billet[] = [];
+
+  for (const billet of sortedBillets) {
+    if (reste <= 0) break;
+
+    const maxUtilisables = Math.min(Math.floor(reste / billet.euro), billet.quantity);
+    if (maxUtilisables > 0) {
+      paiement.push({
+        euro: billet.euro,
+        quantity: maxUtilisables,
+        color: billet.color
+      });
+      reste -= maxUtilisables * billet.euro;
+    }
+  }
+
+  if (reste > 0) {
+    console.warn('Le joueur ne peut pas payer le montant demandé');
+    return false; // Il ne peut pas payer
+  }
+
+  // Mise à jour des billets joueur et banque
+  const updatedBilletsPlayer: Billet[] = billetsPlayer.map(bp => {
+    const billetPaiement = paiement.find(p => p.euro === bp.euro);
+    if (billetPaiement) {
+      return {
+        ...bp,
+        quantity: bp.quantity - billetPaiement.quantity
+      };
+    }
+    return bp;
+  });
+
+  const updatedBanque: Billet[] = billetsBanque.map(bb => {
+    const billetPaiement = paiement.find(p => p.euro === bb.euro);
+    if (billetPaiement) {
+      return {
+        ...bb,
+        quantity: bb.quantity + billetPaiement.quantity
+      };
+    }
+    return bb;
+  });
+
+  // Appliquer les changements
+  this.banque = updatedBanque;
+  player.next({ ...player.value, billets: updatedBilletsPlayer });
+
+  console.log('Paiement effectué :', paiement);
+
+  return updatedBilletsPlayer;
+}
+
+
+  // async payToBank(player: BehaviorSubject<Player>): Promise<Billet[]> {
+  //    console.log('billets player ', player.value.billets);
+  //    //const total = player.value.properties;
+  //    const billetsPlayer: Billet[] = player.value.billets;
+  //    let newBilletsPlayer: Billet[] = structuredClone(player.value.billets);
+  //    const checkCards$ = combineLatest([
+  //       player,
+  //       this.getCards() // La liste des cartes
+  //     ]).pipe(
+  //       map(([player, cards]) =>
+  //         cards.filter(card => player.properties.includes(card.case))
+  //       )
+  //     );
+  //     const checkCards = await firstValueFrom(checkCards$);
+  //     console.log('checkCards :', checkCards);
+  //     const lastCard = checkCards[checkCards.length - 1];
+  //     console.log('lastCard :', lastCard);
+
+  //     let reste = lastCard.prix;
+  //     billetsPlayer.forEach((billet: Billet) => {
+  //       if(billet.euro * billet.quantity > 0 ) {
+  //         const newquantity = reste / (billet.euro * billet.quantity);
+  //         reste = reste % (billet.euro * billet.quantity);
+  //         newBilletsPlayer.filter(newbillet => newbillet.euro === billet.euro);
+  //       }
+  //     });
+
+  //    return newBilletsPlayer;
+  // }
 
 
   // testAddProperties() {
