@@ -7,20 +7,20 @@
             <gano-doubledice [showButton]="isHumanTurn$.value" (finishRollDiceEvent)="finishRollDice()"></gano-doubledice>
         </ng-container>
 
-        <ng-container *ngIf="(isHumanTurn$ | async)">
-            card to play ?
+        <ng-container *ngIf="cellCase$ | async as cell">
+            <div class="cell-zoom">
+                <gano-cell [color]="cell.color " [cardtype]="cell.cardtype " [name]="cell.name " [ville]="cell.ville " [price]="cell.price " [orientation]="cell.orientation " [isCorner]="cell.isCorner ">
+                </gano-cell>
+            </div>
 
-            <ng-container *ngIf="cellCase$ | async as cell">
-                <div class="cell-zoom">
-                    <gano-cell [color]="cell.color " [cardtype]="cell.cardtype " [name]="cell.name " [ville]="cell.ville " [price]="cell.price " [orientation]="cell.orientation " [isCorner]="cell.isCorner ">
-                    </gano-cell>
-                </div>
+            <ng-container *ngIf="(isHumanTurn$ | async)">
+                card to play ?
                 <a class="btn btn-primary" (click)="buy()">Buy</a>
                 <a class="btn btn-primary" (click)="skip()">Not Buy</a>
             </ng-container>
 
-
         </ng-container>
+
 
 
     </div>

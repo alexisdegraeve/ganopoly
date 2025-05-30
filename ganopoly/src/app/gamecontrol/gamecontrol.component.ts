@@ -44,6 +44,7 @@ export class GamecontrolComponent {
   }
 
   constructor(private gameService: GameService) {
+    this.cellCase$ = this.getCellCase(this.gameService.PlayerToPlay.value?.currentCase);
     this.playerToPlay$ = this.gameService.PlayerToPlay;
     this.isHumanTurn$ = this.gameService.isHumanTurn;
 
