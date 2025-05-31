@@ -1,8 +1,7 @@
-<gano-header [isStartGame]="isStartGame " [boardVisible]="boardShow " (rotateEvent)="rotateBoard() " (newGameEvent)="newGame() ">
+<!-- <gano-header [isStartGame]="isStartGame " [boardVisible]="boardShow " (rotateEvent)="rotateBoard() " (newGameEvent)="newGame() ">
+</gano-header> -->
 
-</gano-header>
-
-<div class="newplayer " *ngIf="!isStartGame ">
+<div class="newplayer mt-2" *ngIf="!isStartGame ">
     <gano-human-player [name]="playerName " (playerChange)="startGame($event) "></gano-human-player>
 </div>
 

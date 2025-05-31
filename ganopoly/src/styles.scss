@@ -1,5 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 
+body {
+    background-color: #720b0c;
+}
+
 .currency {
     position: relative;
     font-weight: bold;
@@ -69,4 +73,19 @@
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+}
+
+.logo-monopoly {
+    background-image: url("/img/ganopoly.svg");
+    height: auto;
+    width: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.card {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border: 4px dotted #fff;
+    border-radius: 1rem;
 }

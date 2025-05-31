@@ -20,8 +20,7 @@
 <ng-template #boardTemplate>
 
     <div class="board" *ngIf=" (players$ | async) as players">
-        {{players?.human?.name }} {{players?.human?.currentCase }} {{players?.computer1?.name }} {{players?.computer1?.currentCase }} {{players?.computer2?.name }} {{players?.computer2?.currentCase }} {{players?.computer3?.name }} {{players?.computer3?.currentCase
-        }}
+
         <div class="board-inside" [style.transform]="'rotateZ(' + rotate + 'deg)'" *ngIf="boardData$ | async as boardData">
             <div class="board-row top">
                 <gano-cell *ngFor="let cell of boardData.top; index as index" [nummCell]="index + 20" [players]="players" [color]="cell.color " [cardtype]="cell.cardtype " [name]="cell.name " [ville]="cell.ville " [price]="cell.price " [orientation]="cell.orientation "

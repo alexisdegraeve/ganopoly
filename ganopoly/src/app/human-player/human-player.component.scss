@@ -1,28 +1,31 @@
-.card {
-    margin: 1rem;
-    width: 40rem;
-}
-
-.card-header {
-    display: flex;
-    justify-content: center;
-}
-
-@media only screen and (max-width: 768px) {
     .card {
-        width: auto;
+        margin: 1rem;
+        width: 40rem;
     }
-}
-
-.selected {
-    border: 0.25rem solid red;
-}
-
-.pion {
-    margin-left: 0.5rem;
-    cursor: pointer;
-}
-
-.ax {
-    background-position: center center;
-}
+    
+    .card-header {
+        display: flex;
+        justify-content: center;
+        height: 12rem;
+        background-color: #fff;
+        padding-bottom: 1.5rem;
+    }
+    
+    @media only screen and (max-width: 768px) {
+        .card {
+            width: auto;
+        }
+    }
+    
+    .selected {
+        border: 0.25rem solid red;
+    }
+    
+    .pion {
+        margin-left: 0.5rem;
+        cursor: pointer;
+    }
+    
+    .ax {
+        background-position: center center;
+    }

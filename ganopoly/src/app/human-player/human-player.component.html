@@ -1,21 +1,29 @@
-<div class="card ">
+<div class="card text-white bg-dark">
     <div class="card-header">
-        <div class="pion" [class.selected]="pawnSelected === Pawn.trident" (click)="setSelectPawn(Pawn.trident)">
-            <div class="trident"></div>
-        </div>
-        <div class="pion" [class.selected]="pawnSelected === Pawn.honey" (click)="setSelectPawn(Pawn.honey)">
-            <div class="honey"></div>
-        </div>
-        <div class="pion" [class.selected]="pawnSelected === Pawn.ax" (click)="setSelectPawn(Pawn.ax)">
-            <div class="ax "></div>
-        </div>
-        <div class="pion" [class.selected]="pawnSelected === Pawn.lotus" (click)="setSelectPawn(Pawn.lotus)">
-            <div class="lotus"></div>
-        </div>
+        <div class="logo-monopoly"></div>
     </div>
-    <div class="card-body d-flex flex-column ">
-        <h5 class="card-title ">Player Human</h5>
-        <input class="form-control " type="text " id="playerName " placeholder="Name " [(ngModel)]="name " (keydown.enter)="go() ">
-        <button type="button " class="btn btn-primary ms-auto mt-2 " (click)="go() ">Play!</button>
+    <div class="card-body">
+        <h5 class="card-title">New Game</h5>
+        <p>
+            Select your pawn
+        </p>
+        <div class="d-flex justify-content-center">
+            <div class="pion" [class.selected]="pawnSelected === Pawn.trident" (click)="setSelectPawn(Pawn.trident)">
+                <div class="trident"></div>
+            </div>
+            <div class="pion" [class.selected]="pawnSelected === Pawn.honey" (click)="setSelectPawn(Pawn.honey)">
+                <div class="honey"></div>
+            </div>
+            <div class="pion" [class.selected]="pawnSelected === Pawn.ax" (click)="setSelectPawn(Pawn.ax)">
+                <div class="ax "></div>
+            </div>
+            <div class="pion" [class.selected]="pawnSelected === Pawn.lotus" (click)="setSelectPawn(Pawn.lotus)">
+                <div class="lotus"></div>
+            </div>
+        </div>
+        <input class="form-control mt-4" type="text " id="playerName " placeholder="Your name " [(ngModel)]="name " (keydown.enter)="go() ">
+    </div>
+    <div class="card-footer d-flex">
+        <button type="button " class="btn btn-danger ms-auto mt-2 btn-lg" (click)="go() ">Play!</button>
     </div>
 </div>
