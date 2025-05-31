@@ -89,3 +89,10 @@ body {
     border: 4px dotted #fff;
     border-radius: 1rem;
 }
+
+@media only screen and (max-width: 768px) {
+    .pion {
+        height: 4rem;
+        width: 4rem;
+    }
+}

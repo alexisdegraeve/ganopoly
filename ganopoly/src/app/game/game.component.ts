@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { GameService } from '../services/game.service';
 import { BoardComponent } from "../board/board.component";
-import { HeaderComponent } from "../header/header.component";
 import { CommonModule } from '@angular/common';
 import { BehaviorSubject, Observable, pipe } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -11,11 +10,12 @@ import { InfoPlayerComponent } from "../info-player/info-player.component";
 import { Player } from '../models/player';
 import { Pawn } from '../models/pawn';
 import { GamecontrolComponent } from "../gamecontrol/gamecontrol.component";
+import { FooterComponent } from '../footer/footer.component';
 
 
 @Component({
   selector: 'gano-game',
-  imports: [BoardComponent, HeaderComponent, CommonModule, HumanPlayerComponent, InfoPlayerComponent,  GamecontrolComponent],
+  imports: [BoardComponent, FooterComponent, CommonModule, HumanPlayerComponent, InfoPlayerComponent,  GamecontrolComponent],
   templateUrl: './game.component.html',
   styleUrl: './game.component.scss'
 })

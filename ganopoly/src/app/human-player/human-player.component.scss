@@ -29,3 +29,9 @@
     .ax {
         background-position: center center;
     }
+    
+    @media only screen and (max-width: 768px) {
+        .card-header {
+            height: 8rem;
+        }
+    }
