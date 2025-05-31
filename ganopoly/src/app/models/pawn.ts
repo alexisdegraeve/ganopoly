@@ -1,5 +1,5 @@
 export enum Pawn {
-  curler = 'curler',
+  lotus = 'lotus',
   cat = 'cat',
   dog = 'dog',
   hat = 'hat',

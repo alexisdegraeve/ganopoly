@@ -55,7 +55,7 @@ export class GameService {
     this.playerHuman$ = this.createNewPlayer(Pawn.cat);
     this.playerComputer1$ = this.createNewPlayer(Pawn.dog);
     this.playerComputer2$ = this.createNewPlayer(Pawn.hat);
-    this.playerComputer3$ = this.createNewPlayer(Pawn.curler);
+    this.playerComputer3$ = this.createNewPlayer(Pawn.lotus);
     this.playerToPlay$ = new BehaviorSubject<Player>({ ...this.playerHuman$.value });
   }
 
@@ -126,7 +126,7 @@ export class GameService {
   }
 
   getRandomPawn(pawnPlayer: Pawn) {
-    const pawns = [Pawn.curler, Pawn.cat, Pawn.dog, Pawn.hat];
+    const pawns = [Pawn.lotus, Pawn.cat, Pawn.dog, Pawn.hat];
     console.log('before Pawns ', pawns);
     const pawnsShuffle = this.shuffleArrayGeneric(pawns);
     console.log('after Pawns ', pawnsShuffle);
