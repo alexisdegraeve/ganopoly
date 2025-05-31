@@ -12,7 +12,7 @@ import { Pawn } from '../models/pawn';
 export class HumanPlayerComponent {
   @Input() name: string = '';
   @Output() playerChange = new EventEmitter<{name: string, pawn: Pawn}>();
-  pawnSelected: Pawn = Pawn.cat;
+  pawnSelected: Pawn = Pawn.trident;
   Pawn = Pawn;
 
   go() {

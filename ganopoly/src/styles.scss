@@ -37,24 +37,6 @@
 
 .lotus {
     background-image: url("/img/lotus.svg");
-    height: 50%;
-    width: 50%;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-.ax {
-    background-image: url("/img/ax.svg");
-    height: 70%;
-    width: 70%;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: 0 0.25rem;
-}
-
-.cat {
-    background-image: url("/img/cat.svg");
     height: 60%;
     width: 60%;
     background-size: contain;
@@ -62,8 +44,26 @@
     background-position: center;
 }
 
-.dog {
-    background-image: url("/img/dog.svg");
+.ax {
+    background-image: url("/img/ax.svg");
+    height: 60%;
+    width: 60%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.trident {
+    background-image: url("/img/trident.svg");
+    height: 60%;
+    width: 60%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.honey {
+    background-image: url("/img/honey.svg");
     height: 60%;
     width: 60%;
     background-size: contain;

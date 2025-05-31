@@ -1,6 +1,6 @@
 export enum Pawn {
   lotus = 'lotus',
-  cat = 'cat',
-  dog = 'dog',
+  trident = 'trident',
+  honey = 'honey',
   ax = 'ax',
 }
