@@ -1,7 +1,7 @@
 [{
     "des": 2,
     "derouge": 1,
-    "pions": "hat, car, ship, dog, cat, lotus, shoe, wheelbarrow",
+    "pions": "ax, car, ship, dog, cat, lotus, shoe, wheelbarrow",
     "house": 32,
     "hotel": 12
 }]
