@@ -1,7 +1,17 @@
 .card {
     margin-bottom: 2rem;
+    max-width: 55rem;
+    width: 40rem;
+    margin: 1rem;
 }
 
 .cell-zoom {
     zoom: 2.0;
+}
+
+@media only screen and (max-width: 768px) {
+    .card {
+        max-width: auto;
+        width: auto;
+    }
 }

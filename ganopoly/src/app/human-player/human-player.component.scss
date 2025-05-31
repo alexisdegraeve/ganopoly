@@ -11,12 +11,6 @@
         padding-bottom: 1.5rem;
     }
     
-    @media only screen and (max-width: 768px) {
-        .card {
-            width: auto;
-        }
-    }
-    
     .selected {
         border: 0.25rem solid red;
     }
@@ -33,5 +27,9 @@
     @media only screen and (max-width: 768px) {
         .card-header {
             height: 8rem;
+        }
+        .card {
+            width: auto;
+            max-width: auto;
         }
     }
