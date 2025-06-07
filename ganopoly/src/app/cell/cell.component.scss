@@ -18,15 +18,15 @@
 .cell {
     height: 6rem;
     width: 4rem;
-    background: #cee8cf;
-    border: 2px solid black;
+    background: #F5E0C5;
+    border: 2px solid #fff;
     display: flex;
     flex-direction: column;
     &-top {
         height: 1.5rem;
         background-color: red;
         width: 100%;
-        border-bottom: 2px solid black;
+        border-bottom: 2px solid #fff;
     }
     &-content {
         display: flex;
@@ -49,8 +49,8 @@
     &-square {
         height: 6rem;
         width: 6rem;
-        background: #cee8cf;
-        border: 2px solid black;
+        background: #F5E0C5;
+        border: 2px solid #fff;
     }
     &-empty {
         height: 5rem;
@@ -62,15 +62,15 @@
 .cell-h {
     width: 6rem;
     height: 4rem;
-    background: #cee8cf;
-    border: 2px solid black;
+    background: #F5E0C5;
+    border: 2px solid #fff;
     display: flex;
     flex-direction: row-reverse;
     .cell-top {
         background-color: red;
         width: 1.5rem;
         height: 100%;
-        border-left: 2px solid black;
+        border-left: 2px solid #fff;
         border-bottom: unset;
     }
     .cell-content {
@@ -94,8 +94,7 @@
     .cell-square {
         height: 6rem;
         width: 6rem;
-        background: red;
-        border: 2px solid black;
+        border: 2px solid #fff;
     }
     .cell-empty {
         height: 5rem;

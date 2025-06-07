@@ -30,10 +30,11 @@
         }
     }
     .center {
-        background: linear-gradient(180deg, #335577 0%, #4575A3 52.88%, #0A2A3F 100%);
+        background: #5A303C; // linear-gradient(180deg, #335577 0%, #4575A3 52.88%, #0A2A3F 100%);
         flex-grow: 1;
         display: flex;
         flex-direction: column;
+        border: 2px solid #fff;
     }
     .right {
         background-color: yellow;
@@ -105,7 +106,9 @@
     margin-left: auto;
     margin-right: auto;
     display: flex;
-    height: 6rem;
+    height: 5.7rem;
+    background-position: center;
+    background-size: auto;
 }
 
 @media only screen and (max-width: 768px) {

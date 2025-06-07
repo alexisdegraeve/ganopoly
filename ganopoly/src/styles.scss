@@ -1,7 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 
 body {
-    background-color: #720b0c;
+    //background-color: #720b0c;
+    background-color: #fff;
+    background-image: url("/img/indian_pattern.svg");
+    background-size: 20%;
+    background-repeat: repeat;
+    background-position: center;
 }
 
 .currency {
@@ -76,12 +81,12 @@ body {
 }
 
 .logo-ganopoly {
-    background-image: url("/img/ganopoly.svg");
+    background-image: url("/img/ganopoly2.svg");
     height: auto;
     width: 100%;
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: top;
 }
 
 .card {
