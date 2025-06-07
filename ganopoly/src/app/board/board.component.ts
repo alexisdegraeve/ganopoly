@@ -88,6 +88,7 @@ export class BoardComponent implements OnDestroy {
             price: card.prix,
             info: card.info,
             cardtype: card.type,
+            img: card.img,
             orientation,
             isCorner: [0, 10, 20, 30].includes(card.case)
           }))

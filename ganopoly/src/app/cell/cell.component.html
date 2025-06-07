@@ -124,7 +124,7 @@
         <div class="cell-content square  rotate-45">
             <div class="name" [innerHTML]="name"></div>
             <div class="symbol parking">
-                <i class="fa-solid fa-square-parking"></i>
+                <img [src]="cardImg" class="cell-img" />
             </div>
         </div>
     </ng-container>
@@ -133,7 +133,7 @@
         <div class="cell-content square rotate-min-45">
             <div class="name" [innerHTML]="name"></div>
             <div class="symbol" [style.color]="'red'">
-                <i class="fa-solid fa-handcuffs"></i>
+                <img [src]="cardImg" class="cell-img" />
             </div>
         </div>
     </ng-container>

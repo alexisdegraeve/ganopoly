@@ -20,6 +20,7 @@ export class CellComponent {
   @Input() info!: string;
   @Input() players!: { human: Player, computer1: Player, computer2: Player, computer3: Player } ;
   @Input() nummCell: number = 0;
+  @Input() cardImg!: string;
 
   CardType = CardType;
 

@@ -26,6 +26,7 @@ export interface Card {
   station4: number;
   times1: number;
   times2: number;
+  img: string;
  }
 
  export type Case = {
@@ -37,6 +38,7 @@ export interface Card {
   cardtype: CardType;
   isCorner: boolean;
   info: string;
+  img: string;
 };
 
  export enum CardType {

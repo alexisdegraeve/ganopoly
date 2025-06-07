@@ -306,8 +306,9 @@
     },
     {
         "case": 20,
-        "name": "Parking <br /> gratuit",
+        "name": "Visite",
         "type": "parking",
+        "img": "/img/tajmahal.svg",
         "symbol": "fa-solid fa-square-parking",
         "color": "white"
     },
@@ -465,6 +466,7 @@
     {
         "case": 30,
         "name": "Allez en <br/> prison",
+        "img": "/img/snake.svg",
         "type": "toprison",
         "color": "white"
     },
