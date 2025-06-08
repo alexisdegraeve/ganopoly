@@ -130,14 +130,11 @@
 
 .symbol {
     font-size: 2rem;
-    text-shadow: -0.1rem 0 #000, 0 0.1rem #000, 0.1rem 0 #000, 0 -0.1rem #000;
     .fa-question {
         font-size: 4rem;
         margin-top: 0.5rem;
     }
     &.parking {
-        color: blue;
-        text-shadow: -0.1rem 0 #fff, 0 0.1rem #fff, 0.1rem 0 #fff, 0 -0.1rem #fff;
         font-size: 3rem;
     }
     .fa-play {
@@ -216,4 +213,8 @@
         transform-origin: center 0;
         margin-top: 2rem;
     }
+}
+
+.indian-color {
+    background: radial-gradient(circle at top left, teal, transparent 50%), radial-gradient(circle at top right, green, transparent 50%), radial-gradient(circle at 25% 50%, orange, transparent 50%), radial-gradient(circle at 75% 50%, yellow, transparent 50%), radial-gradient(circle at bottom center, pink, transparent 50%);
 }

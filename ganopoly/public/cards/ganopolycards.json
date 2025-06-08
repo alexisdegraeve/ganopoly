@@ -61,6 +61,7 @@
         "case": 4,
         "name": "Impôts sur le revenu",
         "type": "impots",
+        "img": "/img/tax.svg",
         "symbol": "fa-solid fa-receipt",
         "prix": 200,
         "color": "white"

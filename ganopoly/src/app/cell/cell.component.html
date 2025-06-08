@@ -108,7 +108,7 @@
         <div class="cell-content">
             <div class="name" [innerHTML]="name"></div>
             <div class="symbol" [style.color]="color">
-                <i class="fa-solid fa-receipt"></i>
+                <img [src]="cardImg" class="cell-img" />
             </div>
             <div class="prix">{{ price }}€</div>
         </div>
@@ -146,9 +146,9 @@
 
 
     <ng-container *ngIf="cardtype === CardType.start">
-        <div class="cell-content square">
+        <div class="cell-content square indian-color">
             <div class="name" [innerHTML]="name"></div>
-            <div class="symbol" [style.color]="'blue'">
+            <div class="symbol" [style.color]="'white'">
                 <i class="fa-solid fa-play"></i>
             </div>
             <div class="info" [innerHTML]="info"></div>

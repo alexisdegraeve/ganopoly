@@ -71,3 +71,12 @@
 .community-card-back {
     transform: rotateY(180deg);
 }
+
+.chest {
+    background-image: url("/img/chest.svg");
+    height: 60%;
+    width: 60%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
