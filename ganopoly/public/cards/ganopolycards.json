@@ -31,6 +31,7 @@
     {
         "case": 2,
         "name": "Caisse de communauté",
+        "img": "/img/chest.svg",
         "type": "caisse",
         "symbol": "fa-solid fa-sack-dollar",
         "color": "white"
@@ -265,6 +266,7 @@
     {
         "case": 17,
         "name": "Caisse de communauté",
+        "img": "/img/chest.svg",
         "type": "caisse",
         "symbol": "fa-solid fa-sack-dollar",
         "color": "white"
@@ -521,6 +523,7 @@
     {
         "case": 33,
         "name": "Caisse de communauté",
+        "img": "/img/chest.svg",
         "type": "caisse",
         "symbol": "fa-solid fa-sack-dollar",
         "color": "white"
