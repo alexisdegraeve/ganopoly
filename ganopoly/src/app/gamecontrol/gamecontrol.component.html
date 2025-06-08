@@ -1,6 +1,7 @@
 <div class="card text-white bg-dark" *ngIf="(playerToPlay$ | async) as playerToPlay">
     <div class="card-header">
-        {{ playerToPlay.name }} to play
+        <span>Player to play:</span>
+        <h5>{{ playerToPlay.name | uppercase }}</h5>
     </div>
     <div class="card-body">
         <ng-container *ngIf="isStartGame">

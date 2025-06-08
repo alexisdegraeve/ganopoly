@@ -1,3 +1,11 @@
+.card-header {
+    display: flex;
+    align-items: center;
+    background-color: #000;
+    padding: 1rem;
+    border-left: 0.5rem solid red;
+}
+
 .card {
     margin-bottom: 2rem;
     max-width: 55rem;
