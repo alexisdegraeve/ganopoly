@@ -1,4 +1,8 @@
 <div class="card text-white bg-dark mb-3" *ngIf="(player | async) as player">
+
+
+
+
     <div class="row g-0">
         <div class="col-md-12 left-part">
             <div class="pion">
@@ -11,22 +15,51 @@
         </div>
         <div class="col-md-12">
             <div class="card-body">
-                <div class="billets">
-                    <div *ngFor="let billet of player?.billets" class="d-flex flex-column">
-                        <div class="quantity">
-                            <span>x{{ billet.quantity }}</span>
+                <div [id]="'carousel-' + player?.name" class="carousel slide" data-bs-ride="false">
+                    <div class="carousel-indicators">
+                        <button type="button" [attr.data-bs-target]="'#carousel-' + player?.name" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" [attr.data-bs-target]="'#carousel-' + player?.name" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" [attr.data-bs-target]="'#carousel-' + player?.name" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5 class="text-white">Notes</h5>
+                                <div class="billets">
+                                    <div *ngFor="let billet of player?.billets" class="d-flex flex-column">
+                                        <div class="quantity">
+                                            <span>x{{ billet.quantity }}</span>
+                                        </div>
+                                        <div class="billet-small-container">
+                                            <gano-banknote [value]="billet.euro "></gano-banknote>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
                         </div>
-                        <div class="billet-small-container">
-                            <gano-banknote [value]="billet.euro "></gano-banknote>
+                        <div class="carousel-item">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Properties</h5>
+                                <div class="cards-ganopoly" *ngIf="mycards$ | async as mycards">
+                                    <gano-cards [cards]="mycards"></gano-cards>
+                                </div>
+                            </div>
                         </div>
                     </div>
-
+                    <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#carousel-' + player?.name" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+                    <button class="carousel-control-next" type="button" [attr.data-bs-target]="'#carousel-' + player?.name" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
                 </div>
 
 
-                <div class="cards-ganopoly" *ngIf="mycards$ | async as mycards">
-                    <gano-cards [cards]="mycards"></gano-cards>
-                </div>
+
 
                 <p class="ms-auto card-text "><small class="text-body-secondary ">Last updated 3 mins ago</small></p>
             </div>

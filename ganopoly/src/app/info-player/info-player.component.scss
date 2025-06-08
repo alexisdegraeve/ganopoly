@@ -1,6 +1,15 @@
+.carousel {
+    .carousel-caption {
+        position: relative;
+        left: auto;
+        right: auto;
+    }
+}
+
 .billets {
     display: flex;
     flex-wrap: wrap;
+    margin-left: 6rem;
 }
 
 .detail-player {

@@ -21,4 +21,7 @@ export class HeaderComponent {
     this.newGameEvent.emit(true);
   }
 
+  stopGame() {
+    
+  }
 }

@@ -91,8 +91,6 @@
 
     .card {
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-        border: 4px dotted #fff;
-        border-radius: 1rem;
     }
 
     @media only screen and (max-width: 768px) {
@@ -139,4 +137,9 @@
         --bs-btn-disabled-bg: transparent;
         --bs-btn-disabled-border-color: #f2c9d1;
         --bs-gradient: none;
+    }
+
+    .btn {
+        align-self: center;
+        height: auto;
     }

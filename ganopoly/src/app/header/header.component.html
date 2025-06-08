@@ -1,28 +1,24 @@
 <nav class="navbar navbar-expand-lg bg-custom border-bottom" data-bs-theme="dark">
     <div class="container-fluid">
-        <!-- Logo -->
-        <a class="navbar-brand me-3" href="#">
-            <div class="logo-ganopoly"></div>
-        </a>
+        <div class="d-flex">
+            <a class="navbar-brand me-3" href="#">
+                <div class="logo-ganopoly"></div>
+            </a>
 
-        <!-- Toggle for mobile -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarGanopoly" aria-controls="navbarGanopoly" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon d-none"></span>
-      <i class="fa-solid fa-ellipsis-vertical text-light"></i>
-    </button>
 
-        <!-- Main buttons -->
-        <div class="collapse navbar-collapse" id="navbarGanopoly" [style.visibility]="!isStartGame ? 'hidden' : 'visible'">
-            <div class="d-flex w-100 gap-2 mt-2 mt-lg-0">
-                <button class="btn btn-outline-primary  btn-action border-0" (click)="newGame()" type="button">
-          <i class="fa-solid fa-chess-board"></i>
-          <span>New</span>
-        </button>
 
-                <button class="ms-2 btn btn-outline-primary  btn-action border-0" *ngIf="boardVisible" (click)="rotate()" type="button">
-          <i class="fa-solid fa-rotate-right"></i>
+            <!-- Main buttons -->
+            <div class="d-flex gap-2" [style.visibility]="!isStartGame ? 'hidden' : 'visible'">
+                <button *ngIf="isStartGame" class="btn btn-outline-primary border-0" (click)="stopGame()">
+        <i class="fa-solid fa-stop me-2 "></i>
+        <span>Stop</span>
+      </button>
+
+                <button class="btn btn-outline-primary border-0" *ngIf="boardVisible" (click)="rotate()" type="button">
+          <i class="fa-solid fa-rotate-right me-2"></i>
           <span>Rotate</span>
         </button>
+
             </div>
         </div>
     </div>
