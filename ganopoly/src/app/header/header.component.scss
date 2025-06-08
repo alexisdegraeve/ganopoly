@@ -1,14 +1,18 @@
 .navbar-brand {
     text-transform: uppercase;
     font-weight: bold;
-    padding: 0;
     margin: 0;
+    padding: 0;
+    color: #fff;
+    height: 4rem;
+    display: flex;
+    width: 12rem;
 }
 
 .btn-action {
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     span {
         font-size: 0.85rem;
         margin-left: 0.25rem;
@@ -18,4 +22,23 @@
 .navbar {
     padding: 0.25rem;
     margin-bottom: 0.45rem;
+}
+
+// Couleur personnalisée inspirée du board
+.bg-custom {
+    background-color: #4c242f !important; // un peu plus sombre que #5A303C
+    color: #f8f9fa; // texte clair
+    border-color: #743848; // plus clair pour border
+}
+
+// Bouton toggle plus visible sur fond sombre
+.navbar-toggler {
+    border: none;
+    outline: none;
+    box-shadow: none;
+    padding: 0.25rem 0.5rem;
+    i {
+        font-size: 1.25rem;
+        color: #f8f9fa;
+    }
 }

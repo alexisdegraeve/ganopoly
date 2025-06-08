@@ -1,103 +1,142 @@
-/* You can add global styles to this file, and also import other style files */
+    /* You can add global styles to this file, and also import other style files */
 
-body {
-    //background-color: #720b0c;
-    background-color: #f9f9f9;
-    background-image: url("/img/indian_pattern.svg");
-    background-size: 20%;
-    background-repeat: repeat;
-    background-position: center;
-}
-
-.currency {
-    position: relative;
-    font-weight: bold;
-    display: inline-block;
-}
-
-.currency::before,
-.currency::after {
-    content: '';
-    position: absolute;
-    height: 2px;
-    background: currentColor;
-    left: 0;
-    right: 0;
-}
-
-.currency::before {
-    top: 30%;
-}
-
-.currency::after {
-    top: 60%;
-}
-
-.pion {
-    height: 6rem;
-    width: 6rem;
-    background-color: #fff;
-    border: 2px solid #ccc;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.lotus {
-    background-image: url("/img/lotus.svg");
-    height: 60%;
-    width: 60%;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-.ax {
-    background-image: url("/img/ax.svg");
-    height: 60%;
-    width: 60%;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-.trident {
-    background-image: url("/img/trident.svg");
-    height: 60%;
-    width: 60%;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-.honey {
-    background-image: url("/img/honey.svg");
-    height: 60%;
-    width: 60%;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-.logo-ganopoly {
-    background-image: url("/img/ganopoly2.svg");
-    height: auto;
-    width: 100%;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: top;
-}
-
-.card {
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    border: 4px dotted #fff;
-    border-radius: 1rem;
-}
-
-@media only screen and (max-width: 768px) {
-    .pion {
-        height: 4rem;
-        width: 4rem;
+    body {
+        //background-color: #720b0c;
+        background-color: #f9f9f9;
+        background-image: url("/img/indian_pattern.svg");
+        background-size: 20%;
+        background-repeat: repeat;
+        background-position: center;
     }
-}
+
+    .currency {
+        position: relative;
+        font-weight: bold;
+        display: inline-block;
+    }
+
+    .currency::before,
+    .currency::after {
+        content: '';
+        position: absolute;
+        height: 2px;
+        background: currentColor;
+        left: 0;
+        right: 0;
+    }
+
+    .currency::before {
+        top: 30%;
+    }
+
+    .currency::after {
+        top: 60%;
+    }
+
+    .pion {
+        height: 6rem;
+        width: 6rem;
+        background-color: #fff;
+        border: 2px solid #ccc;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .lotus {
+        background-image: url("/img/lotus.svg");
+        height: 60%;
+        width: 60%;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .ax {
+        background-image: url("/img/ax.svg");
+        height: 60%;
+        width: 60%;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .trident {
+        background-image: url("/img/trident.svg");
+        height: 60%;
+        width: 60%;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .honey {
+        background-image: url("/img/honey.svg");
+        height: 60%;
+        width: 60%;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .logo-ganopoly {
+        background-image: url("/img/ganopoly2.svg");
+        height: auto;
+        width: 100%;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: top;
+    }
+
+    .card {
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        border: 4px dotted #fff;
+        border-radius: 1rem;
+    }
+
+    @media only screen and (max-width: 768px) {
+        .pion {
+            height: 4rem;
+            width: 4rem;
+        }
+    }
+
+    .btn-primary {
+        background-color: #E7A3B0;
+        border-color: #E7A3B0;
+        color: #fff;
+        &:hover,
+        &:focus,
+        &:active,
+        &.active,
+        .show>&.dropdown-toggle {
+            background-color: #d98a9c;
+            /* légèrement plus foncé pour le hover */
+            border-color: #d98a9c;
+            color: #fff;
+        }
+        &:disabled,
+        &.disabled {
+            background-color: #f2c9d1;
+            border-color: #f2c9d1;
+            color: #fff;
+        }
+    }
+
+    .btn-outline-primary {
+        --bs-btn-color: #fdccd5;
+        --bs-btn-border-color: #E7A3B0;
+        --bs-btn-hover-color: #fff;
+        --bs-btn-hover-bg: #E7A3B0;
+        --bs-btn-hover-border-color: #fdccd5;
+        --bs-btn-focus-shadow-rgb: 0, 0, 0; // ou désactive carrément
+        --bs-btn-focus-box-shadow: none;
+        --bs-btn-active-color: #fff;
+        --bs-btn-active-bg: #d98a9c;
+        --bs-btn-active-border-color: #d98a9c;
+        --bs-btn-disabled-color: #f2c9d1;
+        --bs-btn-disabled-bg: transparent;
+        --bs-btn-disabled-border-color: #f2c9d1;
+        --bs-gradient: none;
+    }

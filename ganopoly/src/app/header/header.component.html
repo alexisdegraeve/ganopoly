@@ -1,9 +1,29 @@
-<nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
-    <div class="container-fluid flex-column">
-        <a class="navbar-brand" href="#">Ganopoly</a>
-        <div class="me-auto d-flex w-100" [style.visibility]="!isStartGame ? 'hidden' : 'visible'">
-            <button class="btn btn-dark btn-action" (click)="newGame()" type="submit"><i class="fa-solid fa-chess-board"></i> <span>New</span></button>
-            <button class="ms-auto btn btn-dark btn-action" (click)="rotate()" type="submit" *ngIf="boardVisible"><i class="fa-solid fa-rotate-right"></i> <span>Rotate</span></button>
+<nav class="navbar navbar-expand-lg bg-custom border-bottom" data-bs-theme="dark">
+    <div class="container-fluid">
+        <!-- Logo -->
+        <a class="navbar-brand me-3" href="#">
+            <div class="logo-ganopoly"></div>
+        </a>
+
+        <!-- Toggle for mobile -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarGanopoly" aria-controls="navbarGanopoly" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon d-none"></span>
+      <i class="fa-solid fa-ellipsis-vertical text-light"></i>
+    </button>
+
+        <!-- Main buttons -->
+        <div class="collapse navbar-collapse" id="navbarGanopoly" [style.visibility]="!isStartGame ? 'hidden' : 'visible'">
+            <div class="d-flex w-100 gap-2 mt-2 mt-lg-0">
+                <button class="btn btn-outline-primary  btn-action border-0" (click)="newGame()" type="button">
+          <i class="fa-solid fa-chess-board"></i>
+          <span>New</span>
+        </button>
+
+                <button class="ms-2 btn btn-outline-primary  btn-action border-0" *ngIf="boardVisible" (click)="rotate()" type="button">
+          <i class="fa-solid fa-rotate-right"></i>
+          <span>Rotate</span>
+        </button>
+            </div>
         </div>
     </div>
 </nav>
