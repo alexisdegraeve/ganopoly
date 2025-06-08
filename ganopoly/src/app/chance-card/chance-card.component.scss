@@ -10,15 +10,15 @@
 }
 
 .chance-inside-card {
-    background: #ff7b00;
-    background: linear-gradient(180deg, rgba(255, 198, 107, 1) 0%, rgba(255, 123, 0, 1) 100%);
+    background: #fff;
+    // background: linear-gradient(180deg, rgba(255, 198, 107, 1) 0%, rgba(255, 123, 0, 1) 100%);
     padding: 0.65rem;
     width: 100%;
     height: 100%;
 }
 
 .chance-inside-card>.card-content {
-    background: linear-gradient(180deg, rgba(255, 123, 0, 1) 0%, rgba(255, 198, 107, 1) 100%);
+    // background: linear-gradient(180deg, rgba(255, 123, 0, 1) 0%, rgba(255, 198, 107, 1) 100%);
     width: 100%;
     height: 100%;
     display: flex;
@@ -65,9 +65,18 @@
 }
 
 .chance-card-front {
-    background-color: #f9f9f9;
+    background-color: #ff7b00;
 }
 
 .chance-card-back {
     transform: rotateY(180deg);
+}
+
+.lotus {
+    background-image: url("/img/lotus_rainbow.svg");
+    height: 60%;
+    width: 60%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
