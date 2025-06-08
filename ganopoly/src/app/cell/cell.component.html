@@ -51,10 +51,8 @@
     </ng-container>
     <ng-container *ngIf="cardtype === CardType.chance">
         <div class="cell-content" [class.content-ml2]="orientation==='horizontal'">
-            <div class="name"> Chance</div>
-            <div class="symbol" [style.color]="color">
-                <i class="fa-solid fa-question"></i>
-            </div>
+            <div class="name" [style.color]="color"> Chance</div>
+            <img [src]="cardImg" class="cell-img" />
         </div>
     </ng-container>
 
@@ -72,9 +70,7 @@
     <ng-container *ngIf="cardtype === CardType.gare">
         <div class="cell-content" [class.content-ml2]="orientation==='horizontal'">
             <div class="name" [innerHTML]="name"></div>
-            <div class="symbol" [style.color]="color">
-                <i class="fa-solid fa-train"></i>
-            </div>
+            <img [src]="cardImg" class="cell-img" />
             <div class="prix">{{ price }}€</div>
         </div>
     </ng-container>
@@ -83,7 +79,7 @@
         <div class="cell-content">
             <div class="name" [innerHTML]="name"></div>
             <div class="symbol" [style.color]="color">
-                <i class="fa-solid fa-faucet-drip"></i>
+                <img [src]="cardImg" class="cell-img" />
             </div>
             <div class="prix">{{ price }}€</div>
         </div>
@@ -93,7 +89,7 @@
         <div class="cell-content" [class.content-ml2]="orientation==='horizontal'">
             <div class="name" [innerHTML]="name"></div>
             <div class="symbol" [style.color]="'#fff202'">
-                <i class="fa-solid fa-lightbulb"></i>
+                <img [src]="cardImg" class="cell-img" />
             </div>
             <div class="prix">{{ price }}€</div>
         </div>
@@ -142,7 +138,7 @@
         <div class="cell-content square">
             <div class="name" [innerHTML]="name"></div>
             <div class="symbol" [style.color]="'#f58223'">
-                <i class="fa-solid fa-table-cells"></i>
+                <img [src]="cardImg" class="cell-img" />
             </div>
             <div class="info" [innerHTML]="info"></div>
         </div>

@@ -43,6 +43,11 @@
         font-weight: bold;
         text-align: center;
         flex-grow: 1;
+        .cell-img {
+            height: 3rem;
+            width: auto;
+            object-fit: contain;
+        }
         .name {
             margin-top: 0.25rem;
             text-transform: uppercase;
@@ -74,6 +79,11 @@
     border: 2px solid #fff;
     display: flex;
     flex-direction: row-reverse;
+    .cell-img {
+        height: 2.5rem;
+        object-fit: contain;
+        margin-bottom: 0.5rem;
+    }
     .cell-top {
         background-color: red;
         width: 1.5rem;
@@ -91,6 +101,10 @@
         flex-grow: 1;
         &.content-ml2 {
             margin-left: 2rem;
+            .cell-img {
+                margin-top: 0.5rem;
+                margin-bottom: auto;
+            }
         }
         .name {
             margin-top: 0.25rem;
@@ -199,10 +213,4 @@
         transform-origin: center 0;
         margin-top: 2rem;
     }
-}
-
-.cell-img {
-    height: 3.5rem;
-    width: auto;
-    object-fit: contain;
 }

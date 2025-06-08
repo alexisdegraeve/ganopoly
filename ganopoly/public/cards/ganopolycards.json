@@ -67,6 +67,7 @@
     {
         "case": 5,
         "name": "Gare du Nord",
+        "img": "/img/elephant_red.svg",
         "symbol": "fa-solid fa-train",
         "type": "gare",
         "color": "white",
@@ -101,6 +102,7 @@
     {
         "case": 7,
         "type": "chance",
+        "img": "/img/lotus_rainbow.svg",
         "color": "#f03a7a"
     },
     {
@@ -147,6 +149,7 @@
         "case": 10,
         "name": "Prison",
         "type": "prison",
+        "img": "/img/prison_snake.svg",
         "info": "Simple Visite",
         "symbol": "fa-solid fa-handcuffs",
         "color": "orange"
@@ -175,6 +178,7 @@
         "case": 12,
         "name": "Centrale Electrique",
         "type": "elec",
+        "img": "/img/bulb_elec.svg",
         "symbol": "fa-solid fa-lightbulb",
         "color": "white",
         "prix": 150,
@@ -226,6 +230,7 @@
     {
         "case": 15,
         "name": "Gare Centrale",
+        "img": "/img/elephant_orange.svg",
         "symbol": "fa-solid fa-train",
         "type": "gare",
         "color": "white",
@@ -335,6 +340,7 @@
     {
         "case": 22,
         "type": "chance",
+        "img": "/img/lotus_rainbow.svg",
         "color": "#277dc3"
     },
     {
@@ -380,6 +386,7 @@
     {
         "case": 25,
         "name": "Tramways Vicinaux",
+        "img": "/img/elephant_blue.svg",
         "symbol": "fa-solid fa-train",
         "type": "gare",
         "color": "white",
@@ -434,6 +441,7 @@
     {
         "case": 28,
         "name": "Compagnie des eaux",
+        "img": "/img/water.svg",
         "symbol": "fa-solid fa-faucet-drip",
         "type": "eaux",
         "color": "white",
@@ -540,6 +548,7 @@
     {
         "case": 35,
         "name": "Gare du Midi",
+        "img": "/img/elephant_violet.svg",
         "symbol": "fa-solid fa-train",
         "type": "gare",
         "color": "white",
@@ -554,6 +563,7 @@
     {
         "case": 36,
         "type": "chance",
+        "img": "/img/lotus_rainbow.svg",
         "color": "#d9292c"
     },
     {
