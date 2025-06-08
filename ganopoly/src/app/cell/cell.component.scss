@@ -218,3 +218,9 @@
 .indian-color {
     background: radial-gradient(circle at top left, teal, transparent 50%), radial-gradient(circle at top right, green, transparent 50%), radial-gradient(circle at 25% 50%, orange, transparent 50%), radial-gradient(circle at 75% 50%, yellow, transparent 50%), radial-gradient(circle at bottom center, pink, transparent 50%);
 }
+
+.diamand {
+    background: radial-gradient(circle at top left, #50FE42, transparent 50%), radial-gradient(circle at top right, #50EAFF, transparent 50%), radial-gradient(circle at 25% 50%, orange, transparent 50%), radial-gradient(circle at 75% 50%, #F9AAFB, transparent 50%), radial-gradient(circle at bottom center, #FF3E2F, transparent 50%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

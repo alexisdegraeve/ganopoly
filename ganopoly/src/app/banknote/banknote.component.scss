@@ -17,7 +17,8 @@
         }
 
         .banknote-container {
-            zoom: 0.40;
+            zoom: 0.30;
+            margin: 0.25rem;
         }
 
         .banknote {
@@ -183,6 +184,7 @@
 
         @media only screen and (max-width: 768px) {
             .banknote-container {
-                zoom: 0.24;
+                zoom: 0.22;
+                margin: 0.65rem;
             }
         }
