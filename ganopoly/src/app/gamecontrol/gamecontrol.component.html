@@ -1,5 +1,5 @@
 <div class="card text-white bg-dark" *ngIf="(playerToPlay$ | async) as playerToPlay">
-    <div class="card-header">
+    <div class="card-header" [style.border-left-color]="playerToPlay?.playerColor">
         <span>Player to play:</span>
         <h5>{{ playerToPlay.name | uppercase }}</h5>
     </div>

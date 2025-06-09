@@ -4,7 +4,7 @@
 
 
     <div class="row g-0">
-        <div class="col-md-12 left-part">
+        <div class="col-md-12 left-part" [style.border-left-color]="player?.playerColor">
             <div class="pion">
                 <div [class]="player?.pawnShape?.toString()"></div>
             </div>

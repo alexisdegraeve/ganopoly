@@ -52,10 +52,10 @@ export class GameService {
 
   constructor(private httpClient: HttpClient) {
     this.usedFirstnames = new Set();
-    this.playerHuman$ = this.createNewPlayer(Pawn.trident);
-    this.playerComputer1$ = this.createNewPlayer(Pawn.honey);
-    this.playerComputer2$ = this.createNewPlayer(Pawn.ax);
-    this.playerComputer3$ = this.createNewPlayer(Pawn.lotus);
+    this.playerHuman$ = this.createNewPlayer(Pawn.trident, '#FF0000');
+    this.playerComputer1$ = this.createNewPlayer(Pawn.honey, '#F4D35E');
+    this.playerComputer2$ = this.createNewPlayer(Pawn.ax, '#4ABDAC');
+    this.playerComputer3$ = this.createNewPlayer(Pawn.lotus, '#FF6F59');
     this.playerToPlay$ = new BehaviorSubject<Player>({ ...this.playerHuman$.value });
   }
 
@@ -165,11 +165,12 @@ export class GameService {
     return arr;
   }
 
-  createNewPlayer(pawnShape: Pawn): BehaviorSubject<Player> {
+  createNewPlayer(pawnShape: Pawn, playerColor: string): BehaviorSubject<Player> {
     return new BehaviorSubject<Player>({
       name: this.getRandomFirstname(),
       pawnShape,
       dices: 0,
+      playerColor: playerColor,
       currentCase: 0,
       properties: [],
       billets: [
