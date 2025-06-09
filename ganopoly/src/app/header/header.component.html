@@ -9,7 +9,7 @@
 
             <!-- Main buttons -->
             <div class="d-flex gap-2" [style.visibility]="!isStartGame ? 'hidden' : 'visible'">
-                <button *ngIf="isStartGame" class="btn btn-outline-primary border-0" (click)="stopGame()">
+                <button *ngIf="isStartGame" class="btn btn-outline-primary border-0" (click)="newGame()">
         <i class="fa-solid fa-stop me-2 "></i>
         <span>Stop</span>
       </button>

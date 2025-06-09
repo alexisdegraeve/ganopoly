@@ -98,6 +98,12 @@ export class GameComponent {
   // }
 
   newGame() {
-
+    this.rotation = 0;
+    this.bankNoteShow = false;
+    this.cardsShow = false;
+    this.boardShow = true;
+    this.playerName = '';
+    this.isLoading = true;
+    this.isStartGame = false;
   }
 }
