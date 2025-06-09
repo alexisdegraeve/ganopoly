@@ -1,7 +1,8 @@
 <div class="card text-white bg-dark" *ngIf="(playerToPlay$ | async) as playerToPlay">
     <div class="card-header" [style.border-left-color]="playerToPlay?.playerColor">
-        <span>Player to play:</span>
         <h5>{{ playerToPlay.name | uppercase }}</h5>
+        <span>, it's your turn!</span>
+
     </div>
     <div class="card-body">
         <ng-container *ngIf="isStartGame">

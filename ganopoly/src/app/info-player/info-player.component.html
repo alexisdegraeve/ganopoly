@@ -9,11 +9,21 @@
                 <div [class]="player?.pawnShape?.toString()"></div>
             </div>
             <div class="detail-player">
-                <h5>{{ player?.name }}</h5>
+                <h5>{{ player?.name | uppercase }}</h5>
                 <span>Total: 3000 €</span>
             </div>
         </div>
-        <div class="col-md-12">
+        <div class="col-md-12" *ngIf="!isHuman">
+            <div class="detail-properties">
+                <div class="cards-ganopoly" *ngIf="mycards$ | async as mycards">
+                    <gano-cards [cards]="mycards"></gano-cards>
+                </div>
+            </div>
+
+
+
+        </div>
+        <div class="col-md-12" *ngIf="isHuman">
             <div class="card-body">
                 <div [id]="'carousel-' + player?.name" class="carousel slide" data-bs-ride="false">
                     <div class="carousel-indicators">

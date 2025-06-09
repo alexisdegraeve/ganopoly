@@ -16,6 +16,7 @@ import { combineLatest } from 'rxjs';
 })
 export class InfoPlayerComponent {
   private _player: BehaviorSubject<Player> | null = null;
+  @Input() isHuman = false;
 
   @Input()
   set player(value: BehaviorSubject<Player> | null) {
