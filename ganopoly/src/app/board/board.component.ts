@@ -25,6 +25,8 @@ interface BoardData {
 export class BoardComponent implements OnDestroy {
   @Input() rotate = 0;
   @Output() isLoadingChange = new EventEmitter<boolean>;
+  @Input() offsetX = 0;
+  @Input() offsetY = 0;
   topCards$: Observable<Case[]>;
   leftCards$: Observable<Case[]>;
   rightCards$: Observable<Case[]>;

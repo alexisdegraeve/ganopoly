@@ -19,7 +19,7 @@
 
 <ng-template #boardTemplate>
 
-    <div class="board" *ngIf=" (players$ | async) as players">
+    <div class="board" *ngIf=" (players$ | async) as players" [style.transform]="'translate(' + offsetX + 'rem, ' + offsetY + 'rem)'">
 
         <div class="board-inside" [style.transform]="'rotateZ(' + rotate + 'deg)'" *ngIf="boardData$ | async as boardData">
             <div class="board-row top">

@@ -12,11 +12,12 @@ import { Pawn } from '../models/pawn';
 import { GamecontrolComponent } from "../gamecontrol/gamecontrol.component";
 import { FooterComponent } from '../footer/footer.component';
 import { HeaderComponent } from '../header/header.component';
+import { GamezoomComponent } from '../gamezoom/gamezoom.component';
 
 
 @Component({
   selector: 'gano-game',
-  imports: [BoardComponent, FooterComponent, CommonModule, HumanPlayerComponent, InfoPlayerComponent,  GamecontrolComponent, HeaderComponent],
+  imports: [BoardComponent, FooterComponent, CommonModule, HumanPlayerComponent, InfoPlayerComponent,  GamecontrolComponent, HeaderComponent, GamezoomComponent],
   templateUrl: './game.component.html',
   styleUrl: './game.component.scss'
 })
