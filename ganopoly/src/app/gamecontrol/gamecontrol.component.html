@@ -6,32 +6,44 @@
     </div>
     <div class="card-body">
         <ng-container *ngIf="isStartGame">
-            <gano-doubledice [showButton]="isHumanTurn$.value" (finishRollDiceEvent)="finishRollDice()"></gano-doubledice>
+            <gano-doubledice [showButton]="showButtonRollDice" (finishRollDiceEvent)="finishRollDice()"></gano-doubledice>
         </ng-container>
 
         <ng-container *ngIf="cellCase$ | async as cell">
 
 
-            <div *ngIf="cell.cardtype === CardType.caisse">
+            <div *ngIf="cell.cardtype === CardType.caisse" class="mt-4">
                 <gano-community-card></gano-community-card>
+                <div class="d-flex justify-content-center mt-4">
+                    <a class="btn btn-outline-primary " (click)="Ok() ">OK</a>
+                </div>
+
             </div>
 
-            <div *ngIf="cell.cardtype === CardType.chance">
+            <div *ngIf="cell.cardtype === CardType.chance" class="mt-4">
                 <gano-chance-card></gano-chance-card>
+                <div class="d-flex justify-content-center mt-4">
+                    <a class="btn btn-outline-primary " (click)="Ok() ">OK</a>
+                </div>
+
             </div>
 
             <div *ngIf="cell.cardtype === CardType.impots || cell.cardtype === CardType.prison || cell.cardtype === CardType.parking || cell.cardtype === CardType.toprison">
 
                 <div class=" cell-zoom ">
-                    <gano-cell [color]="cell.color " [cardtype]="cell.cardtype " [name]="cell.name " [ville]="cell.ville " [price]="cell.price " [orientation]="cell.orientation " [isCorner]="cell.isCorner ">
+                    <gano-cell [color]="cell.color " [cardtype]="cell.cardtype " [info]="cell.info" [cardImg]="cell.img" [name]="cell.name " [ville]="cell.ville " [price]="cell.price " [orientation]="cell.orientation " [isCorner]="cell.isCorner ">
                     </gano-cell>
                 </div>
+                <div class="d-flex justify-content-center mt-4">
+                    <a class="btn btn-outline-primary " (click)="Ok() ">OK</a>
+                </div>
+
             </div>
             <div *ngIf="cell.cardtype === CardType.immobilier || cell.cardtype === CardType.eaux || cell.cardtype === CardType.elec || cell.cardtype === CardType.gare">
 
-                <div class="d-flex">
+                <div class="d-flex mt-4">
                     <div class=" cell-zoom ">
-                        <gano-cell [color]="cell.color " [cardtype]="cell.cardtype " [name]="cell.name " [ville]="cell.ville " [price]="cell.price " [orientation]="cell.orientation " [isCorner]="cell.isCorner ">
+                        <gano-cell [color]="cell.color " [cardtype]="cell.cardtype " [info]="cell.info" [cardImg]="cell.img" [name]="cell.name " [ville]="cell.ville " [price]="cell.price " [orientation]="cell.orientation " [isCorner]="cell.isCorner ">
                         </gano-cell>
                     </div>
 
@@ -41,8 +53,10 @@
                 </div>
 
                 <ng-container *ngIf="(isHumanTurn$ | async) ">
-                    <a class="btn btn-primary " (click)="buy() ">Buy</a>
-                    <a class="btn btn-primary " (click)="skip() ">Not Buy</a>
+                    <div class="d-flex justify-content-center mt-4">
+                        <a class="btn btn-outline-warning me-2 " (click)="skip() ">Skip</a>
+                        <a class="btn btn-primary " (click)="buy() ">Buy</a>
+                    </div>
                 </ng-container>
 
             </div>

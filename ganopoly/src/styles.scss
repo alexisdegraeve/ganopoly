@@ -101,8 +101,8 @@
     }
 
     .btn-primary {
-        background-color: #E7A3B0;
-        border-color: #E7A3B0;
+        background-color: #f3264d;
+        border-color: #f3264d;
         color: #fff;
         &:hover,
         &:focus,
@@ -131,8 +131,8 @@
         --bs-btn-focus-shadow-rgb: 0, 0, 0; // ou désactive carrément
         --bs-btn-focus-box-shadow: none;
         --bs-btn-active-color: #fff;
-        --bs-btn-active-bg: #d98a9c;
-        --bs-btn-active-border-color: #d98a9c;
+        --bs-btn-active-bg: #f3264d;
+        --bs-btn-active-border-color: #f3264d;
         --bs-btn-disabled-color: #f2c9d1;
         --bs-btn-disabled-bg: transparent;
         --bs-btn-disabled-border-color: #f2c9d1;

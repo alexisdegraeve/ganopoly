@@ -1,5 +1,5 @@
                 .card-full {
-                    zoom: 0.75;
+                    zoom: 0.6;
                     /* transform: scale(0.75);
     transform-origin: 0 top;
     width: 15.25rem;
@@ -42,6 +42,7 @@
 
                 .flip-card-front {
                     background-color: #f8f9fa;
+                    color: #000;
                     display: flex;
                     justify-content: center;
                     align-items: center;
@@ -93,7 +94,6 @@
                     align-items: center;
                     flex-direction: column;
                     padding: 1rem;
-                    color: #000;
                     .card-header {
                         height: 5rem;
                         width: 100%;

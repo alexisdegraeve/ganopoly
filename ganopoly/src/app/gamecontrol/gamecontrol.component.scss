@@ -14,6 +14,10 @@
 
 .cell-zoom {
     zoom: 2.0;
+    color: #000;
+    justify-content: center;
+    display: flex;
+    margin-top: 1rem;
 }
 
 @media only screen and (max-width: 768px) {

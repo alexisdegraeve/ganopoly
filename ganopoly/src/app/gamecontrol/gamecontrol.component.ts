@@ -39,14 +39,13 @@ export class GamecontrolComponent {
   finishRollDice() {
     if(this.isHumanTurn$.value) {
       console.log('finishRollDice - current player ', this.gameService.PlayerToPlay.value.name);
-      this.showButtonRollDice = false;
+      this.showButtonRollDice = true;
       this.isHumanAction = true;
       this.gameService.updateCurrentCasePlayer(this.gameService.PlayerHuman);
       this.cellCase$ = this.getCellCase(this.gameService.PlayerHuman.value?.currentCase);
       this.card$ = this.getMyCard(this.gameService.PlayerHuman.value?.currentCase);
       console.log('finish roll dice');
     }
-
   }
 
   constructor(private gameService: GameService) {
@@ -102,6 +101,7 @@ waitDiceRoll(): Promise<void> {
           color: card.color,
           price: card.prix,
           info: card.info,
+          img: card.img,
           cardtype: card.type,
           orientation: 'vertical',
           isCorner: [0, 10, 20, 30].includes(card.case)
@@ -114,6 +114,10 @@ waitDiceRoll(): Promise<void> {
     return this.gameService.getCards().pipe(
       map(cards => cards.find(c => c.case === cellNb))
     );
+  }
+
+  protected Ok() {
+    this.skip();
   }
 
 }
