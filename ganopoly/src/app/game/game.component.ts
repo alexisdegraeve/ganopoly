@@ -13,11 +13,13 @@ import { GamecontrolComponent } from "../gamecontrol/gamecontrol.component";
 import { FooterComponent } from '../footer/footer.component';
 import { HeaderComponent } from '../header/header.component';
 import { GamezoomComponent } from '../gamezoom/gamezoom.component';
+import { BanknoteComponent } from "../banknote/banknote.component";
+import { WinLoseCardComponent } from "../win-lose-card/win-lose-card.component";
 
 
 @Component({
   selector: 'gano-game',
-  imports: [BoardComponent, FooterComponent, CommonModule, HumanPlayerComponent, InfoPlayerComponent,  GamecontrolComponent, HeaderComponent, GamezoomComponent],
+  imports: [BoardComponent, FooterComponent, CommonModule, HumanPlayerComponent, InfoPlayerComponent, GamecontrolComponent, HeaderComponent, GamezoomComponent, BanknoteComponent, WinLoseCardComponent],
   templateUrl: './game.component.html',
   styleUrl: './game.component.scss'
 })

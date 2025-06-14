@@ -1,0 +1,31 @@
+.card {
+    width: 40rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.win-lose-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.win {
+    border-radius: 0.5rem;
+    height: 28rem;
+    margin: 0.25rem;
+    background-image: url("/img/ganopoly_win.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.lose {
+    border-radius: 0.5rem;
+    height: 28rem;
+    margin: 0.25rem;
+    background-image: url("/img/ganopoly_lose.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
