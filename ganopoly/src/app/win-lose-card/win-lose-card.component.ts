@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'gano-win-lose-card',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './win-lose-card.component.html',
   styleUrl: './win-lose-card.component.scss'
 })
-export class WinLoseCardComponent {
-
+export class WinLoseCardComponent  {
+  @Input() isLose = true;
+  @Input() isWin = false;
 }

@@ -1,7 +1,7 @@
-<div class="card">
-    <div class="win"></div>
+<div *ngIf="isWin" class="flip-in card">
+    <div class="win "></div>
 </div>
 
-<div class="card">
-    <div class="lose"></div>
+<div *ngIf="isLose" class="flip-in card">
+    <div class="lose "></div>
 </div>
