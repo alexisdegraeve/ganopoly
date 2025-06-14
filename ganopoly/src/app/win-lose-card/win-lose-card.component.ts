@@ -8,6 +8,6 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrl: './win-lose-card.component.scss'
 })
 export class WinLoseCardComponent  {
-  @Input() isLose = true;
-  @Input() isWin = false;
+  @Input() isLose = false;
+  @Input() isWin = true;
 }

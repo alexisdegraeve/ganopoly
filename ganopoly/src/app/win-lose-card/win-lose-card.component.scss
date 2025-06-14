@@ -45,3 +45,18 @@
     animation: flipInHorizontal 0.6s ease-out forwards;
     transform-style: preserve-3d;
 }
+
+@media only screen and (max-width: 768px) {
+    .card-header {
+        height: 8rem;
+    }
+    .card {
+        width: auto;
+        max-width: auto;
+        margin: 1rem;
+        .win,
+        .lose {
+            height: 15rem;
+        }
+    }
+}
