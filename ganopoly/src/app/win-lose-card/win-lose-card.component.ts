@@ -9,5 +9,5 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class WinLoseCardComponent  {
   @Input() isLose = false;
-  @Input() isWin = true;
+  @Input() isWin = false;
 }
