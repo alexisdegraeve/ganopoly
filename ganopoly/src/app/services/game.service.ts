@@ -175,7 +175,6 @@ export class GameService {
       playerColor: playerColor,
       currentCase: 10,
       jail: true,
-      jailOut: false,
       jailDice: 0,
       properties: [],
       billets: [
@@ -366,6 +365,31 @@ export class GameService {
     return this.playerToPlay$;
   }
 
+  rollDiceGetOutJail(dicenumber: number, player: BehaviorSubject<Player>) {
+    console.log('rollDiceGetOutJail');
+    const current = structuredClone(player.value);
+
+    if(current.jailDice === 3) {
+      this.payGetOutJail(player);
+    } else {
+      if(dicenumber === 12) {
+        // success
+        current.jailDice = 0;
+        current.jail = false;
+      } else  {
+        current.jailDice++;
+      }
+      player.next(current);
+    }
+
+
+    console.log('end rollDiceGetOutJail');
+
+    // currentProperties.push(ganocase);
+    // const updatedPlayer = { ...currentPlayer, properties: currentProperties };
+    // player.next(current);
+  }
+
 
   async payGetOutJail(player: BehaviorSubject<Player>, montantJailOut = 50) {
     const result = await this.payToBank(montantJailOut, player);
@@ -379,8 +403,8 @@ export class GameService {
     console.log('AFTER TO CHECK !! : ', player.value);
 
     const current = structuredClone(player.value);
+    current.jailDice = 0;
     current.jail = false;
-    current.jailOut = true;
     // currentProperties.push(ganocase);
     // const updatedPlayer = { ...currentPlayer, properties: currentProperties };
     player.next(current);

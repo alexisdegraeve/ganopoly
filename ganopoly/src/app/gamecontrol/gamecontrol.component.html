@@ -8,14 +8,13 @@
         <ng-container *ngIf="isStartGame">
             <gano-doubledice [showButton]="showButtonRollDice" (finishRollDiceEvent)="finishRollDice()"></gano-doubledice>
         </ng-container>
-        <div>
-            PLAYER IN JAIL ? {{ playerToPlay.jail }}
+        <ng-container *ngIf="playerToPlay.jail">
             <div class="d-flex">
                 <a class="btn btn-outline-primary" (click)="jailPay() ">Pay 50€</a>
                 <a class="btn btn-outline-primary mx-2" (click)="jailCardFree() ">Card Free from Jail</a>
                 <a class="btn btn-outline-primary" (click)="jailThrowDice() ">Throw dice to go out</a>
             </div>
-        </div>
+        </ng-container>
 
         <ng-container *ngIf="cellCase$ | async as cell">
 
