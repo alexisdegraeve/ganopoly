@@ -171,7 +171,6 @@ export class GameService {
     return new BehaviorSubject<Player>({
       name: this.getRandomFirstname(),
       pawnShape,
-      dices: 0,
       playerColor: playerColor,
       currentCase: 10,
       jail: true,
@@ -365,20 +364,26 @@ export class GameService {
     return this.playerToPlay$;
   }
 
-  rollDiceGetOutJail(dicenumber: number, player: BehaviorSubject<Player>) {
+  async rollDiceGetOutJail(player: BehaviorSubject<Player>) {
     console.log('rollDiceGetOutJail');
     const current = structuredClone(player.value);
 
     if(current.jailDice === 3) {
-      this.payGetOutJail(player);
+      console.log('PAY JAIL');
+      await this.payGetOutJail(player);
     } else {
-      if(dicenumber === 12) {
+      console.log('check dé 1', this.dice1 );
+      console.log('check dé 1', this.dice2 );
+      if(this.dice1 === this.dice2) {
         // success
         current.jailDice = 0;
         current.jail = false;
+        console.log('SORTIR DE PRISON');
       } else  {
         current.jailDice++;
+                console.log('current: ', current.jailDice);
       }
+      console.log('update current');
       player.next(current);
     }
 

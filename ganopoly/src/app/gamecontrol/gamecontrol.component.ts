@@ -38,13 +38,19 @@ export class GamecontrolComponent {
 
   finishRollDice() {
     if(this.isHumanTurn$.value) {
-      console.log('finishRollDice - current player ', this.gameService.PlayerToPlay.value.name);
-      this.showButtonRollDice = true;
-      this.isHumanAction = true;
-      this.gameService.updateCurrentCasePlayer(this.gameService.PlayerHuman);
-      this.cellCase$ = this.getCellCase(this.gameService.PlayerHuman.value?.currentCase);
-      this.card$ = this.getMyCard(this.gameService.PlayerHuman.value?.currentCase);
-      console.log('finish roll dice');
+      if(!this.playerToPlay$.value.jail) {
+        // Human in prison and he throw the dices
+        console.log('finishRollDice - current player ', this.gameService.PlayerToPlay.value.name);
+        this.showButtonRollDice = true;
+        this.isHumanAction = true;
+        this.gameService.updateCurrentCasePlayer(this.gameService.PlayerHuman);
+        this.cellCase$ = this.getCellCase(this.gameService.PlayerHuman.value?.currentCase);
+        this.card$ = this.getMyCard(this.gameService.PlayerHuman.value?.currentCase);
+        console.log('finish roll dice');
+      } else {
+        this.jailThrowDice();
+      }
+
     }
   }
 
@@ -133,6 +139,8 @@ waitDiceRoll(): Promise<void> {
 
   jailThrowDice() {
     console.log('JAIL: throw dice');
+    this.gameService.rollDiceGetOutJail(this.gameService.PlayerHuman);
+    this.gameService.nextPlayerToPlay();
   }
 
 }

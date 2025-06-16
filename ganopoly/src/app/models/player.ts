@@ -6,7 +6,6 @@ export class Player {
   name: string = '';
   playerColor: string = '';
   pawnShape: Pawn = Pawn.trident;
-  dices: number = 0;
   properties: number[]=[];
   currentCase: number = 0;
   jail = false;

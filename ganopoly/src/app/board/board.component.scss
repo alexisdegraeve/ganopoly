@@ -93,11 +93,13 @@
 .chance-card {
     transform: scale(0.35) rotate(-45deg);
     transform-origin: 8rem 10rem;
+    pointer-events: none;
 }
 
 .community-card {
     transform: scale(0.35) rotate(135deg);
     transform-origin: 25rem 10rem;
+    pointer-events: none;
 }
 
 .logo-ganopoly {

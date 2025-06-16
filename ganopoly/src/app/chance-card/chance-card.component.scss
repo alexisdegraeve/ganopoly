@@ -1,6 +1,8 @@
 .chance-card {
     perspective: 1000px;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
 }
 
 .chance-inside-card-border {
