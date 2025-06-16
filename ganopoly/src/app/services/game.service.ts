@@ -366,11 +366,32 @@ export class GameService {
     return this.playerToPlay$;
   }
 
+
+  async payGetOutJail(player: BehaviorSubject<Player>, montantJailOut = 50) {
+    const result = await this.payToBank(montantJailOut, player);
+
+    if (result === false) {
+      console.warn("Le joueur n'a pas assez d'argent pour sortir de prison");
+      return;
+    }
+
+    console.log('AFTER TO CHECK !! : ', this.banque);
+    console.log('AFTER TO CHECK !! : ', player.value);
+
+    const current = structuredClone(player.value);
+    current.jail = false;
+    current.jailOut = true;
+    // currentProperties.push(ganocase);
+    // const updatedPlayer = { ...currentPlayer, properties: currentProperties };
+    player.next(current);
+  }
+
   async addProperty(ganocase: number, player: BehaviorSubject<Player>) {
     // Pay Before
     console.log('BEFORE TO CHECK !! : ', this.banque);
     console.log('BEFORE TO CHECK !! : ', player.value);
-    const result = await this.payToBank(ganocase, player);
+    const montant = await this.propertyPrice(ganocase);
+    const result = await this.payToBank(montant, player);
 
     if (result === false) {
       console.warn("Le joueur n'a pas assez d'argent pour acheter la propriété");
@@ -388,10 +409,7 @@ export class GameService {
   }
 
 
-
-  async payToBank(ganocase: number, player: BehaviorSubject<Player>): Promise<false | Billet[]> {
-    console.log('Billets du joueur avant paiement :', player.value.billets);
-
+  async propertyPrice(ganocase: number): Promise<number> {
     const checkCards$ = this.getCards().pipe(
       map(cards => cards.filter(card => card.case === ganocase))
     );
@@ -400,12 +418,17 @@ export class GameService {
 
     if (checkCards.length === 0) {
       console.warn('Aucune carte trouvée dans les propriétés du joueur');
-      return false;
+      return 0;
     }
 
     const lastCard = checkCards[checkCards.length - 1];
-    const montant = lastCard.prix;
     console.log('Dernière carte :', lastCard);
+    return lastCard.prix;
+  }
+
+
+  async payToBank(montant: number, player: BehaviorSubject<Player>): Promise<false | Billet[]> {
+    console.log('Billets du joueur avant paiement :', player.value.billets);
 
     const billetsPlayer: Billet[] = structuredClone(player.value.billets);
     const billetsBanque: Billet[] = structuredClone(this.banque);

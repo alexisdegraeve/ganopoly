@@ -123,6 +123,8 @@ waitDiceRoll(): Promise<void> {
   /* Jail Case */
   jailPay() {
     console.log('JAIL: pay to go out ');
+    this.gameService.payGetOutJail(this.gameService.PlayerHuman);
+    this.gameService.nextPlayerToPlay();
   }
 
   jailCardFree() {
