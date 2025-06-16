@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { GameService } from '../services/game.service';
+import { ccCard } from '../models/ccCard';
 
 @Component({
   selector: 'gano-chance-card',
@@ -8,8 +10,14 @@ import { Component } from '@angular/core';
 })
 export class ChanceCardComponent {
   isFlipped = false;
+  chanceCard: ccCard | undefined;
 
-  flipCard() {
-    this.isFlipped = !this.isFlipped;
+  constructor(private gameService: GameService) {
+  }
+
+  takeCard() {
+    this.chanceCard = this.gameService.pickChanceCard();
+    console.log('this.chancecard ', this.chanceCard);
+    this.isFlipped = true;
   }
 }

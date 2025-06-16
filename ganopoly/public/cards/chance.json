@@ -1,74 +1,74 @@
 [{
         "id": 1,
-        "texte": "Avancez jusqu'à la case Départ. Recevez 200 €.",
+        "text": "Avancez jusqu'à la case Départ. Recevez 200 €.",
         "valeur": 200
     },
     {
         "id": 2,
-        "texte": "Reculez de trois cases.",
+        "text": "Reculez de trois cases.",
         "valeur": 0
     },
     {
         "id": 3,
-        "texte": "Allez en prison sans passer par la case départ et sans toucher 200 €.",
+        "text": "Allez en prison sans passer par la case départ et sans toucher 200 €.",
         "valeur": 0
     },
     {
         "id": 4,
-        "texte": "Vous êtes libéré de prison. Cette carte peut être conservée jusqu'à ce qu'elle soit utilisée ou vendue.",
+        "text": "Vous êtes libéré de prison. Cette carte peut être conservée jusqu'à ce qu'elle soit utilisée ou vendue.",
         "valeur": 0
     },
     {
         "id": 5,
-        "texte": "La banque vous verse un dividende de 50 €.",
+        "text": "La banque vous verse un dividende de 50 €.",
         "valeur": 50
     },
     {
         "id": 6,
-        "texte": "Faites des réparations dans toutes vos propriétés. Versez 25€ pour chaque maison et 100€ pour chaque hôtel que vous possédez.",
+        "text": "Faites des réparations dans toutes vos propriétés. Versez 25€ pour chaque maison et 100€ pour chaque hôtel que vous possédez.",
         "maison": 25,
         "hotel": 100
     },
     {
         "id": 7,
-        "texte": "Amend pour excès de vitesse : payez 15€.",
+        "text": "Amend pour excès de vitesse : payez 15€.",
         "valeur": 15
     },
     {
         "id": 8,
-        "texte": "Vous avez été élu préisdent du conseil d'administration versez 50€ à chaque joueur.",
+        "text": "Vous avez été élu préisdent du conseil d'administration versez 50€ à chaque joueur.",
         "valeur": 50
     },
     {
         "id": 9,
-        "texte": "Avancez jusqu'à la compagnie de service public la plus proche. Si elle n'appartient à personne, vous pouvez l'acheter auprès de la banque. Si elle appartient à un autre joueur, lancez les dés et payez le montant du total de vos multiples par 10."
+        "text": "Avancez jusqu'à la compagnie de service public la plus proche. Si elle n'appartient à personne, vous pouvez l'acheter auprès de la banque. Si elle appartient à un autre joueur, lancez les dés et payez le montant du total de vos multiples par 10."
     },
     {
         "id": 10,
-        "texte": "Avancez jusqu'à la gare la plus proche. Si elle n'appartient à personne vous pouvez l'acheter auprès de la banque. SI elle appartient à un autre joueur vous devez payer 2 fois le loyer demandé."
+        "text": "Avancez jusqu'à la gare la plus proche. Si elle n'appartient à personne vous pouvez l'acheter auprès de la banque. SI elle appartient à un autre joueur vous devez payer 2 fois le loyer demandé."
     },
     {
         "id": 11,
-        "texte": "Avancez jusqu'à la gare la plus proche. Si elle n'appartient à personne vous pouvez l'acheter auprès de la banque. SI elle appartient à un autre joueur vous devez payer 2 fois le loyer demandé."
+        "text": "Avancez jusqu'à la gare la plus proche. Si elle n'appartient à personne vous pouvez l'acheter auprès de la banque. SI elle appartient à un autre joueur vous devez payer 2 fois le loyer demandé."
     },
     {
         "id": 12,
-        "texte": "Rendez-vous à la rue neuve à Bruxelles."
+        "text": "Rendez-vous à la rue neuve à Bruxelles."
     },
     {
         "id": 13,
-        "texte": "Rendez-vous à la rue de Diekirch (à Arlon). Si vous passez par la case départ recevez 200€."
+        "text": "Rendez-vous à la rue de Diekirch (à Arlon). Si vous passez par la case départ recevez 200€."
     },
     {
         "id": 14,
-        "texte": "Allez à la gare du nord. Si vous passez par la case départ recevez 200€."
+        "text": "Allez à la gare du nord. Si vous passez par la case départ recevez 200€."
     },
     {
         "id": 15,
-        "texte": "Rendez-vous à la grand-place (À Mons). Si vous passez par la case départ recevez 200€."
+        "text": "Rendez-vous à la grand-place (À Mons). Si vous passez par la case départ recevez 200€."
     },
     {
         "id": 16,
-        "texte": "Votre immeuble et votre prêt rapportent. Touchez 150€."
+        "text": "Votre immeuble et votre prêt rapportent. Touchez 150€."
     }
 ]

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ccCard } from '../models/ccCard';
+import { GameService } from '../services/game.service';
 
 @Component({
   selector: 'gano-community-card',
@@ -8,8 +10,14 @@ import { Component } from '@angular/core';
 })
 export class CommunityCardComponent {
   isFlipped = false;
+  communityCard: ccCard | undefined;
 
-  flipCard() {
-    this.isFlipped = !this.isFlipped;
+  constructor(private gameService: GameService) {
+  }
+
+  takeCard() {
+    this.communityCard = this.gameService.pickCommunityCard();
+    console.log('this.communityCard ', this.communityCard);
+    this.isFlipped = true;
   }
 }

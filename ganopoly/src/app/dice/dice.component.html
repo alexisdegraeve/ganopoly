@@ -1,4 +1,7 @@
 <div class="dice">
+    <div class="face-1" *ngIf="score < 1 || score > 6">
+        <div class="mystery">?</div>
+    </div>
     <div class="face-1" *ngIf="score == 1">
         <div class="point"></div>
     </div>

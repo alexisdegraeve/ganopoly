@@ -1,4 +1,4 @@
-<div class="community-card" (click)="flipCard()" [class.flipped]="isFlipped">
+<div class="community-card" (click)="!communityCard && takeCard()" [class.flipped]="isFlipped && communityCard" [class.disabled]="communityCard">
     <div class="community-card-inner">
         <div class="community-inside-card-border community-card-front">
             <div class="community-inside-card">
@@ -10,7 +10,7 @@
         <div class="community-inside-card-border  community-card-back">
             <div class="community-inside-back-card">
                 <h4>caisse de communauté</h4>
-                <p [innerHTML]="'Vous avez gagné 200€ !'"></p>
+                <p [innerHTML]="communityCard?.text"></p>
             </div>
         </div>
     </div>

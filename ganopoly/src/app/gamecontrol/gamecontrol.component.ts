@@ -143,4 +143,13 @@ waitDiceRoll(): Promise<void> {
     this.gameService.nextPlayerToPlay();
   }
 
+  cardCaisse() {
+     console.log('Caisse card ');
+    // this.gameService.actionCaisse();
+  }
+  cardChance() {
+     console.log('Chance card');
+    // this.gameService.actionChance();
+  }
+
 }

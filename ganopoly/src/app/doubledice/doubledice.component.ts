@@ -12,8 +12,8 @@ import { GameService } from '../services/game.service';
 export class DoublediceComponent {
   @Output() finishRollDiceEvent = new EventEmitter<boolean>();
   @Input() showButton = true;
-  score1 = 1;
-  score2 = 1;
+  score1 = 0;
+  score2 = 0;
 
   constructor(private gameService: GameService) {
 

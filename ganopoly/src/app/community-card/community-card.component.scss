@@ -1,3 +1,7 @@
+.disabled {
+    pointer-events: none;
+}
+
 .community-card {
     perspective: 1000px;
     cursor: pointer;

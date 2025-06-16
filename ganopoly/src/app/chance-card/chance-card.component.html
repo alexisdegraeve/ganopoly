@@ -1,4 +1,4 @@
-<div class="chance-card" (click)="flipCard()" [class.flipped]="isFlipped">
+<div class="chance-card" (click)="!chanceCard && takeCard()" [class.flipped]="isFlipped && chanceCard" [class.disabled]="chanceCard">
     <div class="chance-card-inner">
         <div class="chance-inside-card-border chance-card-front">
             <div class="chance-inside-card">
@@ -10,7 +10,7 @@
         <div class="chance-inside-card-border  chance-card-back">
             <div class="chance-inside-back-card">
                 <h4>Chance</h4>
-                <p [innerHTML]="'Vous avez gagné 200€ !'"></p>
+                <p [innerHTML]="chanceCard?.text"></p>
             </div>
         </div>
     </div>

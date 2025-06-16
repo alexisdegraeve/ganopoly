@@ -18,11 +18,10 @@
         </ng-container>
 
         <ng-container *ngIf="cellCase$ | async as cell">
-
             <div *ngIf="cell.cardtype === CardType.caisse" class="mt-4">
                 <gano-community-card></gano-community-card>
                 <div class="d-flex justify-content-center mt-4">
-                    <a class="btn btn-outline-primary " (click)="Ok() ">OK</a>
+                    <a class="btn btn-outline-primary " (click)="cardCaisse() ">OK</a>
                 </div>
 
             </div>
@@ -30,7 +29,7 @@
             <div *ngIf="cell.cardtype === CardType.chance" class="mt-4">
                 <gano-chance-card></gano-chance-card>
                 <div class="d-flex justify-content-center mt-4">
-                    <a class="btn btn-outline-primary " (click)="Ok() ">OK</a>
+                    <a class="btn btn-outline-primary " (click)="cardChance() ">OK</a>
                 </div>
 
             </div>

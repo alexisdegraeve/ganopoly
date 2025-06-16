@@ -172,8 +172,8 @@ export class GameService {
       name: this.getRandomFirstname(),
       pawnShape,
       playerColor: playerColor,
-      currentCase: 10,
-      jail: true,
+      currentCase: 0,
+      jail: false,
       jailDice: 0,
       properties: [],
       billets: [
@@ -244,15 +244,6 @@ export class GameService {
       array[swapIndex] = temp;
     }
     return array;
-  }
-  pickChanceCard(): ccCard | undefined {
-    console.log(this.banque);
-    //console.log(this.playerHuman);
-    let lastCard = this.chanceCards.pop();
-    if (lastCard) {
-      this.chanceCards = [lastCard, ...this.chanceCards];
-    }
-    return lastCard;
   }
 
   takeMoneyFromBank(dstEuro: number, dstQuantity: number, dstPlayer: BehaviorSubject<Player>) {
@@ -566,6 +557,45 @@ export class GameService {
     console.log('case ');
     console.log('prison ? ');
   }
+
+  pickChanceCard(): ccCard | undefined {
+    console.log('pickChanceCard');
+    console.log(this.chanceCards);
+    let lastCard = this.chanceCards.pop();
+    if (lastCard) {
+      this.chanceCards = [lastCard, ...this.chanceCards];
+    }
+    console.log(this.chanceCards);
+    console.log(lastCard);
+    return lastCard;
+  }
+
+  pickCommunityCard(): ccCard | undefined {
+    console.log('pickCommunityCard');
+    console.log(this.communauteCards);
+    //console.log(this.playerHuman);
+    let lastCard = this.communauteCards.pop();
+    if (lastCard) {
+      this.communauteCards = [lastCard, ...this.communauteCards];
+    }
+    console.log(this.communauteCards);
+    return lastCard;
+  }
+
+
+
+
+  // actionChance(chanceCard: ccCard, player: Player) {
+  //   console.log('ACTION CHANCE');
+  //   console.log('chanceCard ', chanceCard);
+  //   console.log('player ', player);
+  // }
+
+  // actionCaisse(caisseCard: ccCard, player: Player) {
+  //   console.log('ACTION CAISSE');
+  //   console.log('caisseCard ', caisseCard);
+  //   console.log('player ', player);
+  // }
 
 }
 
