@@ -120,4 +120,17 @@ waitDiceRoll(): Promise<void> {
     this.skip();
   }
 
+  /* Jail Case */
+  jailPay() {
+    console.log('JAIL: pay to go out ');
+  }
+
+  jailCardFree() {
+    console.log('JAIL: use card free');
+  }
+
+  jailThrowDice() {
+    console.log('JAIL: throw dice');
+  }
+
 }

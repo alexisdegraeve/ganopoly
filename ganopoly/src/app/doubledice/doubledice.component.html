@@ -1,6 +1,8 @@
-<div class="d-flex">
-    <gano-dice [score]="score1"></gano-dice>
-    <gano-dice [score]="score2"></gano-dice>
+<div class="d-flex flex-wrap flex-column">
+    <div class="d-flex justify-content-center ">
+        <gano-dice [score]="score1"></gano-dice>
+        <gano-dice [score]="score2"></gano-dice>
+        <button class="btn btn-outline-primary ms-4 " (click)="rollDice()" *ngIf="showButton">Roll Dice</button>
+    </div>
 
-    <button class="btn btn-outline-primary ms-4" (click)="rollDice()" *ngIf="showButton">Roll Dice</button>
 </div>

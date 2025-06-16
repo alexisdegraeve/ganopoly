@@ -92,8 +92,10 @@ export class GameService {
     await firstValueFrom(this.diceRollCompleted$);
     const current = structuredClone(player.value);
     const nextCase = (current.currentCase + this.dice1 + this.dice2);
-    current.currentCase =  nextCase < 40 ? nextCase : nextCase % 40;
+    current.currentCase = nextCase < 40 ? nextCase : nextCase % 40;
     player.next(current);
+
+    this.analyseGame(current);
 
     console.log("⏳ Étape 1 : Vérifie si la case appartient à un joueur...");
     await this.sleep(500);
@@ -146,7 +148,7 @@ export class GameService {
   updateCurrentCasePlayer(player: BehaviorSubject<Player>) {
     const currentPlayer = structuredClone(player.value);
     const nextCase = (currentPlayer.currentCase + this.dice1 + this.dice2);
-    currentPlayer.currentCase =  nextCase < 40 ? nextCase : nextCase % 40;
+    currentPlayer.currentCase = nextCase < 40 ? nextCase : nextCase % 40;
     player.next(currentPlayer);
   }
 
@@ -171,7 +173,10 @@ export class GameService {
       pawnShape,
       dices: 0,
       playerColor: playerColor,
-      currentCase: 0,
+      currentCase: 10,
+      jail: true,
+      jailOut: false,
+      jailDice: 0,
       properties: [],
       billets: [
         { euro: 1, quantity: 0, color: 'white' },
@@ -364,7 +369,7 @@ export class GameService {
   async addProperty(ganocase: number, player: BehaviorSubject<Player>) {
     // Pay Before
     console.log('BEFORE TO CHECK !! : ', this.banque);
-    console.log('BEFORE TO CHECK !! : ',  player.value);
+    console.log('BEFORE TO CHECK !! : ', player.value);
     const result = await this.payToBank(ganocase, player);
 
     if (result === false) {
@@ -373,7 +378,7 @@ export class GameService {
     }
 
     console.log('AFTER TO CHECK !! : ', this.banque);
-    console.log('AFTER TO CHECK !! : ',  player.value);
+    console.log('AFTER TO CHECK !! : ', player.value);
 
     const current = structuredClone(player.value);
     current.properties.push(ganocase);
@@ -385,82 +390,82 @@ export class GameService {
 
 
   async payToBank(ganocase: number, player: BehaviorSubject<Player>): Promise<false | Billet[]> {
-  console.log('Billets du joueur avant paiement :', player.value.billets);
+    console.log('Billets du joueur avant paiement :', player.value.billets);
 
-  const checkCards$ = this.getCards().pipe(
-    map(cards => cards.filter(card => card.case === ganocase))
-  );
+    const checkCards$ = this.getCards().pipe(
+      map(cards => cards.filter(card => card.case === ganocase))
+    );
 
-  const checkCards = await firstValueFrom(checkCards$);
+    const checkCards = await firstValueFrom(checkCards$);
 
-  if (checkCards.length === 0) {
-    console.warn('Aucune carte trouvée dans les propriétés du joueur');
-    return false;
-  }
-
-  const lastCard = checkCards[checkCards.length - 1];
-  const montant = lastCard.prix;
-  console.log('Dernière carte :', lastCard);
-
-  const billetsPlayer: Billet[] = structuredClone(player.value.billets);
-  const billetsBanque: Billet[] = structuredClone(this.banque);
-  let reste = montant;
-
-  // Trier les billets du joueur du plus grand au plus petit
-  const sortedBillets = [...billetsPlayer].sort((a, b) => b.euro - a.euro);
-
-  const paiement: Billet[] = [];
-
-  for (const billet of sortedBillets) {
-    if (reste <= 0) break;
-
-    const maxUtilisables = Math.min(Math.floor(reste / billet.euro), billet.quantity);
-    if (maxUtilisables > 0) {
-      paiement.push({
-        euro: billet.euro,
-        quantity: maxUtilisables,
-        color: billet.color
-      });
-      reste -= maxUtilisables * billet.euro;
+    if (checkCards.length === 0) {
+      console.warn('Aucune carte trouvée dans les propriétés du joueur');
+      return false;
     }
-  }
 
-  if (reste > 0) {
-    console.warn('Le joueur ne peut pas payer le montant demandé');
-    return false; // Il ne peut pas payer
-  }
+    const lastCard = checkCards[checkCards.length - 1];
+    const montant = lastCard.prix;
+    console.log('Dernière carte :', lastCard);
 
-  // Mise à jour des billets joueur et banque
-  const updatedBilletsPlayer: Billet[] = billetsPlayer.map(bp => {
-    const billetPaiement = paiement.find(p => p.euro === bp.euro);
-    if (billetPaiement) {
-      return {
-        ...bp,
-        quantity: bp.quantity - billetPaiement.quantity
-      };
+    const billetsPlayer: Billet[] = structuredClone(player.value.billets);
+    const billetsBanque: Billet[] = structuredClone(this.banque);
+    let reste = montant;
+
+    // Trier les billets du joueur du plus grand au plus petit
+    const sortedBillets = [...billetsPlayer].sort((a, b) => b.euro - a.euro);
+
+    const paiement: Billet[] = [];
+
+    for (const billet of sortedBillets) {
+      if (reste <= 0) break;
+
+      const maxUtilisables = Math.min(Math.floor(reste / billet.euro), billet.quantity);
+      if (maxUtilisables > 0) {
+        paiement.push({
+          euro: billet.euro,
+          quantity: maxUtilisables,
+          color: billet.color
+        });
+        reste -= maxUtilisables * billet.euro;
+      }
     }
-    return bp;
-  });
 
-  const updatedBanque: Billet[] = billetsBanque.map(bb => {
-    const billetPaiement = paiement.find(p => p.euro === bb.euro);
-    if (billetPaiement) {
-      return {
-        ...bb,
-        quantity: bb.quantity + billetPaiement.quantity
-      };
+    if (reste > 0) {
+      console.warn('Le joueur ne peut pas payer le montant demandé');
+      return false; // Il ne peut pas payer
     }
-    return bb;
-  });
 
-  // Appliquer les changements
-  this.banque = updatedBanque;
-  player.next({ ...player.value, billets: updatedBilletsPlayer });
+    // Mise à jour des billets joueur et banque
+    const updatedBilletsPlayer: Billet[] = billetsPlayer.map(bp => {
+      const billetPaiement = paiement.find(p => p.euro === bp.euro);
+      if (billetPaiement) {
+        return {
+          ...bp,
+          quantity: bp.quantity - billetPaiement.quantity
+        };
+      }
+      return bp;
+    });
 
-  console.log('Paiement effectué :', paiement);
+    const updatedBanque: Billet[] = billetsBanque.map(bb => {
+      const billetPaiement = paiement.find(p => p.euro === bb.euro);
+      if (billetPaiement) {
+        return {
+          ...bb,
+          quantity: bb.quantity + billetPaiement.quantity
+        };
+      }
+      return bb;
+    });
 
-  return updatedBilletsPlayer;
-}
+    // Appliquer les changements
+    this.banque = updatedBanque;
+    player.next({ ...player.value, billets: updatedBilletsPlayer });
+
+    console.log('Paiement effectué :', paiement);
+
+    return updatedBilletsPlayer;
+  }
 
 
   // async payToBank(player: BehaviorSubject<Player>): Promise<Billet[]> {
@@ -501,6 +506,14 @@ export class GameService {
   //   this.addProperty([13,15,16], this.playerComputer3$);
   // }
 
+
+  analyseGame(player: Player) {
+    // Analyse Game
+    console.log('check game');
+    console.log(player.name);
+    console.log('case ');
+    console.log('prison ? ');
+  }
 
 }
 

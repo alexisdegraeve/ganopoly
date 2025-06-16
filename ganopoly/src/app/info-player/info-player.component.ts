@@ -1,3 +1,4 @@
+import { Billet } from './../models/billet';
 import { Component, Input } from '@angular/core';
 import { Player } from '../models/player';
 import { CommonModule } from '@angular/common';
@@ -45,5 +46,13 @@ export class InfoPlayerComponent {
         )
       );
     }
+  }
+
+  get playerTotal() {
+    let total = 0;
+    this.player?.value?.billets.forEach((billet: Billet) => {
+      total += (billet.quantity * billet.euro);
+    });
+    return total;
   }
 }

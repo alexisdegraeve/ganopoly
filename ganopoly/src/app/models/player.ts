@@ -9,6 +9,9 @@ export class Player {
   dices: number = 0;
   properties: number[]=[];
   currentCase: number = 0;
+  jail = false;
+  jailOut = false;
+  jailDice = 0;
   //houses: HouseCard[] = [];
   billets: Billet[] = [];
 }
