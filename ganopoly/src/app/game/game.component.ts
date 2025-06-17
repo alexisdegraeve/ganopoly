@@ -59,11 +59,6 @@ export class GameComponent {
     })
   }
 
-
-  pickChance() {
-      this.gameService.pickChanceCard();
-  }
-
   rotateBoard() {
     this.rotation = this.rotation <= 360 ? this.rotation + 90 : 0;
   }
@@ -77,24 +72,6 @@ export class GameComponent {
       )
     );
   }
-
-  // boardShowActive() {
-  //   this.boardShow = true;
-  //   this.cardsShow = false;
-  //   this.bankNoteShow = false;
-  // }
-
-  // cardShowActive() {
-  //   this.boardShow = false;
-  //   this.cardsShow = true;
-  //   this.bankNoteShow = false;
-  // }
-
-  // bankNoteShowActive() {
-  //   this.boardShow = false;
-  //   this.cardsShow = false;
-  //   this.bankNoteShow = true;
-  // }
 
   newGame() {
     this.rotation = 0;

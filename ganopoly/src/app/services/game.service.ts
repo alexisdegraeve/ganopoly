@@ -129,16 +129,13 @@ export class GameService {
 
   getRandomPawn(pawnPlayer: Pawn) {
     const pawns = [Pawn.lotus, Pawn.trident, Pawn.honey, Pawn.ax];
-    console.log('before Pawns ', pawns);
     const pawnsShuffle = this.shuffleArrayGeneric(pawns);
-    console.log('after Pawns ', pawnsShuffle);
     const filterPawnsShuffle = pawnsShuffle.filter(pawn => pawn !== pawnPlayer);
-    console.log('after filter Pawns ', filterPawnsShuffle);
     this.updatePawnPlayer(this.playerComputer1$, filterPawnsShuffle[0])
     this.updatePawnPlayer(this.playerComputer2$, filterPawnsShuffle[1])
     this.updatePawnPlayer(this.playerComputer3$, filterPawnsShuffle[2])
-
   }
+
   updatePawnPlayer(player: BehaviorSubject<Player>, newPawn: Pawn) {
     const currentPlayer = structuredClone(player.value);
     currentPlayer.pawnShape = newPawn;
@@ -258,8 +255,6 @@ export class GameService {
         }
       });
 
-      console.log('updatedPlayer ', updatedPlayer);
-
     dstPlayer.next(updatedPlayer);
   }
 
@@ -290,7 +285,6 @@ export class GameService {
     return total;
   }
   getCards(): Observable<Card[]> {
-    console.log('get cards');
     return this.httpClient.get<Card[]>('/cards/ganopolycards.json');
   }
 
@@ -576,14 +570,22 @@ export class GameService {
   }
 
   pickCommunityCard(): ccCard | undefined {
-    console.log('pickCommunityCard');
     console.log(this.communauteCards);
+    console.log('pickCommunityCard');
     let lastCard = this.communauteCards.pop();
     if (lastCard) {
       this.communauteCards = [lastCard, ...this.communauteCards];
     }
     console.log(this.communauteCards);
     return lastCard;
+  }
+
+  PlayChanceCard(chanceCard: ccCard| undefined) {
+    console.log('PlayChanceCard', chanceCard);
+  }
+
+  PlayCommunityCard(communityCard: ccCard | undefined) {
+    console.log('PlayCommunityCard', communityCard);
   }
 
   async checkStart(player: BehaviorSubject<Player>) {

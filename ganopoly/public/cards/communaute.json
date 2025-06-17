@@ -1,80 +1,97 @@
 [{
         "id": 1,
         "text": "Avancez jusqu'a la case Départ. Recevez 200 €.",
-        "valeur": 200
+        "valeur": 200,
+        "type": "gostart"
     },
     {
         "id": 2,
         "text": "Erreur de la banque en votre faveur. Recevez 200 €.",
-        "valeur": 200
+        "valeur": 200,
+        "type": "earn200"
     },
     {
         "id": 3,
         "text": "Visite chez le médecin : Payez 50€.",
-        "payez": 50
+        "payez": 50,
+        "type": "pay50"
+
     },
     {
         "id": 4,
         "text": "La vente de votre stock vous rapporte 50 €.",
-        "valeur": 50
+        "valeur": 50,
+        "type": "earn50"
     },
     {
         "id": 5,
-        "text": "Vous êtes libéré de prison. Cette carte peut être conservée jusqu'à ce qu'elle soit utilisée ou vendue."
+        "text": "Vous êtes libéré de prison. Cette carte peut être conservée jusqu'à ce qu'elle soit utilisée ou vendue.",
+        "type": "jailfree"
     },
     {
         "id": 6,
-        "text": "Allez en prison sans passer par la case départ et sans tocuher 200€."
+        "text": "Allez en prison sans passer par la case départ et sans toucher 200€.",
+        "type": "gotojail"
     },
     {
         "id": 7,
         "text": "C'est votre anniversaire. Chaque joueur doit vous donner 10 €.",
-        "joueurs": 10
+        "joueurs": 10,
+        "type": "eachplayer10"
     },
     {
         "id": 8,
         "text": "Les impôts vous remboursent 20 €.",
-        "valeur": 20
+        "valeur": 20,
+        "type": "earn20"
     },
     {
         "id": 9,
         "text": "Votre assurance vie vous rapporte 100€.",
-        "valeur": 100
+        "valeur": 100,
+        "type": "earn100"
     },
     {
         "id": 10,
         "text": "Vous avez gagné le deuxième prix de beauté recevez 10 €.",
-        "valeur": 10
+        "valeur": 10,
+        "type": "earn10"
     },
     {
         "id": 11,
         "text": "Frais de scolarité payer 50€.",
-        "valeur": 50
+        "valeur": 50,
+        "type": "pay50"
     },
     {
         "id": 12,
         "text": "Vous devez faire des travaux sur vos propriétés versez 40€ pour chaque maison et 115€ pour chaque hôtel que vous possédez.",
         "maison": 40,
-        "hotel": 115
+        "hotel": 115,
+        "type": "house40hotel115"
     },
     {
         "id": 13,
         "text": "Vous héritez de 100€.",
-        "valeur": 100
+        "valeur": 100,
+        "type": "earn100"
     },
     {
         "id": 14,
         "text": "Commission d'expert immobilier. Recevez 25€",
-        "valeur": 25
+        "valeur": 25,
+        "type": "earn25"
     },
     {
         "id": 15,
         "text": "Votre placement vous rapporte recevez 100€.",
-        "valeur": 100
+        "valeur": 100,
+        "type": "earn100"
     },
     {
         "id": 16,
         "text": "Frais d'hospitalisation payez 100 €.",
-        "payez": 100
+        "payez": 100,
+        "type": "pay100"
     }
 ]

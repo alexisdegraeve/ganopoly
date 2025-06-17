@@ -9,6 +9,7 @@ import { Player } from '../models/player';
 import { CardsComponent } from '../cards/cards.component';
 import { CommunityCardComponent } from "../community-card/community-card.component";
 import { ChanceCardComponent } from '../chance-card/chance-card.component';
+import { ccCard } from '../models/ccCard';
 
 @Component({
   selector: 'gano-gamecontrol',
@@ -28,6 +29,8 @@ export class GamecontrolComponent {
   @ViewChild(DoublediceComponent) diceComponent!: DoublediceComponent;
   isHumanTurn$: BehaviorSubject<boolean> = new  BehaviorSubject<boolean>(true);
   CardType = CardType;
+  communityCard: ccCard | undefined = undefined;
+  chanceCard: ccCard | undefined = undefined;
 
 
   // startGame() {
@@ -143,18 +146,29 @@ waitDiceRoll(): Promise<void> {
     this.gameService.nextPlayerToPlay();
   }
 
-  cardCaisse() {
-     console.log('Caisse card ');
-    // this.gameService.actionCaisse();
+  communityCardAction(communityCardAction: ccCard) {
+    this.communityCard = communityCardAction;
   }
+
+  chanceCardAction(chanceCardAction: ccCard) {
+    this.chanceCard = chanceCardAction;
+  }
+
+  cardCaisse() {
+     console.log('Caisse card ', this.communityCard);
+     this.gameService.PlayCommunityCard(this.communityCard);
+  }
+
   cardChance() {
-     console.log('Chance card');
-    // this.gameService.actionChance();
+     console.log('Chance card', this.chanceCard);
+    this.gameService.PlayCommunityCard(this.chanceCard);
   }
 
   startCase() {
     this.gameService.checkStart(this.gameService.PlayerHuman);
     this.gameService.nextPlayerToPlay();
   }
+
+
 
 }

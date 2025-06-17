@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { GameService } from '../services/game.service';
 import { ccCard } from '../models/ccCard';
 
@@ -11,6 +11,7 @@ import { ccCard } from '../models/ccCard';
 export class ChanceCardComponent {
   isFlipped = false;
   chanceCard: ccCard | undefined;
+  @Output() chanceCardEvent = new EventEmitter<ccCard>();
 
   constructor(private gameService: GameService) {
   }
@@ -18,5 +19,6 @@ export class ChanceCardComponent {
   takeCard() {
     this.chanceCard = this.gameService.pickChanceCard();
     this.isFlipped = true;
+    this.chanceCardEvent.emit(this.chanceCard);
   }
 }
