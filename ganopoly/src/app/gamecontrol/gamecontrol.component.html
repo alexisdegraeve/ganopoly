@@ -8,6 +8,7 @@
         <ng-container *ngIf="isStartGame">
             <gano-doubledice [showButton]="showButtonRollDice" (finishRollDiceEvent)="finishRollDice()"></gano-doubledice>
         </ng-container>
+        jail : {{ playerToPlay.jail }}
         <ng-container *ngIf="playerToPlay.jail">
             jaildice : {{ playerToPlay.jailDice }}
             <div class="d-flex">

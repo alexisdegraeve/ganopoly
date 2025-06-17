@@ -240,6 +240,52 @@ export class GameService {
     return array;
   }
 
+
+  async payToPlayerFromPlayer(montant: number, source: BehaviorSubject<Player>, cible: BehaviorSubject<Player>) {
+  const billetsValeurs = [500, 100, 50, 20, 10, 5, 1];
+  let reste = montant;
+
+  for (const valeur of billetsValeurs) {
+    if (reste <= 0) break;
+
+    const quantite = Math.floor(reste / valeur);
+    if (quantite > 0) {
+      const success = await this.transferBilletsBetweenPlayers(valeur, quantite, source, cible);
+      if (!success) {
+        console.warn(`Le joueur ${source.value.name} n'a pas assez de billets de ${valeur}`);
+        // Tu peux soit lancer une erreur ici, soit continuer avec des valeurs plus petites
+      }
+      reste -= quantite * valeur;
+    }
+  }
+}
+async transferBilletsBetweenPlayers(euro: number, quantite: number, srcPlayer: BehaviorSubject<Player>, dstPlayer: BehaviorSubject<Player>): Promise<boolean> {
+  const source = structuredClone(srcPlayer.value);
+  const cible = structuredClone(dstPlayer.value);
+
+  const billetSrc = source.billets.find(b => b.euro === euro);
+  const billetDst = cible.billets.find(b => b.euro === euro);
+
+  if (!billetSrc || billetSrc.quantity < quantite) {
+    return false; // Pas assez de billets à transférer
+  }
+
+  // Déduire des billets du joueur source
+  billetSrc.quantity -= quantite;
+
+  // Ajouter au joueur cible
+  if (billetDst) {
+    billetDst.quantity += quantite;
+  } else {
+    cible.billets.push({ euro, quantity: quantite, color: billetSrc.color });
+  }
+
+  srcPlayer.next(source);
+  dstPlayer.next(cible);
+  return true;
+}
+
+
   async takeMoneyFromBank(dstEuro: number, dstQuantity: number, dstPlayer: BehaviorSubject<Player>) {
     const currentPlayer = dstPlayer.value;
     const updatedPlayer = { ...currentPlayer };
@@ -634,18 +680,21 @@ export class GameService {
 
     if (communityCard?.type === CommunityType.jailfree) {
       await this.addCommunityCard(communityCard, player);
+      // await this.goToJail(player);
     }
 
     if (communityCard?.type === CommunityType.gotojail) {
-
+      await this.goToJail(player);
     }
 
     if (communityCard?.type === CommunityType.eachplayer10) {
-
+      await this.payToPlayerFromPlayer(10, this.playerComputer1$,  player);
+      await this.payToPlayerFromPlayer(10, this.playerComputer2$,  player);
+      await this.payToPlayerFromPlayer(10, this.playerComputer3$,  player);
     }
 
     if (communityCard?.type === CommunityType.house40hotel115) {
-
+      // TO DO from me the player to the bank
     }
 
     if (communityCard?.type === CommunityType.gostart) {
@@ -653,7 +702,7 @@ export class GameService {
       await this.goTocase(0, player);
     }
 
-
+    this.playerToPlay$.next({ ...player.value });
   }
 
   async checkStart(player: BehaviorSubject<Player>) {
@@ -667,6 +716,12 @@ export class GameService {
     player.next(current);
   }
 
+  async goToJail(player: BehaviorSubject<Player>) {
+    const current = structuredClone(player.value);
+    current.jail = true;
+    current.currentCase = 10;
+    player.next(current);
+  }
 
   async addCommunityCard(communityCard: ccCard, player: BehaviorSubject<Player>) {
     const current = structuredClone(player.value);
