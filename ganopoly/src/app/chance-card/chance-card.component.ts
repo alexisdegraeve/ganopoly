@@ -17,7 +17,6 @@ export class ChanceCardComponent {
 
   takeCard() {
     this.chanceCard = this.gameService.pickChanceCard();
-    console.log('this.chancecard ', this.chanceCard);
     this.isFlipped = true;
   }
 }

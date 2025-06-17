@@ -213,11 +213,6 @@ export class GameService {
           this.communauteCards = this.shuffleArray(communauteCards);
           console.log('Billets');
           console.log('banque : ', JSON.parse(JSON.stringify(this.banque)));
-          //console.log('player Human :', JSON.parse(JSON.stringify(this.playerHuman)));
-          //console.log('playerComputer 1 :',JSON.parse(JSON.stringify(this.playerComputer1)));
-          //console.log('playerComputer 2 :',JSON.parse(JSON.stringify(this.playerComputer2)));
-          //console.log('playerComputer 3 :',JSON.parse(JSON.stringify(this.playerComputer3)));
-          //this.testAddProperties();
           observer.next();
           observer.complete();
         },
@@ -249,9 +244,6 @@ export class GameService {
   async takeMoneyFromBank(dstEuro: number, dstQuantity: number, dstPlayer: BehaviorSubject<Player>) {
     const currentPlayer = dstPlayer.value;
     const updatedPlayer = { ...currentPlayer };
-    console.log('takeMoneyFromBank');
-    console.log('dstEuro', dstEuro,  'dstQuantity', dstQuantity);
-    console.log('currentPlayer ', currentPlayer);
 
     this.banque
       .filter((billet) => billet.euro === dstEuro)
@@ -288,15 +280,6 @@ export class GameService {
     this.giveBilletsPlayer(this.playerComputer3$);
     console.log('disribute Billets');
     console.log('banque : ', JSON.parse(JSON.stringify(this.banque)));
-    // console.log('player Human :', JSON.parse(JSON.stringify(this.playerHuman)));
-    // console.log('playerComputer 1 :',JSON.parse(JSON.stringify(this.playerComputer1)));
-    // console.log('playerComputer 2 :',JSON.parse(JSON.stringify(this.playerComputer2)));
-    // console.log('playerComputer 3 :',JSON.parse(JSON.stringify(this.playerComputer3)));
-    console.log('total ');
-    // console.log('Human :', this.calcTotal(this.playerHuman));
-    // console.log('playerComputer 1 :', this.calcTotal(this.playerComputer1));
-    // console.log('playerComputer 2 :', this.calcTotal(this.playerComputer2));
-    // console.log('playerComputer 3 :', this.calcTotal(this.playerComputer3));
   }
 
   calcTotal(player: Player): number {
@@ -406,8 +389,6 @@ export class GameService {
     const current = structuredClone(player.value);
     current.jailDice = 0;
     current.jail = false;
-    // currentProperties.push(ganocase);
-    // const updatedPlayer = { ...currentPlayer, properties: currentProperties };
     player.next(current);
   }
 
@@ -597,7 +578,6 @@ export class GameService {
   pickCommunityCard(): ccCard | undefined {
     console.log('pickCommunityCard');
     console.log(this.communauteCards);
-    //console.log(this.playerHuman);
     let lastCard = this.communauteCards.pop();
     if (lastCard) {
       this.communauteCards = [lastCard, ...this.communauteCards];
@@ -610,22 +590,6 @@ export class GameService {
       console.log('checkStart +200');
       await this.payToPlayer(200, player);
   }
-
-
-
-
-
-  // actionChance(chanceCard: ccCard, player: Player) {
-  //   console.log('ACTION CHANCE');
-  //   console.log('chanceCard ', chanceCard);
-  //   console.log('player ', player);
-  // }
-
-  // actionCaisse(caisseCard: ccCard, player: Player) {
-  //   console.log('ACTION CAISSE');
-  //   console.log('caisseCard ', caisseCard);
-  //   console.log('player ', player);
-  // }
 
 }
 

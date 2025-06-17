@@ -49,15 +49,11 @@ export class GameComponent {
 
   checkIsLoading(event: Event) {
     this.isLoading = false;
-    console.log('checkIsloading');
-    console.log(event);
   }
 
   startGame(playerChange: {name:string, pawn: Pawn}) {
-    console.log(name);
     this.isStartGame = true;
     this.gameService.startGame(playerChange).subscribe(() => {
-      console.log(' loading finish');
       this.gameService.throwDice();
       this.gameService.distributeBillets();
     })
