@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
 import { DoublediceComponent } from "../doubledice/doubledice.component";
 import { GameService } from '../services/game.service';
-import { BehaviorSubject, map, Observable } from 'rxjs';
+import { BehaviorSubject, firstValueFrom, map, Observable } from 'rxjs';
 import { Case, CardType, Card } from '../models/card';
 import { CellComponent } from '../cell/cell.component';
 import { Player } from '../models/player';
@@ -185,7 +185,17 @@ waitDiceRoll(): Promise<void> {
     this.gameService.nextPlayerToPlay();
   }
 
+  async PayTaxes() {
+    const cell = this.cellCase$ ? await firstValueFrom(this.cellCase$) : undefined;
+    if(cell) {
+      this.gameService.playerPayTaxes(cell.price, this.gameService.PlayerHuman);
+    }
+    this.gameService.nextPlayerToPlay();
+  }
 
-
+  GoToJail() {
+    this.gameService.goToJail(this.gameService.PlayerHuman);
+    this.gameService.nextPlayerToPlay();
+  }
 
 }

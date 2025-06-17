@@ -8,9 +8,7 @@
         <ng-container *ngIf="isStartGame">
             <gano-doubledice [showButton]="showButtonRollDice" (finishRollDiceEvent)="finishRollDice()"></gano-doubledice>
         </ng-container>
-        jail : {{ playerToPlay.jail }}
         <ng-container *ngIf="playerToPlay.jail">
-            jaildice : {{ playerToPlay.jailDice }}
             <div class="d-flex">
                 <button class="btn btn-outline-primary" (click)="jailPay() " [disabled]="playerToPlay.jailDice > 0">Pay 50€</button>
                 <button class="btn btn-outline-primary mx-2" (click)="jailCardFree() " [disabled]="playerToPlay.jailDice > 0" *ngIf="hasAnyJailFreeCard">Card Free from Jail</button>
@@ -42,14 +40,18 @@
 
             </div>
 
-            <div *ngIf="cell.cardtype === CardType.impots || cell.cardtype === CardType.prison || cell.cardtype === CardType.parking || cell.cardtype === CardType.toprison">
+            <div *ngIf="cell.cardtype === CardType.taxe || cell.cardtype === CardType.impots || cell.cardtype === CardType.prison || cell.cardtype === CardType.parking || cell.cardtype === CardType.toprison">
 
                 <div class=" cell-zoom ">
                     <gano-cell [color]="cell.color " [cardtype]="cell.cardtype " [info]="cell.info" [cardImg]="cell.img" [name]="cell.name " [ville]="cell.ville " [price]="cell.price " [orientation]="cell.orientation " [isCorner]="cell.isCorner ">
                     </gano-cell>
                 </div>
                 <div class="d-flex justify-content-center mt-4">
-                    <a class="btn btn-outline-primary " (click)="Ok() ">OK</a>
+                    @if (cell.cardtype === CardType.impots || cell.cardtype === CardType.taxe ) {
+                    <a class="btn btn-outline-primary " (click)="PayTaxes() ">Pay</a> } @else if (cell.cardtype === CardType.toprison) {
+
+                    <a class="btn btn-outline-primary " (click)="GoToJail() ">Go To Jail</a> } @else {
+                    <a class="btn btn-outline-primary " (click)="Ok() ">OK</a> }
                 </div>
 
             </div>
@@ -82,5 +84,4 @@
 
 
     </div>
-
 </div>

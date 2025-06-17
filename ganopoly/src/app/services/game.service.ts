@@ -742,6 +742,14 @@ async transferBilletsBetweenPlayers(euro: number, quantite: number, srcPlayer: B
     }
   }
 
+  async playerPayTaxes(montant: number, player: BehaviorSubject<Player>) {
+      const result = await this.payToBank(montant, player);
+      if (result === false) {
+        console.warn("Le joueur n'a pas assez d'argent pour payer les taxes");
+        return;
+      }
+  }
+
 }
 
 
