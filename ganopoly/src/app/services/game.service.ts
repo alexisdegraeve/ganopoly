@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { CSP_NONCE, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { ccCard } from '../models/ccCard';
 import { BehaviorSubject, combineLatest, firstValueFrom, forkJoin, map, Observable, Subject } from 'rxjs';
 import { Billet } from '../models/billet';
@@ -246,9 +246,12 @@ export class GameService {
     return array;
   }
 
-  takeMoneyFromBank(dstEuro: number, dstQuantity: number, dstPlayer: BehaviorSubject<Player>) {
+  async takeMoneyFromBank(dstEuro: number, dstQuantity: number, dstPlayer: BehaviorSubject<Player>) {
     const currentPlayer = dstPlayer.value;
     const updatedPlayer = { ...currentPlayer };
+    console.log('takeMoneyFromBank');
+    console.log('dstEuro', dstEuro,  'dstQuantity', dstQuantity);
+    console.log('currentPlayer ', currentPlayer);
 
     this.banque
       .filter((billet) => billet.euro === dstEuro)
@@ -262,6 +265,8 @@ export class GameService {
             });
         }
       });
+
+      console.log('updatedPlayer ', updatedPlayer);
 
     dstPlayer.next(updatedPlayer);
   }
@@ -511,6 +516,25 @@ export class GameService {
   }
 
 
+  async payToPlayer(montant: number, player: BehaviorSubject<Player>) {
+    const billetsValeurs = [500, 100, 50, 20, 10, 5, 1];
+    let reste = montant;
+
+    for (const valeur of billetsValeurs) {
+      if (reste <= 0) break;
+
+      const quantite = Math.floor(reste / valeur);
+      if (quantite > 0) {
+        await this.takeMoneyFromBank(valeur, quantite, player);
+        reste -= quantite * valeur;
+      }
+    }
+  }
+
+
+
+
+
   // async payToBank(player: BehaviorSubject<Player>): Promise<Billet[]> {
   //    console.log('billets player ', player.value.billets);
   //    //const total = player.value.properties;
@@ -581,6 +605,12 @@ export class GameService {
     console.log(this.communauteCards);
     return lastCard;
   }
+
+  async checkStart(player: BehaviorSubject<Player>) {
+      console.log('checkStart +200');
+      await this.payToPlayer(200, player);
+  }
+
 
 
 
