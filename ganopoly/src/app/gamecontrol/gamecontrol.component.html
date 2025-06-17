@@ -56,9 +56,9 @@
             </div>
             <div *ngIf="cell.cardtype === CardType.immobilier || cell.cardtype === CardType.eaux || cell.cardtype === CardType.elec || cell.cardtype === CardType.gare">
 
-                <div class="d-flex mt-4">
+                <div class="d-flex mt-4 justify-content-center">
                     <div class=" cell-zoom ">
-                        <gano-cell [color]="cell.color " [cardtype]="cell.cardtype " [info]="cell.info" [cardImg]="cell.img" [name]="cell.name " [ville]="cell.ville " [price]="cell.price " [orientation]="cell.orientation " [isCorner]="cell.isCorner ">
+                        <gano-cell [color]="cell.color " [cardtype]="cell.cardtype " [info]="cell.info " [cardImg]="cell.img " [name]="cell.name " [ville]="cell.ville " [price]="cell.price " [orientation]="cell.orientation " [isCorner]="cell.isCorner ">
                         </gano-cell>
                     </div>
 
@@ -68,7 +68,7 @@
                 </div>
 
                 <ng-container *ngIf="(isHumanTurn$ | async) ">
-                    <div class="d-flex justify-content-center mt-4">
+                    <div class="d-flex justify-content-center mt-4 ">
                         <a class="btn btn-outline-warning me-2 " (click)="skip() ">Skip</a>
                         <a class="btn btn-primary " (click)="buy() ">Buy</a>
                     </div>

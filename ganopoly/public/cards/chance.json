@@ -55,12 +55,12 @@
     {
         "id": 10,
         "text": "Avancez jusqu'à l'éléphant le plus proche. Si elle n'appartient à personne vous pouvez l'acheter auprès de la banque. SI elle appartient à un autre joueur vous devez payer 2 fois le loyer demandé.",
-        "type": "nextelephant"
+        "type": "goelephant"
     },
     {
         "id": 11,
         "text": "Avancez jusqu'à l'éléphant la plus proche. Si elle n'appartient à personne vous pouvez l'acheter auprès de la banque. SI elle appartient à un autre joueur vous devez payer 2 fois le loyer demandé.",
-        "type": "nextelephant"
+        "type": "goelephant"
     },
     {
         "id": 12,

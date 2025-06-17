@@ -834,6 +834,39 @@ export class GameService {
       }
       await this.goTocase(24, player);
     }
+
+    if (communityCard?.type === CommunityType.servicepublicpay10) {
+      // service public plus proche
+      // A quelqu'un lancer les dés et multiplier par 10
+
+      // "case": 12
+      // "case": 28
+      const currentcase = player.value.currentCase;
+      if (currentcase <= 12) {
+        await this.goTocase(12, player);
+      } else if (currentcase <= 28 ){
+        await this.goTocase(28, player);
+      } else {
+        await this.goTocase(12, player);
+      }
+    }
+
+    if (communityCard?.type === CommunityType.goelephant) {
+      const currentcase = player.value.currentCase;
+      if (currentcase <= 5) {
+        await this.goTocase(5, player);
+      } else if (currentcase <= 15 ){
+        await this.goTocase(15, player);
+      }  else if (currentcase <= 25 ){
+        await this.goTocase(25, player);
+      }  else if (currentcase <= 35 ){
+        await this.goTocase(35, player);
+      } else {
+        await this.goTocase(5, player);
+      }
+    }
+
+
   }
 
   async checkStart(player: BehaviorSubject<Player>) {
