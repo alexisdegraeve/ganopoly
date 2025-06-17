@@ -61,9 +61,12 @@
                         </div>
                         <div class="carousel-item">
                             <div class="carousel-caption">
-                                <h5>Community Cards / Extra Cards</h5>
+                                <h5>Community Cards / Chance Cards</h5>
                                 <div class="cards-ganopoly" *ngFor="let communityCard of player?.communityCards">
                                     <gano-community-card [readOnly]=true [communityCard]="communityCard"></gano-community-card>
+                                </div>
+                                <div class="cards-ganopoly" *ngFor="let chanceCard of player?.chanceCards">
+                                    <gano-chance-card [readOnly]=true [chanceCard]="chanceCard"></gano-chance-card>
                                 </div>
                             </div>
                         </div>

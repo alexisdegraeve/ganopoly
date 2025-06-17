@@ -158,14 +158,14 @@ waitDiceRoll(): Promise<void> {
   communityCardPlay() {
      console.log('Caisse card ', this.communityCard);
      this.showCommunityButton = false;
-     this.gameService.PlayCommunityCard(this.communityCard, this.gameService.PlayerHuman);
+     this.gameService.playCommunityCard(this.communityCard, this.gameService.PlayerHuman);
      this.gameService.nextPlayerToPlay();
   }
 
   chanceCardPlay() {
      console.log('Chance card', this.chanceCard);
      this.showChanceButton = false;
-    this.gameService.PlayChanceCard(this.chanceCard, this.gameService.PlayerHuman);
+    this.gameService.playChanceCard(this.chanceCard, this.gameService.PlayerHuman);
   }
 
   startCase() {

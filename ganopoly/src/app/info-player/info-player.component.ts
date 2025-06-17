@@ -9,10 +9,11 @@ import { Card } from '../models/card';
 import { GameService } from '../services/game.service';
 import { combineLatest } from 'rxjs';
 import { CommunityCardComponent } from "../community-card/community-card.component";
+import { ChanceCardComponent } from '../chance-card/chance-card.component';
 
 @Component({
   selector: 'gano-info-player',
-  imports: [CommonModule, BanknoteComponent, CardsComponent, CommunityCardComponent],
+  imports: [CommonModule, BanknoteComponent, CardsComponent, CommunityCardComponent, ChanceCardComponent],
   templateUrl: './info-player.component.html',
   styleUrl: './info-player.component.scss'
 })

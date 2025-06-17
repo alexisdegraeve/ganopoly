@@ -628,11 +628,11 @@ async transferBilletsBetweenPlayers(euro: number, quantite: number, srcPlayer: B
     return lastCard;
   }
 
-  PlayChanceCard(chanceCard: ccCard| undefined, player: BehaviorSubject<Player>) {
-    console.log('PlayChanceCard', chanceCard);
+  async playChanceCard(chanceCard: ccCard| undefined, player: BehaviorSubject<Player>) {
+    await this.playCommunityCard(chanceCard, player, false);
   }
 
-  async PlayCommunityCard(communityCard: ccCard | undefined, player: BehaviorSubject<Player>) {
+  async playCommunityCard(communityCard: ccCard | undefined, player: BehaviorSubject<Player>, isCommunityCard = true) {
     console.log('PlayCommunityCard', communityCard);
     console.log(communityCard?.type);
     // if (communityCard) communityCard.type =  CommunityType.jailfree;
@@ -656,8 +656,21 @@ async transferBilletsBetweenPlayers(euro: number, quantite: number, srcPlayer: B
       await this.payToPlayer(100, player);
     }
 
+    if (communityCard?.type === CommunityType.earn150) {
+      await this.payToPlayer(150, player);
+    }
+
     if (communityCard?.type === CommunityType.earn200) {
       await this.payToPlayer(200, player);
+    }
+
+    if (communityCard?.type === CommunityType.pay15) {
+      const result = await this.payToBank(15, player);
+
+      if (result === false) {
+        console.warn("Le joueur n'a pas assez d'argent pour payer 15");
+        return;
+      }
     }
 
     if (communityCard?.type === CommunityType.pay50) {
@@ -679,12 +692,19 @@ async transferBilletsBetweenPlayers(euro: number, quantite: number, srcPlayer: B
     }
 
     if (communityCard?.type === CommunityType.jailfree) {
-      await this.addCommunityCard(communityCard, player);
-      // await this.goToJail(player);
+      if( isCommunityCard) {
+        await this.addCommunityCard(communityCard, player);
+      } else {
+        await this.addChanceCard(communityCard, player);
+      }
     }
 
     if (communityCard?.type === CommunityType.gotojail) {
       await this.goToJail(player);
+    }
+
+    if (communityCard?.type === CommunityType.backthree) {
+      // await this.goToJail(player);
     }
 
     if (communityCard?.type === CommunityType.eachplayer10) {
@@ -693,7 +713,17 @@ async transferBilletsBetweenPlayers(euro: number, quantite: number, srcPlayer: B
       await this.payToPlayerFromPlayer(10, this.playerComputer3$,  player);
     }
 
+    if (communityCard?.type === CommunityType.payeachplayer50) {
+      await this.payToPlayerFromPlayer(50, player, this.playerComputer1$);
+      await this.payToPlayerFromPlayer(50, player, this.playerComputer2$);
+      await this.payToPlayerFromPlayer(50, player, this.playerComputer3$);
+    }
+
     if (communityCard?.type === CommunityType.house40hotel115) {
+      // TO DO from me the player to the bank
+    }
+
+    if (communityCard?.type === CommunityType.house25hotel100) {
       // TO DO from me the player to the bank
     }
 
@@ -726,6 +756,13 @@ async transferBilletsBetweenPlayers(euro: number, quantite: number, srcPlayer: B
     const current = structuredClone(player.value);
     current.communityCards.push(communityCard);
     this.communauteCards = this.communauteCards.filter(card => card.id !== communityCard.id);
+    player.next(current);
+  }
+
+  async addChanceCard(chanceCard: ccCard, player: BehaviorSubject<Player>) {
+    const current = structuredClone(player.value);
+    current.chanceCards.push(chanceCard);
+    this.chanceCards = this.chanceCards.filter(card => card.id !== chanceCard.id);
     player.next(current);
   }
 

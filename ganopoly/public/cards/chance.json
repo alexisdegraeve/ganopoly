@@ -1,74 +1,90 @@
 [{
         "id": 1,
         "text": "Avancez jusqu'à la case Départ. Recevez 200 €.",
-        "valeur": 200
+        "valeur": 200,
+        "type": "gostart"
     },
     {
         "id": 2,
         "text": "Reculez de trois cases.",
-        "valeur": 0
+        "valeur": 0,
+        "type": "backthree"
     },
     {
         "id": 3,
         "text": "Allez en prison sans passer par la case départ et sans toucher 200 €.",
-        "valeur": 0
+        "valeur": 0,
+        "type": "gotojail"
     },
     {
         "id": 4,
         "text": "Vous êtes libéré de prison. Cette carte peut être conservée jusqu'à ce qu'elle soit utilisée ou vendue.",
-        "valeur": 0
+        "valeur": 0,
+        "type": "jailfree"
     },
     {
         "id": 5,
         "text": "La banque vous verse un dividende de 50 €.",
-        "valeur": 50
+        "valeur": 50,
+        "type": "earn50"
     },
     {
         "id": 6,
         "text": "Faites des réparations dans toutes vos propriétés. Versez 25€ pour chaque maison et 100€ pour chaque hôtel que vous possédez.",
         "maison": 25,
-        "hotel": 100
+        "hotel": 100,
+        "type": "house25hotel100"
     },
     {
         "id": 7,
-        "text": "Amend pour excès de vitesse : payez 15€.",
-        "valeur": 15
+        "text": "Amende pour excès de vitesse : payez 15€.",
+        "valeur": 15,
+        "type": "pay15"
     },
     {
         "id": 8,
-        "text": "Vous avez été élu préisdent du conseil d'administration versez 50€ à chaque joueur.",
-        "valeur": 50
+        "text": "Vous avez été élu président du conseil d'administration versez 50€ à chaque joueur.",
+        "valeur": 50,
+        "type": "payeachplayer50"
     },
     {
         "id": 9,
-        "text": "Avancez jusqu'à la compagnie de service public la plus proche. Si elle n'appartient à personne, vous pouvez l'acheter auprès de la banque. Si elle appartient à un autre joueur, lancez les dés et payez le montant du total de vos multiples par 10."
+        "text": "Avancez jusqu'à la compagnie de service public la plus proche. Si elle n'appartient à personne, vous pouvez l'acheter auprès de la banque. Si elle appartient à un autre joueur, lancez les dés et payez le montant du total de vos multiples par 10.",
+        "type": "servicepublicpay10"
     },
     {
         "id": 10,
-        "text": "Avancez jusqu'à la gare la plus proche. Si elle n'appartient à personne vous pouvez l'acheter auprès de la banque. SI elle appartient à un autre joueur vous devez payer 2 fois le loyer demandé."
+        "text": "Avancez jusqu'à l'éléphant le plus proche. Si elle n'appartient à personne vous pouvez l'acheter auprès de la banque. SI elle appartient à un autre joueur vous devez payer 2 fois le loyer demandé.",
+        "type": "nextelephant"
     },
     {
         "id": 11,
-        "text": "Avancez jusqu'à la gare la plus proche. Si elle n'appartient à personne vous pouvez l'acheter auprès de la banque. SI elle appartient à un autre joueur vous devez payer 2 fois le loyer demandé."
+        "text": "Avancez jusqu'à l'éléphant la plus proche. Si elle n'appartient à personne vous pouvez l'acheter auprès de la banque. SI elle appartient à un autre joueur vous devez payer 2 fois le loyer demandé.",
+        "type": "nextelephant"
     },
     {
         "id": 12,
-        "text": "Rendez-vous à la rue neuve à Bruxelles."
+        "text": "Rendez-vous au Taj Mahal à Agra.",
+        "type": "gorueneuve"
     },
     {
         "id": 13,
-        "text": "Rendez-vous à la rue de Diekirch (à Arlon). Si vous passez par la case départ recevez 200€."
+        "text": "Rendez-vous à Ajanta Caves (à Maharashtra). Si vous passez par la case départ recevez 200€.",
+        "type": "goajantacaves200"
     },
     {
         "id": 14,
-        "text": "Allez à la gare du nord. Si vous passez par la case départ recevez 200€."
+        "text": "Allez à Elephant Nord. Si vous passez par la case départ recevez 200€.",
+        "type": "goelephantnord200"
     },
     {
         "id": 15,
-        "text": "Rendez-vous à la grand-place (À Mons). Si vous passez par la case départ recevez 200€."
+        "text": "Rendez-vous au Palais de Mysore (À Karnataka). Si vous passez par la case départ recevez 200€.",
+        "type": "gomysore200"
     },
     {
         "id": 16,
-        "text": "Votre immeuble et votre prêt rapportent. Touchez 150€."
+        "text": "Votre immeuble et votre prêt rapportent. Touchez 150€.",
+        "type": "earn150"
     }
 ]
