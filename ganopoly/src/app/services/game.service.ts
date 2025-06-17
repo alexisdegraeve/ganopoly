@@ -893,6 +893,20 @@ export class GameService {
     }
   }
 
+  getTotalHouse(cellCase: number) {
+      // TEST House
+      // if(cellCase ==1 ) {
+      //   return 4;
+      // }
+      // if(cellCase == 3 ) {
+      //   return 4;
+      // }
+      // if(cellCase == 6 ) {
+      //   return 5;
+      // }
+    return 0;
+  }
+
 }
 
 

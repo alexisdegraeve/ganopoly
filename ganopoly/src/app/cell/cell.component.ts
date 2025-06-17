@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { CardType } from '../models/card';
 import { Player } from '../models/player';
+import { GameService } from '../services/game.service';
 
 @Component({
   selector: 'gano-cell',
@@ -23,5 +24,15 @@ export class CellComponent {
   @Input() cardImg!: string;
 
   CardType = CardType;
+
+  constructor(private gameService: GameService) {
+
+  }
+
+
+  get totalHouse(): number {
+    let total = this.gameService.getTotalHouse(this.nummCell);
+    return total;
+  }
 
 }
