@@ -240,50 +240,124 @@ export class GameService {
     return array;
   }
 
+  async payToPlayerFromPlayer(
+    montant: number,
+    source: BehaviorSubject<Player>,
+    cible: BehaviorSubject<Player>
+  ): Promise<boolean> {
+    const billetsValeurs = [500, 100, 50, 20, 10, 5, 1];
 
-  async payToPlayerFromPlayer(montant: number, source: BehaviorSubject<Player>, cible: BehaviorSubject<Player>) {
-  const billetsValeurs = [500, 100, 50, 20, 10, 5, 1];
-  let reste = montant;
+    // Clone l'état actuel pour manipuler les données
+    let reste = montant;
 
-  for (const valeur of billetsValeurs) {
-    if (reste <= 0) break;
-
-    const quantite = Math.floor(reste / valeur);
-    if (quantite > 0) {
-      const success = await this.transferBilletsBetweenPlayers(valeur, quantite, source, cible);
-      if (!success) {
-        console.warn(`Le joueur ${source.value.name} n'a pas assez de billets de ${valeur}`);
-        // Tu peux soit lancer une erreur ici, soit continuer avec des valeurs plus petites
-      }
-      reste -= quantite * valeur;
+    // Vérifier que le joueur a assez d'argent au total
+    const totalArgent = source.value.billets.reduce((sum, b) => sum + b.euro * b.quantity, 0);
+    if (totalArgent < montant) {
+      console.warn(`${source.value.name} n'a pas assez d'argent pour payer ${montant}`);
+      return false;
     }
+
+    // Payer avec les billets disponibles (du plus grand au plus petit)
+    for (const valeur of billetsValeurs) {
+      if (reste <= 0) break;
+
+      // On récupère la quantité dispo **à jour** dans source.value
+      const quantiteDispo = source.value.billets.find(b => b.euro === valeur)?.quantity || 0;
+      if (quantiteDispo === 0) continue;
+
+      const quantite = Math.min(Math.floor(reste / valeur), quantiteDispo);
+
+      if (quantite > 0) {
+        const success = await this.transferBilletsBetweenPlayers(valeur, quantite, source, cible);
+        if (success) {
+          reste -= quantite * valeur;
+        } else {
+          break;
+        }
+      }
+    }
+
+    // Si reste > 0, tenter de payer avec un billet plus grand (et rendre la monnaie)
+    if (reste > 0) {
+      // Chercher le plus petit billet qui couvre la dette restante
+      const billetPlusGrand = billetsValeurs.find(v =>
+        v >= reste &&
+        (source.value.billets.find(b => b.euro === v)?.quantity || 0) > 0
+      );
+
+      if (billetPlusGrand) {
+        const success = await this.transferBilletsBetweenPlayers(billetPlusGrand, 1, source, cible);
+        if (success) {
+          const rendu = billetPlusGrand - reste;
+          if (rendu > 0) {
+            await this.addBilletsToPlayer(rendu, source);
+            console.log(`${source.value.name} a payé ${billetPlusGrand} pour une dette de ${montant}, rendu ${rendu}`);
+          } else {
+            console.log(`${source.value.name} a payé exactement ${montant}`);
+          }
+          return true;
+        }
+      }
+
+      // Pas pu payer le reste
+      console.warn(`${source.value.name} n'a pas pu compléter le paiement de ${montant}`);
+      return false;
+    }
+
+    return true;
   }
-}
-async transferBilletsBetweenPlayers(euro: number, quantite: number, srcPlayer: BehaviorSubject<Player>, dstPlayer: BehaviorSubject<Player>): Promise<boolean> {
-  const source = structuredClone(srcPlayer.value);
-  const cible = structuredClone(dstPlayer.value);
 
-  const billetSrc = source.billets.find(b => b.euro === euro);
-  const billetDst = cible.billets.find(b => b.euro === euro);
+  // Ajoute des billets au joueur (utilisé pour rendre la monnaie)
+  async addBilletsToPlayer(montant: number, player: BehaviorSubject<Player>): Promise<boolean> {
+    const billetsValeurs = [500, 100, 50, 20, 10, 5, 1];
+    let reste = montant;
+    const current = structuredClone(player.value);
 
-  if (!billetSrc || billetSrc.quantity < quantite) {
-    return false; // Pas assez de billets à transférer
+    for (const valeur of billetsValeurs) {
+      if (reste <= 0) break;
+      const quantite = Math.floor(reste / valeur);
+      if (quantite > 0) {
+        const billet = current.billets.find(b => b.euro === valeur);
+        if (billet) {
+          billet.quantity += quantite;
+        } else {
+          // Si jamais billet inexistant (pas censé arriver), on le crée
+          current.billets.push({ euro: valeur, quantity: quantite, color: this.banque.find(b => b.euro === valeur)?.color || 'grey' });
+        }
+        reste -= quantite * valeur;
+      }
+    }
+
+    player.next(current);
+    return true;
   }
 
-  // Déduire des billets du joueur source
-  billetSrc.quantity -= quantite;
 
-  // Ajouter au joueur cible
-  if (billetDst) {
-    billetDst.quantity += quantite;
-  } else {
-    cible.billets.push({ euro, quantity: quantite, color: billetSrc.color });
+  async transferBilletsBetweenPlayers(euro: number, quantite: number, srcPlayer: BehaviorSubject<Player>, dstPlayer: BehaviorSubject<Player>): Promise<boolean> {
+    const source = structuredClone(srcPlayer.value);
+    const cible = structuredClone(dstPlayer.value);
+
+    const billetSrc = source.billets.find(b => b.euro === euro);
+    const billetDst = cible.billets.find(b => b.euro === euro);
+
+    if (!billetSrc || billetSrc.quantity < quantite) {
+      return false; // Pas assez de billets à transférer
+    }
+
+    // Déduire des billets du joueur source
+    billetSrc.quantity -= quantite;
+
+    // Ajouter au joueur cible
+    if (billetDst) {
+      billetDst.quantity += quantite;
+    } else {
+      cible.billets.push({ euro, quantity: quantite, color: billetSrc.color });
+    }
+
+    srcPlayer.next(source);
+    dstPlayer.next(cible);
+    return true;
   }
-
-  srcPlayer.next(source);
-  dstPlayer.next(cible);
-  return true;
-}
 
 
   async takeMoneyFromBank(dstEuro: number, dstQuantity: number, dstPlayer: BehaviorSubject<Player>) {
@@ -389,20 +463,20 @@ async transferBilletsBetweenPlayers(euro: number, quantite: number, srcPlayer: B
     console.log('rollDiceGetOutJail');
     const current = structuredClone(player.value);
 
-    if(current.jailDice === 3) {
+    if (current.jailDice === 3) {
       console.log('PAY JAIL');
       await this.payGetOutJail(player);
     } else {
-      console.log('check dé 1', this.dice1 );
-      console.log('check dé 1', this.dice2 );
-      if(this.dice1 === this.dice2) {
+      console.log('check dé 1', this.dice1);
+      console.log('check dé 1', this.dice2);
+      if (this.dice1 === this.dice2) {
         // success
         current.jailDice = 0;
         current.jail = false;
         console.log('SORTIR DE PRISON');
-      } else  {
+      } else {
         current.jailDice++;
-                console.log('current: ', current.jailDice);
+        console.log('current: ', current.jailDice);
       }
       console.log('update current');
       player.next(current);
@@ -628,14 +702,14 @@ async transferBilletsBetweenPlayers(euro: number, quantite: number, srcPlayer: B
     return lastCard;
   }
 
-  async playChanceCard(chanceCard: ccCard| undefined, player: BehaviorSubject<Player>) {
+  async playChanceCard(chanceCard: ccCard | undefined, player: BehaviorSubject<Player>) {
     await this.playCommunityCard(chanceCard, player, false);
   }
 
   async playCommunityCard(communityCard: ccCard | undefined, player: BehaviorSubject<Player>, isCommunityCard = true) {
     console.log('PlayCommunityCard', communityCard);
     console.log(communityCard?.type);
-    // if (communityCard) communityCard.type =  CommunityType.jailfree;
+    // if (communityCard) communityCard.type = CommunityType.payeachplayer50;
     if (communityCard?.type === CommunityType.earn10) {
       await this.payToPlayer(10, player);
     }
@@ -692,7 +766,7 @@ async transferBilletsBetweenPlayers(euro: number, quantite: number, srcPlayer: B
     }
 
     if (communityCard?.type === CommunityType.jailfree) {
-      if( isCommunityCard) {
+      if (isCommunityCard) {
         await this.addCommunityCard(communityCard, player);
       } else {
         await this.addChanceCard(communityCard, player);
@@ -708,12 +782,16 @@ async transferBilletsBetweenPlayers(euro: number, quantite: number, srcPlayer: B
     }
 
     if (communityCard?.type === CommunityType.eachplayer10) {
-      await this.payToPlayerFromPlayer(10, this.playerComputer1$,  player);
-      await this.payToPlayerFromPlayer(10, this.playerComputer2$,  player);
-      await this.payToPlayerFromPlayer(10, this.playerComputer3$,  player);
+      await this.payToPlayerFromPlayer(10, this.playerComputer1$, player);
+      await this.payToPlayerFromPlayer(10, this.playerComputer2$, player);
+      await this.payToPlayerFromPlayer(10, this.playerComputer3$, player);
     }
 
     if (communityCard?.type === CommunityType.payeachplayer50) {
+      console.log('playerHuman$ ', this.playerHuman$.value)
+      console.log('playerComputer1$ ', this.playerComputer1$.value)
+      console.log('playerComputer2$ ', this.playerComputer2$.value)
+      console.log('playerComputer3$ ', this.playerComputer3$.value)
       await this.payToPlayerFromPlayer(50, player, this.playerComputer1$);
       await this.payToPlayerFromPlayer(50, player, this.playerComputer2$);
       await this.payToPlayerFromPlayer(50, player, this.playerComputer3$);
@@ -732,11 +810,35 @@ async transferBilletsBetweenPlayers(euro: number, quantite: number, srcPlayer: B
       await this.goTocase(0, player);
     }
 
+    if (communityCard?.type === CommunityType.gotajmahal) {
+      await this.goTocase(39, player);
+    }
+
+    if (communityCard?.type === CommunityType.goajantacaves200) {
+      if (player.value.currentCase > 21) {
+        await this.payToPlayer(200, player);
+      }
+      await this.goTocase(21, player);
+    }
+
+    if (communityCard?.type === CommunityType.goelephantnord200) {
+      if (player.value.currentCase > 5) {
+        await this.payToPlayer(200, player);
+      }
+      await this.goTocase(5, player);
+    }
+
+    if (communityCard?.type === CommunityType.gomysore200) {
+      if (player.value.currentCase > 24) {
+        await this.payToPlayer(200, player);
+      }
+      await this.goTocase(24, player);
+    }
   }
 
   async checkStart(player: BehaviorSubject<Player>) {
-      console.log('checkStart +200');
-      await this.payToPlayer(200, player);
+    console.log('checkStart +200');
+    await this.payToPlayer(200, player);
   }
 
   async goTocase(numCase: number, player: BehaviorSubject<Player>) {
@@ -769,22 +871,22 @@ async transferBilletsBetweenPlayers(euro: number, quantite: number, srcPlayer: B
   async useFreedCardJail(player: BehaviorSubject<Player>) {
     const current = structuredClone(player.value);
     let freeJailCard = current.communityCards.find(card => card.type === CommunityType.jailfree);
-    if(freeJailCard) {
+    if (freeJailCard) {
       current.jail = false;
       this.communauteCards.push(freeJailCard);
       current.communityCards = current.communityCards.filter(card => card.type !== CommunityType.jailfree);
       player.next(current);
     } else {
-       console.warn(`${current.name} a tenté d'utiliser une carte sortie de prison, mais n'en avait pas.`);
+      console.warn(`${current.name} a tenté d'utiliser une carte sortie de prison, mais n'en avait pas.`);
     }
   }
 
   async playerPayTaxes(montant: number, player: BehaviorSubject<Player>) {
-      const result = await this.payToBank(montant, player);
-      if (result === false) {
-        console.warn("Le joueur n'a pas assez d'argent pour payer les taxes");
-        return;
-      }
+    const result = await this.payToBank(montant, player);
+    if (result === false) {
+      console.warn("Le joueur n'a pas assez d'argent pour payer les taxes");
+      return;
+    }
   }
 
 }
