@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ccCard } from '../models/ccCard';
 import { GameService } from '../services/game.service';
 
@@ -10,7 +10,8 @@ import { GameService } from '../services/game.service';
 })
 export class CommunityCardComponent {
   isFlipped = false;
-  communityCard: ccCard | undefined;
+  @Input() readOnly = false;
+  @Input() communityCard: ccCard | undefined;
   @Output() communityCardEvent = new EventEmitter<ccCard>();
 
   constructor(private gameService: GameService) {

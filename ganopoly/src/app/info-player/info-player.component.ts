@@ -8,10 +8,11 @@ import { BehaviorSubject, map, Observable } from 'rxjs';
 import { Card } from '../models/card';
 import { GameService } from '../services/game.service';
 import { combineLatest } from 'rxjs';
+import { CommunityCardComponent } from "../community-card/community-card.component";
 
 @Component({
   selector: 'gano-info-player',
-  imports: [CommonModule, BanknoteComponent, CardsComponent],
+  imports: [CommonModule, BanknoteComponent, CardsComponent, CommunityCardComponent],
   templateUrl: './info-player.component.html',
   styleUrl: './info-player.component.scss'
 })

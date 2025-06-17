@@ -1,4 +1,4 @@
-<div class="community-card" (click)="!communityCard && takeCard()" [class.flipped]="isFlipped && communityCard" [class.disabled]="communityCard">
+<div class="community-card" (click)="!readOnly && !communityCard && takeCard()" [class.flipped]="(isFlipped && communityCard) || readOnly" [class.disabled]="communityCard">
     <div class="community-card-inner">
         <div class="community-inside-card-border community-card-front">
             <div class="community-inside-card">

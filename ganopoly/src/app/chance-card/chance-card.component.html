@@ -1,4 +1,4 @@
-<div class="chance-card" (click)="!chanceCard && takeCard()" [class.flipped]="isFlipped && chanceCard" [class.disabled]="chanceCard">
+<div class="chance-card" (click)="!readOnly && !chanceCard && takeCard()" [class.flipped]="isFlipped && chanceCard" [class.disabled]="chanceCard">
     <div class="chance-card-inner">
         <div class="chance-inside-card-border chance-card-front">
             <div class="chance-inside-card">

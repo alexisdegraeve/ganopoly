@@ -21,7 +21,7 @@
             <div *ngIf="cell.cardtype === CardType.caisse" class="mt-4">
                 <gano-community-card (communityCardEvent)="communityCardAction($event)"></gano-community-card>
                 <div class="d-flex justify-content-center mt-4">
-                    <a class="btn btn-outline-primary " (click)="communityCardPlay() ">OK</a>
+                    <a class="btn btn-outline-primary " (click)="communityCardPlay()" *ngIf="showCommunityButton">OK</a>
                 </div>
 
             </div>
@@ -29,7 +29,7 @@
             <div *ngIf="cell.cardtype === CardType.chance" class="mt-4">
                 <gano-chance-card (chanceCardEvent)="chanceCardAction($event)"></gano-chance-card>
                 <div class="d-flex justify-content-center mt-4">
-                    <a class="btn btn-outline-primary " (click)="chanceCardPlay() ">OK</a>
+                    <a class="btn btn-outline-primary " (click)="chanceCardPlay()" *ngIf="showChanceButton">OK</a>
                 </div>
             </div>
 

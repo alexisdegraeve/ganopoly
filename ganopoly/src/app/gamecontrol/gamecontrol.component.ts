@@ -31,7 +31,8 @@ export class GamecontrolComponent {
   CardType = CardType;
   communityCard: ccCard | undefined = undefined;
   chanceCard: ccCard | undefined = undefined;
-
+  showCommunityButton = false;
+  showChanceButton = false
 
   // startGame() {
   //   this.isStartGame = true;
@@ -147,22 +148,26 @@ waitDiceRoll(): Promise<void> {
   }
 
   communityCardAction(communityCardAction: ccCard) {
+    this.showCommunityButton = true;
     console.log('communityCardAction  ', communityCardAction);
     this.communityCard = communityCardAction;
   }
 
   chanceCardAction(chanceCardAction: ccCard) {
+    this.showChanceButton = true;
     console.log('chanceCardAction  ', chanceCardAction);
     this.chanceCard = chanceCardAction;
   }
 
   communityCardPlay() {
      console.log('Caisse card ', this.communityCard);
+     this.showCommunityButton = false;
      this.gameService.PlayCommunityCard(this.communityCard, this.gameService.PlayerHuman);
   }
 
   chanceCardPlay() {
      console.log('Chance card', this.chanceCard);
+     this.showChanceButton = false;
     this.gameService.PlayChanceCard(this.chanceCard, this.gameService.PlayerHuman);
   }
 

@@ -172,6 +172,8 @@ export class GameService {
       currentCase: 0,
       jail: false,
       jailDice: 0,
+      communityCards: [],
+      chanceCards: [],
       properties: [],
       billets: [
         { euro: 1, quantity: 0, color: 'white' },
@@ -586,8 +588,8 @@ export class GameService {
 
   async PlayCommunityCard(communityCard: ccCard | undefined, player: BehaviorSubject<Player>) {
     console.log('PlayCommunityCard', communityCard);
-      console.log(communityCard?.type);
-    // if (communityCard) communityCard.type =  CommunityType.gostart;
+    console.log(communityCard?.type);
+    // if (communityCard) communityCard.type =  CommunityType.jailfree;
     if (communityCard?.type === CommunityType.earn10) {
       await this.payToPlayer(10, player);
     }
@@ -631,7 +633,7 @@ export class GameService {
     }
 
     if (communityCard?.type === CommunityType.jailfree) {
-
+      await this.addCommunityCard(communityCard, player);
     }
 
     if (communityCard?.type === CommunityType.gotojail) {
@@ -664,6 +666,15 @@ export class GameService {
     current.currentCase = numCase;
     player.next(current);
   }
+
+
+  async addCommunityCard(communityCard: ccCard, player: BehaviorSubject<Player>) {
+    const current = structuredClone(player.value);
+    current.communityCards.push(communityCard);
+    this.communauteCards = this.communauteCards.filter(card => card.id !== communityCard.id);
+    player.next(current);
+  }
+
 
 }
 
