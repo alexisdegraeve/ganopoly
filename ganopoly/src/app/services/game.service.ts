@@ -183,7 +183,7 @@ export class GameService {
       jailDice: 0,
       communityCards: [],
       chanceCards: [],
-      properties: [{index: 1, house: 0}, {index: 3,  house: 0}],
+      properties: [{index: 1, house: 3}, {index: 3,  house: 0}, {index: 6,  house: 5}],
       billets: [
         { euro: 1, quantity: 0, color: 'white' },
         { euro: 5, quantity: 0, color: 'pink' },
@@ -893,19 +893,35 @@ export class GameService {
     }
   }
 
-  getTotalHouse(cellCase: number) {
-      // TEST House
-      // if(cellCase ==1 ) {
-      //   return 4;
-      // }
-      // if(cellCase == 3 ) {
-      //   return 4;
-      // }
-      // if(cellCase == 6 ) {
-      //   return 5;
-      // }
+
+  getTotalHouse(cellCase: number): number {
+    // TEST House
+    // if(cellCase ==1 ) {
+    //   return 4;
+    // }
+    // if(cellCase == 3 ) {
+    //   return 4;
+    // }
+    // if(cellCase == 6 ) {
+    //   return 5;
+    // }
+    const players = [
+      this.playerHuman$.value,
+      this.playerComputer1$.value,
+      this.playerComputer2$.value,
+      this.playerComputer3$.value
+    ];
+
+    for (const player of players) {
+      const prop = player.properties.find(p => p.index === cellCase);
+      if (prop) {
+        return prop.house;
+      }
+    }
+
     return 0;
   }
+
 
 }
 
