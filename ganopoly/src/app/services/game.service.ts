@@ -149,11 +149,20 @@ export class GameService {
     player.next(currentPlayer);
   }
 
+
   updatePropertiesPlayer(player: BehaviorSubject<Player>, propertyCase: number) {
-    const currentPlayer = structuredClone(player.value);
-    currentPlayer.properties.push(propertyCase);
+  const currentPlayer = structuredClone(player.value);
+
+  // Vérifie si le joueur possède déjà cette propriété
+  const alreadyOwned = currentPlayer.properties.some(p => p.index === propertyCase);
+
+  if (!alreadyOwned) {
+    currentPlayer.properties.push({ index: propertyCase, house: 0 }); // Ajoute avec 0 maison
     player.next(currentPlayer);
+  } else {
+    console.warn(`Le joueur ${currentPlayer.name} possède déjà la propriété ${propertyCase}`);
   }
+}
 
   shuffleArrayGeneric<T>(array: T[]): T[] {
     const arr = [...array]; // pour ne pas modifier l'original
@@ -174,7 +183,7 @@ export class GameService {
       jailDice: 0,
       communityCards: [],
       chanceCards: [],
-      properties: [],
+      properties: [{index: 1, house: 0}, {index: 3,  house: 0}],
       billets: [
         { euro: 1, quantity: 0, color: 'white' },
         { euro: 5, quantity: 0, color: 'pink' },
@@ -524,10 +533,15 @@ export class GameService {
     console.log('AFTER TO CHECK !! : ', player.value);
 
     const current = structuredClone(player.value);
-    current.properties.push(ganocase);
-    // currentProperties.push(ganocase);
-    // const updatedPlayer = { ...currentPlayer, properties: currentProperties };
-    player.next(current);
+
+    // Vérifie que la propriété n'existe pas déjà
+    const alreadyOwned = current.properties.some(p => p.index === ganocase);
+    if (!alreadyOwned) {
+      current.properties.push({ index: ganocase, house: 0 }); // Ajout avec 0 maison
+      player.next(current);
+    } else {
+      console.warn(`La propriété ${ganocase} est déjà possédée par le joueur ${current.name}`);
+    }
   }
 
 
@@ -627,49 +641,6 @@ export class GameService {
       }
     }
   }
-
-
-
-
-
-  // async payToBank(player: BehaviorSubject<Player>): Promise<Billet[]> {
-  //    console.log('billets player ', player.value.billets);
-  //    //const total = player.value.properties;
-  //    const billetsPlayer: Billet[] = player.value.billets;
-  //    let newBilletsPlayer: Billet[] = structuredClone(player.value.billets);
-  //    const checkCards$ = combineLatest([
-  //       player,
-  //       this.getCards() // La liste des cartes
-  //     ]).pipe(
-  //       map(([player, cards]) =>
-  //         cards.filter(card => player.properties.includes(card.case))
-  //       )
-  //     );
-  //     const checkCards = await firstValueFrom(checkCards$);
-  //     console.log('checkCards :', checkCards);
-  //     const lastCard = checkCards[checkCards.length - 1];
-  //     console.log('lastCard :', lastCard);
-
-  //     let reste = lastCard.prix;
-  //     billetsPlayer.forEach((billet: Billet) => {
-  //       if(billet.euro * billet.quantity > 0 ) {
-  //         const newquantity = reste / (billet.euro * billet.quantity);
-  //         reste = reste % (billet.euro * billet.quantity);
-  //         newBilletsPlayer.filter(newbillet => newbillet.euro === billet.euro);
-  //       }
-  //     });
-
-  //    return newBilletsPlayer;
-  // }
-
-
-  // testAddProperties() {
-  //   this.addProperty([3,6], this.playerHuman$);
-  //   this.addProperty([4,6,5], this.playerComputer1$);
-  //   this.addProperty([9,10,11], this.playerComputer2$);
-  //   this.addProperty([13,15,16], this.playerComputer3$);
-  // }
-
 
   analyseGame(player: Player) {
     // Analyse Game

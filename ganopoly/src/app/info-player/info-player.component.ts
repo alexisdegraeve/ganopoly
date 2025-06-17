@@ -44,7 +44,9 @@ export class InfoPlayerComponent {
         this.gameService.getCards() // La liste des cartes
       ]).pipe(
         map(([player, cards]) =>
-          cards.filter(card => player.properties.includes(card.case))
+          cards.filter(card =>
+          player.properties.some(p => p.index === card.case)
+      )
         )
       );
     }

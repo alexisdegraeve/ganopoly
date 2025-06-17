@@ -7,7 +7,7 @@ export class Player {
   name: string = '';
   playerColor: string = '';
   pawnShape: Pawn = Pawn.trident;
-  properties: number[]=[];
+  properties: {index: number; house: number}[]=[];
   currentCase: number = 0;
   jail = false;
   jailDice = 0;
