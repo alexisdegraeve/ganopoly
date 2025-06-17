@@ -13,7 +13,7 @@
             jaildice : {{ playerToPlay.jailDice }}
             <div class="d-flex">
                 <button class="btn btn-outline-primary" (click)="jailPay() " [disabled]="playerToPlay.jailDice > 0">Pay 50€</button>
-                <button class="btn btn-outline-primary mx-2" (click)="jailCardFree() " [disabled]="playerToPlay.jailDice > 0">Card Free from Jail</button>
+                <button class="btn btn-outline-primary mx-2" (click)="jailCardFree() " [disabled]="playerToPlay.jailDice > 0" *ngIf="hasAnyJailFreeCard">Card Free from Jail</button>
                 <!-- <a class="btn btn-outline-primary" (click)="jailThrowDice() ">Throw dice to go out</a> ! -->
             </div>
         </ng-container>

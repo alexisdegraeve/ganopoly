@@ -9,7 +9,7 @@ import { Player } from '../models/player';
 import { CardsComponent } from '../cards/cards.component';
 import { CommunityCardComponent } from "../community-card/community-card.component";
 import { ChanceCardComponent } from '../chance-card/chance-card.component';
-import { ccCard } from '../models/ccCard';
+import { ccCard, CommunityType } from '../models/ccCard';
 
 @Component({
   selector: 'gano-gamecontrol',
@@ -137,10 +137,6 @@ waitDiceRoll(): Promise<void> {
     this.gameService.nextPlayerToPlay();
   }
 
-  jailCardFree() {
-    console.log('JAIL: use card free');
-  }
-
   jailThrowDice() {
     console.log('JAIL: throw dice');
     this.gameService.rollDiceGetOutJail(this.gameService.PlayerHuman);
@@ -163,6 +159,7 @@ waitDiceRoll(): Promise<void> {
      console.log('Caisse card ', this.communityCard);
      this.showCommunityButton = false;
      this.gameService.PlayCommunityCard(this.communityCard, this.gameService.PlayerHuman);
+     this.gameService.nextPlayerToPlay();
   }
 
   chanceCardPlay() {
@@ -175,6 +172,19 @@ waitDiceRoll(): Promise<void> {
     this.gameService.checkStart(this.gameService.PlayerHuman);
     this.gameService.nextPlayerToPlay();
   }
+
+  get hasAnyJailFreeCard(): boolean {
+    const community = this.playerToPlay$.value.communityCards ?? [];
+    const chance = this.playerToPlay$.value.chanceCards ?? [];
+    return [...community, ...chance].some(card => card.type === CommunityType.jailfree);
+  }
+
+  jailCardFree() {
+    console.log('JAIL: use card free');
+    this.gameService.useFreedCardJail(this.gameService.PlayerHuman);
+    this.gameService.nextPlayerToPlay();
+  }
+
 
 
 

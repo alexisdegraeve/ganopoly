@@ -702,7 +702,6 @@ async transferBilletsBetweenPlayers(euro: number, quantite: number, srcPlayer: B
       await this.goTocase(0, player);
     }
 
-    this.playerToPlay$.next({ ...player.value });
   }
 
   async checkStart(player: BehaviorSubject<Player>) {
@@ -730,6 +729,18 @@ async transferBilletsBetweenPlayers(euro: number, quantite: number, srcPlayer: B
     player.next(current);
   }
 
+  async useFreedCardJail(player: BehaviorSubject<Player>) {
+    const current = structuredClone(player.value);
+    let freeJailCard = current.communityCards.find(card => card.type === CommunityType.jailfree);
+    if(freeJailCard) {
+      current.jail = false;
+      this.communauteCards.push(freeJailCard);
+      current.communityCards = current.communityCards.filter(card => card.type !== CommunityType.jailfree);
+      player.next(current);
+    } else {
+       console.warn(`${current.name} a tenté d'utiliser une carte sortie de prison, mais n'en avait pas.`);
+    }
+  }
 
 }
 
