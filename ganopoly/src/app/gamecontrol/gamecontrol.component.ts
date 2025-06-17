@@ -147,21 +147,23 @@ waitDiceRoll(): Promise<void> {
   }
 
   communityCardAction(communityCardAction: ccCard) {
+    console.log('communityCardAction  ', communityCardAction);
     this.communityCard = communityCardAction;
   }
 
   chanceCardAction(chanceCardAction: ccCard) {
+    console.log('chanceCardAction  ', chanceCardAction);
     this.chanceCard = chanceCardAction;
   }
 
-  cardCaisse() {
+  communityCardPlay() {
      console.log('Caisse card ', this.communityCard);
-     this.gameService.PlayCommunityCard(this.communityCard);
+     this.gameService.PlayCommunityCard(this.communityCard, this.gameService.PlayerHuman);
   }
 
-  cardChance() {
+  chanceCardPlay() {
      console.log('Chance card', this.chanceCard);
-    this.gameService.PlayCommunityCard(this.chanceCard);
+    this.gameService.PlayChanceCard(this.chanceCard, this.gameService.PlayerHuman);
   }
 
   startCase() {

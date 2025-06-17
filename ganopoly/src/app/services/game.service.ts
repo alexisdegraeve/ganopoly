@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ccCard } from '../models/ccCard';
+import { ccCard, CommunityType } from '../models/ccCard';
 import { BehaviorSubject, combineLatest, firstValueFrom, forkJoin, map, Observable, Subject } from 'rxjs';
 import { Billet } from '../models/billet';
 import { Player } from '../models/player';
@@ -580,17 +580,89 @@ export class GameService {
     return lastCard;
   }
 
-  PlayChanceCard(chanceCard: ccCard| undefined) {
+  PlayChanceCard(chanceCard: ccCard| undefined, player: BehaviorSubject<Player>) {
     console.log('PlayChanceCard', chanceCard);
   }
 
-  PlayCommunityCard(communityCard: ccCard | undefined) {
+  async PlayCommunityCard(communityCard: ccCard | undefined, player: BehaviorSubject<Player>) {
     console.log('PlayCommunityCard', communityCard);
+      console.log(communityCard?.type);
+    // if (communityCard) communityCard.type =  CommunityType.gostart;
+    if (communityCard?.type === CommunityType.earn10) {
+      await this.payToPlayer(10, player);
+    }
+
+    if (communityCard?.type === CommunityType.earn20) {
+
+      await this.payToPlayer(20, player);
+    }
+    if (communityCard?.type === CommunityType.earn25) {
+      await this.payToPlayer(25, player);
+    }
+
+    if (communityCard?.type === CommunityType.earn50) {
+      await this.payToPlayer(50, player);
+    }
+
+    if (communityCard?.type === CommunityType.earn100) {
+      await this.payToPlayer(100, player);
+    }
+
+    if (communityCard?.type === CommunityType.earn200) {
+      await this.payToPlayer(200, player);
+    }
+
+    if (communityCard?.type === CommunityType.pay50) {
+      const result = await this.payToBank(50, player);
+
+      if (result === false) {
+        console.warn("Le joueur n'a pas assez d'argent pour payer 50");
+        return;
+      }
+    }
+
+    if (communityCard?.type === CommunityType.pay100) {
+      const result = await this.payToBank(100, player);
+
+      if (result === false) {
+        console.warn("Le joueur n'a pas assez d'argent pour payer 100");
+        return;
+      }
+    }
+
+    if (communityCard?.type === CommunityType.jailfree) {
+
+    }
+
+    if (communityCard?.type === CommunityType.gotojail) {
+
+    }
+
+    if (communityCard?.type === CommunityType.eachplayer10) {
+
+    }
+
+    if (communityCard?.type === CommunityType.house40hotel115) {
+
+    }
+
+    if (communityCard?.type === CommunityType.gostart) {
+      await this.payToPlayer(200, player);
+      await this.goTocase(0, player);
+    }
+
+
   }
 
   async checkStart(player: BehaviorSubject<Player>) {
       console.log('checkStart +200');
       await this.payToPlayer(200, player);
+  }
+
+  async goTocase(numCase: number, player: BehaviorSubject<Player>) {
+    const current = structuredClone(player.value);
+    current.currentCase = numCase;
+    player.next(current);
   }
 
 }

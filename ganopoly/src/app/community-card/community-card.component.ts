@@ -18,6 +18,7 @@ export class CommunityCardComponent {
 
   takeCard() {
     this.communityCard = this.gameService.pickCommunityCard();
+    console.log('take card -- ', this.communityCard)
     this.isFlipped = true;
     this.communityCardEvent.emit(this.communityCard);
   }
