@@ -47,6 +47,7 @@ export class GameService {
   private isHumanTurn$ = new BehaviorSubject<boolean>(true);
   private requestDiceRoll$ = new BehaviorSubject<boolean>(false);
   public diceRollCompleted$ = new Subject<void>();
+  private allCards: Card[] = [];
 
 
 
@@ -57,6 +58,9 @@ export class GameService {
     this.playerComputer2$ = this.createNewPlayer(Pawn.ax, '#4ABDAC');
     this.playerComputer3$ = this.createNewPlayer(Pawn.lotus, '#FF6F59');
     this.playerToPlay$ = new BehaviorSubject<Player>({ ...this.playerHuman$.value });
+    this.getCards().subscribe(cards => {
+      this.allCards = cards;
+    });
   }
 
   async nextPlayerToPlay() {
@@ -636,16 +640,16 @@ export class GameService {
     // Analyse Game
       console.log('Player start ', player.value.name);
       console.log("⏳ Étape 0 : Cartes");
-      let cards = await this.checkCardGanopoly(player);
-      if(cards && cards.length === 1) {
-        console.log(cards);
-        this.analyseCard(player, cards[0]);
+      let card = this.checkCardGanopoly(player);
+      if(card) {
+        console.log(card);
+        await this.analyseCard(player, card);
       }
 
     console.log("⏳ Étape 4 : Fin du tour de l’ordinateur.");
   }
 
-  analyseCard(player: BehaviorSubject<Player>, card: Card) {
+  async analyseCard(player: BehaviorSubject<Player>, card: Card) {
         if (card.type == CardType.impots) {
           // Pay
           this.playerPayTaxes(card.prix, player);
@@ -671,22 +675,25 @@ export class GameService {
 
         if([CardType.immobilier, CardType.elec, CardType.gare, CardType.eaux].includes(card.type)) {
           console.log("⏳ Étape 1 : Vérifie si la carte appartient à un joueur...");
-          let canBuyHouse = this.checkBuyHouse(player);
+          let canBuyHouse = await this.checkBuyHouse(player);
           console.log("⏳ Étape 3 : Décide s’il veut acheter la propriété...");
           if(canBuyHouse ) {
-            this.computerBuyHouse(player);
+            await this.computerBuyHouse(player);
           }
         }
   }
 
-  async checkCardGanopoly(player: BehaviorSubject<Player>):Promise<Card[]> {
-    const cellNb = player.value.currentCase;
-    const checkCards$ = this.getCards().pipe(
-      map(cards => cards.filter(card => card.case === cellNb))
-    );
+  checkOwnerCardForHuman(player: BehaviorSubject<Player>, card: Card): boolean | undefined {
+    if ([CardType.immobilier, CardType.elec, CardType.gare, CardType.eaux].includes(card.type)) {
+      let canBuyHouse = this.checkBuyHouse(player);
+      return canBuyHouse;
+    }
+    return undefined;
+  }
 
-    const checkCards = await firstValueFrom(checkCards$);
-    return checkCards;
+  checkCardGanopoly(player: BehaviorSubject<Player>): Card | undefined {
+    const cellNb = player.value.currentCase;
+    return  this.allCards.find(card => card.case === cellNb) ;
   }
 
   checkBuyHouse(player: BehaviorSubject<Player>):boolean{
@@ -695,8 +702,10 @@ export class GameService {
       if(player !== this.playerHuman$) {
           // Check Human
           console.log('check human');
-          const alreadyOwned = this.playerHuman$.value.properties.some(p => p.index === cellNb);
-          if (alreadyOwned) {
+          //const alreadyOwned = this.playerHuman$.value.properties.some(p => p.index === cellNb);
+          const ownedProperty = this.playerHuman$.value.properties.find(p => p.index === cellNb);
+          if (ownedProperty) {
+            this.payRentPlayer(player, this.playerHuman$, ownedProperty);
             return false;
           }
       }
@@ -704,33 +713,65 @@ export class GameService {
           // Check Computer 1
           console.log('check computer1');
           console.log('check human');
-          const alreadyOwned = this.playerComputer1$.value.properties.some(p => p.index === cellNb);
-          if (alreadyOwned) {
+          const ownedProperty = this.playerComputer1$.value.properties.find(p => p.index === cellNb);
+          if (ownedProperty) {
+            this.payRentPlayer(player, this.playerComputer1$, ownedProperty);
             return false;
           }
       }
       if(player !== this.playerComputer2$) {
           // Check Computer 2
           console.log('check computer2');
-          const alreadyOwned = this.playerComputer2$.value.properties.some(p => p.index === cellNb);
-          if (alreadyOwned) {
+          const ownedProperty = this.playerComputer2$.value.properties.find(p => p.index === cellNb);
+          if (ownedProperty) {
+            this.payRentPlayer(player, this.playerComputer2$, ownedProperty);
             return false;
           }
       }
       if(player !== this.playerComputer3$) {
           // Check Computer 3
           console.log('check computer3');
-          const alreadyOwned = this.playerComputer3$.value.properties.some(p => p.index === cellNb);
-          if (alreadyOwned) {
+          const ownedProperty = this.playerComputer3$.value.properties.find(p => p.index === cellNb);
+          if (ownedProperty) {
+            this.payRentPlayer(player, this.playerComputer3$, ownedProperty);
             return false;
           }
       }
       return true;
   }
 
-  computerBuyHouse(player: BehaviorSubject<Player>) {
+  async payRentPlayer(playersrc: BehaviorSubject<Player>, playerdest: BehaviorSubject<Player>, ownedProperty: {index: number, house: number}) {
+      let card = this.allCards.find(card => card.case === ownedProperty.index);
+      if(card) {
+        switch (ownedProperty.house) {
+        case 0:
+          await this.payToPlayerFromPlayer(card.prix, playersrc, playerdest);
+          break;
+        case 1:
+          await  this.payToPlayerFromPlayer(card.house1, playersrc, playerdest);
+          break;
+        case 2:
+          await  this.payToPlayerFromPlayer(card.house2, playersrc, playerdest);
+          break;
+        case 3:
+          await  this.payToPlayerFromPlayer(card.house3, playersrc, playerdest);
+          break;
+        case 4:
+          await  this.payToPlayerFromPlayer(card.house4, playersrc, playerdest);
+          break;
+        case 5:
+          await  this.payToPlayerFromPlayer(card.hotel1, playersrc, playerdest);
+          break;
+        default:
+          break;
+      }
+    }
+
+  }
+
+  async computerBuyHouse(player: BehaviorSubject<Player>) {
     const cellNb = player.value.currentCase;
-    this.addProperty(cellNb, player);
+    await this.addProperty(cellNb, player);
   }
 
   pickChanceCard(): ccCard | undefined {

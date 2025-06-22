@@ -33,6 +33,7 @@ export class GamecontrolComponent {
   chanceCard: ccCard | undefined = undefined;
   showCommunityButton = false;
   showChanceButton = false
+  canBuy = true;
 
   // startGame() {
   //   this.isStartGame = true;
@@ -44,11 +45,20 @@ export class GamecontrolComponent {
     if(this.isHumanTurn$.value) {
       if(!this.playerToPlay$.value.jail) {
         // CASE
+        this.canBuy = true;
         this.showButtonRollDice = true;
         this.isHumanAction = true;
         this.gameService.updateCurrentCasePlayer(this.gameService.PlayerHuman);
         this.cellCase$ = this.getCellCase(this.gameService.PlayerHuman.value?.currentCase);
         this.card$ = this.getMyCard(this.gameService.PlayerHuman.value?.currentCase);
+        let card = this.gameService.checkCardGanopoly(this.playerToPlay$);
+        //  If it's possible to buy or not ?
+        if(card) {
+           let checkCard = this.gameService.checkOwnerCardForHuman(this.playerToPlay$, card);
+           if(checkCard) {
+              this.canBuy = checkCard;
+           }
+        }
         console.log('finish roll dice');
       } else {
         // Human in prison and he throw the dices
