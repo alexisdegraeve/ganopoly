@@ -95,18 +95,8 @@ export class GameService {
     current.currentCase = nextCase < 40 ? nextCase : nextCase % 40;
     player.next(current);
 
-    this.analyseGame(current);
+    this.analyseGame(player);
 
-    console.log("⏳ Étape 1 : Vérifie si la case appartient à un joueur...");
-    await this.sleep(500);
-
-    console.log("⏳ Étape 2 : Calcule s’il doit payer ou non...");
-    await this.sleep(500);
-
-    console.log("⏳ Étape 3 : Décide s’il veut acheter la propriété...");
-    await this.sleep(500);
-
-    console.log("⏳ Étape 4 : Fin du tour de l’ordinateur.");
     await this.sleep(500);
   }
 
@@ -183,7 +173,7 @@ export class GameService {
       jailDice: 0,
       communityCards: [],
       chanceCards: [],
-      properties: [{index: 1, house: 3}, {index: 3,  house: 0}, {index: 6,  house: 5}],
+      properties: [], //{index: 1, house: 3}, {index: 3,  house: 0}, {index: 6,  house: 5}],
       billets: [
         { euro: 1, quantity: 0, color: 'white' },
         { euro: 5, quantity: 0, color: 'pink' },
@@ -642,12 +632,19 @@ export class GameService {
     }
   }
 
-  analyseGame(player: Player) {
+  analyseGame(player: BehaviorSubject<Player>) {
     // Analyse Game
-    console.log('check game');
-    console.log(player.name);
-    console.log('case ');
-    console.log('prison ? ');
+      console.log('Player start ', player.value.name);
+//    console.log("⏳ Étape 1 : Vérifie si la case appartient à un joueur...");
+//    console.log("⏳ Étape 2 : Calcule s’il doit payer ou non...");
+    console.log("⏳ Étape 3 : Décide s’il veut acheter la propriété...");
+    this.computerBuyHouse(player);
+    console.log("⏳ Étape 4 : Fin du tour de l’ordinateur.");
+  }
+
+  computerBuyHouse(player: BehaviorSubject<Player>) {
+    const cellNb = player.value.currentCase;
+    this.addProperty(cellNb, player);
   }
 
   pickChanceCard(): ccCard | undefined {
