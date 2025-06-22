@@ -4,7 +4,7 @@ import { ccCard, CommunityType } from '../models/ccCard';
 import { BehaviorSubject, combineLatest, firstValueFrom, forkJoin, map, Observable, Subject } from 'rxjs';
 import { Billet } from '../models/billet';
 import { Player } from '../models/player';
-import { Card } from '../models/card';
+import { Card, CardType } from '../models/card';
 import { Pawn } from '../models/pawn';
 
 
@@ -632,18 +632,61 @@ export class GameService {
     }
   }
 
-  analyseGame(player: BehaviorSubject<Player>) {
+  async analyseGame(player: BehaviorSubject<Player>) {
     // Analyse Game
       console.log('Player start ', player.value.name);
-      console.log("⏳ Étape 1 : Vérifie si la case appartient à un joueur...");
-      let canBuyHouse = this.checkBuyHouse(player);
-//    console.log("⏳ Étape 2 : Calcule s’il doit payer ou non...");
-    console.log("⏳ Étape 3 : Décide s’il veut acheter la propriété...");
-    if(canBuyHouse ) {
-      this.computerBuyHouse(player);
-    }
+      console.log("⏳ Étape 0 : Cartes");
+      let cards = await this.checkCardGanopoly(player);
+      if(cards && cards.length === 1) {
+        console.log(cards);
+        this.analyseCard(player, cards[0]);
+      }
 
     console.log("⏳ Étape 4 : Fin du tour de l’ordinateur.");
+  }
+
+  analyseCard(player: BehaviorSubject<Player>, card: Card) {
+        if (card.type == CardType.impots) {
+          // Pay
+          this.playerPayTaxes(card.prix, player);
+        }
+        if (card.type == CardType.toprison) {
+          // To go to JAIL
+          // this.rollDiceGetOutJail(player);
+        }
+        if (card.type == CardType.caisse) {
+          // CAISSE
+          // communityCard
+          //this.playCommunityCard(this.communityCard, player);
+        }
+        if (card.type == CardType.chance) {
+          // To go to JAIL
+          // communityCard
+          //this.playChanceCard(this.communityCard, player);
+        }
+        if (card.type == CardType.start) {
+          // CHECK START
+          this.checkStart(player);
+        }
+
+        if([CardType.immobilier, CardType.elec, CardType.gare, CardType.eaux].includes(card.type)) {
+          console.log("⏳ Étape 1 : Vérifie si la carte appartient à un joueur...");
+          let canBuyHouse = this.checkBuyHouse(player);
+          console.log("⏳ Étape 3 : Décide s’il veut acheter la propriété...");
+          if(canBuyHouse ) {
+            this.computerBuyHouse(player);
+          }
+        }
+  }
+
+  async checkCardGanopoly(player: BehaviorSubject<Player>):Promise<Card[]> {
+    const cellNb = player.value.currentCase;
+    const checkCards$ = this.getCards().pipe(
+      map(cards => cards.filter(card => card.case === cellNb))
+    );
+
+    const checkCards = await firstValueFrom(checkCards$);
+    return checkCards;
   }
 
   checkBuyHouse(player: BehaviorSubject<Player>):boolean{
