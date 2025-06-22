@@ -635,11 +635,54 @@ export class GameService {
   analyseGame(player: BehaviorSubject<Player>) {
     // Analyse Game
       console.log('Player start ', player.value.name);
-//    console.log("⏳ Étape 1 : Vérifie si la case appartient à un joueur...");
+      console.log("⏳ Étape 1 : Vérifie si la case appartient à un joueur...");
+      let canBuyHouse = this.checkBuyHouse(player);
 //    console.log("⏳ Étape 2 : Calcule s’il doit payer ou non...");
     console.log("⏳ Étape 3 : Décide s’il veut acheter la propriété...");
-    this.computerBuyHouse(player);
+    if(canBuyHouse ) {
+      this.computerBuyHouse(player);
+    }
+
     console.log("⏳ Étape 4 : Fin du tour de l’ordinateur.");
+  }
+
+  checkBuyHouse(player: BehaviorSubject<Player>):boolean{
+      const cellNb = player.value.currentCase;
+
+      if(player !== this.playerHuman$) {
+          // Check Human
+          console.log('check human');
+          const alreadyOwned = this.playerHuman$.value.properties.some(p => p.index === cellNb);
+          if (alreadyOwned) {
+            return false;
+          }
+      }
+      if(player !== this.playerComputer1$) {
+          // Check Computer 1
+          console.log('check computer1');
+          console.log('check human');
+          const alreadyOwned = this.playerComputer1$.value.properties.some(p => p.index === cellNb);
+          if (alreadyOwned) {
+            return false;
+          }
+      }
+      if(player !== this.playerComputer2$) {
+          // Check Computer 2
+          console.log('check computer2');
+          const alreadyOwned = this.playerComputer2$.value.properties.some(p => p.index === cellNb);
+          if (alreadyOwned) {
+            return false;
+          }
+      }
+      if(player !== this.playerComputer3$) {
+          // Check Computer 3
+          console.log('check computer3');
+          const alreadyOwned = this.playerComputer3$.value.properties.some(p => p.index === cellNb);
+          if (alreadyOwned) {
+            return false;
+          }
+      }
+      return true;
   }
 
   computerBuyHouse(player: BehaviorSubject<Player>) {
