@@ -51,10 +51,10 @@ export class GamecontrolComponent {
         this.gameService.updateCurrentCasePlayer(this.gameService.PlayerHuman);
         this.cellCase$ = this.getCellCase(this.gameService.PlayerHuman.value?.currentCase);
         this.card$ = this.getMyCard(this.gameService.PlayerHuman.value?.currentCase);
-        let card = this.gameService.checkCardGanopoly(this.playerToPlay$);
+        let card = this.gameService.checkCardGanopoly(this.gameService.PlayerHuman);
         //  If it's possible to buy or not ?
         if(card) {
-           let checkCard = this.gameService.checkOwnerCardForHuman(this.playerToPlay$, card);
+           let checkCard = this.gameService.checkOwnerCardForHuman(this.gameService.PlayerHuman, card);
            if(checkCard) {
               this.canBuy = checkCard;
            }
