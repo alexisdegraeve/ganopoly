@@ -46,7 +46,7 @@ export class GamecontrolComponent {
       if(!this.playerToPlay$.value.jail) {
         // CASE
         this.canBuy = true;
-        this.showButtonRollDice = true;
+        this.showButtonRollDice = false;
         this.isHumanAction = true;
         this.gameService.updateCurrentCasePlayer(this.gameService.PlayerHuman);
         this.cellCase$ = this.getCellCase(this.gameService.PlayerHuman.value?.currentCase);
@@ -72,6 +72,10 @@ export class GamecontrolComponent {
     this.playerToPlay$ = this.gameService.PlayerToPlay;
     this.isHumanTurn$ = this.gameService.isHumanTurn;
 
+
+    this.isHumanTurn$.subscribe(() => {
+      this.showButtonRollDice = true;
+    })
 
       this.gameService.RequestDiceRoll$.subscribe(async (shouldRoll) => {
     if (shouldRoll) {
@@ -176,6 +180,7 @@ waitDiceRoll(): Promise<void> {
      console.log('Chance card', this.chanceCard);
      this.showChanceButton = false;
     this.gameService.playChanceCard(this.chanceCard, this.gameService.PlayerHuman);
+    this.gameService.nextPlayerToPlay();
   }
 
   startCase() {

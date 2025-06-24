@@ -10,8 +10,8 @@
                         </div>
                         <ng-container *ngIf="type === CardType.elec || type === CardType.eaux">
                             <div class="card-icon">
-                                <div *ngIf="type === CardType.elec" class="symbol" [style.color]="'#fff202'"><i class="fa-solid fa-lightbulb"></i></div>
-                                <div *ngIf="type === CardType.eaux" class="symbol"><i class="fa-solid fa-faucet-drip" [style.color]="'#fff'"></i></div>
+                                <div *ngIf="type === CardType.elec" class="symbol"><img [src]="cardImg" /></div>
+                                <div *ngIf="type === CardType.eaux" class="symbol"><img [src]="cardImg" /></div>
                                 <h4 [style.color]="txtcolor">{{ name }}</h4>
                             </div>
                             <div class="card-content d-flex flex-column">
@@ -25,7 +25,9 @@
                         </ng-container>
                         <ng-container *ngIf="type === CardType.gare">
                             <div class="card-icon">
-                                <div class="symbol"><i class="fa-solid fa-train" [style.color]="'#fff'"></i></div>
+                                <div class="symbol">
+                                    <img [src]="cardImg" />
+                                </div>
                                 <h4 [style.color]="txtcolor">{{ name }}</h4>
                             </div>
                             <div class="card-content d-flex flex-column">

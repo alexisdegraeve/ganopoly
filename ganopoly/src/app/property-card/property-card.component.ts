@@ -12,6 +12,7 @@ export class PropertyCardComponent {
   isFlipped = false;
   @Input() name = 'Rue Saint Léonard';
   @Input() street = 'Rue Saint Léonard';
+  @Input() cardImg = '';
   @Input() city = 'Liège';
   @Input() loyer = 50;
   @Input() groupecomplet = 100;
