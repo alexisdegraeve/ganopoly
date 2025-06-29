@@ -106,6 +106,7 @@ export class GameService {
     const nextCase = (current.currentCase + this.dice1 + this.dice2);
     current.currentCase = nextCase < 40 ? nextCase : nextCase % 40;
     player.next(current);
+    await this.sleep(500);
 
     this.analyseGame(player);
 
@@ -649,11 +650,20 @@ export class GameService {
     // Analyse Game
     console.log('Player start ', player.value.name);
     console.log("⏳ Étape 0 : Cartes");
-    let card = this.checkCardGanopoly(player);
-    if (card) {
-      console.log(card);
-      await this.analyseCard(player, card);
+    if(!player.value.jail) {
+      let card = this.checkCardGanopoly(player);
+      if (card) {
+        console.log(card);
+        await this.analyseCard(player, card);
+      }
+    } else {
+      // Prison
+      // ROL DICE
+      this.rollDiceGetOutJail(player);
+      // this.nextPlayerToPlay();
     }
+
+
 
     console.log("⏳ Étape 4 : Fin du tour de l’ordinateur.");
   }
@@ -666,6 +676,7 @@ export class GameService {
     if (card.type == CardType.toprison) {
       // To go to JAIL
       // this.rollDiceGetOutJail(player);
+      this.goToJail(player);
     }
     if (card.type == CardType.caisse) {
       console.log('Community card computer - ', player.value.name);
