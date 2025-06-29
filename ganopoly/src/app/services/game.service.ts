@@ -657,10 +657,29 @@ export class GameService {
         await this.analyseCard(player, card);
       }
     } else {
-      // Prison
-      // ROL DICE
-      this.rollDiceGetOutJail(player);
-      // this.nextPlayerToPlay();
+
+      let hasJailFreeCard = this.hasAnyJailFreeCard(player);
+
+      // Check if card freed
+      if(hasJailFreeCard) {
+        console.log('USING CARD Freed ' , player.value.name);
+        this.useFreedCardJail(player);
+      } else {
+        // Prison
+        console.log('ROLL DICE');
+        let isRolldice: boolean  =  (Math.floor(Math.random() * 2) == 1)  ;
+        console.log('isROllDice ', isRolldice);
+        // ROL DICE
+        if ((isRolldice) || (player.value.jailDice > 0)) {
+          console.log('YES ROLL DICE');
+          this.rollDiceGetOutJail(player);
+        } else {
+          // pay 50 to get out
+          console.log('NO PAY TO GET OUT');
+          this.payGetOutJail(player, 50);
+        }
+      }
+
     }
 
 
@@ -1023,6 +1042,12 @@ export class GameService {
     player.next(current);
   }
 
+  hasAnyJailFreeCard(player: BehaviorSubject<Player>): boolean {
+    const community = player.value.communityCards ?? [];
+    const chance = player.value.chanceCards ?? [];
+    return [...community, ...chance].some(card => card.type === CommunityType.jailfree);
+  }
+
   async useFreedCardJail(player: BehaviorSubject<Player>) {
     const current = structuredClone(player.value);
     let freeJailCard = current.communityCards.find(card => card.type === CommunityType.jailfree);
@@ -1032,7 +1057,17 @@ export class GameService {
       current.communityCards = current.communityCards.filter(card => card.type !== CommunityType.jailfree);
       player.next(current);
     } else {
-      console.warn(`${current.name} a tenté d'utiliser une carte sortie de prison, mais n'en avait pas.`);
+      freeJailCard = current.chanceCards.find(card => card.type === CommunityType.jailfree);
+      if(freeJailCard) {
+        current.jail = false;
+        this.chanceCards.push(freeJailCard);
+        current.chanceCards = current.chanceCards.filter(card => card.type !== CommunityType.jailfree);
+        player.next(current);
+      } else {
+        console.warn(`${current.name} a tenté d'utiliser une carte sortie de prison, mais n'en avait pas.`);
+      }
+
+
     }
   }
 

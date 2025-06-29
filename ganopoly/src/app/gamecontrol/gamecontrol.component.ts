@@ -189,9 +189,10 @@ waitDiceRoll(): Promise<void> {
   }
 
   get hasAnyJailFreeCard(): boolean {
-    const community = this.playerToPlay$.value.communityCards ?? [];
-    const chance = this.playerToPlay$.value.chanceCards ?? [];
-    return [...community, ...chance].some(card => card.type === CommunityType.jailfree);
+    return this.gameService.hasAnyJailFreeCard(this.gameService.PlayerHuman);
+    // const community = this.playerToPlay$.value.communityCards ?? [];
+    // const chance = this.playerToPlay$.value.chanceCards ?? [];
+    // return [...community, ...chance].some(card => card.type === CommunityType.jailfree);
   }
 
   jailCardFree() {
