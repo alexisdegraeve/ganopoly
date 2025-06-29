@@ -1114,38 +1114,45 @@ export class GameService {
   }
 
 
-  checkSerieBrown(player: BehaviorSubject<Player>) {
-   player.value.properties.find(p => p.index === 1) && player.value.properties.find(p => p.index === 2);
+  checkSerieBrown(player: BehaviorSubject<Player>): boolean {
+    const props = player.value.properties;
+    return props.some(p => p.index === 1) && props.some(p => p.index === 3);
   }
 
-  checkSerieCyan(player: BehaviorSubject<Player>) {
-    player.value.properties.find(p => p.index === 6) && player.value.properties.find(p => p.index === 8) && player.value.properties.find(p => p.index === 9);
+  checkSerieCyan(player: BehaviorSubject<Player>): boolean {
+    const props = player.value.properties;
+    return props.some(p => p.index === 6) && props.some(p => p.index === 8) && props.some(p => p.index === 9);
   }
 
-  checkSeriePink(player: BehaviorSubject<Player>) {
-    player.value.properties.find(p => p.index === 11) && player.value.properties.find(p => p.index === 13) && player.value.properties.find(p => p.index === 14);
+  checkSeriePink(player: BehaviorSubject<Player>): boolean {
+    const props = player.value.properties;
+    return props.some(p => p.index === 11) && props.some(p => p.index === 13) && props.some(p => p.index === 14);
   }
 
-  checkSerieOrange(player: BehaviorSubject<Player>) {
-    player.value.properties.find(p => p.index === 16) && player.value.properties.find(p => p.index === 18) && player.value.properties.find(p => p.index === 19);
+  checkSerieOrange(player: BehaviorSubject<Player>): boolean {
+    const props = player.value.properties;
+    return props.some(p => p.index === 16) && props.some(p => p.index === 18) && props.some(p => p.index === 19);
   }
 
-  checkSerieRed(player: BehaviorSubject<Player>) {
-    player.value.properties.find(p => p.index === 21) && player.value.properties.find(p => p.index === 23) && player.value.properties.find(p => p.index === 24);
+  checkSerieRed(player: BehaviorSubject<Player>): boolean {
+    const props = player.value.properties;
+    return props.some(p => p.index === 21) && props.some(p => p.index === 23) && props.some(p => p.index === 24);
   }
 
-  checkSerieYellow(player: BehaviorSubject<Player>) {
-    player.value.properties.find(p => p.index === 26) && player.value.properties.find(p => p.index === 27) && player.value.properties.find(p => p.index === 29);
+  checkSerieYellow(player: BehaviorSubject<Player>): boolean {
+    const props = player.value.properties;
+    return props.some(p => p.index === 26) && props.some(p => p.index === 27) && props.some(p => p.index === 29);
   }
 
-  checkSerieGreen(player: BehaviorSubject<Player>) {
-    player.value.properties.find(p => p.index === 31) && player.value.properties.find(p => p.index === 32) && player.value.properties.find(p => p.index === 34);
+  checkSerieGreen(player: BehaviorSubject<Player>): boolean {
+    const props = player.value.properties;
+    return props.some(p => p.index === 31) && props.some(p => p.index === 32) && props.some(p => p.index === 34);
   }
 
-  checkSerieBlue(player: BehaviorSubject<Player>) {
-    player.value.properties.find(p => p.index === 37) && player.value.properties.find(p => p.index === 39);
+  checkSerieBlue(player: BehaviorSubject<Player>): boolean {
+    const props = player.value.properties;
+    return props.some(p => p.index === 37) && props.some(p => p.index === 39);
   }
-
 
 }
 
