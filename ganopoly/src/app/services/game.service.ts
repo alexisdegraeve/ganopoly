@@ -1114,6 +1114,39 @@ export class GameService {
   }
 
 
+  checkSerieBrown(player: BehaviorSubject<Player>) {
+   player.value.properties.find(p => p.index === 1) && player.value.properties.find(p => p.index === 2);
+  }
+
+  checkSerieCyan(player: BehaviorSubject<Player>) {
+    player.value.properties.find(p => p.index === 6) && player.value.properties.find(p => p.index === 8) && player.value.properties.find(p => p.index === 9);
+  }
+
+  checkSeriePink(player: BehaviorSubject<Player>) {
+    player.value.properties.find(p => p.index === 11) && player.value.properties.find(p => p.index === 13) && player.value.properties.find(p => p.index === 14);
+  }
+
+  checkSerieOrange(player: BehaviorSubject<Player>) {
+    player.value.properties.find(p => p.index === 16) && player.value.properties.find(p => p.index === 18) && player.value.properties.find(p => p.index === 19);
+  }
+
+  checkSerieRed(player: BehaviorSubject<Player>) {
+    player.value.properties.find(p => p.index === 21) && player.value.properties.find(p => p.index === 23) && player.value.properties.find(p => p.index === 24);
+  }
+
+  checkSerieYellow(player: BehaviorSubject<Player>) {
+    player.value.properties.find(p => p.index === 26) && player.value.properties.find(p => p.index === 27) && player.value.properties.find(p => p.index === 29);
+  }
+
+  checkSerieGreen(player: BehaviorSubject<Player>) {
+    player.value.properties.find(p => p.index === 31) && player.value.properties.find(p => p.index === 32) && player.value.properties.find(p => p.index === 34);
+  }
+
+  checkSerieBlue(player: BehaviorSubject<Player>) {
+    player.value.properties.find(p => p.index === 37) && player.value.properties.find(p => p.index === 39);
+  }
+
+
 }
 
 

@@ -5,6 +5,7 @@
 
     </div>
     <div class="card-body">
+
         <ng-container *ngIf="isStartGame">
             <gano-doubledice [showButton]="showButtonRollDice" (finishRollDiceEvent)="finishRollDice()"></gano-doubledice>
         </ng-container>
@@ -73,6 +74,11 @@
                         <button class="btn btn-primary " (click)="buy()" [disabled]="!canBuy">Buy</button>
                     </div>
                 </ng-container>
+
+                <div class="d-flex">
+                    <button class="btn btn-outline-primary d-flex"><div class="small-square brown"></div>Buy <i class="mx-2 fa-solid fa-house striped-icon"></i></button>
+                    <button class="ms-2 btn btn-outline-primary d-flex"><div class="small-square cyan"></div>Buy <i class="mx-2 fa-solid fa-house striped-icon"></i></button>
+                </div>
 
             </div>
 

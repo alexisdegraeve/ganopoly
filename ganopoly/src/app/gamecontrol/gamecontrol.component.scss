@@ -1,3 +1,14 @@
+.small-square {
+    height: 1rem;
+    width: 1rem;
+    &.brown {
+        background-color: saddlebrown;
+    }
+    &.cyan {
+        background-color: cyan;
+    }
+}
+
 .card-header {
     display: flex;
     background-color: #000;
