@@ -58,10 +58,10 @@ export class GameService {
     this.playerComputer1$ = this.createNewPlayer(Pawn.honey, '#F4D35E');
     this.playerComputer2$ = this.createNewPlayer(Pawn.ax, '#4ABDAC');
     this.playerComputer3$ = this.createNewPlayer(Pawn.lotus, '#FF6F59');
-    console.log('player human ', this.playerHuman$.value);
-    console.log('player computer 1 ', this.playerComputer1$.value);
-    console.log('player computer 2 ', this.playerComputer2$.value);
-    console.log('player Computer 3 ', this.playerComputer3$.value);
+//    console.log('player human ', this.playerHuman$.value);
+//    console.log('player computer 1 ', this.playerComputer1$.value);
+//    console.log('player computer 2 ', this.playerComputer2$.value);
+//    console.log('player Computer 3 ', this.playerComputer3$.value);
     this.playerToPlay$ = new BehaviorSubject<Player>({ ...this.playerHuman$.value });
     this.getCards().subscribe(cards => {
       this.allCards = cards;
@@ -100,6 +100,9 @@ export class GameService {
     this.requestDiceRoll$.next(true);
     await firstValueFrom(this.diceRollCompleted$);
     const current = structuredClone(player.value);
+    // const nextCase = 2; // communauté
+    // const nextCase = 7; // chance
+    // const nextCase = 30; // go to jail
     const nextCase = (current.currentCase + this.dice1 + this.dice2);
     current.currentCase = nextCase < 40 ? nextCase : nextCase % 40;
     player.next(current);
@@ -665,14 +668,23 @@ export class GameService {
       // this.rollDiceGetOutJail(player);
     }
     if (card.type == CardType.caisse) {
-      // CAISSE
-      // communityCard
-      //this.playCommunityCard(this.communityCard, player);
+      console.log('Community card computer - ', player.value.name);
+      console.log('before ', this.communauteCards);
+      let communityCard = this.pickCommunityCard();
+      console.log('communityCard ', communityCard);
+      this.playCommunityCard(communityCard, player, true);
+      console.log('after ', this.communauteCards);
     }
     if (card.type == CardType.chance) {
       // To go to JAIL
       // communityCard
       //this.playChanceCard(this.communityCard, player);
+      console.log('Chance card computer - ', player.value.name);
+      console.log('before ', this.chanceCards);
+      let chanceCard = this.pickChanceCard();
+      console.log('chanceCard ', chanceCard);
+      this.playChanceCard(chanceCard, player);
+      console.log('after ', this.chanceCards);
     }
     if (card.type == CardType.start) {
       // CHECK START
@@ -729,10 +741,10 @@ export class GameService {
 
   checkPlayerIsOwnerAndPay(playerSrc: BehaviorSubject<Player>, playerDest: BehaviorSubject<Player>, cellNb: number): boolean {
     const ownedProperty = playerDest.value.properties.find(p => p.index === cellNb);
-    console.log('ownedProperty', ownedProperty);
-    console.log('playerSrc ', playerSrc.value);
-    console.log('playerDest ', playerDest.value);
-    console.log('cellNb ', cellNb);
+    // console.log('ownedProperty', ownedProperty);
+    //  console.log('playerSrc ', playerSrc.value);
+    //  console.log('playerDest ', playerDest.value);
+    // console.log('cellNb ', cellNb);
 
     if (ownedProperty) {
       if (playerSrc.value.id !== playerDest.value.id) {
