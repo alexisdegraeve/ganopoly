@@ -69,7 +69,7 @@
 
                 <ng-container *ngIf="(isHumanTurn$ | async) ">
                     <div class="d-flex justify-content-center mt-4 ">
-                        <a class="btn btn-outline-warning me-2 " (click)="skip() ">Skip</a> {{ canBuy }}
+                        <a class="btn btn-outline-warning me-2 " (click)="skip() ">Skip</a>
                         <button class="btn btn-primary " (click)="buy()" [disabled]="!canBuy">Buy</button>
                     </div>
                 </ng-container>

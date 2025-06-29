@@ -919,7 +919,12 @@ export class GameService {
     }
 
     if (communityCard?.type === CommunityType.backthree) {
-      // await this.goToJail(player);
+      let currentCase = player.value.currentCase;
+      if(currentCase > 2) {
+          await this.goTocase(currentCase - 3 , player);
+      } else {
+          await this.goTocase(39 - (2 - currentCase), player);
+      }
     }
 
     if (communityCard?.type === CommunityType.eachplayer10) {
