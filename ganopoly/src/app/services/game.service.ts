@@ -187,7 +187,9 @@ export class GameService {
       jailDice: 0,
       communityCards: [],
       chanceCards: [],
-      properties: [], //{index: 1, house: 3}, {index: 3,  house: 0}, {index: 6,  house: 5}],
+      properties: [],
+      // {index: 1, house: 0}, {index: 3,  house: 0},{index: 21, house: 0}, {index: 23,  house: 0}, {index: 24, house: 0}
+      //{index: 1, house: 3}, {index: 3,  house: 0}, {index: 6,  house: 5}],
       billets: [
         { euro: 1, quantity: 0, color: 'white' },
         { euro: 5, quantity: 0, color: 'pink' },
@@ -1153,6 +1155,59 @@ export class GameService {
     const props = player.value.properties;
     return props.some(p => p.index === 37) && props.some(p => p.index === 39);
   }
+
+
+  buyHouse(player: BehaviorSubject<Player>, color: string) {
+    const colorMap: Record<string, number[]> = {
+      brown: [1, 3],
+      cyan: [6, 8, 9],
+      pink: [11, 13, 14],
+      orange: [16, 18, 19],
+      red: [21, 23, 24],
+      yellow: [26, 27, 29],
+      green: [31, 32, 34],
+      blue: [37, 39],
+    };
+
+    const indices = colorMap[color];
+    if (!indices) return;
+
+    const properties = indices
+      .map(index => player.value.properties.find(p => p.index === index))
+      .filter(p => p !== undefined);
+
+    if (properties.length !== indices.length) {
+      console.warn(`Le joueur ne possède pas toutes les propriétés de la couleur ${color}`);
+      return;
+    }
+
+    // Déterminer le niveau minimal de maison dans la série
+    const minHouseLevel = Math.min(...properties.map(p => p.house));
+
+    // On ne peut pas construire plus que 5 (4 maisons + 1 hôtel)
+    if (minHouseLevel >= 5) {
+      console.warn(`Toutes les propriétés ${color} ont déjà un hôtel.`);
+      return;
+    }
+
+    // On ajoute une maison/hôtel à la première propriété possible (égalité de niveau)
+    for (const prop of properties) {
+      if (prop.house === minHouseLevel) {
+        const card = this.allCards.find(c => c.case === prop.index);
+        if (!card) continue;
+
+        if (minHouseLevel < 4) {
+          this.payToBank(card.prixHouse, player);
+          prop.house += 1;
+        } else if (minHouseLevel === 4 && prop.house < 5) {
+          this.payToBank(card.prixHotel, player);
+          prop.house += 1;
+        }
+        break;
+      }
+    }
+  }
+
 
 }
 

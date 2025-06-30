@@ -24,10 +24,10 @@ export class GamecontrolComponent {
   isHumanAction = false;
   cellNumber = 1;
   cellCase$: Observable<Case | undefined> | undefined = new Observable<Case | undefined>;
-  card$: Observable<Card | undefined>  | undefined = new Observable<Card | undefined>;
+  card$: Observable<Card | undefined> | undefined = new Observable<Card | undefined>;
   playerToPlay$: BehaviorSubject<Player>;
   @ViewChild(DoublediceComponent) diceComponent!: DoublediceComponent;
-  isHumanTurn$: BehaviorSubject<boolean> = new  BehaviorSubject<boolean>(true);
+  isHumanTurn$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
   CardType = CardType;
   communityCard: ccCard | undefined = undefined;
   chanceCard: ccCard | undefined = undefined;
@@ -42,8 +42,8 @@ export class GamecontrolComponent {
   // }
 
   async finishRollDice() {
-    if(this.isHumanTurn$.value) {
-      if(!this.playerToPlay$.value.jail) {
+    if (this.isHumanTurn$.value) {
+      if (!this.playerToPlay$.value.jail) {
         // CASE
         this.canBuy = true;
         this.showButtonRollDice = false;
@@ -53,11 +53,11 @@ export class GamecontrolComponent {
         this.card$ = this.getMyCard(this.gameService.PlayerHuman.value?.currentCase);
         let card = this.gameService.checkCardGanopoly(this.gameService.PlayerHuman);
         //  If it's possible to buy or not ?
-        if(card) {
-           let checkCard = this.gameService.checkOwnerCardForHuman(this.gameService.PlayerHuman, card);
-           if(checkCard) {
-              this.canBuy = checkCard;
-           }
+        if (card) {
+          let checkCard = this.gameService.checkOwnerCardForHuman(this.gameService.PlayerHuman, card);
+          if (checkCard) {
+            this.canBuy = checkCard;
+          }
         }
         console.log('finish roll dice');
       } else {
@@ -77,28 +77,28 @@ export class GamecontrolComponent {
       this.showButtonRollDice = true;
     })
 
-      this.gameService.RequestDiceRoll$.subscribe(async (shouldRoll) => {
-    if (shouldRoll) {
-      // L'ordinateur a demandé à lancer les dés
-      await this.waitDiceRoll();
-      this.gameService.resetDiceRequest();
+    this.gameService.RequestDiceRoll$.subscribe(async (shouldRoll) => {
+      if (shouldRoll) {
+        // L'ordinateur a demandé à lancer les dés
+        await this.waitDiceRoll();
+        this.gameService.resetDiceRequest();
         this.gameService.diceRollCompleted$.next();
-    }
-  });
+      }
+    });
 
 
   }
 
 
-waitDiceRoll(): Promise<void> {
-  return new Promise((resolve) => {
-    const sub = this.diceComponent.finishRollDiceEvent.subscribe(() => {
-      sub.unsubscribe(); // propre
-      resolve(); // le dé a fini
+  waitDiceRoll(): Promise<void> {
+    return new Promise((resolve) => {
+      const sub = this.diceComponent.finishRollDiceEvent.subscribe(() => {
+        sub.unsubscribe(); // propre
+        resolve(); // le dé a fini
+      });
+      this.diceComponent.rollDice(); // déclenche le setInterval
     });
-    this.diceComponent.rollDice(); // déclenche le setInterval
-  });
-}
+  }
 
 
   buy() {
@@ -134,7 +134,7 @@ waitDiceRoll(): Promise<void> {
     );
   }
 
-  private getMyCard(cellNb: number): Observable<Card | undefined > {
+  private getMyCard(cellNb: number): Observable<Card | undefined> {
     return this.gameService.getCards().pipe(
       map(cards => cards.find(c => c.case === cellNb))
     );
@@ -170,15 +170,15 @@ waitDiceRoll(): Promise<void> {
   }
 
   communityCardPlay() {
-     console.log('Caisse card ', this.communityCard);
-     this.showCommunityButton = false;
-     this.gameService.playCommunityCard(this.communityCard, this.gameService.PlayerHuman);
-     this.gameService.nextPlayerToPlay();
+    console.log('Caisse card ', this.communityCard);
+    this.showCommunityButton = false;
+    this.gameService.playCommunityCard(this.communityCard, this.gameService.PlayerHuman);
+    this.gameService.nextPlayerToPlay();
   }
 
   chanceCardPlay() {
-     console.log('Chance card', this.chanceCard);
-     this.showChanceButton = false;
+    console.log('Chance card', this.chanceCard);
+    this.showChanceButton = false;
     this.gameService.playChanceCard(this.chanceCard, this.gameService.PlayerHuman);
     this.gameService.nextPlayerToPlay();
   }
@@ -203,7 +203,7 @@ waitDiceRoll(): Promise<void> {
 
   async PayTaxes() {
     const cell = this.cellCase$ ? await firstValueFrom(this.cellCase$) : undefined;
-    if(cell) {
+    if (cell) {
       this.gameService.playerPayTaxes(cell.price, this.gameService.PlayerHuman);
     }
     this.gameService.nextPlayerToPlay();
@@ -212,6 +212,41 @@ waitDiceRoll(): Promise<void> {
   GoToJail() {
     this.gameService.goToJail(this.gameService.PlayerHuman);
     this.gameService.nextPlayerToPlay();
+  }
+
+  BuyHouse(color: string) {
+    this.gameService.buyHouse(this.gameService.PlayerHuman, color);
+  }
+
+  get canBuyHouseBrown() {
+    return this.gameService.checkSerieBrown(this.gameService.PlayerHuman);
+  }
+
+  get canBuyHouseCyan() {
+    return this.gameService.checkSerieCyan(this.gameService.PlayerHuman);
+  }
+
+  get canBuyHousePink() {
+    return this.gameService.checkSeriePink(this.gameService.PlayerHuman);
+  }
+
+  get canBuyHouseOrange() {
+    return this.gameService.checkSerieOrange(this.gameService.PlayerHuman);
+  }
+
+  get canBuyHouseRed() {
+    return this.gameService.checkSerieRed(this.gameService.PlayerHuman);
+  }
+  get canBuyHouseYellow() {
+    return this.gameService.checkSerieYellow(this.gameService.PlayerHuman);
+  }
+
+  get canBuyHouseGreen() {
+    return this.gameService.checkSerieGreen(this.gameService.PlayerHuman);
+  }
+
+  get canBuyHouseBlue() {
+    return this.gameService.checkSerieBlue(this.gameService.PlayerHuman);
   }
 
 }

@@ -76,8 +76,14 @@
                 </ng-container>
 
                 <div class="d-flex">
-                    <button class="btn btn-outline-primary d-flex"><div class="small-square brown"></div>Buy <i class="mx-2 fa-solid fa-house striped-icon"></i></button>
-                    <button class="ms-2 btn btn-outline-primary d-flex"><div class="small-square cyan"></div>Buy <i class="mx-2 fa-solid fa-house striped-icon"></i></button>
+                    <button class="btn btn-outline-primary d-flex" *ngIf="canBuyHouseBrown" (click)="BuyHouse('brown')"><div class="small-square brown"></div>Buy <i class="mx-2 fa-solid fa-house striped-icon"></i></button>
+                    <button class="ms-2 btn btn-outline-primary d-flex" *ngIf="canBuyHouseCyan" (click)="BuyHouse('cyan')"><div class="small-square cyan"></div>Buy <i class="mx-2 fa-solid fa-house striped-icon"></i></button>
+                    <button class="ms-2 btn btn-outline-primary d-flex" *ngIf="canBuyHousePink" (click)="BuyHouse('pink')"><div class="small-square pink"></div>Buy <i class="mx-2 fa-solid fa-house striped-icon"></i></button>
+                    <button class="ms-2 btn btn-outline-primary d-flex" *ngIf="canBuyHouseOrange" (click)="BuyHouse('orange')"><div class="small-square orange"></div>Buy <i class="mx-2 fa-solid fa-house striped-icon"></i></button>
+                    <button class="ms-2 btn btn-outline-primary d-flex" *ngIf="canBuyHouseRed" (click)="BuyHouse('red')"><div class="small-square red"></div>Buy <i class="mx-2 fa-solid fa-house striped-icon"></i></button>
+                    <button class="ms-2 btn btn-outline-primary d-flex" *ngIf="canBuyHouseYellow" (click)="BuyHouse('yellow')"><div class="small-square yellow"></div>Buy <i class="mx-2 fa-solid fa-house striped-icon"></i></button>
+                    <button class="ms-2 btn btn-outline-primary d-flex" *ngIf="canBuyHouseGreen" (click)="BuyHouse('green')"><div class="small-square green"></div>Buy <i class="mx-2 fa-solid fa-house striped-icon"></i></button>
+                    <button class="ms-2 btn btn-outline-primary d-flex" *ngIf="canBuyHouseBlue" (click)="BuyHouse('blue')"><div class="small-square blue"></div>Buy <i class="mx-2 fa-solid fa-house striped-icon"></i></button>
                 </div>
 
             </div>
