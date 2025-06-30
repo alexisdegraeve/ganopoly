@@ -16,6 +16,7 @@ export class Player {
   communityCards: ccCard[] = [];
   chanceCards: ccCard[] = [];
   //houses: HouseCard[] = [];
-  billets: Billet[] = [];
+  solde = 1500;
+  // billets: Billet[] = [];
 }
 

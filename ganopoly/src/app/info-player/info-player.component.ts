@@ -45,18 +45,45 @@ export class InfoPlayerComponent {
       ]).pipe(
         map(([player, cards]) =>
           cards.filter(card =>
-          player.properties.some(p => p.index === card.case)
-      )
+            player.properties.some(p => p.index === card.case)
+          )
         )
       );
     }
   }
 
   get playerTotal() {
-    let total = 0;
-    this.player?.value?.billets.forEach((billet: Billet) => {
-      total += (billet.quantity * billet.euro);
-    });
-    return total;
+    // let total = 0;
+    // this.player?.value?.billets.forEach((billet: Billet) => {
+    //   total += (billet.quantity * billet.euro);
+    // });
+    return this.player?.value?.solde; // total;
+  }
+
+  decomposerMontant(montant: number) {
+
+      const billetsTypes = [
+    { euro: 500, quantity: Infinity, color: 'orange' },
+    { euro: 100, quantity: Infinity, color: 'salmon' },
+    { euro: 50, quantity: Infinity, color: 'purple' },
+    { euro: 20, quantity: Infinity, color: 'green' },
+    { euro: 10, quantity: Infinity, color: 'cyan' },
+    { euro: 5, quantity: Infinity, color: 'pink' },
+    { euro: 1, quantity: Infinity, color: 'white' },
+  ];
+
+    let reste = montant;
+    const resultat = billetsTypes.map(billet => ({ ...billet, quantityUsed: 0 }));
+    for (const billet of resultat) {
+      if (reste <= 0) break;
+      const maxUtilisable = Math.min(Math.floor(reste / billet.euro), billet.quantity);
+      billet.quantityUsed = maxUtilisable;
+      reste -= maxUtilisable * billet.euro;
+    }
+    if (reste > 0) {
+      // pas possible de faire la décomposition exacte
+      return null;
+    }
+      return resultat.filter(b => b.quantityUsed > 0);
   }
 }

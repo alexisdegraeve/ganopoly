@@ -36,7 +36,7 @@
                             <div class="carousel-caption ">
                                 <h5 class="text-white">Notes</h5>
                                 <div class="billets">
-                                    <ng-container *ngFor="let billet of player?.billets">
+                                    <ng-container *ngFor="let billet of decomposerMontant(player.solde)">
                                         <div *ngIf="billet.quantity > 0" class="d-flex flex-column">
                                             <div class="quantity">
                                                 <span>x{{ billet.quantity }}</span>
