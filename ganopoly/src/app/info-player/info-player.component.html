@@ -36,10 +36,10 @@
                             <div class="carousel-caption ">
                                 <h5 class="text-white">Notes</h5>
                                 <div class="billets">
-                                    <ng-container *ngFor="let billet of decomposerMontant(player.solde)">
-                                        <div *ngIf="billet.quantity > 0" class="d-flex flex-column">
+                                    <ng-container *ngFor="let billet of decomposerMontant(this.player?.value?.solde ?? 0)">
+                                        <div *ngIf="billet.quantityUsed  > 0" class="d-flex flex-column">
                                             <div class="quantity">
-                                                <span>x{{ billet.quantity }}</span>
+                                                <span>x{{ billet.quantityUsed  }}</span>
                                             </div>
                                             <div class="billet-small-container">
                                                 <gano-banknote [value]="billet.euro "></gano-banknote>

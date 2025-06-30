@@ -1,5 +1,5 @@
 import { Billet } from './../models/billet';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Player } from '../models/player';
 import { CommonModule } from '@angular/common';
 import { BanknoteComponent } from '../banknote/banknote.component';
@@ -17,8 +17,20 @@ import { ChanceCardComponent } from '../chance-card/chance-card.component';
   templateUrl: './info-player.component.html',
   styleUrl: './info-player.component.scss'
 })
-export class InfoPlayerComponent {
+export class InfoPlayerComponent implements OnInit {
   private _player: BehaviorSubject<Player> | null = null;
+  // decomposedBillets: { euro: number; quantityUsed: number; color: string }[] = [];
+  // decomposedBillets = this.decomposerMontant(this.player?.value?.solde ?? 0) || [];
+
+  billetsDisponibles = [
+    { euro: 500, quantity: 2, color: 'orange' },
+    { euro: 100, quantity: 4, color: 'salmon' },
+    { euro: 50, quantity: 1, color: 'purple' },
+    { euro: 20, quantity: 1, color: 'green' },
+    { euro: 10, quantity: 2, color: 'cyan' },
+    { euro: 5, quantity: 1, color: 'pink' },
+    { euro: 1, quantity: 5, color: 'white' },
+  ];
   @Input() isHuman = false;
 
   @Input()
@@ -34,6 +46,16 @@ export class InfoPlayerComponent {
   mycards$: Observable<Card[]> = new Observable<Card[]>();
 
   constructor(private gameService: GameService) {
+  }
+  ngOnInit(): void {
+    // if (this.player) {
+    //   this.player.subscribe(player => {
+    //     if (player) {
+    //       this.decomposedBillets = this.decomposerMontant(player.solde) || [];
+    //     }
+    //   });
+    // }
+
   }
 
 
@@ -60,30 +82,29 @@ export class InfoPlayerComponent {
     return this.player?.value?.solde; // total;
   }
 
-  decomposerMontant(montant: number) {
+decomposerMontant(montant: number): { euro: number; quantityUsed: number; color: string }[] | null {
+  let reste = montant;
 
-      const billetsTypes = [
-    { euro: 500, quantity: Infinity, color: 'orange' },
-    { euro: 100, quantity: Infinity, color: 'salmon' },
-    { euro: 50, quantity: Infinity, color: 'purple' },
-    { euro: 20, quantity: Infinity, color: 'green' },
-    { euro: 10, quantity: Infinity, color: 'cyan' },
-    { euro: 5, quantity: Infinity, color: 'pink' },
-    { euro: 1, quantity: Infinity, color: 'white' },
-  ];
+  // Clone uniquement pour traitement visuel
+  const resultat = this.billetsDisponibles.map(b => ({ ...b, quantityUsed: 0 }));
 
-    let reste = montant;
-    const resultat = billetsTypes.map(billet => ({ ...billet, quantityUsed: 0 }));
-    for (const billet of resultat) {
-      if (reste <= 0) break;
-      const maxUtilisable = Math.min(Math.floor(reste / billet.euro), billet.quantity);
-      billet.quantityUsed = maxUtilisable;
-      reste -= maxUtilisable * billet.euro;
-    }
-    if (reste > 0) {
-      // pas possible de faire la décomposition exacte
-      return null;
-    }
-      return resultat.filter(b => b.quantityUsed > 0);
+  // ⚠️ Tri du plus grand au plus petit billet (pas l’inverse)
+  resultat.sort((a, b) => b.euro - a.euro);
+
+  for (const billet of resultat) {
+    if (reste <= 0) break;
+    const utilisables = Math.min(Math.floor(reste / billet.euro), billet.quantity);
+    billet.quantityUsed = utilisables;
+    reste -= utilisables * billet.euro;
   }
+
+  if (reste > 0) {
+    return null; // Pas possible de faire l'opération
+  }
+
+  // ❌ Ne touche pas à billetsDisponibles ici !
+  return resultat.filter(b => b.quantityUsed > 0);
+}
+
+
 }
