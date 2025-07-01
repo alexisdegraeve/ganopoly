@@ -520,7 +520,7 @@ export class GameService {
   }
 
 
-  async payToBank(montant: number, player: BehaviorSubject<Player>) {
+  async payToBank(montant: number, player: BehaviorSubject<Player>):Promise<Boolean> {
     console.log('pay to bank');
     let srcPlayer = structuredClone(player.value);
     // let dstBanque = structuredClone(this.banque);
@@ -1069,7 +1069,7 @@ export class GameService {
   }
 
 
-  buyHouse(player: BehaviorSubject<Player>, color: string) {
+  async buyHouse(player: BehaviorSubject<Player>, color: string) {
     const colorMap: Record<string, number[]> = {
       brown: [1, 3],
       cyan: [6, 8, 9],
@@ -1109,12 +1109,18 @@ export class GameService {
         if (!card) continue;
 
         if (minHouseLevel < 4) {
-          this.payToBank(card.prixHouse, player);
-          this.addHouse(player, prop.index);
+          let canBuy = await this.payToBank(card.prixHouse, player);
+          if(canBuy) {
+            this.addHouse(player, prop.index);
+          }
+
           console.log(' add prop house ');
         } else if (minHouseLevel === 4 && prop.house < 5) {
-          this.payToBank(card.prixHotel, player);
-          this.addHouse(player, prop.index);
+          let canBuy = await this.payToBank(card.prixHotel, player);
+          if(canBuy) {
+            this.addHouse(player, prop.index);
+          }
+
           console.log(' add prop hotel ');
         }
         break;
