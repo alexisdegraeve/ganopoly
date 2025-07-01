@@ -1110,12 +1110,10 @@ export class GameService {
 
         if (minHouseLevel < 4) {
           this.payToBank(card.prixHouse, player);
-          const current = structuredClone(player.value);
           this.addHouse(player, prop.index);
           console.log(' add prop house ');
         } else if (minHouseLevel === 4 && prop.house < 5) {
           this.payToBank(card.prixHotel, player);
-          prop.house += 1;
           this.addHouse(player, prop.index);
           console.log(' add prop hotel ');
         }
