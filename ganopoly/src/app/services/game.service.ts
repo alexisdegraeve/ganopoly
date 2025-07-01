@@ -27,7 +27,7 @@ export class GameService {
   }
   private chanceCards: ccCard[] = [];
   private communauteCards: ccCard[] = [];
-  private banque = {solde: 20480} /* Billet[] = [
+  private banque = { solde: 20480 } /* Billet[] = [
     { euro: 1, quantity: 30, color: 'white' },
     { euro: 5, quantity: 30, color: 'pink' },
     { euro: 10, quantity: 30, color: 'cyan' },
@@ -57,10 +57,10 @@ export class GameService {
     this.playerComputer1$ = this.createNewPlayer(Pawn.honey, '#F4D35E');
     this.playerComputer2$ = this.createNewPlayer(Pawn.ax, '#4ABDAC');
     this.playerComputer3$ = this.createNewPlayer(Pawn.lotus, '#FF6F59');
-//    console.log('player human ', this.playerHuman$.value);
-//    console.log('player computer 1 ', this.playerComputer1$.value);
-//    console.log('player computer 2 ', this.playerComputer2$.value);
-//    console.log('player Computer 3 ', this.playerComputer3$.value);
+    //    console.log('player human ', this.playerHuman$.value);
+    //    console.log('player computer 1 ', this.playerComputer1$.value);
+    //    console.log('player computer 2 ', this.playerComputer2$.value);
+    //    console.log('player Computer 3 ', this.playerComputer3$.value);
     this.playerToPlay$ = new BehaviorSubject<Player>({ ...this.playerHuman$.value });
     this.getCards().subscribe(cards => {
       this.allCards = cards;
@@ -186,19 +186,19 @@ export class GameService {
       jailDice: 0,
       communityCards: [],
       chanceCards: [],
-      properties: [{index: 1, house: 0}, {index: 3,  house: 0},{index: 21, house: 0}, {index: 23,  house: 0}, {index: 24, house: 0}],
+      properties: [{ index: 1, house: 0 }, { index: 3, house: 0 }, { index: 21, house: 0 }, { index: 23, house: 0 }, { index: 24, house: 0 }],
       solde: 1500
       // {index: 1, house: 0}, {index: 3,  house: 0},{index: 21, house: 0}, {index: 23,  house: 0}, {index: 24, house: 0}
       //{index: 1, house: 3}, {index: 3,  house: 0}, {index: 6,  house: 5}],
-    //    billets: [
-    //     { euro: 1, quantity: 0, color: 'white' },
-    //     { euro: 5, quantity: 0, color: 'pink' },
-    //     { euro: 10, quantity: 0, color: 'cyan' },
-    //     { euro: 20, quantity: 0, color: 'green' },
-    //     { euro: 50, quantity: 0, color: 'purple' },
-    //     { euro: 100, quantity: 0, color: 'salmon' },
-    //     { euro: 500, quantity: 0, color: 'orange' },
-    //   ]
+      //    billets: [
+      //     { euro: 1, quantity: 0, color: 'white' },
+      //     { euro: 5, quantity: 0, color: 'pink' },
+      //     { euro: 10, quantity: 0, color: 'cyan' },
+      //     { euro: 20, quantity: 0, color: 'green' },
+      //     { euro: 50, quantity: 0, color: 'purple' },
+      //     { euro: 100, quantity: 0, color: 'salmon' },
+      //     { euro: 500, quantity: 0, color: 'orange' },
+      //   ]
     });
   }
 
@@ -269,8 +269,8 @@ export class GameService {
       console.warn(`${source.value.name} n'a pas assez d'argent pour payer ${montant}`);
       return false;
     } else {
-      sourceMod.solde =  sourceMod.solde - montant;
-      cibleMode.solde =  cibleMode.solde + montant;
+      sourceMod.solde = sourceMod.solde - montant;
+      cibleMode.solde = cibleMode.solde + montant;
       source.next(sourceMod);
       cible.next(cibleMode);
       return true;
@@ -525,7 +525,7 @@ export class GameService {
     let srcPlayer = structuredClone(player.value);
     // let dstBanque = structuredClone(this.banque);
 
-    if(srcPlayer.solde >= montant) {
+    if (srcPlayer.solde >= montant) {
       srcPlayer.solde = srcPlayer.solde - montant;
       this.banque.solde = this.banque.solde + montant;
       player.next(srcPlayer);
@@ -564,7 +564,7 @@ export class GameService {
     // Analyse Game
     console.log('Player start ', player.value.name);
     console.log("⏳ Étape 0 : Cartes");
-    if(!player.value.jail) {
+    if (!player.value.jail) {
       let card = this.checkCardGanopoly(player);
       if (card) {
         console.log(card);
@@ -575,13 +575,13 @@ export class GameService {
       let hasJailFreeCard = this.hasAnyJailFreeCard(player);
 
       // Check if card freed
-      if(hasJailFreeCard) {
-        console.log('USING CARD Freed ' , player.value.name);
+      if (hasJailFreeCard) {
+        console.log('USING CARD Freed ', player.value.name);
         this.useFreedCardJail(player);
       } else {
         // Prison
         console.log('ROLL DICE');
-        let isRolldice: boolean  =  (Math.floor(Math.random() * 2) == 1)  ;
+        let isRolldice: boolean = (Math.floor(Math.random() * 2) == 1);
         console.log('isROllDice ', isRolldice);
         // ROL DICE
         if ((isRolldice) || (player.value.jailDice > 0)) {
@@ -834,10 +834,10 @@ export class GameService {
 
     if (communityCard?.type === CommunityType.backthree) {
       let currentCase = player.value.currentCase;
-      if(currentCase > 2) {
-          await this.goTocase(currentCase - 3 , player);
+      if (currentCase > 2) {
+        await this.goTocase(currentCase - 3, player);
       } else {
-          await this.goTocase(39 - (2 - currentCase), player);
+        await this.goTocase(39 - (2 - currentCase), player);
       }
     }
 
@@ -977,7 +977,7 @@ export class GameService {
       player.next(current);
     } else {
       freeJailCard = current.chanceCards.find(card => card.type === CommunityType.jailfree);
-      if(freeJailCard) {
+      if (freeJailCard) {
         current.jail = false;
         this.chanceCards.push(freeJailCard);
         current.chanceCards = current.chanceCards.filter(card => card.type !== CommunityType.jailfree);
@@ -1110,14 +1110,33 @@ export class GameService {
 
         if (minHouseLevel < 4) {
           this.payToBank(card.prixHouse, player);
-          prop.house += 1;
+          const current = structuredClone(player.value);
+          this.addHouse(player, prop.index);
+          console.log(' add prop house ');
         } else if (minHouseLevel === 4 && prop.house < 5) {
           this.payToBank(card.prixHotel, player);
           prop.house += 1;
+          this.addHouse(player, prop.index);
+          console.log(' add prop hotel ');
         }
         break;
       }
     }
+  }
+
+
+  addHouse(player: BehaviorSubject<Player>, indexCard: number) {
+    const current = structuredClone(player.value);
+
+    // Met à jour la propriété clonée
+    const target = current.properties.find(p => p.index === indexCard);
+    if (target) {
+      target.house += 1;
+    }
+
+    // Notifie le changement
+    player.next(current);
+    console.log('add prop house');
   }
 
 

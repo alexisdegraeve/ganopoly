@@ -32,6 +32,7 @@
     <ng-container *ngIf="cardtype === CardType.immobilier">
         <div *ngIf="!isCorner" class="cell-top" [style.backgroundColor]="color">
             <div class="houses" [class.rotate-houses-90]="orientation==='horizontal'">
+                {{ totalHouse }}
                 <ng-container *ngIf="totalHouse > 0 && totalHouse < 5">
                     <div class="house" *ngFor="let i of [].constructor(totalHouse);"><i class="fa-solid fa-house"></i></div>
                 </ng-container>
