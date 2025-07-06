@@ -6,7 +6,7 @@ import { Player } from '../models/player';
 import { Card, CardType } from '../models/card';
 import { Pawn } from '../models/pawn';
 
-
+type Property = { index: number; house: number };
 @Injectable({
   providedIn: 'root',
 })
@@ -50,12 +50,11 @@ export class GameService {
   private static playerNextId = 1;
 
 
-
   constructor(private httpClient: HttpClient) {
     this.usedFirstnames = new Set();
-    this.playerHuman$ = this.createNewPlayer(Pawn.trident, '#FF0000');
+    this.playerHuman$ = this.createNewPlayer(Pawn.trident, '#FF0000'); // [{ index: 1, house: 0 }, { index: 3, house: 0 }] brown
     this.playerComputer1$ = this.createNewPlayer(Pawn.honey, '#F4D35E');
-    this.playerComputer2$ = this.createNewPlayer(Pawn.ax, '#4ABDAC');
+    this.playerComputer2$ = this.createNewPlayer(Pawn.ax, '#4ABDAC'); // [{ index: 21, house: 0 }, { index: 23, house: 0 }, { index: 24, house: 0 }] red
     this.playerComputer3$ = this.createNewPlayer(Pawn.lotus, '#FF6F59');
     //    console.log('player human ', this.playerHuman$.value);
     //    console.log('player computer 1 ', this.playerComputer1$.value);
@@ -102,7 +101,8 @@ export class GameService {
     // const nextCase = 2; // communauté
     // const nextCase = 7; // chance
     // const nextCase = 30; // go to jail
-    const nextCase = (current.currentCase + this.dice1 + this.dice2);
+    // const nextCase = 21; // Red
+    const nextCase = current.currentCase + this.dice1 + this.dice2;
     current.currentCase = nextCase < 40 ? nextCase : nextCase % 40;
     player.next(current);
     await this.sleep(500);
@@ -175,7 +175,8 @@ export class GameService {
     return arr;
   }
 
-  createNewPlayer(pawnShape: Pawn, playerColor: string): BehaviorSubject<Player> {
+
+  createNewPlayer(pawnShape: Pawn, playerColor: string, props: Property[] = []): BehaviorSubject<Player> {
     return new BehaviorSubject<Player>({
       id: Player.nextId++,
       name: this.getRandomFirstname(),
@@ -186,7 +187,7 @@ export class GameService {
       jailDice: 0,
       communityCards: [],
       chanceCards: [],
-      properties: [{ index: 1, house: 0 }, { index: 3, house: 0 }, { index: 21, house: 0 }, { index: 23, house: 0 }, { index: 24, house: 0 }],
+      properties: props,
       solde: 1500
       // {index: 1, house: 0}, {index: 3,  house: 0},{index: 21, house: 0}, {index: 23,  house: 0}, {index: 24, house: 0}
       //{index: 1, house: 3}, {index: 3,  house: 0}, {index: 6,  house: 5}],
@@ -641,6 +642,38 @@ export class GameService {
       console.log("⏳ Étape 3 : Décide s’il veut acheter la propriété...");
       if (canBuyHouse) {
         await this.computerBuyHouse(player);
+
+
+      } else {
+                // S'il a  au moins 200 eur
+        // S'il est propriétaire et s'il a toute les maisons de cette couleur oui
+        // alors random 1 j'achete une maison ou j'achete pas
+
+        if(player.value.solde > 200) {
+          console.log('achete maison ');
+          const colorCheckers: Record<string, (player: BehaviorSubject<Player>) => boolean> = {
+              Red: this.checkSerieRed.bind(this),
+              Orange: this.checkSerieOrange.bind(this),
+              Cyan: this.checkSerieCyan.bind(this),
+              SaddleBrown: this.checkSerieBrown.bind(this),
+              Green: this.checkSerieGreen.bind(this),
+              Blue: this.checkSerieBlue.bind(this),
+              Yellow: this.checkSerieYellow.bind(this),
+              DeepPink: this.checkSeriePink.bind(this),
+              // Ajoute ici les autres couleurs si besoin
+            };
+
+            console.log('card : ', card);
+            console.log('card color:  : ', card.color);
+            const checker = colorCheckers[card.color];
+            console.log('checker : ', checker);
+            if (checker && checker(player)) {
+              console.log(player.value.name, 'has got all cards', card.color);
+              this.buyHouse(player, card.color)
+            }
+
+        }
+
       }
     }
   }
@@ -1071,14 +1104,14 @@ export class GameService {
 
   async buyHouse(player: BehaviorSubject<Player>, color: string) {
     const colorMap: Record<string, number[]> = {
-      brown: [1, 3],
-      cyan: [6, 8, 9],
-      pink: [11, 13, 14],
-      orange: [16, 18, 19],
-      red: [21, 23, 24],
-      yellow: [26, 27, 29],
-      green: [31, 32, 34],
-      blue: [37, 39],
+      SaddleBrown: [1, 3],
+      Cyan: [6, 8, 9],
+      DeepPink: [11, 13, 14],
+      Orange: [16, 18, 19],
+      Red: [21, 23, 24],
+      Yellow: [26, 27, 29],
+      Green: [31, 32, 34],
+      Blue: [37, 39],
     };
 
     const indices = colorMap[color];
@@ -1140,6 +1173,9 @@ export class GameService {
 
     // Notifie le changement
     player.next(current);
+
+    console.log('current player add house ', current.name);
+console.log('current player add house ', current.properties);
     console.log('add prop house');
   }
 
