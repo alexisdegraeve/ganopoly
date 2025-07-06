@@ -521,7 +521,7 @@ export class GameService {
   }
 
 
-  async payToBank(montant: number, player: BehaviorSubject<Player>):Promise<Boolean> {
+  async payToBank(montant: number, player: BehaviorSubject<Player>): Promise<Boolean> {
     console.log('pay to bank');
     let srcPlayer = structuredClone(player.value);
     // let dstBanque = structuredClone(this.banque);
@@ -645,38 +645,66 @@ export class GameService {
 
 
       } else {
-                // S'il a  au moins 200 eur
+        // S'il a  au moins 200 eur
         // S'il est propriétaire et s'il a toute les maisons de cette couleur oui
         // alors random 1 j'achete une maison ou j'achete pas
 
-        if(player.value.solde > 200) {
+        if (player.value.solde > 200) {
           console.log('achete maison ');
           const colorCheckers: Record<string, (player: BehaviorSubject<Player>) => boolean> = {
-              Red: this.checkSerieRed.bind(this),
-              Orange: this.checkSerieOrange.bind(this),
-              Cyan: this.checkSerieCyan.bind(this),
-              SaddleBrown: this.checkSerieBrown.bind(this),
-              Green: this.checkSerieGreen.bind(this),
-              Blue: this.checkSerieBlue.bind(this),
-              Yellow: this.checkSerieYellow.bind(this),
-              DeepPink: this.checkSeriePink.bind(this),
-              // Ajoute ici les autres couleurs si besoin
-            };
+            Red: this.checkSerieRed.bind(this),
+            Orange: this.checkSerieOrange.bind(this),
+            Cyan: this.checkSerieCyan.bind(this),
+            SaddleBrown: this.checkSerieBrown.bind(this),
+            Green: this.checkSerieGreen.bind(this),
+            Blue: this.checkSerieBlue.bind(this),
+            Yellow: this.checkSerieYellow.bind(this),
+            DeepPink: this.checkSeriePink.bind(this),
+            // Ajoute ici les autres couleurs si besoin
+          };
 
-            console.log('card : ', card);
-            console.log('card color:  : ', card.color);
-            const checker = colorCheckers[card.color];
-            console.log('checker : ', checker);
-            if (checker && checker(player)) {
-              console.log(player.value.name, 'has got all cards', card.color);
-              this.buyHouse(player, card.color)
-            }
+          console.log('card : ', card);
+          console.log('card color:  : ', card.color);
+          const checker = colorCheckers[card.color];
+          console.log('checker : ', checker);
+          if (checker && checker(player)) {
+            console.log(player.value.name, 'has got all cards', card.color);
+            this.buyHouse(player, card.color)
+          }
 
         }
 
       }
     }
   }
+
+
+
+checkOwnerCardAndPay(card: Card): boolean {
+  const humanCanBuy = this.checkOwnerCardForHuman(this.playerHuman$, card);
+
+  if (!humanCanBuy) return false;
+
+  const computerPlayers = [
+    this.playerComputer1$,
+    this.playerComputer2$,
+    this.playerComputer3$
+  ];
+
+  for (const computerPlayer of computerPlayers) {
+    const isFree = this.checkOwnerCardForHuman(computerPlayer, card);
+
+    if (!isFree) {
+      const ownedProperty = computerPlayer.value.properties.find(p => p.index === card.case);
+      if (ownedProperty) {
+        this.payRentPlayer(this.playerHuman$, computerPlayer, ownedProperty);
+        return false; // Le joueur humain ne peut pas acheter car il doit payer
+      }
+    }
+  }
+
+  return true; // Aucun autre joueur ne possède la carte => achat possible
+}
 
   checkOwnerCardForHuman(player: BehaviorSubject<Player>, card: Card): boolean | undefined {
     if ([CardType.immobilier, CardType.elec, CardType.gare, CardType.eaux].includes(card.type)) {
@@ -738,15 +766,22 @@ export class GameService {
     if (card) {
       switch (ownedProperty.house) {
         case 0:
-          await this.payToPlayerFromPlayer(card.prix, playersrc, playerdest);
+          console.log('Pay rent 0 House ');
+          console.log(card.loyer);
+          console.log(playersrc.value.name);
+          console.log(playerdest.value.name);
+          await this.payToPlayerFromPlayer(card.loyer, playersrc, playerdest);
           break;
         case 1:
+          console.log('Pay rent 1 House ');
           await this.payToPlayerFromPlayer(card.house1, playersrc, playerdest);
           break;
         case 2:
+          console.log('Pay rent 2 House ');
           await this.payToPlayerFromPlayer(card.house2, playersrc, playerdest);
           break;
         case 3:
+          console.log('Pay rent 3 House ');
           await this.payToPlayerFromPlayer(card.house3, playersrc, playerdest);
           break;
         case 4:
@@ -1143,14 +1178,14 @@ export class GameService {
 
         if (minHouseLevel < 4) {
           let canBuy = await this.payToBank(card.prixHouse, player);
-          if(canBuy) {
+          if (canBuy) {
             this.addHouse(player, prop.index);
           }
 
           console.log(' add prop house ');
         } else if (minHouseLevel === 4 && prop.house < 5) {
           let canBuy = await this.payToBank(card.prixHotel, player);
-          if(canBuy) {
+          if (canBuy) {
             this.addHouse(player, prop.index);
           }
 
@@ -1175,7 +1210,7 @@ export class GameService {
     player.next(current);
 
     console.log('current player add house ', current.name);
-console.log('current player add house ', current.properties);
+    console.log('current player add house ', current.properties);
     console.log('add prop house');
   }
 

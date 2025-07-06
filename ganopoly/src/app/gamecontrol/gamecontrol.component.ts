@@ -54,10 +54,11 @@ export class GamecontrolComponent {
         let card = this.gameService.checkCardGanopoly(this.gameService.PlayerHuman);
         //  If it's possible to buy or not ?
         if (card) {
-          let checkCard = this.gameService.checkOwnerCardForHuman(this.gameService.PlayerHuman, card);
-          if (checkCard) {
-            this.canBuy = checkCard;
-          }
+
+          // Check if the Human is not already owner
+
+          this.canBuy = this.gameService.checkOwnerCardAndPay(card);
+          console.log(' checkOwnerCardAndPay ', this.canBuy);
         }
         console.log('finish roll dice');
       } else {
